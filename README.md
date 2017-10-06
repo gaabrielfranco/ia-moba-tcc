@@ -17,6 +17,9 @@ Além das tecnologias, falta o pacote urllib3 que eu uso para requisições. Ele
 pip install urllib3
 ```
 
+### Base de dados
+Base de dados disponível em: [Base de dados]
+
 
 [Python3]: <https://www.python.org>
 [Anaconda]: <https://anaconda.org>
