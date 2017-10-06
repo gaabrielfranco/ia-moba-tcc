@@ -62,7 +62,7 @@ def sumario(eff):
     print('Minimo:', np.min(eff))
     print('Maximo:', np.max(eff))
 
-arq = 'KDAN.txt'
+arq = '\\files\\KDAN.txt'
 
 fp = open(arq, 'rU')
 k = []

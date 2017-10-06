@@ -4,6 +4,7 @@ from scipy.stats import linregress
 import numpy as np
 from scipy.optimize import curve_fit
 import math
+import os
 
 '''
 Implementado por Gabriel Franco
@@ -26,7 +27,7 @@ yDM = []
 xAM = []
 yAM = []
 
-file = open('KDAN.txt', 'r')
+file = open('\\files\\KDAN.txt', 'r')
 txt = file.readlines()
 
 for i in txt:
@@ -81,6 +82,11 @@ for i,j in enumerate(AssistsMedio):
         yAM.append(j)
 
 print('Plot dos graficos')
+
+try:
+    os.mkdir('Gráficos')
+except Exception as e:
+    print('Erro', 'O seguinte erro ocorreu: %s' % str(e.args))
 
 #Plot das kills
 fig = plt.figure()

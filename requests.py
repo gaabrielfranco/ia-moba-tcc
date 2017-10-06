@@ -22,7 +22,12 @@ r = http.request('GET', 'http://api.steampowered.com/IDOTA2Match_570/GetLeagueLi
 resultJSON = json.loads(r.data.decode('utf-8'))
 
 print('Salvando o resultado no arquivo ligas.json...')
-outfile = open('ligas.json', 'w')
+try:
+    os.mkdir('files')
+except Exception as e:
+    print('Erro', 'O seguinte erro ocorreu: %s' % str(e.args))
+outfile = open('files\\ligas.json', 'w')
+
 json.dump(resultJSON , outfile, sort_keys=True, indent= 4)
 
 for i in range(len(resultJSON['result']['leagues'])):

@@ -66,13 +66,13 @@ for j in arquivos:
 
 print('Grafo gerado com sucesso!')
 print('Salvando Jogador/K/D/A/Numero de partidas em KDAN.txt')
-arq = open('KDAN.txt', 'w')
+arq = open('\\files\\KDAN.txt', 'w')
 for i in KDAN:
     arq.writelines(str(i) + ' ' + str(KDAN[i][0]) + ' '+ str(KDAN[i][1]) + ' ' + str(KDAN[i][2])+ ' ' + str(KDAN[i][3]) + '\n')
 arq.close()
 
 print('Salvando grafo em grafo.txt')
-arq = open('grafo.txt', 'w', encoding='utf-16')
+arq = open('\\files\\grafo.txt', 'w', encoding='utf-16')
 for i in G.edges():
     arq.writelines(str(i[0]) + ' -> ' + str(i[1]) + '\n')
 arq.close()
