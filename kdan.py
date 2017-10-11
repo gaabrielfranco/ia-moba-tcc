@@ -24,10 +24,10 @@ Created on Mon Sep 25 14:32:34 2017
 # hero_damage (depende de funcao)
 # hero_healing (depende de fcn)
 # last_hits => numero de unidades mortas (morte: gold + xp) (depende de fcn)
-# level => analogo a rpg
+# level => analogo a rpg (não vai ter utilidade)
 # xp_per_min
 # Os seguintes atributos estarao em arquivo separado
-# item_0 a item_5 (array de itens influencia na funcao do player)
+# item_0 a item_5 (array de itens influencia na funcao do player) 
 #==============================================================================
 
 import numpy as np
