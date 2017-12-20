@@ -6,7 +6,7 @@ Created on Mon Sep 25 14:32:34 2017
 """
 
 #==============================================================================
-# PASSO 1: montar uma base equivalente ao KDAN, porem completa, com os atributos abaixo
+# PASSO 1: montar uma base equivalente ao KDAN, porem completa, com os atributos abaixo - Feito
 # PASSO 2: bolar uma metrica de eficiencia INDEPENDENTE de funcao (normalizar as variaveis da formula)
 # PASSO 3: bolar uma metrica de eficiencia especifica para cada funcao (normalizar)
 # PASSO 4: comparar media, desvio padrao, coef. de variacao e maximo e minimo antes e depois da poda por outliers em cada metrica

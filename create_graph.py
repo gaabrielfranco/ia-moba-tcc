@@ -18,9 +18,10 @@ lista = []  # Lista de arquivos que não são partidas válidas
 lista2 = []
 lista3 = []
 KDAN = {}  # Para cada player: (K, D, A, Npartidas)
-# para cada player, (K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing,
+
+# para cada player, (id_player,K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min)
+
 atributes = {}
-# LH, xp_p_min)
 arquivos = glob.glob(os.getcwd() + os.path.sep + 'Arquivos' +
                      os.path.sep + 'Partidas' + os.path.sep + '*.json')
 
