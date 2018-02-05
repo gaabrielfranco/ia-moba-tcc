@@ -11,8 +11,8 @@ Created on Mon Sep 25 14:32:34 2017
 #        (K - D + A + max(denies, LH) + max(hero_damage, hero_healing) + max(gpm, xp_p_min)) / Npartidas
 #        (K - D + A) / Npartidas
 # PASSO 3: bolar uma metrica de eficiencia especifica para cada funcao (normalizar) - Pular
-# PASSO 4: comparar media, desvio padrao, coef. de variacao e maximo e minimo antes e depois da poda por outliers em cada metrica
-# PASSO 5: Fazer a mesma analise pra cada atributo individualmente (pra ver se surge algum insight)
+# PASSO 4: comparar media, desvio padrao, coef. de variacao e maximo e minimo antes e depois da poda por outliers em cada metrica - Feito
+# PASSO 5: Fazer a mesma analise pra cada atributo individualmente (pra ver se surge algum insight) - Feito
 # PASSO 6: Cluster por atributos dependentes de funcao (5 clusters = 5 funcoes)
 #==============================================================================
 
