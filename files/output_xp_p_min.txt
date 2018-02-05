@@ -1,0 +1,15 @@
+Antes da poda:
+Media: 0.00879030761413
+Desvio: 0.0333682159572
+Coef. Variacao: 3.79602369131
+Minimo: 0.0
+Maximo: 1.0
+
+Removidos 1032 de 74133 jogadores
+
+Depois da poda:
+Media: 0.00584145791263
+Desvio: 0.00910651154543
+Coef. Variacao: 1.5589449897
+Minimo: 0.0
+Maximo: 0.0754789715123
