@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Sep 25 14:32:34 2017
-
-@author: marcos
-"""
-
 #==============================================================================
 # PASSO 1: montar uma base equivalente ao KDAN, porem completa, com os atributos abaixo - Feito
 # PASSO 2: bolar uma metrica de eficiencia INDEPENDENTE de funcao (normalizar as variaveis da formula) - Feito
@@ -34,7 +27,6 @@ Created on Mon Sep 25 14:32:34 2017
 
 import numpy as np
 from sklearn.cluster import KMeans
-import sys
 
 
 def normaliza(x):
@@ -78,6 +70,9 @@ def classification(file_name, received_data, received_eff):
 
     arq.write("Antes da poda:\n")
     sumario(arq, eff)
+    if file_name == "output_n_partidas.txt":
+        arq.write('Minimo: ' + str(np.min(received_eff)) + '\n')
+        arq.write('Maximo: ' + str(np.max(received_eff)) + '\n')
 
     podado, nout = removeOutliers(eff)
     arq.write('\nRemovidos %d de %d jogadores\n' % (nout, len(eff)))

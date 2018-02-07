@@ -4,6 +4,8 @@ Desvio: 0.0401756614236
 Coef. Variacao: 4.09742887459
 Minimo: 0.0
 Maximo: 1.0
+Minimo: 1
+Maximo: 563
 
 Removidos 1060 de 74133 jogadores
 

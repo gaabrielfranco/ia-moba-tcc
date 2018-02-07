@@ -1,0 +1,76 @@
+Iteracao 0:
+	Inertia da Iteracao 0:
+	11.6083654181
+
+	Contagem da Iteracao 0:
+	[73592, 98, 443]
+
+Iteracao 1:
+	Inertia da Iteracao 1:
+	11.6083654181
+
+	Contagem da Iteracao 1:
+	[73592, 98, 443]
+
+Iteracao 2:
+	Inertia da Iteracao 2:
+	11.6083654181
+
+	Contagem da Iteracao 2:
+	[73592, 443, 98]
+
+Iteracao 3:
+	Inertia da Iteracao 3:
+	11.6083654181
+
+	Contagem da Iteracao 3:
+	[73592, 98, 443]
+
+Iteracao 4:
+	Inertia da Iteracao 4:
+	11.6083654181
+
+	Contagem da Iteracao 4:
+	[73592, 98, 443]
+
+Iteracao 5:
+	Inertia da Iteracao 5:
+	11.6083540144
+
+	Contagem da Iteracao 5:
+	[73596, 98, 439]
+
+Iteracao 6:
+	Inertia da Iteracao 6:
+	11.6083654181
+
+	Contagem da Iteracao 6:
+	[73592, 98, 443]
+
+Iteracao 7:
+	Inertia da Iteracao 7:
+	11.6167896932
+
+	Contagem da Iteracao 7:
+	[73611, 430, 92]
+
+Iteracao 8:
+	Inertia da Iteracao 8:
+	11.6167896932
+
+	Contagem da Iteracao 8:
+	[73611, 430, 92]
+
+Iteracao 9:
+	Inertia da Iteracao 9:
+	11.6083654181
+
+	Contagem da Iteracao 9:
+	[73592, 98, 443]
+
+Dados da metrica inertia: 
+Media: 11.6100491327
+Desvio: 0.00337028194191
+Coef. Variacao: 0.000290290067111
+Minimo: 11.6083540144
+Maximo: 11.6167896932
