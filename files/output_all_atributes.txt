@@ -1,18 +1,32 @@
 Antes da poda:
+===
 Media: 0.0693420518291
 Desvio: 0.0511789068445
 Coef. Variacao: 0.738064500465
 Minimo: 0.0
 Maximo: 1.0
+===
+Media: 9601.7658167
+Desvio: 7031.36765355
+Coef. Variacao: 0.732299431978
+Minimo: 75.0
+Maximo: 137463.0
+===
+
+
 
 Removidos 2975 de 74133 jogadores
 
 Depois da poda:
+===
 Media: 0.0625991462064
 Desvio: 0.0369116327079
 Coef. Variacao: 0.589650737187
 Minimo: 0.0
 Maximo: 0.171695308178
+===
+
+
 
 Resultado das classificacoes:
-[67668, 229, 68, 757, 5411]
+[67661, 68, 5418, 229, 757]

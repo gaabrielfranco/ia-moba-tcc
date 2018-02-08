@@ -54,25 +54,35 @@ def removeOutliers(dados, c=2.0):
     return novo, count
 
 
-def sumario(arq, eff):
+def sumario(arq, eff, received_eff=None):
+    arq.write('===\n')
     arq.write('Media: ' + str(np.average(eff)) + '\n')
     arq.write('Desvio: ' + str(np.std(eff)) + '\n')
     arq.write('Coef. Variacao: ' + str(np.std(eff) / np.average(eff)) + '\n')
     arq.write('Minimo: ' + str(np.min(eff)) + '\n')
     arq.write('Maximo: ' + str(np.max(eff)) + '\n')
-
-
-def classification(file_name, received_data, received_eff):
-    arq = open("files/" + file_name, 'w')
-
-    data = normaliza(received_data)
-    eff = normaliza(received_eff)
-
-    arq.write("Antes da poda:\n")
-    sumario(arq, eff)
-    if file_name == "output_n_partidas.txt":
+    if received_eff is not None:
+        arq.write('===\n')
+        arq.write('Media: ' + str(np.average(received_eff)) + '\n')
+        arq.write('Desvio: ' + str(np.std(received_eff)) + '\n')
+        arq.write('Coef. Variacao: ' + str(np.std(received_eff) / np.average(received_eff)) + '\n')
         arq.write('Minimo: ' + str(np.min(received_eff)) + '\n')
         arq.write('Maximo: ' + str(np.max(received_eff)) + '\n')
+    arq.write('===\n\n\n')
+
+
+def classification(file_name, received_data, received_eff, n=None):
+    arq = open("files/" + file_name, 'w')
+
+    if n is not None:
+        data = list(np.array(received_data) / np.array(n))
+        eff = list(np.array(received_eff) / np.array(n))
+    else:
+        data = normaliza(received_data)
+        eff = normaliza(received_eff)
+
+    arq.write("Antes da poda:\n")
+    sumario(arq, eff, received_eff)
 
     podado, nout = removeOutliers(eff)
     arq.write('\nRemovidos %d de %d jogadores\n' % (nout, len(eff)))
@@ -138,9 +148,9 @@ for l in fp:
 
 classification("output_all_atributes.txt", data_all, eff_all)
 classification("output_kda.txt", data_kda, eff_kda)
-classification("output_kills.txt", k, k)
-classification("output_deaths.txt", d, d)
-classification("output_assists.txt", a, a)
+classification("output_kills.txt", k, k, n)
+classification("output_deaths.txt", d, d, n)
+classification("output_assists.txt", a, a, n)
 classification("output_n_partidas.txt", n, n)
 classification("output_denies.txt", denies, denies)
 classification("output_gpm.txt", gpm, gpm)
