@@ -1,136 +1,278 @@
-Iteracao 0:
-	Inertia da Iteracao 0:
-	10299321.7089
+Execucao sem podas de outliers com dados normalizados por n-partidas...
 
-	Contagem da Iteracao 0:
+Execucao com semente 0:
+	Inertia da execucao com semente 0:
+	43.1303708897
+
+	Contagem da execucao com semente 0:
 	[7758, 4723, 5844, 2219]
 
-	Centroides da Iteracao 0:
+	Centroides da execucao com semente 0:
 	[[   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]
  [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
  [   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]]
 
-Iteracao 1:
-	Inertia da Iteracao 1:
-	10299308.0679
+Execucao com semente 1:
+	Inertia da execucao com semente 1:
+	43.1303137654
 
-	Contagem da Iteracao 1:
+	Contagem da execucao com semente 1:
 	[5845, 2219, 7758, 4722]
 
-	Centroides da Iteracao 1:
+	Centroides da execucao com semente 1:
 	[[   5.0267828     5.31674691   10.25034414    5.74806215  104.94535875]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   3.08357865    5.69270323   10.37979472    2.43004526   40.4536803 ]
  [   7.13215139    4.68173588    9.7373482    10.19505099  174.48788817]]
 
-Iteracao 2:
-	Inertia da Iteracao 2:
-	10299304.271
+Execucao com semente 2:
+	Inertia da execucao com semente 2:
+	43.1302978652
 
-	Contagem da Iteracao 2:
+	Contagem da execucao com semente 2:
 	[5845, 2219, 7758, 4722]
 
-	Centroides da Iteracao 2:
+	Centroides da execucao com semente 2:
 	[[   5.02678738    5.31656558   10.2498944     5.74786905  104.95091827]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   3.08382567    5.69279118   10.38011635    2.43061821   40.45781104]
  [   7.13215139    4.68173588    9.7373482    10.19505099  174.48788817]]
 
-Iteracao 3:
-	Inertia da Iteracao 3:
-	10299321.7089
+Execucao com semente 3:
+	Inertia da execucao com semente 3:
+	43.1303708897
 
-	Contagem da Iteracao 3:
+	Contagem da execucao com semente 3:
 	[5844, 2219, 4723, 7758]
 
-	Centroides da Iteracao 3:
+	Centroides da execucao com semente 3:
 	[[   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
  [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]]
 
-Iteracao 4:
-	Inertia da Iteracao 4:
-	10299321.7089
+Execucao com semente 4:
+	Inertia da execucao com semente 4:
+	43.1303708897
 
-	Contagem da Iteracao 4:
+	Contagem da execucao com semente 4:
 	[7758, 4723, 2219, 5844]
 
-	Centroides da Iteracao 4:
+	Centroides da execucao com semente 4:
 	[[   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]
  [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]]
 
-Iteracao 5:
-	Inertia da Iteracao 5:
-	10299321.7089
+Execucao com semente 5:
+	Inertia da execucao com semente 5:
+	43.1303708897
 
-	Contagem da Iteracao 5:
+	Contagem da execucao com semente 5:
 	[5844, 2219, 7758, 4723]
 
-	Centroides da Iteracao 5:
+	Centroides da execucao com semente 5:
 	[[   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]
  [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]]
 
-Iteracao 6:
-	Inertia da Iteracao 6:
-	10299026.3063
+Execucao com semente 6:
+	Inertia da execucao com semente 6:
+	43.1291338352
 
-	Contagem da Iteracao 6:
+	Contagem da execucao com semente 6:
 	[2209, 7769, 4717, 5849]
 
-	Centroides da Iteracao 6:
+	Centroides da execucao com semente 6:
 	[[   8.48657326    4.41885367    9.80540914   13.45675285  257.58050194]
  [   3.08522696    5.69341738   10.37939941    2.43386346   40.51186187]
  [   7.13848706    4.67991073    9.73492586   10.21866717  174.69948764]
  [   5.03372535    5.31342445   10.25064134    5.7545765   105.16568744]]
 
-Iteracao 7:
-	Inertia da Iteracao 7:
-	10299321.7089
+Execucao com semente 7:
+	Inertia da execucao com semente 7:
+	43.1303708897
 
-	Contagem da Iteracao 7:
+	Contagem da execucao com semente 7:
 	[4723, 5844, 2219, 7758]
 
-	Centroides da Iteracao 7:
+	Centroides da execucao com semente 7:
 	[[   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
  [   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]]
 
-Iteracao 8:
-	Inertia da Iteracao 8:
-	10299321.7089
+Execucao com semente 8:
+	Inertia da execucao com semente 8:
+	43.1303708897
 
-	Contagem da Iteracao 8:
+	Contagem da execucao com semente 8:
 	[5844, 2219, 4723, 7758]
 
-	Centroides da Iteracao 8:
+	Centroides da execucao com semente 8:
 	[[   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
  [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]]
 
-Iteracao 9:
-	Inertia da Iteracao 9:
-	10299087.2504
+Execucao com semente 9:
+	Inertia da execucao com semente 9:
+	43.1293890503
 
-	Contagem da Iteracao 9:
+	Contagem da execucao com semente 9:
 	[5848, 2213, 7769, 4714]
 
-	Centroides da Iteracao 9:
+	Centroides da execucao com semente 9:
 	[[   5.03339164    5.31263399   10.25097106    5.75427249  105.14267882]
  [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
  [   3.08501379    5.6937081    10.37971375    2.43336729   40.50353814]
  [   7.13636566    4.68126012    9.73397682   10.21109033  174.6498673 ]]
 
 Dados da metrica inertia: 
-Media: 10299265.6149
-Desvio: 105.479018026
+Media: 43.1301359854
+Desvio: 0.000441713473681
 Coef. Variacao: 1.02414115696e-05
-Minimo: 10299026.3063
-Maximo: 10299321.7089
+Minimo: 43.1291338352
+Maximo: 43.1303708897
+
+==================================================================================
+Execucao com podas de outliers com dados normalizados por n-partidas...
+
+Execucao com semente 0:
+	Inertia da execucao com semente 0:
+	5.03108548189
+
+	Contagem da execucao com semente 0:
+	[2757, 3716, 3395, 2621]
+
+	Centroides da execucao com semente 0:
+	[[   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]
+ [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
+ [   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]]
+
+Execucao com semente 1:
+	Inertia da execucao com semente 1:
+	5.03083800342
+
+	Contagem da execucao com semente 1:
+	[3694, 2630, 2767, 3398]
+
+	Centroides da execucao com semente 1:
+	[[   5.0267828     5.31674691   10.25034414    5.74806215  104.94535875]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   3.08357865    5.69270323   10.37979472    2.43004526   40.4536803 ]
+ [   7.13215139    4.68173588    9.7373482    10.19505099  174.48788817]]
+
+Execucao com semente 2:
+	Inertia da execucao com semente 2:
+	5.03098340303
+
+	Contagem da execucao com semente 2:
+	[3680, 2775, 2637, 3397]
+
+	Centroides da execucao com semente 2:
+	[[   5.02678738    5.31656558   10.2498944     5.74786905  104.95091827]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   3.08382567    5.69279118   10.38011635    2.43061821   40.45781104]
+ [   7.13215139    4.68173588    9.7373482    10.19505099  174.48788817]]
+
+Execucao com semente 3:
+	Inertia da execucao com semente 3:
+	5.03111563906
+
+	Contagem da execucao com semente 3:
+	[3396, 2620, 3716, 2757]
+
+	Centroides da execucao com semente 3:
+	[[   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
+ [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]]
+
+Execucao com semente 4:
+	Inertia da execucao com semente 4:
+	5.03095906396
+
+	Contagem da execucao com semente 4:
+	[2627, 3390, 3713, 2759]
+
+	Centroides da execucao com semente 4:
+	[[   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]
+ [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]]
+
+Execucao com semente 5:
+	Inertia da execucao com semente 5:
+	5.03108548189
+
+	Contagem da execucao com semente 5:
+	[2621, 3395, 2757, 3716]
+
+	Centroides da execucao com semente 5:
+	[[   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]
+ [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]]
+
+Execucao com semente 6:
+	Inertia da execucao com semente 6:
+	5.03108548189
+
+	Contagem da execucao com semente 6:
+	[3716, 2757, 2621, 3395]
+
+	Centroides da execucao com semente 6:
+	[[   8.48657326    4.41885367    9.80540914   13.45675285  257.58050194]
+ [   3.08522696    5.69341738   10.37939941    2.43386346   40.51186187]
+ [   7.13848706    4.67991073    9.73492586   10.21866717  174.69948764]
+ [   5.03372535    5.31342445   10.25064134    5.7545765   105.16568744]]
+
+Execucao com semente 7:
+	Inertia da execucao com semente 7:
+	5.03108548189
+
+	Contagem da execucao com semente 7:
+	[3395, 2757, 3716, 2621]
+
+	Centroides da execucao com semente 7:
+	[[   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
+ [   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]]
+
+Execucao com semente 8:
+	Inertia da execucao com semente 8:
+	5.03111563906
+
+	Contagem da execucao com semente 8:
+	[2620, 3716, 3396, 2757]
+
+	Centroides da execucao com semente 8:
+	[[   5.0259072     5.31701374   10.25137895    5.74736041  104.93390233]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   7.13238007    4.68183836    9.73701627   10.19454183  174.4805144 ]
+ [   3.08357609    5.69257024   10.37930129    2.42988286   40.44951959]]
+
+Execucao com semente 9:
+	Inertia da execucao com semente 9:
+	5.03095276674
+
+	Contagem da execucao com semente 9:
+	[2762, 3704, 3399, 2624]
+
+	Centroides da execucao com semente 9:
+	[[   5.03339164    5.31263399   10.25097106    5.75427249  105.14267882]
+ [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+ [   3.08501379    5.6937081    10.37971375    2.43336729   40.50353814]
+ [   7.13636566    4.68126012    9.73397682   10.21109033  174.6498673 ]]
+
+Dados da metrica inertia: 
+Media: 17.7011772968
+Desvio: 12.6701466527
+Coef. Variacao: 0.715779885163
+Minimo: 5.03083800342
+Maximo: 30.371408635

@@ -1,29 +1,42 @@
-Antes da poda:
-===
-Media: 0.00365284228373
-Desvio: 0.019412607033
-Coef. Variacao: 5.31438412205
+Sumario de valores normalizados por partida (minimo 5 partidas):
+Media: 553.896750215
+Desvio: 682.034975222
+Coef. Variacao: 1.23133955012
+Minimo: 0.0
+Maximo: 14613.0
+
+==================================================================
+
+Antes da poda de outliers com normalizacao min-max:
+Media: 0.0109854986352
+Desvio: 0.035699423009
+Coef. Variacao: 3.24968617214
 Minimo: 0.0
 Maximo: 1.0
-===
-Media: 3735.93714001
-Desvio: 19854.2050178
-Coef. Variacao: 5.31438412205
-Minimo: 0
-Maximo: 1022748
-===
 
+Removidos 382 de 20544 jogadores
 
-
-Removidos 872 de 74133 jogadores
-
-Depois da poda:
-===
-Media: 0.00224512761587
-Desvio: 0.00492770665033
-Coef. Variacao: 2.19484478989
+Depois da poda de outliers com normalizacao min-max:
+Media: 0.0072953435121
+Desvio: 0.0109962914433
+Coef. Variacao: 1.50730276443
 Minimo: 0.0
-Maximo: 0.0422792320298
-===
+Maximo: 0.0822411776899
 
+==================================================================
 
+Antes da poda de outliers com normalizacao por partidas e min-max:
+Media: 0.0379043830983
+Desvio: 0.0466731660318
+Coef. Variacao: 1.23133955012
+Minimo: 0.0
+Maximo: 1.0
+
+Removidos 949 de 20544 jogadores
+
+Depois da poda de outliers com normalizacao por partidas e min-max:
+Media: 0.0306616551833
+Desvio: 0.0304481552864
+Coef. Variacao: 0.993036908947
+Minimo: 0.0
+Maximo: 0.131239307466

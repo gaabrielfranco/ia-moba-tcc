@@ -54,52 +54,48 @@ def removeOutliers(dados, c=2.0):
     return novo, count
 
 
-def sumario(arq, eff, received_eff=None):
-    arq.write('===\n')
+def sumario(arq, eff):
     arq.write('Media: ' + str(np.average(eff)) + '\n')
     arq.write('Desvio: ' + str(np.std(eff)) + '\n')
     arq.write('Coef. Variacao: ' + str(np.std(eff) / np.average(eff)) + '\n')
     arq.write('Minimo: ' + str(np.min(eff)) + '\n')
     arq.write('Maximo: ' + str(np.max(eff)) + '\n')
-    if received_eff is not None:
-        arq.write('===\n')
-        arq.write('Media: ' + str(np.average(received_eff)) + '\n')
-        arq.write('Desvio: ' + str(np.std(received_eff)) + '\n')
-        arq.write('Coef. Variacao: ' + str(np.std(received_eff) / np.average(received_eff)) + '\n')
-        arq.write('Minimo: ' + str(np.min(received_eff)) + '\n')
-        arq.write('Maximo: ' + str(np.max(received_eff)) + '\n')
-    arq.write('===\n\n\n')
 
 
-def classification(file_name, received_data, received_eff, n=None):
+def classification(file_name, received_eff, n):
     arq = open("files/" + file_name, 'w')
+    eff_normalized = list(np.array(received_eff) / np.array(n))
 
-    if n is not None:
-        data = list(np.array(received_data) / np.array(n))
-        eff = list(np.array(received_eff) / np.array(n))
-    else:
-        data = normaliza(received_data)
-        eff = normaliza(received_eff)
+    eff = normaliza(received_eff)
 
-    arq.write("Antes da poda:\n")
-    sumario(arq, eff, received_eff)
+    arq.write("Sumario de valores normalizados por partida (minimo 5 partidas):\n")
+    sumario(arq, eff_normalized)
+
+    arq.write(
+        '\n==================================================================\n\n')
+
+    arq.write("Antes da poda de outliers com normalizacao min-max:\n")
+    sumario(arq, eff)
 
     podado, nout = removeOutliers(eff)
     arq.write('\nRemovidos %d de %d jogadores\n' % (nout, len(eff)))
 
-    arq.write('\nDepois da poda:\n')
+    arq.write('\nDepois da poda de outliers com normalizacao min-max:\n')
     sumario(arq, podado)
 
-    if file_name == "output_all_atributes.txt" or file_name == "output_kda.txt":
-        km = KMeans(5)
-        labels = km.fit_predict(data)
+    arq.write(
+        '\n==================================================================\n\n')
 
-        contagens = [0] * 5
-        for l in labels:
-            contagens[l] += 1
+    eff_normalized = normaliza(eff_normalized)
+    arq.write("Antes da poda de outliers com normalizacao por partidas e min-max:\n")
+    sumario(arq, eff_normalized)
 
-        arq.write("\nResultado das classificacoes:\n")
-        arq.write(str(contagens))
+    podado, nout = removeOutliers(eff_normalized)
+    arq.write('\nRemovidos %d de %d jogadores\n' % (nout, len(eff_normalized)))
+
+    arq.write(
+        '\nDepois da poda de outliers com normalizacao por partidas e min-max:\n')
+    sumario(arq, podado)
 
 
 fp = open('files/atributes.txt', 'rU')
@@ -115,46 +111,43 @@ lh = []
 xp_p_min = []
 eff_all = []
 eff_kda = []
-data_all = []
-data_kda = []
 
 for l in fp:
     partes = l.strip().split()
     for i, p in enumerate(partes):
         partes[i] = int(p)
-    k.append(partes[1])
-    d.append(partes[2])
-    a.append(partes[3])
-    n.append(partes[4])
-    denies.append(partes[5])
-    gpm.append(partes[6])
-    hero_damage.append(partes[7])
-    hero_healing.append(partes[8])
-    lh.append(partes[9])
-    xp_p_min.append(partes[10])
 
-    data_all.append(partes[1:11])
-    data_kda.append(partes[1:5])
+    # Considerar esse if reduz a base de 74133 jogadores para 20544 jogadores
+    if partes[4] >= 5:
+        k.append(partes[1])
+        d.append(partes[2])
+        a.append(partes[3])
+        n.append(partes[4])
+        denies.append(partes[5])
+        gpm.append(partes[6])
+        hero_damage.append(partes[7])
+        hero_healing.append(partes[8])
+        lh.append(partes[9])
+        xp_p_min.append(partes[10])
 
-    eff_kda.append((partes[1] + partes[3] - partes[2]) /
-                   partes[4])  # (K + A - D / Npartidas)
-    eff_all.append((partes[1] + partes[3] - partes[2] + max(partes[5], partes[9]) +
-                    max(partes[7], partes[8]) + max(partes[6], partes[10])) / partes[4])
+        eff_kda.append((partes[1] + partes[3] - partes[2]) /
+                       partes[4])  # (K + A - D / Npartidas)
+        eff_all.append((partes[1] + partes[3] - partes[2] + max(partes[5], partes[9]) +
+                        max(partes[7], partes[8]) + max(partes[6], partes[10])) / partes[4])
 
-    # (K - D + A + max(denies, LH) + max(hero_damage, hero_healing) + max(gpm, xp_p_min)) / Npartidas
+        # (K - D + A + max(denies, LH) + max(hero_damage, hero_healing) + max(gpm, xp_p_min)) / n_partidas
 
-    # Ordem dos atributos:
-    # (id_player,K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min)
+        # Ordem dos atributos:
+        # (id_player,K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min)
 
-classification("output_all_atributes.txt", data_all, eff_all)
-classification("output_kda.txt", data_kda, eff_kda)
-classification("output_kills.txt", k, k, n)
-classification("output_deaths.txt", d, d, n)
-classification("output_assists.txt", a, a, n)
-classification("output_n_partidas.txt", n, n)
-classification("output_denies.txt", denies, denies)
-classification("output_gpm.txt", gpm, gpm)
-classification("output_hero_damage.txt", hero_damage, hero_damage)
-classification("output_hero_healing.txt", hero_healing, hero_healing)
-classification("output_lh.txt", lh, lh)
-classification("output_xp_p_min.txt", xp_p_min, xp_p_min)
+classification("output_all_atributes.txt", eff_all, n)
+classification("output_kda.txt", eff_kda, n)
+classification("output_kills.txt", k, n)
+classification("output_deaths.txt", d, n)
+classification("output_assists.txt", a, n)
+classification("output_denies.txt", denies, n)
+classification("output_gpm.txt", gpm, n)
+classification("output_hero_damage.txt", hero_damage, n)
+classification("output_hero_healing.txt", hero_healing, n)
+classification("output_lh.txt", lh, n)
+classification("output_xp_p_min.txt", xp_p_min, n)
