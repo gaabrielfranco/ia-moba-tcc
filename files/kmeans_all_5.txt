@@ -150,6 +150,8 @@ Maximo: 29.9015423398
 ==================================================================================
 Execucao com podas de outliers com dados normalizados por n-partidas...
 
+Foram podados 8055 de 20544 jogadores.
+
 Execucao com semente 0:
 	Inertia da execucao com semente 0:
 	3.71258045585
@@ -291,8 +293,8 @@ Execucao com semente 9:
  [   4.46296585    5.48048758   10.41153071    4.69021181   87.38888612]]
 
 Dados da metrica inertia: 
-Media: 15.1006156054
-Desvio: 11.3889672423
-Coef. Variacao: 0.754205493328
+Media: 3.71255849734
+Desvio: 2.53685860425e-05
+Coef. Variacao: 6.83318150022e-06
 Minimo: 3.71251248378
-Maximo: 26.7997754282
+Maximo: 3.71258045585

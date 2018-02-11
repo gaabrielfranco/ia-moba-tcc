@@ -157,7 +157,10 @@ Coef. Variacao: 0.00768698436089
 Minimo: 26.3551200828
 Maximo: 26.7997754282
 
-==================================================================================nExecucao com podas de outliers com dados normalizados por n-partidas...
+==================================================================================
+Execucao com podas de outliers com dados normalizados por n-partidas...
+
+Foram podados 4111 de 20544 jogadores.
 
 Execucao com semente 0:
 

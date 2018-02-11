@@ -1,0 +1,190 @@
+Caracterização dos centróides
+
+* k = 3, todos os atributos (semente 6), sem poda de outliers:
+    Inertia da execucao com semente 6:
+	71.334222422
+
+    Centroides da execucao com semente 6:
+	[   3.28833572    5.66932077   10.39482398    2.76042505   47.54964657]
+    [   8.12790099    4.45215475    9.69635787   12.64053944  230.23296585]
+    [   5.9121716     5.05202218   10.03687898    7.50481204  132.72631215]
+
+    - Jogador que faz uma função de suporte (poucas kills e farms, 
+    muita assistência);
+    - Jogador que farma muito e mata muito (carry, jungler);
+    - Jogador equibilibrado, farma em um nível mediano com um KDA mediano (jungler, initiator, pusher);
+
+* k = 3, todos os atributos (semente 2), com poda de outliers:
+    Inertia da execucao com semente 2:
+	7.71431515921
+
+    Centroides da execucao com semente 2:
+	[   3.28631893    5.67053138   10.39703039    2.75512731   47.48178937]
+    [   5.90499784    5.05348352   10.03704033    7.4867052   132.40990836]
+    [   8.11745118    4.45395391    9.69508588   12.62521306  229.83757492]
+
+    - Mesma classificação que a sem poda de outliers
+
+* k = 3, KDA atributos (semente 8), sem poda de outliers:
+    Inertia da execucao com semente 8:
+	35.1382845603
+
+    Centroides da execucao com semente 8:
+	[  8.59062415   4.47454635   9.67795997]
+    [  3.46292588   5.2513385    7.73497112]
+    [  4.13835278   5.78436941  13.07052183]
+
+    - Jogador que mata muito (carry, jungler)
+    - Jogador abaixo da média
+    - Jogador mediano que da muita assistência
+
+* k = 3, KDA atributos (semente 6), com poda de outliers:
+	Inertia da execucao com semente 6:
+	16.3863412495
+
+	Centroides da execucao com semente 6:
+	[  3.47111382   5.24755061   7.73201857]
+    [  4.13577904   5.78443609  13.06487059]
+    [  8.60107602   4.47538677   9.68509852]
+
+    - Mesma classificação que a sem poda de outliers
+
+* k = 4, todos os atributos (semente 6), sem poda de outliers:
+	Inertia da execucao com semente 6:
+	43.1291338352
+
+    Centroides da execucao com semente 6:
+	[   8.48657326    4.41885367    9.80540914   13.45675285  257.58050194]
+    [   3.08522696    5.69341738   10.37939941    2.43386346   40.51186187]
+    [   7.13848706    4.67991073    9.73492586   10.21866717  174.69948764]
+    [   5.03372535    5.31342445   10.25064134    5.7545765   105.16568744]
+
+    - Muitos LH's e muitas kills. Farma e mata muito (carry, jungler)
+    - Pouco farm e melhor atributo é a assistência (suporte)
+    - Jogador que mata bem e farma menos que o primeiro grupo (jungler, initiator, pusher)
+    - Jogador equibilibrado, na média(durable, disabler, nuker)
+
+* k = 4, todos os atributos (semente 1), com poda de outliers:
+	Inertia da execucao com semente 1:
+	5.03083800342
+
+    Centroides da execucao com semente 1:
+	[   5.0267828     5.31674691   10.25034414    5.74806215  104.94535875]
+    [   8.48661749    4.41843914    9.80590763   13.46251655  257.50522538]
+    [   3.08357865    5.69270323   10.37979472    2.43004526   40.4536803 ]
+    [   7.13215139    4.68173588    9.7373482    10.19505099  174.48788817]
+
+    - Mesma classificação que a sem poda de outliers
+
+* k = 4, KDA atributos (semente 3), sem poda de outliers:
+	Inertia da execucao com semente 3:
+	30.3712013557
+
+	Centroides da execucao com semente 3:
+	[  4.76752985   5.98925759  14.8777537 ]
+    [  3.63330238   5.49937677  10.67479228]
+    [  8.65051049   4.45451014   9.61428997]
+    [  3.50961108   5.149223     6.52760286]
+
+    - Assists como melhor atributo, kills menores que deaths (suporte, initiator, durable)
+    - Igual o primeiro, mas com os atributos piores (suporte, initiator, durable)
+    - Mata o dobro que morre (carry)
+    - Pior que o segundo (suporte, initiator, durable)
+
+* k = 4, KDA atributos (semente 1), com poda de outliers:
+	Inertia da execucao com semente 1:
+	13.8347192795
+
+	Centroides da execucao com semente 1:
+	[  4.77577      5.98794334  14.87791091]
+    [  8.64203585   4.45655299   9.60340933]
+    [  3.63477726   5.49649834  10.67158824]
+    [  3.49546242   5.15243399   6.51878188]
+
+    - Mesma classificação que a sem poda de outliers
+
+* k = 5, todos os atributos (semente 2), sem poda de outliers:
+	Inertia da execucao com semente 2:
+	29.901324269
+
+    Centroides da execucao com semente 2:
+	[   2.96600757    5.69909129   10.35664118    2.25790546   36.09751416]
+    [   8.72179075    4.42383787    9.88510264   14.02839845  278.68261375]
+    [   4.46492506    5.47844353   10.40751823    4.69744099   87.43721326]
+    [   6.21268851    4.97624437    9.93921929    8.06664895  141.9253016 ]
+    [   7.7312422     4.48955639    9.63568866   11.68589915  201.49495754]
+
+    - Provável suporte (D > K e A > K), pouco farm
+    - Provável carry ou jungler (muitas kills e muito farm)
+    - Jogador equilibrado (pode ser um initiator pelas assists ou durable)
+    - Kills e farm razoável (escape (?), nuker (?))
+    - Mata bem e farma bem (pode ser pusher, jungler)
+
+* k = 5, todos os atributos (semente 2), com poda de outliers:
+	Inertia da execucao com semente 4:
+	3.71251248378
+
+    Centroides da execucao com semente 2:
+	Centroides da execucao com semente 4:
+	[   4.46735992    5.4784808    10.40949287    4.70051135   87.49573535]
+    [   7.73161068    4.49002031    9.63355912   11.68352689  201.43690148]
+    [   8.71999358    4.42294543    9.8882497    14.01948105  278.62366537]
+    [   2.96699898    5.69876038   10.35520011    2.25922858   36.12830955]
+    [   6.21075888    4.97634543    9.93985837    8.06811865  141.91660578]
+
+    - Mesma classificação que a sem poda de outliers
+
+* k = 5, KDA atributos (semente 8), sem poda de outliers:
+	Inertia da execucao com semente 8:
+	26.3551200828
+
+    Centroides da execucao com semente 8:
+	[  3.45557373   5.16368166   6.52467532]
+    [  4.81354129   5.98608628  14.90900775]
+    [  8.42372789   4.45389573   9.61503997]
+    [ 43.50299206   5.20958321   0.9321286 ]
+    [  3.58352994   5.52315318  10.71601262]
+
+    - Jogador mediano (suporte, initiator, durable)
+    - Muitas assistências (suporte, initiator)
+    - Mata muito (carry, jungler)
+    - Mata de um jeito absurdo (estranho, mas carry)
+    - Parecido com segundo grupo, mas piorado (suporte, initiator)
+
+* k = 5, KDA atributos (semente 5), com poda de outliers:
+	Inertia da execucao com semente 5:
+	12.2989870047
+
+	Centroides da execucao com semente 5:
+	[  8.42793837   4.45396733   9.62065069]
+    [  3.46585495   5.15977371   6.54835116]
+    [ 43.50299206   5.20958321   0.9321286 ]
+    [  4.81686838   5.98681329  14.92934026]
+    [  3.58448366   5.52892508  10.7373792 ]
+
+    - Mesma classificação que a sem poda de outliers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+

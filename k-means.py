@@ -119,15 +119,22 @@ def classification(k, data_all, data_kda):
     file_kda.write('Dados da metrica inertia: \n')
     summary(file_kda, inertia)
 
+    len_all = len(data_all_normalized)
+    len_kda = len(data_kda_normalized)
+
     data_all_normalized, count_all = remove_outliers(
         'all', data_all_normalized)
     data_kda_normalized, count_kda = remove_outliers(
         'kda', data_kda_normalized)
 
+    inertia.clear()
+
     file_all.write(
         '\n==================================================================================\n')
     file_all.write(
         'Execucao com podas de outliers com dados normalizados por n-partidas...\n\n')
+    file_all.write('Foram podados ' + str(count_all) +
+                   ' de ' + str(len_all) + ' jogadores.\n\n')
     print('\tCom poda de outliers para todos os atributos')
     # All attributes with normalized min-max data
     for i in range(0, 10):
@@ -158,9 +165,11 @@ def classification(k, data_all, data_kda):
     inertia.clear()
 
     file_kda.write(
-        '\n==================================================================================n')
+        '\n==================================================================================\n')
     file_kda.write(
         'Execucao com podas de outliers com dados normalizados por n-partidas...\n\n')
+    file_kda.write('Foram podados ' + str(count_kda) +
+                   ' de ' + str(len_kda) + ' jogadores.\n\n')
     print('\tCom poda de outliers para KDA')
     # KDA attributes
     for i in range(0, 10):
