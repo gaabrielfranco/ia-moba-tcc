@@ -42,12 +42,21 @@ def remove_outliers(method, data, c=2.0):
     return new, count
 
 
-def summary(arq, eff):
-    arq.write('Media: ' + str(np.average(eff)) + '\n')
-    arq.write('Desvio: ' + str(np.std(eff)) + '\n')
-    arq.write('Coef. Variacao: ' + str(np.std(eff) / np.average(eff)) + '\n')
-    arq.write('Minimo: ' + str(np.min(eff)) + '\n')
-    arq.write('Maximo: ' + str(np.max(eff)) + '\n')
+def summary(arq, eff, tabs=0):
+    if tabs == 0:
+        arq.write('Media: ' + str(np.average(eff)) + '\n')
+        arq.write('Desvio: ' + str(np.std(eff)) + '\n')
+        arq.write('Coef. Variacao: ' +
+                  str(np.std(eff) / np.average(eff)) + '\n')
+        arq.write('Minimo: ' + str(np.min(eff)) + '\n')
+        arq.write('Maximo: ' + str(np.max(eff)) + '\n')
+    else:
+        arq.write('\tMedia: ' + str(np.average(eff)) + '\n')
+        arq.write('\tDesvio: ' + str(np.std(eff)) + '\n')
+        arq.write('\tCoef. Variacao: ' +
+                  str(np.std(eff) / np.average(eff)) + '\n')
+        arq.write('\tMinimo: ' + str(np.min(eff)) + '\n')
+        arq.write('\tMaximo: ' + str(np.max(eff)) + '\n')
 
 
 def classification(k, data_all, data_kda):
@@ -58,7 +67,11 @@ def classification(k, data_all, data_kda):
     data_kda_normalized = normalizes(data_kda)
 
     print('Execucao para K = %d' % k)
+
     inertia = []
+    cluster_centers_eff = []
+    eff_f = []
+
     file_all.write(
         'Execucao sem podas de outliers com dados normalizados por n-partidas...\n\n')
     print('\tSem poda de outliers para todos os atributos')
@@ -83,7 +96,25 @@ def classification(k, data_all, data_kda):
         labels = km.fit_predict(data_all)
         file_all.write(
             '\tCentroides da execucao com semente ' + str(i) + ':\n')
-        file_all.write('\t' + str(km.cluster_centers_) + '\n\n')
+        for i in km.cluster_centers_:
+            file_all.write('\t' + str(i) + '\n')
+        file_all.write('\n')
+
+        # Inertia with F(K - D + A + max(LH, denies))
+        for i in km.cluster_centers_:
+            cluster_centers_eff.append(i[0] - i[1] + i[2] + max(i[3], i[4]))
+
+        for i, d in enumerate(data_all):
+            eff = d[0] - d[1] + d[2] + max(d[3], d[4])
+
+            eff_f.append(abs(cluster_centers_eff[labels[i]] - eff))
+
+        file_all.write('\tDados da metrica F: \n')
+        summary(file_all, eff_f, 1)
+        file_all.write('\n')
+
+        eff_f.clear()
+        cluster_centers_eff.clear()
 
     file_all.write('Dados da metrica inertia: \n')
     summary(file_all, inertia)
@@ -114,7 +145,25 @@ def classification(k, data_all, data_kda):
         labels = km.fit_predict(data_kda)
         file_kda.write(
             '\tCentroides da execucao com semente ' + str(i) + ':\n')
-        file_kda.write('\t' + str(km.cluster_centers_) + '\n\n')
+        for i in km.cluster_centers_:
+            file_kda.write('\t' + str(i) + '\n')
+        file_kda.write('\n')
+
+        # Inertia with F(K - D + A)
+        for i in km.cluster_centers_:
+            cluster_centers_eff.append(i[0] - i[1] + i[2])
+
+        for i, d in enumerate(data_kda):
+            eff = d[0] - d[1] + d[2]
+
+            eff_f.append(abs(cluster_centers_eff[labels[i]] - eff))
+
+        file_kda.write('\tDados da metrica F: \n')
+        summary(file_kda, eff_f, 1)
+        file_kda.write('\n')
+
+        eff_f.clear()
+        cluster_centers_eff.clear()
 
     file_kda.write('Dados da metrica inertia: \n')
     summary(file_kda, inertia)
@@ -157,7 +206,25 @@ def classification(k, data_all, data_kda):
         labels = km.fit_predict(data_all)
         file_all.write(
             '\tCentroides da execucao com semente ' + str(i) + ':\n')
-        file_all.write('\t' + str(km.cluster_centers_) + '\n\n')
+        for i in km.cluster_centers_:
+            file_all.write('\t' + str(i) + '\n')
+        file_all.write('\n')
+
+        # Inertia with F(K - D + A)
+        for i in km.cluster_centers_:
+            cluster_centers_eff.append(i[0] - i[1] + i[2] + max(i[3], i[4]))
+
+        for i, d in enumerate(data_all):
+            eff = d[0] - d[1] + d[2] + max(d[3], d[4])
+
+            eff_f.append(abs(cluster_centers_eff[labels[i]] - eff))
+
+        file_all.write('\tDados da metrica F: \n')
+        summary(file_all, eff_f, 1)
+        file_all.write('\n')
+
+        eff_f.clear()
+        cluster_centers_eff.clear()
 
     file_all.write('Dados da metrica inertia: \n')
     summary(file_all, inertia)
@@ -192,7 +259,25 @@ def classification(k, data_all, data_kda):
         labels = km.fit_predict(data_kda)
         file_kda.write(
             '\tCentroides da execucao com semente ' + str(i) + ':\n')
-        file_kda.write('\t' + str(km.cluster_centers_) + '\n\n')
+        for i in km.cluster_centers_:
+            file_kda.write('\t' + str(i) + '\n')
+        file_kda.write('\n')
+
+        # Inertia with F(K - D + A)
+        for i in km.cluster_centers_:
+            cluster_centers_eff.append(i[0] - i[1] + i[2])
+
+        for i, d in enumerate(data_kda):
+            eff = d[0] - d[1] + d[2]
+
+            eff_f.append(abs(cluster_centers_eff[labels[i]] - eff))
+
+        file_kda.write('\tDados da metrica F: \n')
+        summary(file_kda, eff_f, 1)
+        file_kda.write('\n')
+
+        eff_f.clear()
+        cluster_centers_eff.clear()
 
     file_kda.write('Dados da metrica inertia: \n')
     summary(file_kda, inertia)
