@@ -1,0 +1,440 @@
+Execucao sem podas de outliers com dados normalizados por n-partidas...
+
+Execucao com semente 0:
+
+	Inertia da execucao com semente 0:
+	30.3713193761
+
+	Contagem da execucao com semente 0:
+	[4570, 7088, 5598, 3288]
+
+	Centroides da execucao com semente 0:
+	[ 3.49050412  5.15680753  6.52098973]
+	[  3.63728378   5.49335605  10.6739172 ]
+	[ 8.64235907  4.45622626  9.60165037]
+	[  4.77407767   5.99020054  14.87727876]
+
+	Dados da metrica F: 
+	Media: 2.28638885963
+	Desvio: 2.13467686438
+	Coef. Variacao: 0.933645584998
+	Minimo: 0.000336895986154
+	Maximo: 63.6407882507
+
+Execucao com semente 1:
+
+	Inertia da execucao com semente 1:
+	30.3712829066
+
+	Contagem da execucao com semente 1:
+	[3288, 5597, 7089, 4570]
+
+	Centroides da execucao com semente 1:
+	[  4.77577      5.98794334  14.87791091]
+	[ 8.64203585  4.45655299  9.60340933]
+	[  3.63477726   5.49649834  10.67158824]
+	[ 3.49546242  5.15243399  6.51878188]
+
+	Dados da metrica F: 
+	Media: 2.28699577488
+	Desvio: 2.13503541657
+	Coef. Variacao: 0.933554595956
+	Minimo: 0.000343345876049
+	Maximo: 63.6396792352
+
+Execucao com semente 2:
+
+	Inertia da execucao com semente 2:
+	30.371408635
+
+	Contagem da execucao com semente 2:
+	[4565, 5594, 3293, 7092]
+
+	Centroides da execucao com semente 2:
+	[ 3.50069789  5.15316374  6.51394608]
+	[ 8.64690967  4.45528128  9.61001827]
+	[  4.76631778   5.98966946  14.86916767]
+	[  3.63337071   5.49475104  10.66410392]
+
+	Dados da metrica F: 
+	Media: 2.28692608916
+	Desvio: 2.13443829551
+	Coef. Variacao: 0.933321940587
+	Minimo: 0.00164666364158
+	Maximo: 63.6269247649
+
+Execucao com semente 3:
+
+	Inertia da execucao com semente 3:
+	30.3712013557
+
+	Contagem da execucao com semente 3:
+	[3285, 7082, 5590, 4587]
+
+	Centroides da execucao com semente 3:
+	[  4.76752985   5.98925759  14.8777537 ]
+	[  3.63330238   5.49937677  10.67479228]
+	[ 8.65051049  4.45451014  9.61428997]
+	[ 3.50961108  5.149223    6.52760286]
+
+	Dados da metrica F: 
+	Media: 2.287554918
+	Desvio: 2.13465455606
+	Coef. Variacao: 0.933159916409
+	Minimo: 0.000766510704503
+	Maximo: 63.6182811083
+
+Execucao com semente 4:
+
+	Inertia da execucao com semente 4:
+	30.3713697603
+
+	Contagem da execucao com semente 4:
+	[7091, 5591, 4570, 3292]
+
+	Centroides da execucao com semente 4:
+	[  3.63328516   5.49461651  10.66557106]
+	[ 8.6492183   4.45517535  9.6123035 ]
+	[ 3.50436554  5.15191812  6.51555054]
+	[  4.76795372   5.99114467  14.8706354 ]
+
+	Dados da metrica F: 
+	Media: 2.28662029891
+	Desvio: 2.13411644088
+	Coef. Variacao: 0.933305998332
+	Minimo: 0.000823580087689
+	Maximo: 63.6222249823
+
+Execucao com semente 5:
+
+	Inertia da execucao com semente 5:
+	30.3713477391
+
+	Contagem da execucao com semente 5:
+	[5591, 4573, 3290, 7090]
+
+	Centroides da execucao com semente 5:
+	[ 8.64958495  4.45511365  9.61273511]
+	[ 3.50574312  5.15219568  6.51702265]
+	[  4.76778218   5.99161393  14.87132093]
+	[  3.63312987   5.49438539  10.66674962]
+
+	Dados da metrica F: 
+	Media: 2.28679202673
+	Desvio: 2.1341659938
+	Coef. Variacao: 0.933257580422
+	Minimo: 0.000331141940473
+	Maximo: 63.621365017
+
+Execucao com semente 6:
+
+	Inertia da execucao com semente 6:
+	30.3712206148
+
+	Contagem da execucao com semente 6:
+	[7084, 5588, 4587, 3285]
+
+	Centroides da execucao com semente 6:
+	[  3.63361626   5.49952808  10.67447524]
+	[ 8.65061554  4.45372649  9.61604468]
+	[ 3.51121289  5.1495642   6.52639781]
+	[  4.76752985   5.98925759  14.8777537 ]
+
+	Dados da metrica F: 
+	Media: 2.28723910638
+	Desvio: 2.13446784822
+	Coef. Variacao: 0.933207132683
+	Minimo: 0.000433728963017
+	Maximo: 63.6156376996
+
+Execucao com semente 7:
+
+	Inertia da execucao com semente 7:
+	30.3713477391
+
+	Contagem da execucao com semente 7:
+	[5591, 7090, 3290, 4573]
+
+	Centroides da execucao com semente 7:
+	[ 8.64958495  4.45511365  9.61273511]
+	[  3.63312987   5.49438539  10.66674962]
+	[  4.76778218   5.99161393  14.87132093]
+	[ 3.50574312  5.15219568  6.51702265]
+
+	Dados da metrica F: 
+	Media: 2.28679202673
+	Desvio: 2.1341659938
+	Coef. Variacao: 0.933257580422
+	Minimo: 0.000331141940473
+	Maximo: 63.621365017
+
+Execucao com semente 8:
+
+	Inertia da execucao com semente 8:
+	30.3713880772
+
+	Contagem da execucao com semente 8:
+	[7093, 4567, 3293, 5591]
+
+	Centroides da execucao com semente 8:
+	[  3.63365717   5.49511339  10.66446119]
+	[ 3.50440764  5.15196518  6.51508763]
+	[  4.76636819   5.98960571  14.86985551]
+	[ 8.6492183   4.45517535  9.6123035 ]
+
+	Dados da metrica F: 
+	Media: 2.28661476458
+	Desvio: 2.13411814144
+	Coef. Variacao: 0.933309000928
+	Minimo: 0.000863432365435
+	Maximo: 63.6222249823
+
+Execucao com semente 9:
+
+	Inertia da execucao com semente 9:
+	30.3713532886
+
+	Contagem da execucao com semente 9:
+	[3291, 7093, 4572, 5588]
+
+	Centroides da execucao com semente 9:
+	[  4.76619628   5.99007422  14.87054039]
+	[  3.63730344   5.49549865  10.66552438]
+	[ 3.50165893  5.15145116  6.51746403]
+	[ 8.65169049  4.45417038  9.6106469 ]
+
+	Dados da metrica F: 
+	Media: 2.2864709141
+	Desvio: 2.13419663812
+	Coef. Variacao: 0.933402049838
+	Minimo: 0.00018631977442
+	Maximo: 63.6204044243
+
+Dados da metrica inertia: 
+Media: 30.3713239493
+Desvio: 6.54125679104e-05
+Coef. Variacao: 2.15376083109e-06
+Minimo: 30.3712013557
+Maximo: 30.371408635
+
+==================================================================================
+Execucao com podas de outliers com dados normalizados por n-partidas...
+
+Foram podados 4111 de 20544 jogadores.
+
+Execucao com semente 0:
+
+	Inertia da execucao com semente 0:
+	13.8347359815
+
+	Contagem da execucao com semente 0:
+	[5302, 3687, 3024, 4420]
+
+	Centroides da execucao com semente 0:
+	[ 3.49050412  5.15680753  6.52098973]
+	[  3.63728378   5.49335605  10.6739172 ]
+	[ 8.64235907  4.45622626  9.60165037]
+	[  4.77407767   5.99020054  14.87727876]
+
+	Dados da metrica F: 
+	Media: 2.28638885963
+	Desvio: 2.13467686438
+	Coef. Variacao: 0.933645584998
+	Minimo: 0.000336895986154
+	Maximo: 63.6407882507
+
+Execucao com semente 1:
+
+	Inertia da execucao com semente 1:
+	13.8347192795
+
+	Contagem da execucao com semente 1:
+	[3684, 3029, 5303, 4417]
+
+	Centroides da execucao com semente 1:
+	[  4.77577      5.98794334  14.87791091]
+	[ 8.64203585  4.45655299  9.60340933]
+	[  3.63477726   5.49649834  10.67158824]
+	[ 3.49546242  5.15243399  6.51878188]
+
+	Dados da metrica F: 
+	Media: 2.28699577488
+	Desvio: 2.13503541657
+	Coef. Variacao: 0.933554595956
+	Minimo: 0.000343345876049
+	Maximo: 63.6396792352
+
+Execucao com semente 2:
+
+	Inertia da execucao com semente 2:
+	13.8347621356
+
+	Contagem da execucao com semente 2:
+	[3021, 3684, 4427, 5301]
+
+	Centroides da execucao com semente 2:
+	[ 3.50069789  5.15316374  6.51394608]
+	[ 8.64690967  4.45528128  9.61001827]
+	[  4.76631778   5.98966946  14.86916767]
+	[  3.63337071   5.49475104  10.66410392]
+
+	Dados da metrica F: 
+	Media: 2.28692608916
+	Desvio: 2.13443829551
+	Coef. Variacao: 0.933321940587
+	Minimo: 0.00164666364158
+	Maximo: 63.6269247649
+
+Execucao com semente 3:
+
+	Inertia da execucao com semente 3:
+	13.8352299244
+
+	Contagem da execucao com semente 3:
+	[3711, 3009, 4416, 5297]
+
+	Centroides da execucao com semente 3:
+	[  4.76752985   5.98925759  14.8777537 ]
+	[  3.63330238   5.49937677  10.67479228]
+	[ 8.65051049  4.45451014  9.61428997]
+	[ 3.50961108  5.149223    6.52760286]
+
+	Dados da metrica F: 
+	Media: 2.287554918
+	Desvio: 2.13465455606
+	Coef. Variacao: 0.933159916409
+	Minimo: 0.000766510704503
+	Maximo: 63.6182811083
+
+Execucao com semente 4:
+
+	Inertia da execucao com semente 4:
+	13.8353343723
+
+	Contagem da execucao com semente 4:
+	[3712, 5299, 4416, 3006]
+
+	Centroides da execucao com semente 4:
+	[  3.63328516   5.49461651  10.66557106]
+	[ 8.6492183   4.45517535  9.6123035 ]
+	[ 3.50436554  5.15191812  6.51555054]
+	[  4.76795372   5.99114467  14.8706354 ]
+
+	Dados da metrica F: 
+	Media: 2.28662029891
+	Desvio: 2.13411644088
+	Coef. Variacao: 0.933305998332
+	Minimo: 0.000823580087689
+	Maximo: 63.6222249823
+
+Execucao com semente 5:
+
+	Inertia da execucao com semente 5:
+	13.8353115922
+
+	Contagem da execucao com semente 5:
+	[5301, 3006, 3712, 4414]
+
+	Centroides da execucao com semente 5:
+	[ 8.64958495  4.45511365  9.61273511]
+	[ 3.50574312  5.15219568  6.51702265]
+	[  4.76778218   5.99161393  14.87132093]
+	[  3.63312987   5.49438539  10.66674962]
+
+	Dados da metrica F: 
+	Media: 2.28679202673
+	Desvio: 2.1341659938
+	Coef. Variacao: 0.933257580422
+	Minimo: 0.000331141940473
+	Maximo: 63.621365017
+
+Execucao com semente 6:
+
+	Inertia da execucao com semente 6:
+	13.8347334909
+
+	Contagem da execucao com semente 6:
+	[4418, 5301, 3687, 3027]
+
+	Centroides da execucao com semente 6:
+	[  3.63361626   5.49952808  10.67447524]
+	[ 8.65061554  4.45372649  9.61604468]
+	[ 3.51121289  5.1495642   6.52639781]
+	[  4.76752985   5.98925759  14.8777537 ]
+
+	Dados da metrica F: 
+	Media: 2.28723910638
+	Desvio: 2.13446784822
+	Coef. Variacao: 0.933207132683
+	Minimo: 0.000433728963017
+	Maximo: 63.6156376996
+
+Execucao com semente 7:
+
+	Inertia da execucao com semente 7:
+	13.8347231108
+
+	Contagem da execucao com semente 7:
+	[5303, 4417, 3684, 3029]
+
+	Centroides da execucao com semente 7:
+	[ 8.64958495  4.45511365  9.61273511]
+	[  3.63312987   5.49438539  10.66674962]
+	[  4.76778218   5.99161393  14.87132093]
+	[ 3.50574312  5.15219568  6.51702265]
+
+	Dados da metrica F: 
+	Media: 2.28679202673
+	Desvio: 2.1341659938
+	Coef. Variacao: 0.933257580422
+	Minimo: 0.000331141940473
+	Maximo: 63.621365017
+
+Execucao com semente 8:
+
+	Inertia da execucao com semente 8:
+	13.835294238
+
+	Contagem da execucao com semente 8:
+	[3005, 4415, 5300, 3713]
+
+	Centroides da execucao com semente 8:
+	[  3.63365717   5.49511339  10.66446119]
+	[ 3.50440764  5.15196518  6.51508763]
+	[  4.76636819   5.98960571  14.86985551]
+	[ 8.6492183   4.45517535  9.6123035 ]
+
+	Dados da metrica F: 
+	Media: 2.28661476458
+	Desvio: 2.13411814144
+	Coef. Variacao: 0.933309000928
+	Minimo: 0.000863432365435
+	Maximo: 63.6222249823
+
+Execucao com semente 9:
+
+	Inertia da execucao com semente 9:
+	13.8352958739
+
+	Contagem da execucao com semente 9:
+	[3713, 4415, 5301, 3004]
+
+	Centroides da execucao com semente 9:
+	[  4.76619628   5.99007422  14.87054039]
+	[  3.63730344   5.49549865  10.66552438]
+	[ 3.50165893  5.15145116  6.51746403]
+	[ 8.65169049  4.45417038  9.6106469 ]
+
+	Dados da metrica F: 
+	Media: 2.2864709141
+	Desvio: 2.13419663812
+	Coef. Variacao: 0.933402049838
+	Minimo: 0.00018631977442
+	Maximo: 63.6204044243
+
+Dados da metrica inertia: 
+Media: 13.8350139999
+Desvio: 0.000280481933228
+Coef. Variacao: 2.02733393135e-05
+Minimo: 13.8347192795
+Maximo: 13.8353343723

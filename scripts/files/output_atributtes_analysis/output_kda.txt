@@ -1,0 +1,42 @@
+Sumario de valores normalizados por partida (minimo 5 partidas):
+Media: 1.10631399198
+Desvio: 0.856064517107
+Coef. Variacao: 0.773798870225
+Minimo: -5.56
+Maximo: 14.48
+
+==================================================================
+
+Antes da poda de outliers com normalizacao min-max:
+Media: 0.359876148388
+Desvio: 0.0447681380654
+Coef. Variacao: 0.124398736249
+Minimo: 0.0
+Maximo: 1.0
+
+Removidos 919 de 20544 jogadores
+
+Depois da poda de outliers com normalizacao min-max:
+Media: 0.360230917317
+Desvio: 0.0369773812169
+Coef. Variacao: 0.102649104892
+Minimo: 0.270522219205
+Maximo: 0.448969740851
+
+==================================================================
+
+Antes da poda de outliers com normalizacao por partidas e min-max:
+Media: 0.332650398801
+Desvio: 0.0427177902748
+Coef. Variacao: 0.128416470952
+Minimo: 0.0
+Maximo: 1.0
+
+Removidos 987 de 20544 jogadores
+
+Depois da poda de outliers com normalizacao por partidas e min-max:
+Media: 0.327681116336
+Desvio: 0.0337893649466
+Coef. Variacao: 0.103116607159
+Minimo: 0.24750499002
+Maximo: 0.417980365799
