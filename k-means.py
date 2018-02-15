@@ -20,8 +20,14 @@ def normalizes(x):
     for i in x:
         xNorm.append((i - minimum) / (maximum - minimum))
 
-    return xNorm
+    return xNorm, minimum, maximum
 
+def un_normalizes(m, minimum, maximum):
+    x = []
+    for i in m:
+        x.append(i*(maximum - minimum) + minimum)
+    
+    return x
 
 def remove_outliers(method, data, c=2.0):
     new = []
@@ -51,26 +57,30 @@ def summary(arq, eff, tabs=0):
         arq.write('Minimo: ' + str(np.min(eff)) + '\n')
         arq.write('Maximo: ' + str(np.max(eff)) + '\n')
     else:
-        arq.write('\tMedia: ' + str(np.average(eff)) + '\n')
-        arq.write('\tDesvio: ' + str(np.std(eff)) + '\n')
-        arq.write('\tCoef. Variacao: ' +
-                  str(np.std(eff) / np.average(eff)) + '\n')
-        arq.write('\tMinimo: ' + str(np.min(eff)) + '\n')
-        arq.write('\tMaximo: ' + str(np.max(eff)) + '\n')
+        for i in range(len(eff)):
+            arq.write('\tGrupo %d:\n' % (i+1))
+            arq.write('\t\tMedias: ' + str(np.average(eff[i])) + '\n')
+            arq.write('\t\tDesvios: ' + str(np.std(eff[i])) + '\n')
+            arq.write('\t\tCoefs. Variacao: ' +
+                      str(np.std(eff[i]) / np.average(eff[i])) + '\n')
+            arq.write('\t\tMinimos: ' + str(np.min(eff[i])) + '\n')
+            arq.write('\t\tMaximos: ' + str(np.max(eff[i])) + '\n')
 
 
 def classification(k, data_all, data_kda):
     file_all = open('files/kmeans_all_' + str(k) + '.txt', 'w')
     file_kda = open('files/kmeans_kda_' + str(k) + '.txt', 'w')
 
-    data_all_normalized = normalizes(data_all)
-    data_kda_normalized = normalizes(data_kda)
+    data_all_normalized, min_norm_all, max_norm_all = normalizes(data_all)
+    data_kda_normalized, min_norm, max_norm = normalizes(data_kda)
 
     print('Execucao para K = %d' % k)
 
     inertia = []
     cluster_centers_eff = []
     eff_f = []
+    for i in range(k):
+        eff_f.append([])
 
     file_all.write(
         'Execucao sem podas de outliers com dados normalizados por n-partidas...\n\n')
@@ -91,35 +101,39 @@ def classification(k, data_all, data_kda):
         file_all.write('\tContagem da execucao com semente ' + str(i) + ':\n')
         file_all.write('\t' + str(count) + '\n\n')
 
-        # Normalized n-matches data (just for cluster centers)
-        km = KMeans(n_clusters=k, random_state=i, n_jobs=4)
-        labels = km.fit_predict(data_all)
+        centroids = un_normalizes(km.cluster_centers_[:], min_norm_all, max_norm_all)
         file_all.write(
             '\tCentroides da execucao com semente ' + str(i) + ':\n')
-        for i in km.cluster_centers_:
+        for i in centroids:
             file_all.write('\t' + str(i) + '\n')
         file_all.write('\n')
 
         # Inertia with F(K - D + A + max(LH, denies))
-        for i in km.cluster_centers_:
+        for i in centroids:
             cluster_centers_eff.append(i[0] - i[1] + i[2] + max(i[3], i[4]))
 
         for i, d in enumerate(data_all):
             eff = d[0] - d[1] + d[2] + max(d[3], d[4])
 
-            eff_f.append(abs(cluster_centers_eff[labels[i]] - eff))
+            eff_f[labels[i]].append(abs(cluster_centers_eff[labels[i]] - eff))
 
         file_all.write('\tDados da metrica F: \n')
         summary(file_all, eff_f, 1)
         file_all.write('\n')
 
         eff_f.clear()
+        eff_f = []
+        for i in range(k):
+            eff_f.append([])
         cluster_centers_eff.clear()
+        centroids.clear()
 
     file_all.write('Dados da metrica inertia: \n')
     summary(file_all, inertia)
 
     inertia.clear()
+    
+    return
 
     file_kda.write(
         'Execucao sem podas de outliers com dados normalizados por n-partidas...\n\n')
@@ -306,7 +320,7 @@ def main():
 
     fp.close()
 
-    for k in [3, 4, 5]:
+    for k in [3]:
         classification(k, data_all, data_kda)
 
 
