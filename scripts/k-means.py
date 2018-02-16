@@ -7,21 +7,21 @@ from sklearn.cluster import KMeans
 
 
 def normalizes(x):
-    xNorm = []
+    x_norm = []
     minimum = np.min(x)
     maximum = np.max(x)
     for i in x:
-        xNorm.append((i - minimum) / (maximum - minimum))
+        x_norm.append((i - minimum) / (maximum - minimum))
 
-    return xNorm, minimum, maximum
+    return x_norm, minimum, maximum
 
 
 def un_normalizes(m, minimum, maximum):
-    x = []
+    x_un_norm = []
     for i in m:
-        x.append(i * (maximum - minimum) + minimum)
+        x_un_norm.append(i * (maximum - minimum) + minimum)
 
-    return x
+    return x_un_norm
 
 
 def remove_outliers(method, data, c=2.0):
@@ -31,10 +31,8 @@ def remove_outliers(method, data, c=2.0):
     count = 0
     for d in data:
         if method == 'all':
-            # (K - D + A + max(denies, LH)) / n_partidas
             eff = d[0] - d[1] + d[2] + max(d[3], d[4])
         else:
-            # (K - D + A) / n_partidas
             eff = d[0] - d[1] + d[2]
         if np.abs(media - eff) < c * std:
             new.append(d)
@@ -316,7 +314,7 @@ def main():
 
     fp.close()
 
-    for k in [3]:
+    for k in [3, 4, 5]:
         classification(k, data_all, data_kda)
 
 
