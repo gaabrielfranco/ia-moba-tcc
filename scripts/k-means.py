@@ -165,7 +165,6 @@ def classification(k, data, method, without_outliers):
 def main():
     data_all = []
     data_kda = []
-    n_matches = []
 
     fp = open('files/attributes.txt', 'r')
 

@@ -1,0 +1,464 @@
+{
+    "all_attributes": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 1209.3541070530143,
+            "desvio": 939.1102928561813,
+            "coef_var": 0.7765387220990466,
+            "min": 10.370484000000001,
+            "max": 10898.4
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.16301467795894795,
+            "desvio": 0.08287688508861338,
+            "coef_var": 0.5084013668357171,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.15237167254711703,
+            "desvio": 0.06588272365707172,
+            "coef_var": 0.4323817055739096,
+            "min": 0.0,
+            "max": 0.32861013247625526
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.11011943173841539,
+            "desvio": 0.08625162996446283,
+            "coef_var": 0.7832553129165283,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.09755232057686798,
+            "desvio": 0.06392169225138945,
+            "coef_var": 0.6552554759681117,
+            "min": 0.0,
+            "max": 0.2825483836610863
+        }
+    ],
+    "kda": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 1.1063139919786358,
+            "desvio": 0.8560645171067658,
+            "coef_var": 0.7737988702246273,
+            "min": -5.5600000000000005,
+            "max": 14.48
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.3598761483876817,
+            "desvio": 0.0447681380654173,
+            "coef_var": 0.12439873624853344,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.3602309173165679,
+            "desvio": 0.03697738121694023,
+            "coef_var": 0.10264910489191803,
+            "min": 0.27052221920535796,
+            "max": 0.44896974085135904
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.3326503988013292,
+            "desvio": 0.04271779027478872,
+            "coef_var": 0.1284164709518395,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.32768111633588703,
+            "desvio": 0.03378936494658964,
+            "coef_var": 0.1031166071588761,
+            "min": 0.24750499001996012,
+            "max": 0.4179803657990143
+        }
+    ],
+    "kills": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 5.151609383358292,
+            "desvio": 2.986182955496698,
+            "coef_var": 0.5796602058267915,
+            "min": 0.0,
+            "max": 80.42857142857143
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.024896476328160486,
+            "desvio": 0.05601956308552199,
+            "coef_var": 2.2501000682637997,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.017679457799923432,
+            "desvio": 0.019357601918293135,
+            "coef_var": 1.0949205647232558,
+            "min": 0.0,
+            "max": 0.1367851622874807
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.06405198167585799,
+            "desvio": 0.037128384881841704,
+            "coef_var": 0.5796602058267912,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.06092544377251856,
+            "desvio": 0.029792802307860324,
+            "coef_var": 0.4890042724858882,
+            "min": 0.0,
+            "max": 0.13825932504440497
+        }
+    ],
+    "deaths": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 5.215438063106869,
+            "desvio": 1.724877742709019,
+            "coef_var": 0.33072538142299374,
+            "min": 0.0,
+            "max": 28.2
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.03185869429349436,
+            "desvio": 0.06512472697402592,
+            "coef_var": 2.0441743900133593,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.02296839499083503,
+            "desvio": 0.021444209621896772,
+            "coef_var": 0.933639883433455,
+            "min": 0.0,
+            "max": 0.16153580076098237
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.18494461216691027,
+            "desvio": 0.06116587740102905,
+            "coef_var": 0.33072538142299374,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.1800810567629101,
+            "desvio": 0.05048372270471509,
+            "coef_var": 0.2803388852342232,
+            "min": 0.06273867975995635,
+            "max": 0.30695921985815605
+        }
+    ],
+    "assists": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 10.13308166580091,
+            "desvio": 3.0627491539944764,
+            "coef_var": 0.30225248892755263,
+            "min": 0.0,
+            "max": 26.2
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.02759011173146687,
+            "desvio": 0.06050918451362444,
+            "coef_var": 2.1931474980078804,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.01961068709933084,
+            "desvio": 0.019978457069468984,
+            "coef_var": 1.0187535484236396,
+            "min": 0.0,
+            "max": 0.1484848484848485
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.38675884220614165,
+            "desvio": 0.11689882267154492,
+            "coef_var": 0.3022524889275527,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.38319675220169086,
+            "desvio": 0.09822701916388449,
+            "coef_var": 0.25633572988161424,
+            "min": 0.15691263782866835,
+            "max": 0.6202290076335878
+        }
+    ],
+    "denies": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 6.352580330527615,
+            "desvio": 5.254011136600055,
+            "coef_var": 0.8270672487763224,
+            "min": 0.0,
+            "max": 40.45454545454545
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.015259720174753634,
+            "desvio": 0.04292717879690534,
+            "coef_var": 2.81310393017075,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.010676848694458061,
+            "desvio": 0.013922345615437672,
+            "coef_var": 1.3039751722494881,
+            "min": 0.0,
+            "max": 0.10091170226052204
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.15703007558607585,
+            "desvio": 0.12987443259011372,
+            "coef_var": 0.8270672487763225,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.1394937313331951,
+            "desvio": 0.10376091922036358,
+            "coef_var": 0.7438392982156308,
+            "min": 0.0,
+            "max": 0.41669341894060996
+        }
+    ],
+    "gpm": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 378.1184033270474,
+            "desvio": 276.8800503813365,
+            "coef_var": 0.7322575361185305,
+            "min": 135.8,
+            "max": 24128.5
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.023271812143299393,
+            "desvio": 0.06047591998964762,
+            "coef_var": 2.5986768721429514,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.015485972680241539,
+            "desvio": 0.019291914749013404,
+            "coef_var": 1.245767065934957,
+            "min": 0.0,
+            "max": 0.1437400374730837
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.01009967212223082,
+            "desvio": 0.011540178903638879,
+            "coef_var": 1.1426290639908299,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.009831082805244829,
+            "desvio": 0.004462292208714092,
+            "coef_var": 0.4538963100110888,
+            "min": 0.0,
+            "max": 0.03149291242753004
+        }
+    ],
+    "hero_damage": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 10303.199299411466,
+            "desvio": 5200.728258639088,
+            "coef_var": 0.5047682867724553,
+            "min": 70.64150943396227,
+            "max": 50682.0
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.02407386403338125,
+            "desvio": 0.05565753905966973,
+            "coef_var": 2.3119487167699377,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.017008664492410345,
+            "desvio": 0.018810612432534388,
+            "coef_var": 1.1059429410773616,
+            "min": 0.0,
+            "max": 0.1349138905776241
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.20217907788199072,
+            "desvio": 0.10275812413943612,
+            "coef_var": 0.5082530062750346,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.1887683892971551,
+            "desvio": 0.08131247667278996,
+            "coef_var": 0.4307526115762403,
+            "min": 0.0,
+            "max": 0.407603334623222
+        }
+    ],
+    "hero_healing": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 553.8967502148864,
+            "desvio": 682.0349752219898,
+            "coef_var": 1.2313395501190278,
+            "min": 0.0,
+            "max": 14613.0
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.010985498635223506,
+            "desvio": 0.03569942300897022,
+            "coef_var": 3.249686172141962,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.007295343512097683,
+            "desvio": 0.010996291443256955,
+            "coef_var": 1.5073027644307748,
+            "min": 0.0,
+            "max": 0.08224117768990993
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.0379043830982609,
+            "desvio": 0.04667316603175185,
+            "coef_var": 1.2313395501190276,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.0306616551833027,
+            "desvio": 0.03044815528641606,
+            "coef_var": 0.9930369089466864,
+            "min": 0.0,
+            "max": 0.13123930746595497
+        }
+    ],
+    "lh": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 113.08759497334975,
+            "desvio": 74.85321522405961,
+            "coef_var": 0.6619047406720386,
+            "min": 0.0,
+            "max": 488.6666666666667
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.018500127251526347,
+            "desvio": 0.05438189306179058,
+            "coef_var": 2.939541567602127,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.012296689497420204,
+            "desvio": 0.01602258044118189,
+            "coef_var": 1.3029995141817126,
+            "min": 0.0,
+            "max": 0.1272193724653813
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.23142072641203906,
+            "desvio": 0.15317847590189548,
+            "coef_var": 0.6619047406720385,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.2167711449073904,
+            "desvio": 0.13563129568919774,
+            "coef_var": 0.6256888837633003,
+            "min": 0.0,
+            "max": 0.5376145000974469
+        }
+    ],
+    "xp_p_min": [
+        {
+            "label": "Sumario de valores normalizados por partida",
+            "media": 380.7839366192502,
+            "desvio": 112.93455435709322,
+            "coef_var": 0.2965843448118392,
+            "min": 5.333333333333333,
+            "max": 3179.6666666666665
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao min-max",
+            "media": 0.025818979782633637,
+            "desvio": 0.05999474389423554,
+            "coef_var": 2.3236682626239635,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao min-max",
+            "media": 0.018037641361112376,
+            "desvio": 0.019269433333888593,
+            "coef_var": 1.0682900800673338,
+            "min": 0.0,
+            "max": 0.14532856206561778
+        },
+        {
+            "label": "Antes da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.1182769935795181,
+            "desvio": 0.035577408702224055,
+            "coef_var": 0.3007973708623666,
+            "min": 0.0,
+            "max": 1.0
+        },
+        {
+            "label": "Depois da poda de outliers com normalizacao por partidas e min-max",
+            "media": 0.11733245031373142,
+            "desvio": 0.03203129322003636,
+            "coef_var": 0.2729960308029784,
+            "min": 0.04714900766565158,
+            "max": 0.18941510028352412
+        }
+    ]
+}
