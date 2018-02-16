@@ -81,7 +81,7 @@ def classification(file_name, received_eff, n):
 
 
 def main():
-    fp = open('files/atributtes.txt', 'rU')
+    fp = open('files/attributes.txt', 'rU')
     k = []
     d = []
     a = []

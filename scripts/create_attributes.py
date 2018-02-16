@@ -15,7 +15,7 @@ invalids_matches_without_team_name = []
 invalids_matches_with_another_error = []
 valid_matches = []
 
-atributes = {}
+attributes = {}
 arquivos = glob.glob(os.getcwd() + os.path.sep + 'Arquivos' +
                      os.path.sep + 'Partidas' + os.path.sep + '*.json')
 
@@ -41,20 +41,20 @@ for j in arquivos:
 
             for k in range(0, len(txt_json['result']['players'])):
                 player = txt_json['result']['players'][k]['account_id']
-                if player in atributes:
-                    atributes[player] = (atributes[player][0] + txt_json['result']['players'][k]['kills'], atributes[player][1] +
-                                         txt_json['result']['players'][k]['deaths'], atributes[player][2] +
-                                         txt_json['result']['players'][k]['assists'],
-                                         atributes[player][3] + 1, atributes[player][4] +
-                                         txt_json['result']['players'][k]['denies'], atributes[player][5]
-                                         + txt_json['result']['players'][k]['gold_per_min'], atributes[player][6] +
-                                         txt_json['result']['players'][k]['hero_damage'],
-                                         atributes[player][7] + txt_json['result']['players'][k]['hero_healing'], atributes[player][8] +
-                                         txt_json['result']['players'][k]['last_hits'],
-                                         atributes[player][9] + txt_json['result']['players'][k]['xp_per_min'])
+                if player in attributes:
+                    attributes[player] = (attributes[player][0] + txt_json['result']['players'][k]['kills'], attributes[player][1] +
+                                          txt_json['result']['players'][k]['deaths'], attributes[player][2] +
+                                          txt_json['result']['players'][k]['assists'],
+                                          attributes[player][3] + 1, attributes[player][4] +
+                                          txt_json['result']['players'][k]['denies'], attributes[player][5]
+                                          + txt_json['result']['players'][k]['gold_per_min'], attributes[player][6] +
+                                          txt_json['result']['players'][k]['hero_damage'],
+                                          attributes[player][7] + txt_json['result']['players'][k]['hero_healing'], attributes[player][8] +
+                                          txt_json['result']['players'][k]['last_hits'],
+                                          attributes[player][9] + txt_json['result']['players'][k]['xp_per_min'])
                 else:
-                    atributes[player] = (txt_json['result']['players'][k]['kills'], txt_json['result']['players'][k]['deaths'],
-                                         txt_json['result']['players'][k]['assists'], 1, txt_json['result'][
+                    attributes[player] = (txt_json['result']['players'][k]['kills'], txt_json['result']['players'][k]['deaths'],
+                                          txt_json['result']['players'][k]['assists'], 1, txt_json['result'][
                         'players'][k]['denies'], txt_json['result']['players'][k]['gold_per_min'],
                         txt_json['result']['players'][k]['hero_damage'], txt_json['result']['players'][k]['hero_healing'],
                         txt_json['result']['players'][k]['last_hits'], txt_json['result']['players'][k]['xp_per_min'])
@@ -69,12 +69,12 @@ for j in arquivos:
 
 print('Saving files...')
 arq = open(os.getcwd() + os.path.sep + 'files' +
-           os.path.sep + 'atributtes.txt', 'w')
-for i in atributes:
-    arq.writelines(str(i) + ' ' + str(atributes[i][0]) + ' ' + str(atributes[i][1]) + ' ' + str(atributes[i][2]) + ' ' + str(atributes[i][3])
-                   + ' ' + str(atributes[i][4]) + ' ' + str(atributes[i][5]) + ' ' + str(
-                       atributes[i][6]) + ' ' + str(atributes[i][7]) + ' ' + str(atributes[i][8])
-                   + ' ' + str(atributes[i][9]) + '\n')
+           os.path.sep + 'atrributes.txt', 'w')
+for i in attributes:
+    arq.writelines(str(i) + ' ' + str(attributes[i][0]) + ' ' + str(attributes[i][1]) + ' ' + str(attributes[i][2]) + ' ' + str(attributes[i][3])
+                   + ' ' + str(attributes[i][4]) + ' ' + str(attributes[i][5]) + ' ' + str(
+                       attributes[i][6]) + ' ' + str(attributes[i][7]) + ' ' + str(attributes[i][8])
+                   + ' ' + str(attributes[i][9]) + '\n')
 arq.close()
 
 arq = open(os.getcwd() + os.path.sep + 'files' +
