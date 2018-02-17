@@ -11,7 +11,7 @@ eff_all = (K - D + A + max(denies, LH) + max(hero_damage, hero_healing) / n_part
 
 import numpy as np
 from sklearn.cluster import KMeans
-import json
+import pandas as pd
 
 
 def normalizes(x):
@@ -159,9 +159,8 @@ def main():
     classification("lh", lh, n, out_json)
     classification("xp_p_min", xp_p_min, n, out_json)
 
-    outfile = open('files/output_attributes_analysis/outputs.json', 'w')
-    json.dump(out_json, outfile, indent=4)
-    outfile.close()
+    out = pd.DataFrame(out_json)
+    out.to_json('files/output_attributes_analysis/outputs.json')
 
 
 if __name__ == "__main__":
