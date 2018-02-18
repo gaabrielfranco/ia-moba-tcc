@@ -52,6 +52,7 @@ def summary(arq, eff, out_json, attribute, it, label):
         "min": minimum,
         "max": maximum
     }
+
     arq.write('Media: ' + str(avg) + '\n')
     arq.write('Desvio: ' + str(std) + '\n')
     arq.write('Coef. Variacao: ' +

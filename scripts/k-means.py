@@ -4,6 +4,8 @@ Implementado por Gabriel Franco
 
 import numpy as np
 from sklearn.cluster import KMeans
+import pandas as pd
+import copy
 
 
 def normalizes(x):
@@ -60,11 +62,32 @@ def summary(arq, eff, tabs=0):
             arq.write('\t\t\tMaximo: ' + str(np.max(eff[i])) + '\n')
 
 
-def classification(k, data, method, without_outliers):
+def create_obj(i, inertia, count, centroids, eff):
+    new_obj = {}
+    new_obj["semente"] = i
+    new_obj["inertia"] = inertia
+    new_obj["contagem"] = count
+    new_obj["centroids"] = centroids
+    new_obj["f"] = []
+
+    for j in range(len(eff)):
+        new_obj["f"].append({})
+        new_obj["f"][j]["media"] = np.average(eff[j])
+        new_obj["f"][j]["desvio"] = np.std(eff[j])
+        new_obj["f"][j]["coef_var"] = np.std(eff[j]) / np.average(eff[j])
+        new_obj["f"][j]["min"] = np.min(eff[j])
+        new_obj["f"][j]["max"] = np.max(eff[j])
+
+    return new_obj
+
+
+def classification(k, data, method, without_outliers, out_json):
     if without_outliers:
+        outliers = "sem_poda_de_outlier"
         f = open('files/output_k-means/kmeans_' +
                  method + '_' + str(k) + '.txt', 'w')
     else:
+        outliers = "com_poda_de_outlier"
         f = open('files/output_k-means/kmeans_' +
                  method + '_' + str(k) + '.txt', 'a')
 
@@ -78,6 +101,8 @@ def classification(k, data, method, without_outliers):
     inertia = []
     cluster_centers_eff = []
     eff_f = []
+    min_inertia = 1000000
+
     for i in range(k):
         eff_f.append([])
 
@@ -147,12 +172,22 @@ def classification(k, data, method, without_outliers):
         summary(f, eff_f, 1)
         f.write('\n')
 
+        if km.inertia_ < min_inertia:
+            min_i = i
+            min_inertia = km.inertia_
+            min_count = count
+            min_centroids = centroids[:]
+            min_eff_f = eff_f[:]
+
         eff_f.clear()
         eff_f = []
-        for i in range(k):
+        for j in range(k):
             eff_f.append([])
         cluster_centers_eff.clear()
         centroids.clear()
+
+    out_json[outliers] = create_obj(
+        min_i, min_inertia, min_count, min_centroids, min_eff_f)
 
     f.write('Dados da metrica inertia: \n')
     summary(f, inertia)
@@ -160,6 +195,8 @@ def classification(k, data, method, without_outliers):
     inertia.clear()
 
     f.close()
+
+    return out_json
 
 
 def main():
@@ -179,13 +216,24 @@ def main():
 
     fp.close()
 
+    out_json = {}
+    out_final = {"all": {}, "kda": {}}
+
     for i in ['all', 'kda']:
         for j in [3, 4, 5]:
             for k in [True, False]:
                 if i == 'all':
-                    classification(j, data_all, i, k)
+                    out_json = classification(j, data_all, i, k, out_json)
                 else:
-                    classification(j, data_kda, i, k)
+                    out_json = classification(j, data_kda, i, k, out_json)
+            out_final[i][j] = copy.deepcopy(out_json)
+            out_json.clear()
+
+    #out = pd.DataFrame(out_json)
+    # out.to_json('files/output_k-means/kmeans_' +
+    #            i + '_' + str(j) + '.json')
+    out = pd.DataFrame(out_final)
+    out.to_json('files/output_k-means/output_kmeans.json')
 
 
 if __name__ == "__main__":
