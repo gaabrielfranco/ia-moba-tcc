@@ -161,7 +161,8 @@ def main():
     classification("xp_p_min", xp_p_min, n, out_json)
 
     out = pd.DataFrame(out_json)
-    out.to_json('files/output_attributes_analysis/outputs.json')
+    out.to_json(
+        'files/output_attributes_analysis/output_attribute_analysis.json')
 
 
 if __name__ == "__main__":

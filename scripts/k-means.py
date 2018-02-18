@@ -229,9 +229,6 @@ def main():
             out_final[i][j] = copy.deepcopy(out_json)
             out_json.clear()
 
-    #out = pd.DataFrame(out_json)
-    # out.to_json('files/output_k-means/kmeans_' +
-    #            i + '_' + str(j) + '.json')
     out = pd.DataFrame(out_final)
     out.to_json('files/output_k-means/output_kmeans.json')
 
