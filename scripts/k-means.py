@@ -62,26 +62,35 @@ def summary(arq, eff, tabs=0):
             arq.write('\t\t\tMaximo: ' + str(np.max(eff[i])) + '\n')
 
 
-def create_obj(i, inertia, count, centroids, eff):
-    new_obj = {}
-    new_obj["semente"] = i
-    new_obj["inertia"] = inertia
-    new_obj["contagem"] = count
-    new_obj["centroids"] = centroids
-    new_obj["f"] = []
+def create_obj(i, inertia, count, centroids, eff, data=None, labels=None):
 
-    for j in range(len(eff)):
-        new_obj["f"].append({})
-        new_obj["f"][j]["media"] = np.average(eff[j])
-        new_obj["f"][j]["desvio"] = np.std(eff[j])
-        new_obj["f"][j]["coef_var"] = np.std(eff[j]) / np.average(eff[j])
-        new_obj["f"][j]["min"] = np.min(eff[j])
-        new_obj["f"][j]["max"] = np.max(eff[j])
+    if data is not None:
+        new_obj = [[] for x in range(max(labels) + 1)]
 
-    return new_obj
+        for j in range(len(data)):
+            new_obj[labels[j]].append(data[j])
+
+        return new_obj
+    else:
+        new_obj = {}
+        new_obj["semente"] = i
+        new_obj["inertia"] = inertia
+        new_obj["contagem"] = count
+        new_obj["centroids"] = centroids
+        new_obj["f"] = []
+
+        for j in range(len(eff)):
+            new_obj["f"].append({})
+            new_obj["f"][j]["media"] = np.average(eff[j])
+            new_obj["f"][j]["desvio"] = np.std(eff[j])
+            new_obj["f"][j]["coef_var"] = np.std(eff[j]) / np.average(eff[j])
+            new_obj["f"][j]["min"] = np.min(eff[j])
+            new_obj["f"][j]["max"] = np.max(eff[j])
+
+        return new_obj
 
 
-def classification(k, data, method, without_outliers, out_json):
+def classification(k, data, method, without_outliers, out_json, eff_json):
     if without_outliers:
         outliers = "sem_poda_de_outlier"
         f = open('files/output_k-means/kmeans_' +
@@ -122,7 +131,7 @@ def classification(k, data, method, without_outliers, out_json):
         f.write('Foram podados ' + str(count_all) +
                 ' de ' + str(len_att) + ' jogadores.\n\n')
 
-        print('\tCom poda de outliers')
+        print('\tExecucao com poda de outliers')
 
     for i in range(0, 10):
         print('\t\tExecucao %d' % i)
@@ -178,6 +187,7 @@ def classification(k, data, method, without_outliers, out_json):
             min_count = count
             min_centroids = centroids[:]
             min_eff_f = eff_f[:]
+            min_labels = labels[:]
 
         eff_f.clear()
         eff_f = []
@@ -189,6 +199,9 @@ def classification(k, data, method, without_outliers, out_json):
     out_json[outliers] = create_obj(
         min_i, min_inertia, min_count, min_centroids, min_eff_f)
 
+    eff_json[outliers] = create_obj(
+        min_i, min_inertia, min_count, min_centroids, min_eff_f, data_norm, min_labels)
+
     f.write('Dados da metrica inertia: \n')
     summary(f, inertia)
 
@@ -196,7 +209,7 @@ def classification(k, data, method, without_outliers, out_json):
 
     f.close()
 
-    return out_json
+    return out_json, eff_json
 
 
 def main():
@@ -217,20 +230,31 @@ def main():
     fp.close()
 
     out_json = {}
+    eff_json = {}
     out_final = {"all": {}, "kda": {}}
+    eff_final = {"all": {}, "kda": {}}
 
     for i in ['all', 'kda']:
         for j in [3, 4, 5]:
             for k in [True, False]:
                 if i == 'all':
-                    out_json = classification(j, data_all, i, k, out_json)
+                    out_json, eff_json = classification(
+                        j, data_all, i, k, out_json, eff_json)
                 else:
-                    out_json = classification(j, data_kda, i, k, out_json)
+                    out_json, eff_json = classification(
+                        j, data_kda, i, k, out_json, eff_json)
+
             out_final[i][j] = copy.deepcopy(out_json)
             out_json.clear()
 
+            eff_final[i][j] = copy.deepcopy(eff_json)
+            eff_json.clear()
+
     out = pd.DataFrame(out_final)
     out.to_json('files/output_k-means/output_kmeans.json')
+
+    out_2 = pd.DataFrame(eff_final)
+    out_2.to_json('files/output_k-means/clusters_kmeans.json')
 
 
 if __name__ == "__main__":
