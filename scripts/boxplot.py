@@ -24,6 +24,17 @@ def plot_attributes_analysis():
         plt.clf()
 
 
+def plot_attributes():
+    data = pd.read_json(
+        'files/output_attributes_analysis/output_attributes.json')
+
+    for k, v in data.items():
+        plt.boxplot(v, labels=[k])
+        plt.title(k)
+        plt.savefig('files/output_plots/plot_attribute_' + k + '.png')
+        plt.clf()
+
+
 def plot_k_means():
     data = pd.read_json('files/output_k-means/output_kmeans.json')
 
@@ -31,12 +42,12 @@ def plot_k_means():
 def main():
     if len(sys.argv) == 1 or len(sys.argv) > 2:
         print('Opções:\n')
-        print('box_plot.py -att : Plota a análise dos atributos')
-        print('box_plot.py -km : Plota os dados do k-means')
-        print('box_plot.py -all : Plota os dois acima')
+        print('boxplot.py -att : Plota a análise dos atributos')
+        print('boxplot.py -km : Plota os dados do k-means')
+        print('boxplot.py -all : Plota os dois acima')
     elif sys.argv[1] == '-att':
         print('Plot da análise dos atributos')
-        plot_attributes_analysis()
+        plot_attributes()
     elif sys.argv[1] == '-km':
         # plotar k-means
         print('Plot do k-means')
@@ -44,12 +55,12 @@ def main():
     elif sys.argv[1] == '-all':
         # plotar os dois
         print('Plot de ambos')
-        plot_attributes_analysis()
+        plot_attributes()
     else:
         print('Opções:\n')
-        print('box_plot.py -att : Plota a análise dos atributos')
-        print('box_plot.py -km : Plota os dados do k-means')
-        print('box_plot.py -all : Plota os dois acima')
+        print('boxplot.py -att : Plota a análise dos atributos')
+        print('boxplot.py -km : Plota os dados do k-means')
+        print('boxplot.py -all : Plota os dois acima')
 
 
 if __name__ == "__main__":

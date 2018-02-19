@@ -37,7 +37,7 @@ def remove_outliers(dados, c=2.0):
     return new, count
 
 
-def summary(arq, eff, out_json, attribute, it, label):
+def summary(arq, eff, out_json, attribute, it, label, eff_json=None):
     avg = np.average(eff)
     std = np.std(eff)
     coef_var = std / avg
@@ -52,6 +52,8 @@ def summary(arq, eff, out_json, attribute, it, label):
         "min": minimum,
         "max": maximum
     }
+    if eff_json is not None:
+        eff_json[attribute] = eff
 
     arq.write('Media: ' + str(avg) + '\n')
     arq.write('Desvio: ' + str(std) + '\n')
@@ -61,7 +63,7 @@ def summary(arq, eff, out_json, attribute, it, label):
     arq.write('Maximo: ' + str(maximum) + '\n')
 
 
-def classification(attribute, received_eff, n, out_json):
+def classification(attribute, received_eff, n, out_json, eff_json):
     file_name = 'output_' + attribute + '.txt'
     arq = open("files/output_attributes_analysis/" + file_name, 'w')
 
@@ -69,6 +71,7 @@ def classification(attribute, received_eff, n, out_json):
                      "coef_var": None, "min": None, "max": None}
 
     out_json[attribute] = [defaut_object] * 5
+    eff_json[attribute] = []
 
     eff_normalized = list(np.array(received_eff) / np.array(n))
 
@@ -76,7 +79,7 @@ def classification(attribute, received_eff, n, out_json):
 
     arq.write("Sumario de valores normalizados por partida (minimo 5 partidas):\n")
     summary(arq, eff_normalized, out_json, attribute, 0,
-            "Sumario de valores normalizados por partida")
+            "Sumario de valores normalizados por partida", eff_json)
 
     arq.write(
         '\n==================================================================\n\n')
@@ -124,6 +127,7 @@ def main():
     eff_all = []
     eff_kda = []
     out_json = {}
+    eff_json = {}
 
     for l in fp:
         parts = l.strip().split()
@@ -148,21 +152,25 @@ def main():
             eff_all.append((parts[1] + parts[3] - parts[2] + max(parts[5], parts[9]) +
                             max(parts[7], parts[8]) + max(parts[6], parts[10])) / parts[4])
 
-    classification("all_attributes", eff_all, n, out_json)
-    classification("kda", eff_kda, n, out_json)
-    classification("kills", k, n, out_json)
-    classification("deaths", d, n, out_json)
-    classification("assists", a, n, out_json)
-    classification("denies", denies, n, out_json)
-    classification("gpm", gpm, n, out_json)
-    classification("hero_damage", hero_damage, n, out_json)
-    classification("hero_healing", hero_healing, n, out_json)
-    classification("lh", lh, n, out_json)
-    classification("xp_p_min", xp_p_min, n, out_json)
+    classification("all_attributes", eff_all, n, out_json, eff_json)
+    classification("kda", eff_kda, n, out_json, eff_json)
+    classification("kills", k, n, out_json, eff_json)
+    classification("deaths", d, n, out_json, eff_json)
+    classification("assists", a, n, out_json, eff_json)
+    classification("denies", denies, n, out_json, eff_json)
+    classification("gpm", gpm, n, out_json, eff_json)
+    classification("hero_damage", hero_damage, n, out_json, eff_json)
+    classification("hero_healing", hero_healing, n, out_json, eff_json)
+    classification("lh", lh, n, out_json, eff_json)
+    classification("xp_p_min", xp_p_min, n, out_json, eff_json)
 
     out = pd.DataFrame(out_json)
     out.to_json(
         'files/output_attributes_analysis/output_attribute_analysis.json')
+
+    out_2 = pd.DataFrame(eff_json)
+    out_2.to_json(
+        'files/output_attributes_analysis/output_attributes.json')
 
 
 if __name__ == "__main__":
