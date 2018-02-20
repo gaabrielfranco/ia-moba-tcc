@@ -62,13 +62,27 @@ def summary(arq, eff, tabs=0):
             arq.write('\t\t\tMaximo: ' + str(np.max(eff[i])) + '\n')
 
 
-def create_obj(i, inertia, count, centroids, eff, data=None, labels=None):
-
+def create_obj(i, inertia, count, centroids, eff, data=None, labels=None, method=None, k=None):
     if data is not None:
-        new_obj = [[] for x in range(max(labels) + 1)]
+        new_obj = {}
+        if method == 'all':
+            for j in ["kills", "deaths", "assists", "denies", "lh"]:
+                new_obj[j] = [[] for x in range(k)]
 
-        for j in range(len(data)):
-            new_obj[labels[j]].append(data[j])
+            for j, k in enumerate(data):
+                new_obj["kills"][labels[j]].append(k[0])
+                new_obj["deaths"][labels[j]].append(k[1])
+                new_obj["assists"][labels[j]].append(k[2])
+                new_obj["denies"][labels[j]].append(k[3])
+                new_obj["lh"][labels[j]].append(k[4])
+        else:
+            for j in ["kills", "deaths", "assists"]:
+                new_obj[j] = [[] for x in range(k)]
+
+            for j, k in enumerate(data):
+                new_obj["kills"][labels[j]].append(k[0])
+                new_obj["deaths"][labels[j]].append(k[1])
+                new_obj["assists"][labels[j]].append(k[2])
 
         return new_obj
     else:
@@ -199,8 +213,8 @@ def classification(k, data, method, without_outliers, out_json, eff_json):
     out_json[outliers] = create_obj(
         min_i, min_inertia, min_count, min_centroids, min_eff_f)
 
-    eff_json[outliers] = create_obj(
-        min_i, min_inertia, min_count, min_centroids, min_eff_f, data_norm, min_labels)
+    eff_json = create_obj(
+        min_i, min_inertia, min_count, min_centroids, min_eff_f, data_norm, min_labels, method, k)
 
     f.write('Dados da metrica inertia: \n')
     summary(f, inertia)
@@ -232,7 +246,11 @@ def main():
     out_json = {}
     eff_json = {}
     out_final = {"all": {}, "kda": {}}
-    eff_final = {"all": {}, "kda": {}}
+    eff_final = {"kills": {}, "deaths": {},
+                 "assists": {}, "denies": {}, "lh": {}}
+
+    all_att = ["kills", "deaths", "assists", "denies", "lh"]
+    kda_att = ["kills", "deaths", "assists"]
 
     for i in ['all', 'kda']:
         for j in [3, 4, 5]:
@@ -244,11 +262,25 @@ def main():
                     out_json, eff_json = classification(
                         j, data_kda, i, k, out_json, eff_json)
 
+                out = ('so' if k else 'co')
+
+                if i == 'all':
+                    for att in all_att:
+                        for cluster in range(j):
+                            eff_final[att][i + '_' + str(j) + '_' + out] = []
+                            eff_final[att][i + '_' +
+                                           str(j) + '_' + out].append(copy.deepcopy(eff_json[att][cluster]))
+                else:
+                    for att in kda_att:
+                        for cluster in range(j):
+                            eff_final[att][i + '_' + str(j) + '_' + out] = []
+                            eff_final[att][i + '_' +
+                                           str(j) + '_' + out].append(copy.deepcopy(eff_json[att][cluster]))
+
+                eff_json.clear()
+
             out_final[i][j] = copy.deepcopy(out_json)
             out_json.clear()
-
-            eff_final[i][j] = copy.deepcopy(eff_json)
-            eff_json.clear()
 
     out = pd.DataFrame(out_final)
     out.to_json('files/output_k-means/output_kmeans.json')

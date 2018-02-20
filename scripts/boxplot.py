@@ -1,66 +1,96 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
+import numpy as np
 
 
-def plot_attributes_analysis():
-    data = pd.read_json(
-        'files/output_attributes_analysis/output_attribute_analysis.json')
+def normalizes(x):
+    x_norm = []
+    minimum = np.min(x)
+    maximum = np.max(x)
+    for i in x:
+        x_norm.append((i - minimum) / (maximum - minimum))
 
-    for k, v in data.items():
-        data_plot = [[] for x in range(5)]
+    return x_norm
 
-        for j in range(1, 5):
-            data_plot[0].append(v[j]["media"])
-            data_plot[1].append(v[j]["desvio"])
-            data_plot[2].append(v[j]["coef_var"])
-            data_plot[3].append(v[j]["min"])
-            data_plot[4].append(v[j]["max"])
 
-        plt.boxplot(data_plot, labels=[
-                    "medias", "desvios", "coef. var", "min", "max"])
+def plot_kmeans():
+    data_km = pd.read_json('files/output_k-means/clusters_kmeans.json')
+
+    for k, v in data_km.items():
+        data = []
+        labels = []
+        for i, j in v.items():
+            if j is not None:
+                data.append(j)
+                labels.append(i)
+
+        plt.boxplot(data, labels=labels)
         plt.title(k)
-        plt.savefig('files/output_plots/plot_' + k + '.png')
+        plt.savefig('files/output_plots/k-means/plot_attribute_' + k + '.png')
         plt.clf()
 
 
 def plot_attributes():
-    data = pd.read_json(
+    data_att = pd.read_json(
         'files/output_attributes_analysis/output_attributes.json')
 
-    for k, v in data.items():
+    for k, v in data_att.items():
         plt.boxplot(v, labels=[k])
         plt.title(k)
-        plt.savefig('files/output_plots/plot_attribute_' + k + '.png')
+        plt.savefig(
+            'files/output_plots/attributes/plot_attribute_' + k + '.png')
         plt.clf()
 
 
-def plot_k_means():
-    data = pd.read_json('files/output_k-means/output_kmeans.json')
+def plot_all():
+    data_att = pd.read_json(
+        'files/output_attributes_analysis/output_attributes.json')
+    data_km = pd.read_json('files/output_k-means/clusters_kmeans.json')
+
+    for k, v in data_km.items():
+        data = []
+        labels = []
+        for i, j in v.items():
+            if j is not None:
+                data.append(j)
+                labels.append(i)
+
+        att_general = []
+        for i in data_att[k]:
+            att_general.append(i)
+
+        att_general = normalizes(att_general)
+
+        data.append(att_general)
+        labels.append('general')
+
+        plt.boxplot(data, labels=labels)
+        plt.title(k)
+        plt.savefig('files/output_plots/all/plot_attribute_' + k + '.png')
+        plt.clf()
 
 
 def main():
     if len(sys.argv) == 1 or len(sys.argv) > 2:
         print('Opções:\n')
-        print('boxplot.py -att : Plota a análise dos atributos')
+        print('boxplot.py -att : Plota os dados dos atributos')
         print('boxplot.py -km : Plota os dados do k-means')
-        print('boxplot.py -all : Plota os dois acima')
+        print('boxplot.py -all : Plota os dados do k-means e dos atributos juntos')
     elif sys.argv[1] == '-att':
-        print('Plot da análise dos atributos')
+        print('Plot dos atributos')
         plot_attributes()
     elif sys.argv[1] == '-km':
-        # plotar k-means
         print('Plot do k-means')
-        print("oi")
+        plot_kmeans()
     elif sys.argv[1] == '-all':
-        # plotar os dois
-        print('Plot de ambos')
-        plot_attributes()
+        print('Plot de todos juntos')
+        plot_all()
     else:
         print('Opções:\n')
-        print('boxplot.py -att : Plota a análise dos atributos')
+        print('boxplot.py -att : Plota os dados dos atributos')
         print('boxplot.py -km : Plota os dados do k-means')
-        print('boxplot.py -all : Plota os dois acima')
+        print('boxplot.py -all : Plota os dados do k-means e dos atributos juntos')
 
 
 if __name__ == "__main__":
