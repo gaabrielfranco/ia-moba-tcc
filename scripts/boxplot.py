@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import sys
 import numpy as np
+plt.rcParams["figure.figsize"] = (25, 16)
 
 
 def normalizes(x):
@@ -14,6 +15,19 @@ def normalizes(x):
     return x_norm
 
 
+def remove_outliers(method, data, c=2.0):
+    new = []
+    media = np.average(data)
+    std = np.std(data)
+    count = 0
+    for d in data:
+        if np.abs(media - d) < c * std:
+            new.append(d)
+        else:
+            count += 1
+    return new
+
+
 def plot_kmeans():
     data_km = pd.read_json('files/output_k-means/clusters_kmeans.json')
 
@@ -22,7 +36,7 @@ def plot_kmeans():
         labels = []
         for i, j in v.items():
             if j is not None:
-                data.append(j)
+                data.append(remove_outliers(i.split('_')[0], j[0]))
                 labels.append(i)
 
         plt.boxplot(data, labels=labels)
