@@ -150,7 +150,7 @@ def classification(k, data, method, without_outliers, out_json, eff_json):
     for i in range(0, 10):
         print('\t\tExecucao %d' % i)
         f.write('Execucao com semente ' + str(i) + ':\n')
-        km = KMeans(n_clusters=k, random_state=i, n_jobs=4)
+        km = KMeans(n_clusters=k, random_state=i, n_jobs=-1)
         labels = km.fit_predict(data_norm)
 
         inertia.append(km.inertia_)
