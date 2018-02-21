@@ -39,7 +39,10 @@ def plot_kmeans():
                 data.append(remove_outliers(i.split('_')[0], j[0]))
                 labels.append(i)
 
-        plt.boxplot(data, labels=labels)
+        fig, ax = plt.subplots()
+        ax.annotate('Nomenclatura utilizada (separado por _):\n    -atributo(todos ou kda)\n    -parametro K do k-means(3, 4 ou 5)\n    -com ou sem outliers',
+                    xy=(350, 1200), xycoords='figure pixels')
+        ax.boxplot(data, labels=labels)
         plt.title(k)
         plt.savefig('files/output_plots/k-means/plot_attribute_' + k + '.png')
         plt.clf()
@@ -67,7 +70,7 @@ def plot_all():
         labels = []
         for i, j in v.items():
             if j is not None:
-                data.append(j)
+                data.append(remove_outliers(i.split('_')[0], j[0]))
                 labels.append(i)
 
         att_general = []
@@ -79,7 +82,10 @@ def plot_all():
         data.append(att_general)
         labels.append('general')
 
-        plt.boxplot(data, labels=labels)
+        fig, ax = plt.subplots()
+        ax.annotate('Nomenclatura utilizada (separado por _):\n    -atributo(todos ou kda)\n    -parametro K do k-means(3, 4 ou 5)\n    -com ou sem outliers',
+                    xy=(350, 1200), xycoords='figure pixels')
+        ax.boxplot(data, labels=labels)
         plt.title(k)
         plt.savefig('files/output_plots/all/plot_attribute_' + k + '.png')
         plt.clf()
