@@ -64,6 +64,12 @@ def read_data(input_file):
     data['all'] = []
     data['kda'] = []
     data['kdlh'] = []
+    data['everyone'] = []
+    data['5best'] = []
+    data['2best'] = []
+    data['best'] = []
+    data['wtf'] = []
+    data['wohd'] = []
 
     fp = open(input_file, 'r')
 
@@ -76,6 +82,18 @@ def read_data(input_file):
                 list(np.array(parts[1:4] + [parts[5]] + [parts[9]]) / parts[4]))
             data['kda'].append(list(np.array(parts[1:4]) / parts[4]))
             data['kdlh'].append(list(np.array([parts[1]] + [parts[5]] + [parts[9]]) / parts[4]))
+            data['everyone'].append(
+                list(np.array(parts[1:4] + parts[5:]) / parts[4]))
+            data['5best'].append(
+                list(np.array([parts[1]] + parts[6:8] + parts[9:]) / parts[4]))
+            data['2best'].append(
+                list(np.array([parts[1]] + [parts[7]]) / parts[4]))
+            data['best'].append(
+                list(np.array([parts[7]]) / parts[4]))
+            data['wtf'].append(
+                list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
+            data['wohd'].append(
+                list(np.array(parts[1:4] + parts[5:7] + parts[8:]) / parts[4]))
 
     fp.close()
     
@@ -171,13 +189,34 @@ def plot_inertia(data, file_name, show_plots):
     if show_plots:
         plt.show()
     plt.clf()
+    
+def plot_counts(data, plots_path, show_plots):
+    # config output images
+    plt.rcParams["figure.figsize"] = (25, 16)
+    
+    for experiment in data.keys():
+        fig, ax = plt.subplots()
+        plot_data = []
+        labels = []
+        i = 1
+        for c in data[experiment]['clusters']:
+            plot_data.append(len(c))
+            labels.append(i)
+            i += 1
+        plt.pie(plot_data, labels=labels)
+        file_name = plots_path + experiment + '_pie.png'
+        plt.savefig(file_name)
+        print('\nGraph %s saved.' % file_name)
+        if show_plots:
+            plt.show()
+        plt.clf()
 
 def main():
     # configuration parameters, to be changed to command line parameters later...
     seed = 0
     input_file = 'files/attributes.txt'
     json_file = 'files/output_k-means/output_kmeans_marcos.json'
-    json_file_pruned = 'files/output_k-means/output_kmeans_pruned_marcos.json'
+    #json_file_pruned = 'files/output_k-means/output_kmeans_pruned_marcos.json'
     cluster_list = [3, 4, 5]
     verbose = True
     show_plots = False
@@ -193,10 +232,18 @@ def main():
     attribute_names['kda'] = ["kills", "deaths", "assists"]
     attribute_names['all'] = ["kills", "deaths", "assists", "denies", "lh"]
     attribute_names['kdlh'] = ["kills", "denies", "lh"]
+    attribute_names['everyone'] = ["kills", "deaths", "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
+    attribute_names['5best'] = ["kills", "gpm", "hd", "lh", "xpm"]
+    attribute_names['2best'] = ["kills", "hd"]
+    attribute_names['best'] = ["hd"]
+    attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
+    attribute_names['wohd'] = ["kills", "deaths", "assists", "denies", "gpm", "hh", "lh", "xpm"]
     plot_clusters(output_data, attribute_names, plots_path, show_plots)
     
     plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
+    plot_counts(output_data, plots_path, show_plots)
     
+    """
     # Run same experiments without outliers
     pruned_data = outlier_removal(data)
     
@@ -210,6 +257,7 @@ def main():
     plot_clusters(output_pruned_data, attribute_names, plots_path, show_plots)
     
     plot_inertia(output_pruned_data, plots_path + 'inertia-wo.png', show_plots)
+    """
 
 if __name__ == "__main__":
     main()
