@@ -63,7 +63,7 @@ def summary(arq, eff, out_json, attribute, it, label, eff_json=None):
     arq.write('Maximo: ' + str(maximum) + '\n')
 
 
-def classification(attribute, received_eff, n, out_json, eff_json):
+def analyze(attribute, received_eff, n, out_json, eff_json):
     file_name = 'output_' + attribute + '.txt'
     arq = open("files/output_attributes_analysis/" + file_name, 'w')
 
@@ -111,6 +111,8 @@ def classification(attribute, received_eff, n, out_json, eff_json):
     summary(arq, podado, out_json, attribute, 4,
             "Depois da poda de outliers com normalizacao por partidas e min-max")
 
+    arq.close()
+
 
 def main():
     fp = open('files/attributes.txt', 'rU')
@@ -152,17 +154,17 @@ def main():
             eff_all.append((parts[1] + parts[3] - parts[2] + max(parts[5], parts[9]) +
                             max(parts[7], parts[8]) + max(parts[6], parts[10])) / parts[4])
 
-    classification("all_attributes", eff_all, n, out_json, eff_json)
-    classification("kda", eff_kda, n, out_json, eff_json)
-    classification("kills", k, n, out_json, eff_json)
-    classification("deaths", d, n, out_json, eff_json)
-    classification("assists", a, n, out_json, eff_json)
-    classification("denies", denies, n, out_json, eff_json)
-    classification("gpm", gpm, n, out_json, eff_json)
-    classification("hero_damage", hero_damage, n, out_json, eff_json)
-    classification("hero_healing", hero_healing, n, out_json, eff_json)
-    classification("lh", lh, n, out_json, eff_json)
-    classification("xp_p_min", xp_p_min, n, out_json, eff_json)
+    analyze("all_attributes", eff_all, n, out_json, eff_json)
+    analyze("kda", eff_kda, n, out_json, eff_json)
+    analyze("kills", k, n, out_json, eff_json)
+    analyze("deaths", d, n, out_json, eff_json)
+    analyze("assists", a, n, out_json, eff_json)
+    analyze("denies", denies, n, out_json, eff_json)
+    analyze("gpm", gpm, n, out_json, eff_json)
+    analyze("hero_damage", hero_damage, n, out_json, eff_json)
+    analyze("hero_healing", hero_healing, n, out_json, eff_json)
+    analyze("lh", lh, n, out_json, eff_json)
+    analyze("xp_p_min", xp_p_min, n, out_json, eff_json)
 
     out = pd.DataFrame(out_json)
     out.to_json(

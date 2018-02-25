@@ -44,7 +44,7 @@ def plot_kmeans():
                     xy=(350, 1200), xycoords='figure pixels')
         ax.boxplot(data, labels=labels)
         plt.title(k)
-        plt.savefig('files/output_plots/k-means/plot_attribute_' + k + '.png')
+        plt.savefig('files/output_boxplot/k-means/plot_attribute_' + k + '.png')
         plt.clf()
 
 
@@ -56,7 +56,7 @@ def plot_attributes():
         plt.boxplot(v, labels=[k])
         plt.title(k)
         plt.savefig(
-            'files/output_plots/attributes/plot_attribute_' + k + '.png')
+            'files/output_boxplot/attributes/plot_attribute_' + k + '.png')
         plt.clf()
 
 
@@ -87,7 +87,7 @@ def plot_all():
                     xy=(350, 1200), xycoords='figure pixels')
         ax.boxplot(data, labels=labels)
         plt.title(k)
-        plt.savefig('files/output_plots/all/plot_attribute_' + k + '.png')
+        plt.savefig('files/output_boxplot/all/plot_attribute_' + k + '.png')
         plt.clf()
 
 
