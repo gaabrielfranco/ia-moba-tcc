@@ -234,7 +234,7 @@ def main():
     # configuration parameters, to be changed to command line parameters later...
     seed = 0
     input_file = 'files/attributes.txt'
-    json_file = 'files/output_spectral-clustering.json'
+    json_file = 'files/output_plots_spectral-clustering/output_spectral-clustering.json'
     # json_file_pruned = 'files/output_k-means/output_kmeans_pruned_marcos.json'
     cluster_list = [3, 4, 5]
     verbose = True
