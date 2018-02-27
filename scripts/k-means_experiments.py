@@ -191,15 +191,23 @@ def plot_inertia(data, file_name, show_plots):
 
     plot_data = []
     labels = []
+    colors = []
 
-    for experiment in data.keys():
+    for iteration, experiment in enumerate(data.keys()):
         labels.append(experiment)
         plot_data.append(data[experiment]['inertia'])
+        if iteration % 3 == 0:
+            colors.append('blue')
+        elif iteration % 3 == 1:
+            colors.append('red')
+        else:
+            colors.append('black')
 
     groups = np.arange(len(data.keys()))
     width = 0.35
 
-    plt.bar(groups, plot_data, width, tick_label=labels)
+    plt.bar(groups, plot_data, width, tick_label=labels, color=colors)
+    plt.xticks(groups, labels, rotation=45)
     plt.title("Inertia for each experiment")
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
