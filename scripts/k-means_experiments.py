@@ -155,6 +155,7 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
 def plot_clusters(data, attribute_names, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
     fig, ax = plt.subplots()
 
@@ -184,6 +185,7 @@ def plot_clusters(data, attribute_names, plots_path, show_plots):
 def plot_inertia(data, file_name, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
     fig, ax = plt.subplots()
 
@@ -198,8 +200,9 @@ def plot_inertia(data, file_name, show_plots):
     width = 0.35
 
     plt.bar(groups, plot_data, width, tick_label=labels)
+    plt.title("Inertia for each experiment")
     plt.savefig(file_name)
-    print('\nGraph %s saved.' % file_name)
+    print('Graph %s saved.' % file_name)
     if show_plots:
         plt.show()
     plt.clf()
@@ -208,23 +211,49 @@ def plot_inertia(data, file_name, show_plots):
 def plot_counts(data, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
-    for experiment in data.keys():
-        fig, ax = plt.subplots()
+    titles = {
+        "all": "Clusters with the experiment \"all\" running the k-means for k = [3, 4, 5]",
+        "kda": "Clusters with the experiment \"kda\" running the k-means for k = [3, 4, 5]",
+        "kdlh": "Clusters with the experiment \"kdlh\" running the k-means for k = [3, 4, 5]",
+        "everyone": "Clusters with the experiment \"everyone\" running the k-means for k = [3, 4, 5]",
+        "5best": "Clusters with the experiment \"5best\" running the k-means for k = [3, 4, 5]",
+        "2best": "Clusters with the experiment \"2best\" running the k-means for k = [3, 4, 5]",
+        "best": "Clusters with the experiment \"best\" running the k-means for k = [3, 4, 5]",
+        "wtf": "Clusters with the experiment \"wtf\" running the k-means for k = [3, 4, 5]",
+        "wohd": "Clusters with the experiment \"wohd\" running the k-means for k = [3, 4, 5]"
+    }
+
+    for iteration, experiment in enumerate(data.keys()):
         plot_data = []
         labels = []
+        k = int(experiment.split('_')[1])
+        labels2 = [[] for x in range(0, k)]
         i = 1
         for c in data[experiment]['clusters']:
             plot_data.append(len(c))
-            labels.append(i)
+            labels.append('Cluster ' + str(i))
             i += 1
-        plt.pie(plot_data, labels=labels)
-        file_name = plots_path + experiment + '_pie.png'
-        plt.savefig(file_name)
-        print('\nGraph %s saved.' % file_name)
-        if show_plots:
-            plt.show()
-        plt.clf()
+        if iteration % 3 == 0:
+            fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
+            ax1.pie(plot_data, autopct='%1.1f%%')
+            ax1.axis('equal')
+        elif iteration % 3 == 1:
+            ax2.pie(plot_data, autopct='%1.1f%%')
+            ax2.axis('equal')
+        else:
+            ax3.pie(plot_data, autopct='%1.1f%%')
+            ax3.axis('equal')
+            ax3.legend(labels, loc="lower right")
+            file_name = plots_path + experiment.split('_')[0] + '_pie.png'
+            plt.suptitle(titles[experiment.split('_')[0]], fontsize=20)
+            plt.legend(loc="lower right")
+            plt.savefig(file_name)
+            print('Graph %s saved.' % file_name)
+            if show_plots:
+                plt.show()
+            plt.clf()
 
 
 def main():
