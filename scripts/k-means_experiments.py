@@ -236,8 +236,6 @@ def plot_counts(data, plots_path, show_plots):
     for iteration, experiment in enumerate(data.keys()):
         plot_data = []
         labels = []
-        k = int(experiment.split('_')[1])
-        labels2 = [[] for x in range(0, k)]
         i = 1
         for c in data[experiment]['clusters']:
             plot_data.append(len(c))
@@ -263,6 +261,15 @@ def plot_counts(data, plots_path, show_plots):
                 plt.show()
             plt.clf()
 
+def correlation_analysis(data, attributes):
+    output_data = {}
+    for i, attr in enumerate(attributes):
+        output_data[attr] = []
+        for d in data:
+            output_data[attr].append(float(d[i]))
+    
+    df = pd.DataFrame(output_data)        
+    print(df.corr(method='kendall'))
 
 def main():
     verbose = False
@@ -297,7 +304,7 @@ def main():
     # Run experiments with outliers
     data = read_data(input_file)
 
-    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
@@ -312,6 +319,10 @@ def main():
     attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
     attribute_names['wohd'] = ["kills", "deaths",
                                "assists", "denies", "gpm", "hh", "lh", "xpm"]
+    
+    correlation_analysis(data['everyone'], attribute_names['everyone'])
+    return
+    
     plot_clusters(output_data, attribute_names, plots_path, show_plots)
 
     plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
