@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import numpy as np
-from sklearn.cluster import KMeans
+from sklearn.cluster import SpectralClustering
 import pandas as pd
 from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
@@ -106,6 +106,28 @@ def read_data(input_file):
 
     return data
 
+def get_centroids(labels, data, k):
+    data_centroids = [[] for x in range(k)]
+
+    for i, content in enumerate(labels):
+        data_centroids[content].append(data[i])
+
+    centroids = [[] for x in range(k)]
+
+    for i, content in enumerate(data_centroids):
+        centroids[i] = np.average(content, axis=0)
+
+    return centroids
+    
+def get_inertia(labels, centroids, data):
+    inertia = 0.0
+
+    for i, content in enumerate(labels):
+        for j in range(len(data[i])):
+            inertia += (data[i][j] - centroids[content][j]) ** 2
+
+    return inertia
+        
 
 def clusterization(data, cluster_list, seed, json_file, verbose):
     output_data = {}
@@ -114,9 +136,13 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
         for k in cluster_list:
             print('Executing experiment with %s attributes and %d clusters...' % (
                 attr_set, k))
+
             data_norm, min_norm, max_norm = normalizes(data[attr_set])
             km = SpectralClustering(n_clusters=k, random_state=seed, n_jobs=-1)
-            labels = km.fit_predict(data_norm)
+            try:
+                labels = km.fit_predict(data_norm)
+            except ValueError as e:
+                print(e)
 
             experiment = attr_set + '_' + str(k)
             output_data[experiment] = {}
@@ -130,9 +156,10 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
             for i, instance in enumerate(data[attr_set]):
                 output_data[experiment]['clusters'][labels[i]].append(instance)
 
-            output_data[experiment]['inertia'] = km.inertia_
-            output_data[experiment]['centroids'] = un_normalizes(
-                km.cluster_centers_, min_norm, max_norm)
+            data_unnorm = un_normalizes(data_norm, min_norm, max_norm)
+
+            output_data[experiment]['centroids'] = get_centroids(labels, data_unnorm, k)
+            output_data[experiment]['inertia'] = get_inertia(labels, output_data[experiment]['centroids'], data_unnorm)
             output_data[experiment]['seed'] = seed
 
     if verbose:
@@ -294,8 +321,8 @@ def main():
 
     # Plot results
     attribute_names = {}
-    attribute_names['kda'] = ["kills", "deaths", "assists"]
     attribute_names['all'] = ["kills", "deaths", "assists", "denies", "lh"]
+    attribute_names['kda'] = ["kills", "deaths", "assists"]
     attribute_names['kdlh'] = ["kills", "denies", "lh"]
     attribute_names['everyone'] = ["kills", "deaths",
                                    "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]

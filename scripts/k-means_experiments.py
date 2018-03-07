@@ -303,7 +303,7 @@ def main():
     # Run experiments with outliers
     data = read_data(input_file)
 
-    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
