@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 import numpy as np
-from sklearn.cluster import SpectralClustering
+from sklearn.cluster import KMeans
 import pandas as pd
 from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
+import sys
 
 
 def normalizes(x):
@@ -64,19 +65,15 @@ def read_data(input_file):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
     data = {}
-    '''
     data['all'] = []
     data['kda'] = []
     data['kdlh'] = []
     data['everyone'] = []
     data['5best'] = []
-    '''
-    #data['2best'] = []
+    data['2best'] = []
     data['best'] = []
-    '''
     data['wtf'] = []
     data['wohd'] = []
-    '''
 
     fp = open(input_file, 'r')
 
@@ -85,7 +82,6 @@ def read_data(input_file):
         for i, p in enumerate(parts):
             parts[i] = int(p)
         if parts[4] >= 5:
-            '''
             data['all'].append(
                 list(np.array(parts[1:4] + [parts[5]] + [parts[9]]) / parts[4]))
             data['kda'].append(list(np.array(parts[1:4]) / parts[4]))
@@ -95,17 +91,14 @@ def read_data(input_file):
                 list(np.array(parts[1:4] + parts[5:]) / parts[4]))
             data['5best'].append(
                 list(np.array([parts[1]] + parts[6:8] + parts[9:]) / parts[4]))
-            '''
-            # data['2best'].append(
-            #    list(np.array([parts[1]] + [parts[7]]) / parts[4]))
+            data['2best'].append(
+                list(np.array([parts[1]] + [parts[7]]) / parts[4]))
             data['best'].append(
                 list(np.array([parts[7]]) / parts[4]))
-            '''
             data['wtf'].append(
                 list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
             data['wohd'].append(
                 list(np.array(parts[1:4] + parts[5:7] + parts[8:]) / parts[4]))
-            '''
 
     fp.close()
 
@@ -137,9 +130,9 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
             for i, instance in enumerate(data[attr_set]):
                 output_data[experiment]['clusters'][labels[i]].append(instance)
 
-            # output_data[experiment]['inertia'] = km.inertia_
-            # output_data[experiment]['centroids'] = un_normalizes(
-            #    km.cluster_centers_, min_norm, max_norm)
+            output_data[experiment]['inertia'] = km.inertia_
+            output_data[experiment]['centroids'] = un_normalizes(
+                km.cluster_centers_, min_norm, max_norm)
             output_data[experiment]['seed'] = seed
 
     if verbose:
@@ -158,6 +151,7 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
 def plot_clusters(data, attribute_names, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
     fig, ax = plt.subplots()
 
@@ -187,22 +181,32 @@ def plot_clusters(data, attribute_names, plots_path, show_plots):
 def plot_inertia(data, file_name, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
     fig, ax = plt.subplots()
 
     plot_data = []
     labels = []
+    colors = []
 
-    for experiment in data.keys():
+    for iteration, experiment in enumerate(data.keys()):
         labels.append(experiment)
         plot_data.append(data[experiment]['inertia'])
+        if iteration % 3 == 0:
+            colors.append('blue')
+        elif iteration % 3 == 1:
+            colors.append('red')
+        else:
+            colors.append('black')
 
     groups = np.arange(len(data.keys()))
     width = 0.35
 
-    plt.bar(groups, plot_data, width, tick_label=labels)
+    plt.bar(groups, plot_data, width, tick_label=labels, color=colors)
+    plt.xticks(groups, labels, rotation=45)
+    plt.title("Inertia for each experiment")
     plt.savefig(file_name)
-    print('\nGraph %s saved.' % file_name)
+    print('Graph %s saved.' % file_name)
     if show_plots:
         plt.show()
     plt.clf()
@@ -211,35 +215,77 @@ def plot_inertia(data, file_name, show_plots):
 def plot_counts(data, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
-    for experiment in data.keys():
-        fig, ax = plt.subplots()
+    titles = {
+        "all": "Clusters with the experiment \"all\" running the spectral clustering for k = [3, 4, 5]",
+        "kda": "Clusters with the experiment \"kda\" running the spectral clustering for k = [3, 4, 5]",
+        "kdlh": "Clusters with the experiment \"kdlh\" running the spectral clustering for k = [3, 4, 5]",
+        "everyone": "Clusters with the experiment \"everyone\" running the spectral clustering for k = [3, 4, 5]",
+        "5best": "Clusters with the experiment \"5best\" running the spectral clustering for k = [3, 4, 5]",
+        "2best": "Clusters with the experiment \"2best\" running the spectral clustering for k = [3, 4, 5]",
+        "best": "Clusters with the experiment \"best\" running the spectral clustering for k = [3, 4, 5]",
+        "wtf": "Clusters with the experiment \"wtf\" running the spectral clustering for k = [3, 4, 5]",
+        "wohd": "Clusters with the experiment \"wohd\" running the spectral clustering for k = [3, 4, 5]"
+    }
+
+    for iteration, experiment in enumerate(data.keys()):
         plot_data = []
         labels = []
         i = 1
         for c in data[experiment]['clusters']:
             plot_data.append(len(c))
-            labels.append(i)
+            labels.append('Cluster ' + str(i))
             i += 1
-        plt.pie(plot_data, labels=labels)
-        file_name = plots_path + experiment + '_pie.png'
-        plt.savefig(file_name)
-        print('\nGraph %s saved.' % file_name)
-        if show_plots:
-            plt.show()
-        plt.clf()
-
+        if iteration % 3 == 0:
+            fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
+            ax1.pie(plot_data, autopct='%1.1f%%')
+            ax1.axis('equal')
+        elif iteration % 3 == 1:
+            ax2.pie(plot_data, autopct='%1.1f%%')
+            ax2.axis('equal')
+        else:
+            ax3.pie(plot_data, autopct='%1.1f%%')
+            ax3.axis('equal')
+            ax3.legend(labels, loc="lower right")
+            file_name = plots_path + experiment.split('_')[0] + '_pie.png'
+            plt.suptitle(titles[experiment.split('_')[0]], fontsize=20)
+            plt.legend(loc="lower right")
+            plt.savefig(file_name)
+            print('Graph %s saved.' % file_name)
+            if show_plots:
+                plt.show()
+            plt.clf()
 
 def main():
+    verbose = False
+    show_plots = False
+    pruned = False
+
+    for i in range(1, len(sys.argv)):
+        if sys.argv[1] == "--help":
+            print('Opções:\n')
+            print("--verbose: printa os arquivos em tela (defaut = False)")
+            print("--show: mostra o graficos em tela em tela (defaut = False)")
+            print(
+                "--pruned: executa o experimento para os dados podados também (defaut = False)")
+            print("--help: mostra o menu de ajuda")
+            return
+        if sys.argv[i] == "--verbose":
+            verbose = True
+        if sys.argv[i] == "--show":
+            show_plots = True
+        if sys.argv[1] == "--pruned":
+            pruned = True
+
     # configuration parameters, to be changed to command line parameters later...
     seed = 0
     input_file = 'files/attributes.txt'
-    json_file = 'files/output_plots_spectral-clustering/output_spectral-clustering.json'
-    # json_file_pruned = 'files/output_k-means/output_kmeans_pruned_marcos.json'
+    json_file = 'files/output_spectral-clustering_experiments/output_spectral-clustering.json'
+    json_file_pruned = 'files/output_spectral-clustering_experiments/output_spectral-clustering_pruned.json'
     cluster_list = [3, 4, 5]
-    verbose = True
-    show_plots = False
-    plots_path = 'files/output_plots_spectral-clustering/'
+
+    plots_path = 'files/output_spectral-clustering_experiments/'
 
     # Run experiments with outliers
     data = read_data(input_file)
@@ -248,42 +294,41 @@ def main():
 
     # Plot results
     attribute_names = {}
-    '''
     attribute_names['kda'] = ["kills", "deaths", "assists"]
     attribute_names['all'] = ["kills", "deaths", "assists", "denies", "lh"]
     attribute_names['kdlh'] = ["kills", "denies", "lh"]
     attribute_names['everyone'] = ["kills", "deaths",
                                    "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
     attribute_names['5best'] = ["kills", "gpm", "hd", "lh", "xpm"]
-    '''
-    #attribute_names['2best'] = ["kills", "hd"]
+    attribute_names['2best'] = ["kills", "hd"]
     attribute_names['best'] = ["hd"]
-    '''
     attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
     attribute_names['wohd'] = ["kills", "deaths",
                                "assists", "denies", "gpm", "hh", "lh", "xpm"]
-    '''
+    
     plot_clusters(output_data, attribute_names, plots_path, show_plots)
 
-    # plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
+    plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
     plot_counts(output_data, plots_path, show_plots)
 
-    """
-    # Run same experiments without outliers
-    pruned_data = outlier_removal(data)
+    if pruned:
+        # Run same experiments without outliers
+        pruned_data = outlier_removal(data)
 
-    output_pruned_data = clusterization(
-        pruned_data, cluster_list, seed, json_file_pruned, verbose)
+        output_pruned_data = clusterization(
+            pruned_data, cluster_list, seed, json_file_pruned, verbose)
 
-    # Plot results
-    attribute_names = {}
-    attribute_names['kda-wo'] = ["kills", "deaths", "assists"]
-    attribute_names['all-wo'] = ["kills", "deaths", "assists", "denies", "lh"]
-    attribute_names['kdlh-wo'] = ["kills", "denies", "lh"]
-    plot_clusters(output_pruned_data, attribute_names, plots_path, show_plots)
+        # Plot results
+        attribute_names = {}
+        attribute_names['kda-wo'] = ["kills", "deaths", "assists"]
+        attribute_names['all-wo'] = ["kills",
+                                     "deaths", "assists", "denies", "lh"]
+        attribute_names['kdlh-wo'] = ["kills", "denies", "lh"]
+        plot_clusters(output_pruned_data, attribute_names,
+                      plots_path, show_plots)
 
-    plot_inertia(output_pruned_data, plots_path + 'inertia-wo.png', show_plots)
-    """
+        plot_inertia(output_pruned_data, plots_path +
+                     'inertia-wo.png', show_plots)
 
 
 if __name__ == "__main__":

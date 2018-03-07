@@ -7,10 +7,9 @@ from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
 import sys
 
-''' 
-    TODO: arrumar os gráficos de pizza e colocar valores neles
 '''
-
+    TODO: análise de correlação
+'''
 
 def normalizes(x):
     x_norm = []
