@@ -6,6 +6,7 @@ import pandas as pd
 from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
 import sys
+import os
 
 
 def normalizes(x):
@@ -13,15 +14,16 @@ def normalizes(x):
     minimum = np.min(x)
     maximum = np.max(x)
     for i in x:
-        x_norm.append((i - minimum) / (maximum - minimum))
+        x_norm.append(list((i - minimum) / (maximum - minimum)))
 
+    print("min e max = ", np.min(x_norm), np.max(x_norm), "\n")
     return x_norm, minimum, maximum
 
 
 def un_normalizes(m, minimum, maximum):
     x_un_norm = []
     for i in m:
-        x_un_norm.append(i * (maximum - minimum) + minimum)
+        x_un_norm.append(list(np.array(i) * (maximum - minimum) + minimum))
 
     return x_un_norm
 
@@ -122,6 +124,7 @@ def get_centroids(labels, data, k):
 def get_inertia(labels, centroids, data):
     inertia = 0.0
 
+    #inertia: Sum of squared distances of samples to their closest cluster center.
     for i, content in enumerate(labels):
         for j in range(len(data[i])):
             inertia += (data[i][j] - centroids[content][j]) ** 2
@@ -138,10 +141,12 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
                 attr_set, k))
 
             data_norm, min_norm, max_norm = normalizes(data[attr_set])
+
             km = SpectralClustering(n_clusters=k, random_state=seed, n_jobs=-1)
             try:
                 labels = km.fit_predict(data_norm)
             except ValueError as e:
+                print("erro bizarro...")
                 print(e)
 
             experiment = attr_set + '_' + str(k)
@@ -159,7 +164,7 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
             data_unnorm = un_normalizes(data_norm, min_norm, max_norm)
 
             output_data[experiment]['centroids'] = get_centroids(labels, data_unnorm, k)
-            output_data[experiment]['inertia'] = get_inertia(labels, output_data[experiment]['centroids'], data_unnorm)
+            output_data[experiment]['inertia'] = get_inertia(labels, get_centroids(labels, data_norm, k), data_norm)
             output_data[experiment]['seed'] = seed
 
     if verbose:
