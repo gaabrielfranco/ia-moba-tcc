@@ -77,6 +77,15 @@ def read_data(input_file):
     data['best'] = []
     data['wtf'] = []
     data['wohd'] = []
+    data['kills'] = []
+    data['deaths'] = []
+    data['assists'] = []
+    data['denies'] = []
+    data['gpm'] = []
+    data['hd'] = []
+    data['hh'] = []
+    data['lh'] = []
+    data['xpm'] = []
 
     fp = open(input_file, 'r')
 
@@ -102,6 +111,16 @@ def read_data(input_file):
                 list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
             data['wohd'].append(
                 list(np.array(parts[1:4] + parts[5:7] + parts[8:]) / parts[4]))
+            data['kills'].append(list(np.array([parts[1]]) / parts[4]))
+            data['deaths'].append(list(np.array([parts[2]]) / parts[4]))
+            data['assists'].append(list(np.array([parts[3]]) / parts[4]))
+            data['denies'].append(list(np.array([parts[5]]) / parts[4]))
+            data['gpm'].append(list(np.array([parts[6]]) / parts[4]))
+            data['hd'].append(list(np.array([parts[7]]) / parts[4]))
+            data['hh'].append(list(np.array([parts[8]]) / parts[4]))
+            data['lh'].append(list(np.array([parts[9]]) / parts[4]))
+            data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
+
 
     fp.close()
 
@@ -206,7 +225,7 @@ def plot_inertia(data, file_name, show_plots):
     width = 0.35
 
     plt.bar(groups, plot_data, width, tick_label=labels, color=colors)
-    plt.xticks(groups, labels, rotation=45)
+    plt.xticks(groups, labels, rotation=90)
     plt.title("Inertia for each experiment")
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
@@ -229,7 +248,16 @@ def plot_counts(data, plots_path, show_plots):
         "2best": "Clusters with the experiment \"2best\" running the k-means for k = [3, 4, 5]",
         "best": "Clusters with the experiment \"best\" running the k-means for k = [3, 4, 5]",
         "wtf": "Clusters with the experiment \"wtf\" running the k-means for k = [3, 4, 5]",
-        "wohd": "Clusters with the experiment \"wohd\" running the k-means for k = [3, 4, 5]"
+        "wohd": "Clusters with the experiment \"wohd\" running the k-means for k = [3, 4, 5]",
+        'kills': "Clusters with the experiment \"kills\" running the k-means for k = [3, 4, 5]",
+        'deaths': "Clusters with the experiment \"deths\" running the k-means for k = [3, 4, 5]",
+        'assists': "Clusters with the experiment \"assists\" running the k-means for k = [3, 4, 5]",
+        'denies': "Clusters with the experiment \"denies\" running the k-means for k = [3, 4, 5]",
+        'gpm': "Clusters with the experiment \"gpm\" running the k-means for k = [3, 4, 5]",
+        'hd': "Clusters with the experiment \"hd\" running the k-means for k = [3, 4, 5]",
+        'hh': "Clusters with the experiment \"hh\" running the k-means for k = [3, 4, 5]",
+        'lh': "Clusters with the experiment \"lh\" running the k-means for k = [3, 4, 5]",
+        'xpm': "Clusters with the experiment \"xpm\" running the k-means for k = [3, 4, 5]"
     }
 
     for iteration, experiment in enumerate(data.keys()):
@@ -318,9 +346,18 @@ def main():
     attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
     attribute_names['wohd'] = ["kills", "deaths",
                                "assists", "denies", "gpm", "hh", "lh", "xpm"]
+    attribute_names['kills'] = ["kills"]
+    attribute_names['deaths'] = ["deaths"]
+    attribute_names['assists'] = ["assists"]
+    attribute_names['denies'] = ["denies"]
+    attribute_names['gpm'] = ["gpm"]
+    attribute_names['hd'] = ["hd"]
+    attribute_names['hh'] = ["hh"]
+    attribute_names['lh'] = ["lh"]
+    attribute_names['xpm'] = ["xpm"]
     
-    correlation_analysis(data['everyone'], attribute_names['everyone'])
-    return
+    #correlation_analysis(data['everyone'], attribute_names['everyone'])
+    #return
     
     plot_clusters(output_data, attribute_names, plots_path, show_plots)
 
