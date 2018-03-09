@@ -6,10 +6,12 @@ import pandas as pd
 from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
 import sys
+import argparse
 
 '''
     TODO: análise de correlação
 '''
+
 
 def normalizes(x):
     x_norm = []
@@ -120,7 +122,6 @@ def read_data(input_file):
             data['hh'].append(list(np.array([parts[8]]) / parts[4]))
             data['lh'].append(list(np.array([parts[9]]) / parts[4]))
             data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
-
 
     fp.close()
 
@@ -288,38 +289,43 @@ def plot_counts(data, plots_path, show_plots):
                 plt.show()
             plt.clf()
 
+
 def correlation_analysis(data, attributes):
     output_data = {}
     for i, attr in enumerate(attributes):
         output_data[attr] = []
         for d in data:
             output_data[attr].append(float(d[i]))
-    
-    df = pd.DataFrame(output_data)        
-    print(df.corr(method='kendall'))
+
+    df = pd.DataFrame(output_data)
+    df = df.corr()
+
+    print(df)
+    return df
+
 
 def main():
     verbose = False
     show_plots = False
     pruned = False
 
-    for i in range(1, len(sys.argv)):
-        if sys.argv[1] == "--help":
-            print('Opções:\n')
-            print("--verbose: printa os arquivos em tela (defaut = False)")
-            print("--show: mostra o graficos em tela em tela (defaut = False)")
-            print(
-                "--pruned: executa o experimento para os dados podados também (defaut = False)")
-            print("--help: mostra o menu de ajuda")
-            return
-        if sys.argv[i] == "--verbose":
-            verbose = True
-        if sys.argv[i] == "--show":
-            show_plots = True
-        if sys.argv[1] == "--pruned":
-            pruned = True
+    # Parse args
+    parser = argparse.ArgumentParser(
+        description='Run experiments using k-means', prog="k-means_experiments.py")
+    parser.add_argument('--verbose', '-v', action='store_true',
+                        help='print the outputs on the terminal (defaut = False)')
+    parser.add_argument('--show', '-s', action='store_true',
+                        help='shows the graphics (defaut = False)')
+    parser.add_argument('--pruned', '-p', action='store_true',
+                        help='execute the experiments with pruned data (defaut = False)')
 
-    # configuration parameters, to be changed to command line parameters later...
+    args = parser.parse_args()
+
+    verbose = args.verbose
+    show_plots = args.show
+    pruned = args.pruned
+
+    # configuration parameters
     seed = 0
     input_file = 'files/attributes.txt'
     json_file = 'files/output_k-means_experiments/output_kmeans.json'
@@ -331,7 +337,7 @@ def main():
     # Run experiments with outliers
     data = read_data(input_file)
 
-    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
@@ -355,10 +361,10 @@ def main():
     attribute_names['hh'] = ["hh"]
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
-    
-    #correlation_analysis(data['everyone'], attribute_names['everyone'])
-    #return
-    
+
+    correlation_analysis(data['everyone'], attribute_names['everyone'])
+    return
+
     plot_clusters(output_data, attribute_names, plots_path, show_plots)
 
     plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
@@ -382,6 +388,7 @@ def main():
 
         plot_inertia(output_pruned_data, plots_path +
                      'inertia-wo.png', show_plots)
+        plot_counts(output_pruned_data, plots_path, show_plots)
 
 
 if __name__ == "__main__":
