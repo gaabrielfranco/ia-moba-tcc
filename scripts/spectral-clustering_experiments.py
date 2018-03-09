@@ -16,7 +16,7 @@ def normalizes(x):
     for i in x:
         x_norm.append(list((i - minimum) / (maximum - minimum)))
 
-    print("min e max = ", np.min(x_norm), np.max(x_norm), "\n")
+    print("min e max = ", np.min(x_norm), np.max(x_norm))
     return x_norm, minimum, maximum
 
 
@@ -72,8 +72,8 @@ def read_data(input_file):
     data['kdlh'] = []
     data['everyone'] = []
     data['5best'] = []
-    data['2best'] = []
-    data['best'] = []
+    #data['2best'] = []
+    #data['best'] = []
     data['wtf'] = []
     data['wohd'] = []
 
@@ -93,10 +93,10 @@ def read_data(input_file):
                 list(np.array(parts[1:4] + parts[5:]) / parts[4]))
             data['5best'].append(
                 list(np.array([parts[1]] + parts[6:8] + parts[9:]) / parts[4]))
-            data['2best'].append(
+            '''data['2best'].append(
                 list(np.array([parts[1]] + [parts[7]]) / parts[4]))
             data['best'].append(
-                list(np.array([parts[7]]) / parts[4]))
+                list(np.array([parts[7]]) / parts[4]))'''
             data['wtf'].append(
                 list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
             data['wohd'].append(
@@ -144,28 +144,30 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
 
             km = SpectralClustering(n_clusters=k, random_state=seed, n_jobs=-1)
             try:
-                labels = km.fit_predict(data_norm)
+                print("NaN? = ", np.isnan(data_norm).any())
+                print("Inf? = ", np.isinf(data_norm).any(), "\n")
+                labels = km.fit_predict(np.array(data_norm))
+
+                experiment = attr_set + '_' + str(k)
+                output_data[experiment] = {}
+
+                # Init data matrix with k lists
+                output_data[experiment]['clusters'] = []
+                for i in range(k):
+                    output_data[experiment]['clusters'].append([])
+
+                # Assign each individual from the database to its corresponding cluster
+                for i, instance in enumerate(data[attr_set]):
+                    output_data[experiment]['clusters'][labels[i]].append(instance)
+
+                data_unnorm = un_normalizes(data_norm, min_norm, max_norm)
+
+                output_data[experiment]['centroids'] = get_centroids(labels, data_unnorm, k)
+                output_data[experiment]['inertia'] = get_inertia(labels, get_centroids(labels, data_norm, k), data_norm)
+                output_data[experiment]['seed'] = seed
             except ValueError as e:
-                print("erro bizarro...")
-                print(e)
-
-            experiment = attr_set + '_' + str(k)
-            output_data[experiment] = {}
-
-            # Init data matrix with k lists
-            output_data[experiment]['clusters'] = []
-            for i in range(k):
-                output_data[experiment]['clusters'].append([])
-
-            # Assign each individual from the database to its corresponding cluster
-            for i, instance in enumerate(data[attr_set]):
-                output_data[experiment]['clusters'][labels[i]].append(instance)
-
-            data_unnorm = un_normalizes(data_norm, min_norm, max_norm)
-
-            output_data[experiment]['centroids'] = get_centroids(labels, data_unnorm, k)
-            output_data[experiment]['inertia'] = get_inertia(labels, get_centroids(labels, data_norm, k), data_norm)
-            output_data[experiment]['seed'] = seed
+                print("Erro...")
+                print(e, "\n")
 
     if verbose:
         print('\n\nOutput data summary:')
@@ -332,8 +334,8 @@ def main():
     attribute_names['everyone'] = ["kills", "deaths",
                                    "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
     attribute_names['5best'] = ["kills", "gpm", "hd", "lh", "xpm"]
-    attribute_names['2best'] = ["kills", "hd"]
-    attribute_names['best'] = ["hd"]
+    #attribute_names['2best'] = ["kills", "hd"]
+    #attribute_names['best'] = ["hd"]
     attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
     attribute_names['wohd'] = ["kills", "deaths",
                                "assists", "denies", "gpm", "hh", "lh", "xpm"]
