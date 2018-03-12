@@ -134,25 +134,26 @@ def read_data(input_file, corr):
             data['hh'].append(list(np.array([parts[8]]) / parts[4]))
             data['lh'].append(list(np.array([parts[9]]) / parts[4]))
             data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
+            #K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min
             if corr:
                 data_corr['kills-corr'].append(list(np.array([parts[1]] +
-                                                             [parts[10]] + [parts[7]] + [parts[9]] + [parts[5]]) / parts[4]))
+                                                             [parts[3]] + [parts[2]] + [parts[8]] + [parts[6]]) / parts[4]))
                 data_corr['deaths-corr'].append(
-                    list(np.array([parts[2]] + [parts[5]] + [parts[9]] + [parts[10]] + [parts[1]]) / parts[4]))
+                    list(np.array([parts[2]] + [parts[8]] + [parts[7]] + [parts[6]] + [parts[3]]) / parts[4]))
                 data_corr['assists-corr'].append(
-                    list(np.array([parts[3]] + [parts[8]] + [parts[7]] + [parts[5]] + [parts[2]]) / parts[4]))
+                    list(np.array([parts[3]] + [parts[1]] + [parts[6]] + [parts[9]] + [parts[10]]) / parts[4]))
                 data_corr['denies-corr'].append(
-                    list(np.array([parts[5]] + [parts[9]] + [parts[10]] + [parts[7]] + [parts[1]]) / parts[4]))
-                data_corr['gpm-corr'].append(list(np.array([parts[6]] + [parts[10]] + [
-                    parts[1]] + [parts[7]] + [parts[9]]) / parts[4]))
-                data_corr['hd-corr'].append(list(np.array([parts[7]] + [parts[1]] +
-                                                          [parts[10]] + [parts[9]] + [parts[5]]) / parts[4]))
-                data_corr['hh-corr'].append(list(np.array([parts[8]] + [parts[3]] +
-                                                          [parts[9]] + [parts[5]] + [parts[1]]) / parts[4]))
-                data_corr['lh-corr'].append(list(np.array([parts[9]] + [parts[10]] + [
-                    parts[7]] + [parts[5]] + [parts[1]]) / parts[4]))
-                data_corr['xpm-corr'].append(list(np.array([parts[10]] + [parts[9]] + [
-                    parts[1]] + [parts[7]] + [parts[5]]) / parts[4]))
+                    list(np.array([parts[5]] + [parts[3]] + [parts[6]] + [parts[8]] + [parts[2]]) / parts[4]))
+                data_corr['gpm-corr'].append(list(np.array([parts[6]] + [parts[3]] + [
+                    parts[8]] + [parts[2]] + [parts[5]]) / parts[4]))
+                data_corr['hd-corr'].append(list(np.array([parts[7]] + [parts[2]] +
+                                                          [parts[8]] + [parts[3]] + [parts[6]]) / parts[4]))
+                data_corr['hh-corr'].append(list(np.array([parts[8]] + [parts[2]] +
+                                                          [parts[6]] + [parts[7]] + [parts[10]]) / parts[4]))
+                data_corr['lh-corr'].append(list(np.array([parts[9]] + [parts[3]] + [
+                    parts[2]] + [parts[8]] + [parts[6]]) / parts[4]))
+                data_corr['xpm-corr'].append(list(np.array([parts[10]] + [parts[3]] + [
+                    parts[8]] + [parts[2]] + [parts[6]]) / parts[4]))
 
     fp.close()
 
@@ -326,9 +327,9 @@ def correlation_analysis(data, attributes):
 
     for column in df:
         df_sorted = df.applymap(lambda x: abs(x))
-        df_sorted = df_sorted.sort_values(by=column, ascending=False)
-        for index, value in enumerate(df_sorted[column][1:5]):
-            experiments[column].append(df_sorted.axes[0][index + 1])
+        df_sorted = df_sorted.sort_values(by=column, ascending=True)
+        for index, value in enumerate(df_sorted[column][:4]):
+            experiments[column].append(df_sorted.axes[0][index])
 
     return experiments
 
@@ -371,7 +372,7 @@ def main():
     # Run experiments with outliers
     data, data_corr = read_data(input_file, corr)
 
-    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
@@ -396,14 +397,14 @@ def main():
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
 
-    plot_clusters(output_data, attribute_names, plots_path, show_plots)
-    plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
-    plot_counts(output_data, cluster_list, plots_path, show_plots)
+    #plot_clusters(output_data, attribute_names, plots_path, show_plots)
+    #plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
+    #plot_counts(output_data, cluster_list, plots_path, show_plots)
 
     if corr:
         experiments = correlation_analysis(
             data['everyone'], attribute_names['everyone'])
-
+        
         output_data = clusterization(
             data_corr, cluster_list, seed, json_file_corr, verbose)
 
@@ -416,7 +417,7 @@ def main():
         plot_clusters(output_data, attribute_names, plots_path, show_plots)
         plot_inertia(output_data, plots_path + 'inertia-corr.png', show_plots)
         plot_counts(output_data, cluster_list, plots_path, show_plots)
-
+        
     if pruned:
         # Run same experiments without outliers
         pruned_data = outlier_removal(data)
