@@ -66,10 +66,11 @@ def outlier_removal(data, c=2.0):
     return pruned_data
 
 
-def read_data(input_file):
+def read_data(input_file, corr):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
     data = {}
+    data_corr = {}
     data['all'] = []
     data['kda'] = []
     data['kdlh'] = []
@@ -88,6 +89,16 @@ def read_data(input_file):
     data['hh'] = []
     data['lh'] = []
     data['xpm'] = []
+    if corr:
+        data_corr['kills-corr'] = []
+        data_corr['deaths-corr'] = []
+        data_corr['assists-corr'] = []
+        data_corr['denies-corr'] = []
+        data_corr['gpm-corr'] = []
+        data_corr['hd-corr'] = []
+        data_corr['hh-corr'] = []
+        data_corr['lh-corr'] = []
+        data_corr['xpm-corr'] = []
 
     fp = open(input_file, 'r')
 
@@ -113,7 +124,8 @@ def read_data(input_file):
                 list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
             data['wohd'].append(
                 list(np.array(parts[1:4] + parts[5:7] + parts[8:]) / parts[4]))
-            data['kills'].append(list(np.array([parts[1]]) / parts[4]))
+            data['kills'].append(
+                list(np.array([parts[1]]) / parts[4]))
             data['deaths'].append(list(np.array([parts[2]]) / parts[4]))
             data['assists'].append(list(np.array([parts[3]]) / parts[4]))
             data['denies'].append(list(np.array([parts[5]]) / parts[4]))
@@ -122,12 +134,31 @@ def read_data(input_file):
             data['hh'].append(list(np.array([parts[8]]) / parts[4]))
             data['lh'].append(list(np.array([parts[9]]) / parts[4]))
             data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
+            if corr:
+                data_corr['kills-corr'].append(list(np.array([parts[1]] +
+                                                             [parts[10]] + [parts[7]] + [parts[9]] + [parts[5]]) / parts[4]))
+                data_corr['deaths-corr'].append(
+                    list(np.array([parts[2]] + [parts[5]] + [parts[9]] + [parts[10]] + [parts[1]]) / parts[4]))
+                data_corr['assists-corr'].append(
+                    list(np.array([parts[3]] + [parts[8]] + [parts[7]] + [parts[5]] + [parts[2]]) / parts[4]))
+                data_corr['denies-corr'].append(
+                    list(np.array([parts[5]] + [parts[9]] + [parts[10]] + [parts[7]] + [parts[1]]) / parts[4]))
+                data_corr['gpm-corr'].append(list(np.array([parts[6]] + [parts[10]] + [
+                    parts[1]] + [parts[7]] + [parts[9]]) / parts[4]))
+                data_corr['hd-corr'].append(list(np.array([parts[7]] + [parts[1]] +
+                                                          [parts[10]] + [parts[9]] + [parts[5]]) / parts[4]))
+                data_corr['hh-corr'].append(list(np.array([parts[8]] + [parts[3]] +
+                                                          [parts[9]] + [parts[5]] + [parts[1]]) / parts[4]))
+                data_corr['lh-corr'].append(list(np.array([parts[9]] + [parts[10]] + [
+                    parts[7]] + [parts[5]] + [parts[1]]) / parts[4]))
+                data_corr['xpm-corr'].append(list(np.array([parts[10]] + [parts[9]] + [
+                    parts[1]] + [parts[7]] + [parts[5]]) / parts[4]))
 
     fp.close()
 
     print('done.\n')
 
-    return data
+    return data, data_corr
 
 
 def clusterization(data, cluster_list, seed, json_file, verbose):
@@ -212,9 +243,11 @@ def plot_inertia(data, file_name, show_plots):
     labels = []
     colors = []
 
-    for iteration, experiment in enumerate(data.keys()):
+    data_sorted = sorted(data.items(), key=lambda x: str(x[0]))
+
+    for iteration, (experiment, value) in enumerate(data_sorted):
         labels.append(experiment)
-        plot_data.append(data[experiment]['inertia'])
+        plot_data.append(value['inertia'])
         if iteration % 3 == 0:
             colors.append('blue')
         elif iteration % 3 == 1:
@@ -235,37 +268,24 @@ def plot_inertia(data, file_name, show_plots):
     plt.clf()
 
 
-def plot_counts(data, plots_path, show_plots):
+def plot_counts(data, cluster_list, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
 
-    titles = {
-        "all": "Clusters with the experiment \"all\" running the k-means for k = [3, 4, 5]",
-        "kda": "Clusters with the experiment \"kda\" running the k-means for k = [3, 4, 5]",
-        "kdlh": "Clusters with the experiment \"kdlh\" running the k-means for k = [3, 4, 5]",
-        "everyone": "Clusters with the experiment \"everyone\" running the k-means for k = [3, 4, 5]",
-        "5best": "Clusters with the experiment \"5best\" running the k-means for k = [3, 4, 5]",
-        "2best": "Clusters with the experiment \"2best\" running the k-means for k = [3, 4, 5]",
-        "best": "Clusters with the experiment \"best\" running the k-means for k = [3, 4, 5]",
-        "wtf": "Clusters with the experiment \"wtf\" running the k-means for k = [3, 4, 5]",
-        "wohd": "Clusters with the experiment \"wohd\" running the k-means for k = [3, 4, 5]",
-        'kills': "Clusters with the experiment \"kills\" running the k-means for k = [3, 4, 5]",
-        'deaths': "Clusters with the experiment \"deths\" running the k-means for k = [3, 4, 5]",
-        'assists': "Clusters with the experiment \"assists\" running the k-means for k = [3, 4, 5]",
-        'denies': "Clusters with the experiment \"denies\" running the k-means for k = [3, 4, 5]",
-        'gpm': "Clusters with the experiment \"gpm\" running the k-means for k = [3, 4, 5]",
-        'hd': "Clusters with the experiment \"hd\" running the k-means for k = [3, 4, 5]",
-        'hh': "Clusters with the experiment \"hh\" running the k-means for k = [3, 4, 5]",
-        'lh': "Clusters with the experiment \"lh\" running the k-means for k = [3, 4, 5]",
-        'xpm': "Clusters with the experiment \"xpm\" running the k-means for k = [3, 4, 5]"
-    }
+    titles = {}
 
-    for iteration, experiment in enumerate(data.keys()):
+    for experiment in data.keys():
+        titles[experiment.split('_')[0]] = "Clusters with the experiment \"" + experiment.split('_')[0] + \
+            "\" running the k-means for k = " + str(cluster_list)
+
+    data_sorted = sorted(data.items(), key=lambda x: x[0])
+
+    for iteration, (experiment, value) in enumerate(data_sorted):
         plot_data = []
         labels = []
         i = 1
-        for c in data[experiment]['clusters']:
+        for c in value['clusters']:
             plot_data.append(len(c))
             labels.append('Cluster ' + str(i))
             i += 1
@@ -300,14 +320,24 @@ def correlation_analysis(data, attributes):
     df = pd.DataFrame(output_data)
     df = df.corr()
 
-    print(df)
-    return df
+    experiments = {}
+    for i in df.axes[0]:
+        experiments[i] = []
+
+    for column in df:
+        df_sorted = df.applymap(lambda x: abs(x))
+        df_sorted = df_sorted.sort_values(by=column, ascending=False)
+        for index, value in enumerate(df_sorted[column][1:5]):
+            experiments[column].append(df_sorted.axes[0][index + 1])
+
+    return experiments
 
 
 def main():
     verbose = False
     show_plots = False
     pruned = False
+    corr = True
 
     # Parse args
     parser = argparse.ArgumentParser(
@@ -318,26 +348,30 @@ def main():
                         help='shows the graphics (defaut = False)')
     parser.add_argument('--pruned', '-p', action='store_true',
                         help='execute the experiments with pruned data (defaut = False)')
+    parser.add_argument('--corr', '-c', action='store_true',
+                        help='execute the experiments with correlation analysis (defaut = False)')
 
     args = parser.parse_args()
 
     verbose = args.verbose
     show_plots = args.show
     pruned = args.pruned
+    corr = args.corr
 
     # configuration parameters
     seed = 0
     input_file = 'files/attributes.txt'
     json_file = 'files/output_k-means_experiments/output_kmeans.json'
+    json_file_corr = 'files/output_k-means_experiments/output_kmeans_corr.json'
     json_file_pruned = 'files/output_k-means_experiments/output_kmeans_pruned.json'
     cluster_list = [3, 4, 5]
 
     plots_path = 'files/output_k-means_experiments/'
 
     # Run experiments with outliers
-    data = read_data(input_file)
+    data, data_corr = read_data(input_file, corr)
 
-    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
@@ -362,13 +396,26 @@ def main():
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
 
-    correlation_analysis(data['everyone'], attribute_names['everyone'])
-    return
-
     plot_clusters(output_data, attribute_names, plots_path, show_plots)
-
     plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
-    plot_counts(output_data, plots_path, show_plots)
+    plot_counts(output_data, cluster_list, plots_path, show_plots)
+
+    if corr:
+        experiments = correlation_analysis(
+            data['everyone'], attribute_names['everyone'])
+
+        output_data = clusterization(
+            data_corr, cluster_list, seed, json_file_corr, verbose)
+
+        attribute_names = {}
+
+        for i in experiments.keys():
+            attribute_names[i + '-corr'] = experiments[i]
+            attribute_names[i + '-corr'].insert(0, i)
+
+        plot_clusters(output_data, attribute_names, plots_path, show_plots)
+        plot_inertia(output_data, plots_path + 'inertia-corr.png', show_plots)
+        plot_counts(output_data, cluster_list, plots_path, show_plots)
 
     if pruned:
         # Run same experiments without outliers
@@ -383,12 +430,29 @@ def main():
         attribute_names['all-wo'] = ["kills",
                                      "deaths", "assists", "denies", "lh"]
         attribute_names['kdlh-wo'] = ["kills", "denies", "lh"]
+        attribute_names['everyone-wo'] = ["kills", "deaths",
+                                          "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
+        attribute_names['5best-wo'] = ["kills", "gpm", "hd", "lh", "xpm"]
+        attribute_names['2best-wo'] = ["kills", "hd"]
+        attribute_names['best-wo'] = ["hd"]
+        attribute_names['wtf-wo'] = ["kills", "gpm", "lh", "xpm"]
+        attribute_names['wohd-wo'] = ["kills", "deaths",
+                                      "assists", "denies", "gpm", "hh", "lh", "xpm"]
+        attribute_names['kills-wo'] = ["kills"]
+        attribute_names['deaths-wo'] = ["deaths"]
+        attribute_names['assists-wo'] = ["assists"]
+        attribute_names['denies-wo'] = ["denies"]
+        attribute_names['gpm-wo'] = ["gpm"]
+        attribute_names['hd-wo'] = ["hd"]
+        attribute_names['hh-wo'] = ["hh"]
+        attribute_names['lh-wo'] = ["lh"]
+        attribute_names['xpm-wo'] = ["xpm"]
         plot_clusters(output_pruned_data, attribute_names,
                       plots_path, show_plots)
 
         plot_inertia(output_pruned_data, plots_path +
                      'inertia-wo.png', show_plots)
-        plot_counts(output_pruned_data, plots_path, show_plots)
+        plot_counts(output_pruned_data, cluster_list, plots_path, show_plots)
 
 
 if __name__ == "__main__":
