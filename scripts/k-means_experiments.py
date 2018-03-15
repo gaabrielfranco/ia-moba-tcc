@@ -373,7 +373,7 @@ def main():
     # Run experiments with outliers
     data, data_corr = read_data(input_file, corr)
 
-    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
@@ -398,9 +398,9 @@ def main():
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
 
-    #plot_clusters(output_data, attribute_names, plots_path, show_plots)
-    #plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
-    #plot_counts(output_data, cluster_list, plots_path, show_plots)
+    plot_clusters(output_data, attribute_names, plots_path, show_plots)
+    plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
+    plot_counts(output_data, cluster_list, plots_path, show_plots)
 
     if corr:
         experiments = correlation_analysis(
