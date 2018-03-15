@@ -74,13 +74,6 @@ def read_data(input_file, corr):
     data_corr = {}
     data['all'] = []
     data['kda'] = []
-    data['kdlh'] = []
-    data['everyone'] = []
-    data['5best'] = []
-    data['2best'] = []
-    data['best'] = []
-    data['wtf'] = []
-    data['wohd'] = []
     data['kills'] = []
     data['deaths'] = []
     data['assists'] = []
@@ -108,23 +101,9 @@ def read_data(input_file, corr):
         for i, p in enumerate(parts):
             parts[i] = int(p)
         if parts[4] >= 5:
-            data['all'].append(
-                list(np.array(parts[1:4] + [parts[5]] + [parts[9]]) / parts[4]))
             data['kda'].append(list(np.array(parts[1:4]) / parts[4]))
-            data['kdlh'].append(
-                list(np.array([parts[1]] + [parts[5]] + [parts[9]]) / parts[4]))
-            data['everyone'].append(
+            data['all'].append(
                 list(np.array(parts[1:4] + parts[5:]) / parts[4]))
-            data['5best'].append(
-                list(np.array([parts[1]] + parts[6:8] + parts[9:]) / parts[4]))
-            data['2best'].append(
-                list(np.array([parts[1]] + [parts[7]]) / parts[4]))
-            data['best'].append(
-                list(np.array([parts[7]]) / parts[4]))
-            data['wtf'].append(
-                list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
-            data['wohd'].append(
-                list(np.array(parts[1:4] + parts[5:7] + parts[8:]) / parts[4]))
             data['kills'].append(
                 list(np.array([parts[1]]) / parts[4]))
             data['deaths'].append(list(np.array([parts[2]]) / parts[4]))
@@ -136,29 +115,70 @@ def read_data(input_file, corr):
             data['lh'].append(list(np.array([parts[9]]) / parts[4]))
             data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
             #K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min
-            if corr:
-                data_corr['kills-corr'].append(list(np.array([parts[1]] +
-                                                             [parts[3]] + [parts[2]] + [parts[8]] + [parts[6]]) / parts[4]))
-                data_corr['deaths-corr'].append(
-                    list(np.array([parts[2]] + [parts[8]] + [parts[7]] + [parts[6]] + [parts[3]]) / parts[4]))
-                data_corr['assists-corr'].append(
-                    list(np.array([parts[3]] + [parts[1]] + [parts[6]] + [parts[9]] + [parts[10]]) / parts[4]))
-                data_corr['denies-corr'].append(
-                    list(np.array([parts[5]] + [parts[3]] + [parts[6]] + [parts[8]] + [parts[2]]) / parts[4]))
-                data_corr['gpm-corr'].append(list(np.array([parts[6]] + [parts[3]] + [
-                    parts[8]] + [parts[2]] + [parts[5]]) / parts[4]))
-                data_corr['hd-corr'].append(list(np.array([parts[7]] + [parts[2]] +
-                                                          [parts[8]] + [parts[3]] + [parts[6]]) / parts[4]))
-                data_corr['hh-corr'].append(list(np.array([parts[8]] + [parts[2]] +
-                                                          [parts[6]] + [parts[7]] + [parts[10]]) / parts[4]))
-                data_corr['lh-corr'].append(list(np.array([parts[9]] + [parts[3]] + [
-                    parts[2]] + [parts[8]] + [parts[6]]) / parts[4]))
-                data_corr['xpm-corr'].append(list(np.array([parts[10]] + [parts[3]] + [
-                    parts[8]] + [parts[2]] + [parts[6]]) / parts[4]))
 
     fp.close()
 
     print('done.\n')
+    
+    if corr:
+        # Mapping the database
+        attr_positions = np.array([1,2,3,5,6,7,8,9,10])
+        matches_position = 4
+        attr_names = np.array(['kills', 'deaths', 'assists', 'denies', 'gpm', 'hd', 'hh', 'lh', 'xpm'], dtype=str)
+        
+        # n least correlated atrributes and minimum matches per player
+        n = 4
+        min_matches = 5
+        
+        # normalizes database and discard maximum and minimum information (underline redirects to "nothing")
+        dt,_,_ = normalizes(data['all'])
+        
+        # Computes correlation matrix (absolute values)
+        corr_matrix = pd.DataFrame(dt).corr().abs().as_matrix()
+        
+        # Dynamically maps n least correlated attributes to each attribute
+        correlation_map = []
+        correlation_map_names = {}
+        
+        # Line count
+        i = 0
+        for attr_line in corr_matrix:
+            # Sort indexes of matrix line by its values and get the indexes related to the n smallest values
+            sorted_indexes = attr_line.argsort()[:n]
+            
+            correlation_map.append(attr_positions[sorted_indexes])
+            correlation_map_names[attr_names[i]] = list(attr_names[sorted_indexes])
+            
+            i += 1
+    
+        fp = open(input_file, 'r')
+
+        for l in fp:
+            parts = l.strip().split()
+            for i, p in enumerate(parts):
+                parts[i] = int(p)
+            if parts[matches_position] >= min_matches:
+                for i, position in enumerate(attr_positions):
+                    line = [parts[position]]
+                    #print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
+                    for other in correlation_map[i]:
+                        line.append(parts[other])
+                        l = list(attr_positions)
+                        #print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
+                    #print()
+                    data_corr[attr_names[i] + '-corr'].append(list(np.array(line) / parts[matches_position]))
+                    
+                #print()
+                    
+        fp.close()
+        
+        pp = PrettyPrinter()    
+        pp.pprint(correlation_map)
+        print()
+        pp.pprint(correlation_map_names)
+        print()
+    
+    sys.exit(1)
 
     return data, data_corr
 
@@ -363,31 +383,21 @@ def main():
     # configuration parameters
     seed = 0
     input_file = 'files/attributes.txt'
-    json_file = 'files/output_k-means_experiments/output_kmeans.json'
-    json_file_corr = 'files/output_k-means_experiments/output_kmeans_corr.json'
-    json_file_pruned = 'files/output_k-means_experiments/output_kmeans_pruned.json'
+    json_file = 'files/output_k-means_experiments_marcos/output_kmeans.json'
+    json_file_corr = 'files/output_k-means_experiments_marcos/output_kmeans_corr.json'
+    json_file_pruned = 'files/output_k-means_experiments_marcos/output_kmeans_pruned.json'
     cluster_list = [3, 4, 5]
 
-    plots_path = 'files/output_k-means_experiments/'
+    plots_path = 'files/output_k-means_experiments_marcos/'
 
     # Run experiments with outliers
     data, data_corr = read_data(input_file, corr)
 
-    #output_data = clusterization(data, cluster_list, seed, json_file, verbose)
-
     # Plot results
     attribute_names = {}
     attribute_names['kda'] = ["kills", "deaths", "assists"]
-    attribute_names['all'] = ["kills", "deaths", "assists", "denies", "lh"]
-    attribute_names['kdlh'] = ["kills", "denies", "lh"]
-    attribute_names['everyone'] = ["kills", "deaths",
+    attribute_names['all'] = ["kills", "deaths",
                                    "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
-    attribute_names['5best'] = ["kills", "gpm", "hd", "lh", "xpm"]
-    attribute_names['2best'] = ["kills", "hd"]
-    attribute_names['best'] = ["hd"]
-    attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
-    attribute_names['wohd'] = ["kills", "deaths",
-                               "assists", "denies", "gpm", "hh", "lh", "xpm"]
     attribute_names['kills'] = ["kills"]
     attribute_names['deaths'] = ["deaths"]
     attribute_names['assists'] = ["assists"]
@@ -398,13 +408,14 @@ def main():
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
 
-    #plot_clusters(output_data, attribute_names, plots_path, show_plots)
-    #plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
-    #plot_counts(output_data, cluster_list, plots_path, show_plots)
+    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
+    plot_clusters(output_data, attribute_names, plots_path, show_plots)
+    plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
+    plot_counts(output_data, cluster_list, plots_path, show_plots)
 
     if corr:
         experiments = correlation_analysis(
-            data['everyone'], attribute_names['everyone'])
+            data['all'], attribute_names['all'])
 
         output_data = clusterization(
             data_corr, cluster_list, seed, json_file_corr, verbose)
@@ -429,17 +440,8 @@ def main():
         # Plot results
         attribute_names = {}
         attribute_names['kda-wo'] = ["kills", "deaths", "assists"]
-        attribute_names['all-wo'] = ["kills",
-                                     "deaths", "assists", "denies", "lh"]
-        attribute_names['kdlh-wo'] = ["kills", "denies", "lh"]
-        attribute_names['everyone-wo'] = ["kills", "deaths",
+        attribute_names['all-wo'] = ["kills", "deaths",
                                           "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
-        attribute_names['5best-wo'] = ["kills", "gpm", "hd", "lh", "xpm"]
-        attribute_names['2best-wo'] = ["kills", "hd"]
-        attribute_names['best-wo'] = ["hd"]
-        attribute_names['wtf-wo'] = ["kills", "gpm", "lh", "xpm"]
-        attribute_names['wohd-wo'] = ["kills", "deaths",
-                                      "assists", "denies", "gpm", "hh", "lh", "xpm"]
         attribute_names['kills-wo'] = ["kills"]
         attribute_names['deaths-wo'] = ["deaths"]
         attribute_names['assists-wo'] = ["assists"]
