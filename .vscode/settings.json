@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "${workspaceFolder}/env-tcc/bin/python",
+    "python.pythonPath": "C:\\Users\\Gabriel\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
     "editor.formatOnSave": true
 }

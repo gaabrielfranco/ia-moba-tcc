@@ -15,20 +15,21 @@ import argparse
 
 def normalizes(x):
     x_norm = []
-    minimum = np.min(x)
-    maximum = np.max(x)
+    minimum = np.min(x, axis=0)
+    maximum = np.max(x, axis=0)
     for i in x:
         x_norm.append((i - minimum) / (maximum - minimum))
 
     return x_norm, minimum, maximum
 
 
-def un_normalizes(m, minimum, maximum):
-    x_un_norm = []
-    for i in m:
-        x_un_norm.append(i * (maximum - minimum) + minimum)
+def de_normalize(m, minimum, maximum):
+    x_de_norm = []
 
-    return x_un_norm
+    for i in m:
+        x_de_norm.append(i * (maximum - minimum) + minimum)
+
+    return x_de_norm
 
 
 def prune(data, c):
@@ -186,7 +187,7 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
                 output_data[experiment]['clusters'][labels[i]].append(instance)
 
             output_data[experiment]['inertia'] = km.inertia_
-            output_data[experiment]['centroids'] = un_normalizes(
+            output_data[experiment]['centroids'] = de_normalize(
                 km.cluster_centers_, min_norm, max_norm)
             output_data[experiment]['seed'] = seed
 
@@ -404,7 +405,7 @@ def main():
     if corr:
         experiments = correlation_analysis(
             data['everyone'], attribute_names['everyone'])
-        
+
         output_data = clusterization(
             data_corr, cluster_list, seed, json_file_corr, verbose)
 
@@ -417,7 +418,7 @@ def main():
         plot_clusters(output_data, attribute_names, plots_path, show_plots)
         plot_inertia(output_data, plots_path + 'inertia-corr.png', show_plots)
         plot_counts(output_data, cluster_list, plots_path, show_plots)
-        
+
     if pruned:
         # Run same experiments without outliers
         pruned_data = outlier_removal(data)

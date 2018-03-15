@@ -6,7 +6,7 @@ Created on Thu Mar 15 11:39:28 2018
 @author: marcos
 """
 
-#https://seaborn.pydata.org/tutorial/distributions.html
+# https://seaborn.pydata.org/tutorial/distributions.html
 
 import numpy as np
 import seaborn as sns
