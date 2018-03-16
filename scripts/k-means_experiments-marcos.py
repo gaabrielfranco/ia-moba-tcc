@@ -7,6 +7,7 @@ from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
 import sys
 import argparse
+import seaborn as sns
 
 '''
     TODO: análise de correlação
@@ -177,10 +178,8 @@ def read_data(input_file, corr):
         print()
         pp.pprint(correlation_map_names)
         print()
-    
-    sys.exit(1)
 
-    return data, data_corr
+    return data, data_corr, correlation_map, correlation_map_names
 
 
 def clusterization(data, cluster_list, seed, json_file, verbose):
@@ -331,29 +330,20 @@ def plot_counts(data, cluster_list, plots_path, show_plots):
                 plt.show()
             plt.clf()
 
+def plot_distributions(data, attribute_names, plots_path, show_plots):
+    # config output images
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
 
-def correlation_analysis(data, attributes):
-    output_data = {}
-    for i, attr in enumerate(attributes):
-        output_data[attr] = []
-        for d in data:
-            output_data[attr].append(float(d[i]))
-
-    df = pd.DataFrame(output_data)
-    df = df.corr()
-
-    experiments = {}
-    for i in df.axes[0]:
-        experiments[i] = []
-
-    for column in df:
-        df_sorted = df.applymap(lambda x: abs(x))
-        df_sorted = df_sorted.sort_values(by=column, ascending=True)
-        for index, value in enumerate(df_sorted[column][:4]):
-            experiments[column].append(df_sorted.axes[0][index])
-
-    return experiments
-
+    for attr in attribute_names:
+        ax = sns.distplot(data[attr])
+        plt.suptitle(attr, fontsize=20)
+        file_name = plots_path + attr + '_dist.png'   
+        plt.savefig(file_name)
+        print('Graph %s saved.' % file_name)
+        if show_plots:
+            plt.show()
+        plt.clf()
 
 def main():
     verbose = False
@@ -391,7 +381,7 @@ def main():
     plots_path = 'files/output_k-means_experiments_marcos/'
 
     # Run experiments with outliers
-    data, data_corr = read_data(input_file, corr)
+    data, data_corr, correlation_map, correlation_map_names = read_data(input_file, corr)
 
     # Plot results
     attribute_names = {}
@@ -413,18 +403,19 @@ def main():
     plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
     plot_counts(output_data, cluster_list, plots_path, show_plots)
 
-    if corr:
-        experiments = correlation_analysis(
-            data['all'], attribute_names['all'])
+    del attribute_names['kda']
+    del attribute_names['all']
+    
+    plot_distributions(data, attribute_names, plots_path, show_plots)
 
+    if corr:
         output_data = clusterization(
             data_corr, cluster_list, seed, json_file_corr, verbose)
-
-        attribute_names = {}
-
-        for i in experiments.keys():
-            attribute_names[i + '-corr'] = experiments[i]
-            attribute_names[i + '-corr'].insert(0, i)
+        
+        keys = list(attribute_names.keys())
+        for i in keys:
+            attribute_names[i + '-corr'] = [i]
+            del attribute_names[i]
 
         plot_clusters(output_data, attribute_names, plots_path, show_plots)
         plot_inertia(output_data, plots_path + 'inertia-corr.png', show_plots)
