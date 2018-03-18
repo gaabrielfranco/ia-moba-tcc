@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\Gabriel\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
+    "python.pythonPath": "${workspaceFolder}/venv/bin/python",
     "editor.formatOnSave": true
 }

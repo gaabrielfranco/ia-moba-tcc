@@ -12,6 +12,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 
+
 def normalizes(x):
     x_norm = []
     minimum = np.min(x, axis=0)
@@ -20,6 +21,7 @@ def normalizes(x):
         x_norm.append((i - minimum) / (maximum - minimum))
 
     return x_norm, minimum, maximum
+
 
 def clusterization(data, cluster_list, seed, json_file, verbose):
     output_data = {}
@@ -50,7 +52,8 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
 
     return output_data
 
-def read_data(input_file):
+
+def read_data(input_file, verbose):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
     data = {}
@@ -100,35 +103,36 @@ def read_data(input_file):
     fp.close()
 
     print('done.\n')
-    
+
     # Mapping the database
-    attr_positions = np.array([1,2,3,5,6,7,8,9,10])
+    attr_positions = np.array([1, 2, 3, 5, 6, 7, 8, 9, 10])
     matches_position = 4
-    attr_names = np.array(['kills', 'deaths', 'assists', 'denies', 'gpm', 'hd', 'hh', 'lh', 'xpm'], dtype=str)
-    
+    attr_names = np.array(['kills', 'deaths', 'assists',
+                           'denies', 'gpm', 'hd', 'hh', 'lh', 'xpm'], dtype=str)
+
     # n least correlated atrributes and minimum matches per player
     n = 4
     min_matches = 5
-    
+
     # normalizes database and discard maximum and minimum information (underline redirects to "nothing")
-    dt,_,_ = normalizes(data['all'])
-    
+    dt, _, _ = normalizes(data['all'])
+
     # Computes correlation matrix (absolute values)
     corr_matrix = pd.DataFrame(dt).corr().abs().as_matrix()
-    
+
     # Dynamically maps n least correlated attributes to each attribute
     correlation_map = []
     correlation_map_names = {}
-    
+
     # Line count
     i = 0
     for attr_line in corr_matrix:
         # Sort indexes of matrix line by its values and get the indexes related to the n smallest values
         sorted_indexes = attr_line.argsort()[:n]
-        
+
         correlation_map.append(attr_positions[sorted_indexes])
         correlation_map_names[attr_names[i]] = list(attr_names[sorted_indexes])
-        
+
         i += 1
 
     fp = open(input_file, 'r')
@@ -140,25 +144,22 @@ def read_data(input_file):
         if parts[matches_position] >= min_matches:
             for i, position in enumerate(attr_positions):
                 line = [parts[position]]
-                #print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
                 for other in correlation_map[i]:
                     line.append(parts[other])
                     l = list(attr_positions)
-                    #print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
-                #print()
-                data[attr_names[i] + '-corr'].append(list(np.array(line) / parts[matches_position]))
-                
-            #print()
-                
+                data[attr_names[i] +
+                     '-corr'].append(list(np.array(line) / parts[matches_position]))
+
     fp.close()
-    
-    pp = PrettyPrinter()    
-    pp.pprint(correlation_map)
-    print()
-    pp.pprint(correlation_map_names)
-    print()
+
+    pp = PrettyPrinter()
+    if verbose:
+        print('Correlation map: ')
+        pp.pprint(correlation_map_names)
+        print()
 
     return data, correlation_map, correlation_map_names
+
 
 def plot_inertia(data, attribute_names, plots_path, show_plots):
      # config output images
@@ -176,6 +177,7 @@ def plot_inertia(data, attribute_names, plots_path, show_plots):
             plt.show()
         plt.clf()
 
+
 def main():
     verbose = False
     show_plots = False
@@ -186,28 +188,29 @@ def main():
                         help='print the outputs on the terminal (defaut = False)')
     parser.add_argument('--show', '-s', action='store_true',
                         help='shows the graphics (defaut = False)')
-    
+
     args = parser.parse_args()
 
     verbose = args.verbose
     show_plots = args.show
-    
+
     # configuration parameters
     seed = 0
     input_file = 'files/attributes.txt'
-    json_file = 'files/output_k-means_experiments_marcos/output_kmeans_k_analysis.json'
-    cluster_list = list(range(3,101))
+    json_file = 'files/output_k-analysis/output_k_analysis.json'
+    cluster_list = list(range(3, 101))
 
-    plots_path = 'files/output_k-means_experiments_marcos/'
+    plots_path = 'files/output_k-analysis/'
 
     # Run experiments with outliers
-    data, correlation_map, correlation_map_names = read_data(input_file)
+    data, correlation_map, correlation_map_names = read_data(
+        input_file, verbose)
 
     # Plot results
     attribute_names = {}
     attribute_names['kda'] = ["kills", "deaths", "assists"]
     attribute_names['all'] = ["kills", "deaths",
-                                   "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
+                              "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
     attribute_names['kills'] = ["kills"]
     attribute_names['deaths'] = ["deaths"]
     attribute_names['assists'] = ["assists"]
@@ -225,10 +228,11 @@ def main():
     attribute_names['hd-corr'] = ["hd"]
     attribute_names['hh-corr'] = ["hh"]
     attribute_names['lh-corr'] = ["lh"]
-    attribute_names['xpm-corr'] = ["xpm"]    
+    attribute_names['xpm-corr'] = ["xpm"]
 
     output_data = clusterization(data, cluster_list, seed, json_file, verbose)
     plot_inertia(output_data, attribute_names, plots_path, show_plots)
+
 
 if __name__ == "__main__":
     main()

@@ -7,10 +7,8 @@ from pprint import PrettyPrinter
 import matplotlib.pyplot as plt
 import sys
 import argparse
-
-'''
-    TODO: análise de correlação
-'''
+import seaborn as sns
+import matplotlib._color_data as mcd
 
 
 def normalizes(x):
@@ -67,20 +65,13 @@ def outlier_removal(data, c=2.0):
     return pruned_data
 
 
-def read_data(input_file, corr):
+def read_data(input_file, corr, verbose):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
     data = {}
     data_corr = {}
     data['all'] = []
     data['kda'] = []
-    data['kdlh'] = []
-    data['everyone'] = []
-    data['5best'] = []
-    data['2best'] = []
-    data['best'] = []
-    data['wtf'] = []
-    data['wohd'] = []
     data['kills'] = []
     data['deaths'] = []
     data['assists'] = []
@@ -108,23 +99,9 @@ def read_data(input_file, corr):
         for i, p in enumerate(parts):
             parts[i] = int(p)
         if parts[4] >= 5:
-            data['all'].append(
-                list(np.array(parts[1:4] + [parts[5]] + [parts[9]]) / parts[4]))
             data['kda'].append(list(np.array(parts[1:4]) / parts[4]))
-            data['kdlh'].append(
-                list(np.array([parts[1]] + [parts[5]] + [parts[9]]) / parts[4]))
-            data['everyone'].append(
+            data['all'].append(
                 list(np.array(parts[1:4] + parts[5:]) / parts[4]))
-            data['5best'].append(
-                list(np.array([parts[1]] + parts[6:8] + parts[9:]) / parts[4]))
-            data['2best'].append(
-                list(np.array([parts[1]] + [parts[7]]) / parts[4]))
-            data['best'].append(
-                list(np.array([parts[7]]) / parts[4]))
-            data['wtf'].append(
-                list(np.array([parts[1]] + [parts[6]] + parts[9:]) / parts[4]))
-            data['wohd'].append(
-                list(np.array(parts[1:4] + parts[5:7] + parts[8:]) / parts[4]))
             data['kills'].append(
                 list(np.array([parts[1]]) / parts[4]))
             data['deaths'].append(list(np.array([parts[2]]) / parts[4]))
@@ -136,31 +113,72 @@ def read_data(input_file, corr):
             data['lh'].append(list(np.array([parts[9]]) / parts[4]))
             data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
             #K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min
-            if corr:
-                data_corr['kills-corr'].append(list(np.array([parts[1]] +
-                                                             [parts[3]] + [parts[2]] + [parts[8]] + [parts[6]]) / parts[4]))
-                data_corr['deaths-corr'].append(
-                    list(np.array([parts[2]] + [parts[8]] + [parts[7]] + [parts[6]] + [parts[3]]) / parts[4]))
-                data_corr['assists-corr'].append(
-                    list(np.array([parts[3]] + [parts[1]] + [parts[6]] + [parts[9]] + [parts[10]]) / parts[4]))
-                data_corr['denies-corr'].append(
-                    list(np.array([parts[5]] + [parts[3]] + [parts[6]] + [parts[8]] + [parts[2]]) / parts[4]))
-                data_corr['gpm-corr'].append(list(np.array([parts[6]] + [parts[3]] + [
-                    parts[8]] + [parts[2]] + [parts[5]]) / parts[4]))
-                data_corr['hd-corr'].append(list(np.array([parts[7]] + [parts[2]] +
-                                                          [parts[8]] + [parts[3]] + [parts[6]]) / parts[4]))
-                data_corr['hh-corr'].append(list(np.array([parts[8]] + [parts[2]] +
-                                                          [parts[6]] + [parts[7]] + [parts[10]]) / parts[4]))
-                data_corr['lh-corr'].append(list(np.array([parts[9]] + [parts[3]] + [
-                    parts[2]] + [parts[8]] + [parts[6]]) / parts[4]))
-                data_corr['xpm-corr'].append(list(np.array([parts[10]] + [parts[3]] + [
-                    parts[8]] + [parts[2]] + [parts[6]]) / parts[4]))
 
     fp.close()
 
     print('done.\n')
 
-    return data, data_corr
+    # Dynamically maps n least correlated attributes to each attribute
+    correlation_map = []
+    correlation_map_names = {}
+
+    if corr:
+        # Mapping the database
+        attr_positions = np.array([1, 2, 3, 5, 6, 7, 8, 9, 10])
+        matches_position = 4
+        attr_names = np.array(['kills', 'deaths', 'assists',
+                               'denies', 'gpm', 'hd', 'hh', 'lh', 'xpm'], dtype=str)
+
+        # n least correlated atrributes and minimum matches per player
+        n = 4
+        min_matches = 5
+
+        # normalizes database and discard maximum and minimum information (underline redirects to "nothing")
+        dt, _, _ = normalizes(data['all'])
+
+        # Computes correlation matrix (absolute values)
+        corr_matrix = pd.DataFrame(dt).corr().abs().as_matrix()
+
+        # Line count
+        i = 0
+        for attr_line in corr_matrix:
+            # Sort indexes of matrix line by its values and get the indexes related to the n smallest values
+            sorted_indexes = attr_line.argsort()[:n]
+
+            correlation_map.append(attr_positions[sorted_indexes])
+            correlation_map_names[attr_names[i]] = list(
+                attr_names[sorted_indexes])
+
+            i += 1
+
+        fp = open(input_file, 'r')
+
+        for l in fp:
+            parts = l.strip().split()
+            for i, p in enumerate(parts):
+                parts[i] = int(p)
+            if parts[matches_position] >= min_matches:
+                for i, position in enumerate(attr_positions):
+                    line = [parts[position]]
+                    #print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
+                    for other in correlation_map[i]:
+                        line.append(parts[other])
+                        l = list(attr_positions)
+                        #print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
+                    # print()
+                    data_corr[attr_names[i] + '-corr'].append(
+                        list(np.array(line) / parts[matches_position]))
+
+                # print()
+
+        fp.close()
+
+        if verbose:
+            pp = PrettyPrinter()
+            pp.pprint(correlation_map_names)
+            print()
+
+    return data, data_corr, correlation_map, correlation_map_names
 
 
 def clusterization(data, cluster_list, seed, json_file, verbose):
@@ -234,7 +252,7 @@ def plot_clusters(data, attribute_names, plots_path, show_plots):
             plt.clf()
 
 
-def plot_inertia(data, file_name, show_plots):
+def plot_inertia(data, file_name, cluster_list, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
@@ -244,19 +262,16 @@ def plot_inertia(data, file_name, show_plots):
     plot_data = []
     labels = []
     colors = []
+    pallete = mcd.CSS4_COLORS
+    pallete = list(pallete.keys())
 
     data_sorted = sorted(data.items(), key=lambda x: str(x[0]))
 
     for iteration, (experiment, value) in enumerate(data_sorted):
         labels.append(experiment)
         plot_data.append(value['inertia'])
-        if iteration % 3 == 0:
-            colors.append('blue')
-        elif iteration % 3 == 1:
-            colors.append('red')
-        else:
-            colors.append('black')
-
+        colors.append(
+            pallete[len(pallete) - (iteration % len(cluster_list)) - 1])
     groups = np.arange(len(data.keys()))
     width = 0.35
 
@@ -273,7 +288,7 @@ def plot_inertia(data, file_name, show_plots):
 def plot_counts(data, cluster_list, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
-    plt.rcParams['font.size'] = 18.0
+    plt.rcParams['font.size'] = 12
 
     titles = {}
 
@@ -291,20 +306,27 @@ def plot_counts(data, cluster_list, plots_path, show_plots):
             plot_data.append(len(c))
             labels.append('Cluster ' + str(i))
             i += 1
-        if iteration % 3 == 0:
-            fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
-            ax1.pie(plot_data, autopct='%1.1f%%')
-            ax1.axis('equal')
-        elif iteration % 3 == 1:
-            ax2.pie(plot_data, autopct='%1.1f%%')
-            ax2.axis('equal')
+
+        tam = len(cluster_list)
+        if iteration % tam == 0:
+            fig, axes = plt.subplots(1, tam)
+            axes[iteration % tam].pie(plot_data, autopct='%1.1f%%')
+            axes[iteration % tam].axis('equal')
+            #axes[iteration % tam].legend(labels, loc="lower right")
+            axes[iteration % tam].set_title("k = " + str(len(labels)))
+        elif iteration % tam >= 1 and iteration % tam < tam - 1:
+            axes[iteration % tam].pie(plot_data, autopct='%1.1f%%')
+            axes[iteration % tam].axis('equal')
+            #axes[iteration % tam].legend(labels, loc="lower right")
+            axes[iteration % tam].set_title("k = " + str(len(labels)))
         else:
-            ax3.pie(plot_data, autopct='%1.1f%%')
-            ax3.axis('equal')
-            ax3.legend(labels, loc="lower right")
+            axes[iteration % tam].pie(plot_data, autopct='%1.1f%%')
+            axes[iteration % tam].axis('equal')
+            #axes[iteration % tam].legend(labels, loc="lower right")
+            axes[iteration % tam].set_title("k = " + str(len(labels)))
             file_name = plots_path + experiment.split('_')[0] + '_pie.png'
             plt.suptitle(titles[experiment.split('_')[0]], fontsize=20)
-            plt.legend(loc="lower right")
+            #plt.legend(loc="lower right")
             plt.savefig(file_name)
             print('Graph %s saved.' % file_name)
             if show_plots:
@@ -312,34 +334,13 @@ def plot_counts(data, cluster_list, plots_path, show_plots):
             plt.clf()
 
 
-def correlation_analysis(data, attributes):
-    output_data = {}
-    for i, attr in enumerate(attributes):
-        output_data[attr] = []
-        for d in data:
-            output_data[attr].append(float(d[i]))
-
-    df = pd.DataFrame(output_data)
-    df = df.corr()
-
-    experiments = {}
-    for i in df.axes[0]:
-        experiments[i] = []
-
-    for column in df:
-        df_sorted = df.applymap(lambda x: abs(x))
-        df_sorted = df_sorted.sort_values(by=column, ascending=True)
-        for index, value in enumerate(df_sorted[column][:4]):
-            experiments[column].append(df_sorted.axes[0][index])
-
-    return experiments
-
-
 def main():
+
     verbose = False
     show_plots = False
     pruned = False
-    corr = True
+    corr = False
+    exp_all = False
 
     # Parse args
     parser = argparse.ArgumentParser(
@@ -347,18 +348,29 @@ def main():
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='print the outputs on the terminal (defaut = False)')
     parser.add_argument('--show', '-s', action='store_true',
-                        help='shows the graphics (defaut = False)')
+                        help='shows the plots (defaut = False)')
+    parser.add_argument('--not-all', '-na', action='store_true',
+                        help='execute the experiments without all data (defaut = False)')
     parser.add_argument('--pruned', '-p', action='store_true',
                         help='execute the experiments with pruned data (defaut = False)')
     parser.add_argument('--corr', '-c', action='store_true',
                         help='execute the experiments with correlation analysis (defaut = False)')
+    parser.add_argument('--k-int', nargs='*', type=int,
+                        default=[3, 4, 5], help='Define the parameter k with a integer list. Example: --k-int 3 4 5 10. (defaut = 3 4 5)')
+    parser.add_argument('--k-str', nargs='*', type=str,
+                        default='', help='Define the parameter k with a string. Example: --k-str \'list(range(1, 5))\'')
 
     args = parser.parse_args()
-
     verbose = args.verbose
     show_plots = args.show
     pruned = args.pruned
     corr = args.corr
+    exp_all = args.not_all
+
+    if args.k_str == '':
+        cluster_list = args.k_int
+    else:
+        cluster_list = eval(args.k_str[0])
 
     # configuration parameters
     seed = 0
@@ -366,28 +378,14 @@ def main():
     json_file = 'files/output_k-means_experiments/output_kmeans.json'
     json_file_corr = 'files/output_k-means_experiments/output_kmeans_corr.json'
     json_file_pruned = 'files/output_k-means_experiments/output_kmeans_pruned.json'
-    cluster_list = [3, 4, 5]
 
     plots_path = 'files/output_k-means_experiments/'
-
-    # Run experiments with outliers
-    data, data_corr = read_data(input_file, corr)
-
-    output_data = clusterization(data, cluster_list, seed, json_file, verbose)
 
     # Plot results
     attribute_names = {}
     attribute_names['kda'] = ["kills", "deaths", "assists"]
-    attribute_names['all'] = ["kills", "deaths", "assists", "denies", "lh"]
-    attribute_names['kdlh'] = ["kills", "denies", "lh"]
-    attribute_names['everyone'] = ["kills", "deaths",
-                                   "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
-    attribute_names['5best'] = ["kills", "gpm", "hd", "lh", "xpm"]
-    attribute_names['2best'] = ["kills", "hd"]
-    attribute_names['best'] = ["hd"]
-    attribute_names['wtf'] = ["kills", "gpm", "lh", "xpm"]
-    attribute_names['wohd'] = ["kills", "deaths",
-                               "assists", "denies", "gpm", "hh", "lh", "xpm"]
+    attribute_names['all'] = ["kills", "deaths",
+                              "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
     attribute_names['kills'] = ["kills"]
     attribute_names['deaths'] = ["deaths"]
     attribute_names['assists'] = ["assists"]
@@ -398,25 +396,32 @@ def main():
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
 
-    plot_clusters(output_data, attribute_names, plots_path, show_plots)
-    plot_inertia(output_data, plots_path + 'inertia.png', show_plots)
-    plot_counts(output_data, cluster_list, plots_path, show_plots)
+    if not(exp_all):
+        # Run experiments with outliers
+        data, data_corr, correlation_map, correlation_map_names = read_data(
+            input_file, corr, verbose)
+        output_data = clusterization(
+            data, cluster_list, seed, json_file, verbose)
+        plot_clusters(output_data, attribute_names, plots_path, show_plots)
+        plot_inertia(output_data, plots_path +
+                     'inertia.png', cluster_list, show_plots)
+        plot_counts(output_data, cluster_list, plots_path, show_plots)
+
+    del attribute_names['kda']
+    del attribute_names['all']
 
     if corr:
-        experiments = correlation_analysis(
-            data['everyone'], attribute_names['everyone'])
-
         output_data = clusterization(
             data_corr, cluster_list, seed, json_file_corr, verbose)
 
-        attribute_names = {}
-
-        for i in experiments.keys():
-            attribute_names[i + '-corr'] = experiments[i]
-            attribute_names[i + '-corr'].insert(0, i)
+        keys = list(attribute_names.keys())
+        for i in keys:
+            attribute_names[i + '-corr'] = [i]
+            del attribute_names[i]
 
         plot_clusters(output_data, attribute_names, plots_path, show_plots)
-        plot_inertia(output_data, plots_path + 'inertia-corr.png', show_plots)
+        plot_inertia(output_data, plots_path +
+                     'inertia-corr.png', cluster_list, show_plots)
         plot_counts(output_data, cluster_list, plots_path, show_plots)
 
     if pruned:
@@ -429,17 +434,8 @@ def main():
         # Plot results
         attribute_names = {}
         attribute_names['kda-wo'] = ["kills", "deaths", "assists"]
-        attribute_names['all-wo'] = ["kills",
-                                     "deaths", "assists", "denies", "lh"]
-        attribute_names['kdlh-wo'] = ["kills", "denies", "lh"]
-        attribute_names['everyone-wo'] = ["kills", "deaths",
-                                          "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
-        attribute_names['5best-wo'] = ["kills", "gpm", "hd", "lh", "xpm"]
-        attribute_names['2best-wo'] = ["kills", "hd"]
-        attribute_names['best-wo'] = ["hd"]
-        attribute_names['wtf-wo'] = ["kills", "gpm", "lh", "xpm"]
-        attribute_names['wohd-wo'] = ["kills", "deaths",
-                                      "assists", "denies", "gpm", "hh", "lh", "xpm"]
+        attribute_names['all-wo'] = ["kills", "deaths",
+                                     "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
         attribute_names['kills-wo'] = ["kills"]
         attribute_names['deaths-wo'] = ["deaths"]
         attribute_names['assists-wo'] = ["assists"]
@@ -453,7 +449,7 @@ def main():
                       plots_path, show_plots)
 
         plot_inertia(output_pruned_data, plots_path +
-                     'inertia-wo.png', show_plots)
+                     'inertia-wo.png', cluster_list, show_plots)
         plot_counts(output_pruned_data, cluster_list, plots_path, show_plots)
 
 
