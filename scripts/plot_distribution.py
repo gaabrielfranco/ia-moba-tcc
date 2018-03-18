@@ -76,7 +76,7 @@ def plot_distributions(data, attribute_names, plots_path, show_plots):
             plt.show()
         plt.clf()
 
-        ax = sns.distplot(normalizes(data[attr]))
+        ax = sns.distplot(data[attr])
         plt.suptitle(attr + ' distribution', fontsize=20)
         file_name = plots_path + attr + '_dist.png'
         plt.savefig(file_name)
