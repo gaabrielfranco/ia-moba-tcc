@@ -33,7 +33,6 @@ def read_data(input_file):
     data['hh'] = []
     data['lh'] = []
     data['xpm'] = []
-
     fp = open(input_file, 'r')
 
     for l in fp:
@@ -107,6 +106,8 @@ def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots):
         plt.show()
     file_name = plots_path + 'all_sep_dist.png'
     plt.savefig(file_name)
+    print('Graph %s saved.' % file_name)
+    plt.clf()
 
 
 def plot_all_distributions(data, attribute_names, plots_path, show_plots):
@@ -123,6 +124,8 @@ def plot_all_distributions(data, attribute_names, plots_path, show_plots):
         plt.show()
     file_name = plots_path + 'all_dist.png'
     plt.savefig(file_name)
+    print('Graph %s saved.' % file_name)
+    plt.clf()
 
 
 def main():
