@@ -7,7 +7,21 @@ import seaborn as sns
 import argparse
 import matplotlib.pyplot as plt
 
-def read_data(input_file):
+def remove_outliers(data, c=2.0):
+    new_data = []
+    
+    avg = np.average(data)
+    std = np.std(data)
+    
+    for d in data:
+        if type(d) is list:
+            d = d[0]
+        if np.abs(avg - d) <= c * std:
+            new_data.append(d)
+            
+    return new_data
+
+def read_data(input_file, no_outliers):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
     data = {}
@@ -38,15 +52,21 @@ def read_data(input_file):
             data['lh'].append(list(np.array([parts[9]]) / parts[4]))
             data['xpm'].append(list(np.array([parts[10]]) / parts[4]))
             # K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min
-
     fp.close()
 
     print('done.\n')
+    
+    if no_outliers:
+        for attr in data.keys():
+            print('Outlier removal for attribute %s' % attr)
+            print('\tBefore: min=%.4f max=%.4f' % (np.min(data[attr]), np.max(data[attr])))
+            data[attr] = remove_outliers(data[attr])
+            print('\tAfter: min=%.4f max=%.4f' % (np.min(data[attr]), np.max(data[attr])))
 
     return data
 
 
-def plot_distributions(data, attribute_names, plots_path, show_plots, norm=False):
+def plot_distributions(data, attribute_names, plots_path, show_plots, norm):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
@@ -70,7 +90,7 @@ def plot_distributions(data, attribute_names, plots_path, show_plots, norm=False
             plt.show()
         plt.clf()
 
-def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, norm=False):
+def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, norm):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18
@@ -104,7 +124,7 @@ def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, no
     plt.clf()
 
 
-def plot_all_distributions(data, attribute_names, plots_path, show_plots, norm=False):
+def plot_all_distributions(data, attribute_names, plots_path, show_plots, norm):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18
@@ -140,15 +160,18 @@ def main():
                         help='shows the plots (defaut = False)')
     parser.add_argument('--norm', '-n', action='store_true',
                         help='normalize plots (defaut = False)')
+    parser.add_argument('--remove_outliers', '-r', action='store_true',
+                        help='remove outliers (defaut = False)')
 
     args = parser.parse_args()
     show_plots = args.show
     norm = args.norm
+    no_outliers = args.remove_outliers
 
     input_file = 'files/attributes.txt'
     plots_path = 'files/output_plot_distribution/'
 
-    data = read_data(input_file)
+    data = read_data(input_file, no_outliers)
 
     attribute_names = {}
     attribute_names['kills'] = ["kills"]
