@@ -6,24 +6,11 @@ import numpy as np
 import seaborn as sns
 import argparse
 import matplotlib.pyplot as plt
-import pandas as pd
-
-
-def normalizes(x):
-    x_norm = []
-    minimum = np.min(x, axis=0)
-    maximum = np.max(x, axis=0)
-    for i in x:
-        x_norm.append((i - minimum) / (maximum - minimum))
-
-    return x_norm
-
 
 def read_data(input_file):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
     data = {}
-    data_corr = {}
     data['kills'] = []
     data['deaths'] = []
     data['assists'] = []
@@ -59,70 +46,86 @@ def read_data(input_file):
     return data
 
 
-def plot_distributions(data, attribute_names, plots_path, show_plots):
+def plot_distributions(data, attribute_names, plots_path, show_plots, norm=False):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
 
     for attr in attribute_names:
-        ax = sns.distplot(normalizes(data[attr]))
-        plt.suptitle(
-            attr + ' norm distribution', fontsize=20)
-        file_name = plots_path + attr + '_dist_norm.png'
+        if norm:
+            ax = sns.distplot(data[attr])
+        else:
+            ax = sns.distplot(data[attr], kde=False)
+        title = attr + ' distribution'
+        if norm:
+            title += ' - normalized'
+        plt.suptitle(title, fontsize=20)
+        file_name = plots_path + attr + '_dist'
+        if norm:
+            file_name += '_norm'
+        file_name += '.png'
         plt.savefig(file_name)
         print('Graph %s saved.' % file_name)
         if show_plots:
             plt.show()
         plt.clf()
 
-        ax = sns.distplot(data[attr])
-        plt.suptitle(attr + ' distribution', fontsize=20)
-        file_name = plots_path + attr + '_dist.png'
-        plt.savefig(file_name)
-        print('Graph %s saved.' % file_name)
-        if show_plots:
-            plt.show()
-        plt.clf()
-
-
-def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots):
+def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, norm=False):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18
 
-    f, axarr = plt.subplots(3, 3)
+    f, axarr = plt.subplots(3, 3, sharey=True)
 
     i = 0
     j = 0
 
     for attr in attribute_names:
-        sns.distplot(normalizes(data[attr]), ax=axarr[i, j])
-        axarr[i, j].set_title(attr + ' distribution')
+        if norm:
+            sns.distplot(data[attr], ax=axarr[i, j])
+        else:
+            sns.distplot(data[attr], ax=axarr[i, j], kde=False)
+        title = attr + ' distribution'
+        if norm:
+            title += ' - normalized'
+        axarr[i, j].set_title(title)
         j += 1
         if j == 3:
             j = 0
             i += 1
     if show_plots:
         plt.show()
-    file_name = plots_path + 'all_sep_dist.png'
+    file_name = plots_path + 'all_sep_dist'
+    if norm:
+        file_name += '_norm'
+    file_name += '.png'
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
     plt.clf()
 
 
-def plot_all_distributions(data, attribute_names, plots_path, show_plots):
+def plot_all_distributions(data, attribute_names, plots_path, show_plots, norm=False):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18
 
     for attr in attribute_names:
-        sns.distplot(normalizes(data[attr]), label=attr)
+        if norm:
+            sns.distplot(data[attr], label=attr)
+        else:
+            sns.distplot(data[attr], label=attr, kde=False)
 
-    plt.suptitle('All distributions', fontsize=20)
+    title = 'All distributions'
+    if norm:
+        title += ' - normalized'
+    plt.suptitle(title, fontsize=20)
     plt.legend()
     if show_plots:
         plt.show()
-    file_name = plots_path + 'all_dist.png'
+    file_name = plots_path + 'all_dist'
+    if norm:
+        file_name += '_norm'
+    file_name += '.png'
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
     plt.clf()
@@ -135,9 +138,12 @@ def main():
         description='Plot the attributes distribution', prog="plot_distribution.py")
     parser.add_argument('--show', '-s', action='store_true',
                         help='shows the plots (defaut = False)')
+    parser.add_argument('--norm', '-n', action='store_true',
+                        help='normalize plots (defaut = False)')
 
     args = parser.parse_args()
     show_plots = args.show
+    norm = args.norm
 
     input_file = 'files/attributes.txt'
     plots_path = 'files/output_plot_distribution/'
@@ -155,10 +161,9 @@ def main():
     attribute_names['lh'] = ["lh"]
     attribute_names['xpm'] = ["xpm"]
 
-    plot_distributions(data, attribute_names, plots_path, show_plots)
-    plot_all_distributions(data, attribute_names, plots_path, show_plots)
-    plot_all_sep_distributions(data, attribute_names, plots_path, show_plots)
-
+    plot_distributions(data, attribute_names, plots_path, show_plots, norm)
+    plot_all_distributions(data, attribute_names, plots_path, show_plots, norm)
+    plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, norm)
 
 if __name__ == "__main__":
     main()
