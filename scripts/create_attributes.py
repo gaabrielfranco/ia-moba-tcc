@@ -3,13 +3,7 @@ import os
 import glob
 import numpy as np
 
-'''
-Implementado por Gabriel Franco
-
-Cria arquivos de atributos e de partidas inválidas
-
-Atributos do player: (id_player,K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min)
-'''
+# Atributos do player: (id_player,K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min)
 
 invalids_matches_without_team_name = []
 invalids_matches_with_another_error = []

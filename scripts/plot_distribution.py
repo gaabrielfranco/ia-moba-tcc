@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 
-# https://seaborn.pydata.org/tutorial/distributions.html
-
 import numpy as np
 import seaborn as sns
 import argparse
 import matplotlib.pyplot as plt
 
+
 def remove_outliers(data, c=2.0):
     new_data = []
-    
+
     avg = np.average(data)
     std = np.std(data)
-    
+
     for d in data:
         if type(d) is list:
             d = d[0]
         if np.abs(avg - d) <= c * std:
             new_data.append(d)
-            
+
     return new_data
+
 
 def read_data(input_file, no_outliers):
     print('\nReading input data from file %s...' % input_file, end=' ')
@@ -55,13 +55,15 @@ def read_data(input_file, no_outliers):
     fp.close()
 
     print('done.\n')
-    
+
     if no_outliers:
         for attr in data.keys():
             print('Outlier removal for attribute %s' % attr)
-            print('\tBefore: min=%.4f max=%.4f' % (np.min(data[attr]), np.max(data[attr])))
+            print('\tBefore: min=%.4f max=%.4f' %
+                  (np.min(data[attr]), np.max(data[attr])))
             data[attr] = remove_outliers(data[attr])
-            print('\tAfter: min=%.4f max=%.4f' % (np.min(data[attr]), np.max(data[attr])))
+            print('\tAfter: min=%.4f max=%.4f' %
+                  (np.min(data[attr]), np.max(data[attr])))
 
     return data
 
@@ -89,6 +91,7 @@ def plot_distributions(data, attribute_names, plots_path, show_plots, norm):
         if show_plots:
             plt.show()
         plt.clf()
+
 
 def plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, norm):
     # config output images
@@ -186,7 +189,9 @@ def main():
 
     plot_distributions(data, attribute_names, plots_path, show_plots, norm)
     plot_all_distributions(data, attribute_names, plots_path, show_plots, norm)
-    plot_all_sep_distributions(data, attribute_names, plots_path, show_plots, norm)
+    plot_all_sep_distributions(
+        data, attribute_names, plots_path, show_plots, norm)
+
 
 if __name__ == "__main__":
     main()

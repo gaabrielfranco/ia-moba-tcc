@@ -1,5 +1,5 @@
 '''
-Implementado por Gabriel Franco
+TODO: Refatorar o código (remover kda e all das análises)
 
 Ordem dos atributos:
     (id_player,K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min)

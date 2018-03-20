@@ -1,5 +1,8 @@
+#!/usr/bin/env python3
+
+
 '''
-Implementado por Gabriel Franco
+    TODO: Refatorar o código (normalização está errada)
 '''
 
 import numpy as np

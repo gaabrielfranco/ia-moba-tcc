@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 15 21:05:18 2018
 
-@author: marcos
-"""
 import argparse
 import numpy as np
 from pprint import PrettyPrinter
