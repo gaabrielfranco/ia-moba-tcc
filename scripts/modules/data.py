@@ -64,6 +64,24 @@ def remove_outliers(data, c=2.0):
         teste[len(i)] += 1
 
     print(teste)
+    print()
+    count_out_att = {}
+    count_out_att['kills'] = 0
+    count_out_att['deaths'] = 0
+    count_out_att['assists'] = 0
+    count_out_att['denies'] = 0
+    count_out_att['gpm'] = 0
+    count_out_att['hd'] = 0
+    count_out_att['hh'] = 0
+    count_out_att['lh'] = 0
+    count_out_att['xpm'] = 0
+
+    for i in outliers_attr:
+        for j in i:
+            count_out_att[j] += 1
+
+    print(count_out_att)
+
     # return new_data
 
 
