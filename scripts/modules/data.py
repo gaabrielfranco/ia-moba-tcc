@@ -1,6 +1,7 @@
 import numpy as np
 from pprint import PrettyPrinter
 import pandas as pd
+import json
 
 
 def normalizes(x):
@@ -30,41 +31,31 @@ def remove_outliers(data, c=2.0):
     outliers_attr = []
     attributes = ["kills", "deaths",
                   "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
-    avg = np.average(list(data), axis=0)
-    std = np.std(list(data), axis=0)
+    avg = np.average(data, axis=0)
+    std = np.std(data, axis=0)
 
     for d in data:
-        att_v = np.abs(avg - d) <= c * std
+        att_v = abs(d - avg) <= c * std
         if att_v.all():
             new_data.append(d)
         else:
             outliers.append(d)
             attr = []
-            for i, j in enumerate(att_v):
-                if j:
-                    attr.append(attributes[i])
+            for index, value in enumerate(att_v):
+                if not(value):
+                    attr.append(attributes[index])
             outliers_attr.append(attr)
-    '''
-    print("tamanho de data c/ outliers = ", len(data))
-    print("tamanho de data s/ outliers = ", len(new_data))
-    print()
-    print("min c/ outlier = ", list(np.min(list(data), axis=0)))
-    print("max c/ outlier = ", list(np.max(list(data), axis=0)))
-    print()
-    print("min s/ outlier = ", list(np.min(list(new_data), axis=0)))
-    print("max s/ outlier = ", list(np.max(list(new_data), axis=0)))
-    print()
-    print("dif do max c/ menos s/ outlier")
-    print(list(np.max(list(data), axis=0) - np.max(list(new_data), axis=0)))
-    '''
-    print(len(outliers_attr))
+
+    print("\nNúmero de outliers = ", len(outliers_attr))
     count = 0
     teste = [0 for i in range(10)]
     for i in outliers_attr:
         teste[len(i)] += 1
 
-    print(teste)
+    print("Número de jogadores que são outliers em {1, ... , 9} atributos:")
+    print(teste[1:])
     print()
+    print("Quantos outliers tem cada atributo:")
     count_out_att = {}
     count_out_att['kills'] = 0
     count_out_att['deaths'] = 0
@@ -80,17 +71,31 @@ def remove_outliers(data, c=2.0):
         for j in i:
             count_out_att[j] += 1
 
-    print(count_out_att)
+    for i in count_out_att.keys():
+        print(i, count_out_att[i], sep=': ')
+    print()
+    return new_data, outliers, outliers_attr
 
-    # return new_data
 
-
-def read_data(method='all'):
-    if method == 'all':
-        df_all = pd.read_json('files/data/data_all.json')
-        df_corr = pd.read_json('files/data/data_corr.json')
-        return df_all
-        # print(df_all)
+def read_data(method='data'):
+    if method == 'data':
+        with open('files/data/data.json') as fh:
+            data = json.load(fh)
+        return data
+    elif method == 'corr':
+        with open('files/data/data_corr.json') as fh:
+            data = json.load(fh)
+        return data
+    elif method == 'pruned':
+        with open('files/data/data_pruned.json') as fh:
+            data = json.load(fh)
+        return data
+    elif method == 'outliers':
+        with open('files/data/outliers.json') as fh:
+            outliers = json.load(fh)
+        with open('files/data/outliers_attr.json') as fh:
+            outliers_attr = json.load(fh)
+        return outliers, outliers_attr
 
 
 def create_data(input_file, corr=True, verbose=False):
@@ -143,8 +148,29 @@ def create_data(input_file, corr=True, verbose=False):
             # K, D, A, Npartidas, denies, gpm, hero_damage, hero_healing, LH, xp_p_min
 
     fp.close()
-    data_pd = pd.DataFrame(data)
-    data_pd.to_json('files/data/data_all.json')
+
+    data_json = json.dumps(data, indent=4)
+    f = open('files/data/data.json', 'w')
+    f.writelines(data_json)
+    f.close()
+
+    data_pruned, outliers, outliers_attr = remove_outliers(data['all'])
+
+    data_json = json.dumps(data_pruned, indent=4)
+    f = open('files/data/data_pruned.json', 'w')
+    f.writelines(data_json)
+    f.close()
+
+    data_json = json.dumps(outliers, indent=4)
+    f = open('files/data/outliers.json', 'w')
+    f.writelines(data_json)
+    f.close()
+
+    data_json = json.dumps(outliers_attr, indent=4)
+    f = open('files/data/outliers_attr.json', 'w')
+    f.writelines(data_json)
+    f.close()
+
     print('done.\n')
 
     # Dynamically maps n least correlated attributes to each attribute
@@ -202,8 +228,10 @@ def create_data(input_file, corr=True, verbose=False):
 
         fp.close()
 
-        data_pd = pd.DataFrame(data_corr)
-        data_pd.to_json('files/data/data_corr.json')
+        data_json = json.dumps(data_corr, indent=4)
+        f = open('files/data/data_corr.json', 'w')
+        f.writelines(data_json)
+        f.close()
 
         if verbose:
             pp = PrettyPrinter()
