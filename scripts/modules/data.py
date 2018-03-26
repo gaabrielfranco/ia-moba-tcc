@@ -114,6 +114,14 @@ def read_data(method='data'):
         with open('files/data/outliers_attr.json') as fh:
             outliers_attr = json.load(fh)
         return outliers, outliers_attr
+    elif method == 'k-means_experiments':
+        with open('files/output_k-means_experiments/data/output_kmeans.json') as fh:
+            kmeans = json.load(fh)
+        with open('files/output_k-means_experiments/data_corr/output_kmeans_corr.json') as fh:
+            kmeans_corr = json.load(fh)
+        with open('files/output_k-means_experiments/data_pruned/output_kmeans_pruned.json') as fh:
+            kmeans_pruned = json.load(fh)
+        return kmeans, kmeans_corr, kmeans_pruned
 
 
 def create_data(input_file, corr=True, verbose=False):
