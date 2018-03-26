@@ -26,9 +26,9 @@ def main():
                         help='execute the experiments with pruned data (defaut = False)')
     parser.add_argument('--corr', '-c', action='store_true',
                         help='execute the experiments with correlation analysis (defaut = False)')
-    parser.add_argument('--k-int', nargs='*', type=int,
+    parser.add_argument('--k-int', '-k', nargs='*', type=int,
                         default=[3, 4, 5], help='Define the parameter k with a integer list. Example: --k-int 3 4 5 10. (defaut = 3 4 5)')
-    parser.add_argument('--k-str', nargs='*', type=str,
+    parser.add_argument('--k-str', '-ks', nargs='*', type=str,
                         default='', help='Define the parameter k with a string. Example: --k-str \'list(range(1, 5))\'')
 
     args = parser.parse_args()
@@ -76,7 +76,7 @@ def main():
             data, cluster_list, seed, json_file, verbose)
         plot_inertia(output_data, plots_path +
                      'inertia.png', cluster_list, show_plots)
-        plot_silhouette_score(output_data, plots_path_pruned +
+        plot_silhouette_score(output_data, plots_path +
                               'silhouette_score.png', cluster_list, show_plots)
         plot_clusters(output_data, attribute_names, plots_path, show_plots)
         plot_counts(output_data, cluster_list, plots_path, show_plots)
@@ -100,7 +100,7 @@ def main():
                       plots_path_corr, show_plots)
         plot_inertia(output_corr_data, plots_path_corr +
                      'inertia-corr.png', cluster_list, show_plots)
-        plot_silhouette_score(output_corr_data, plots_path_pruned +
+        plot_silhouette_score(output_corr_data, plots_path_corr +
                               'silhouette_score-corr.png', cluster_list, show_plots)
         plot_counts(output_corr_data, cluster_list,
                     plots_path_corr, show_plots)
