@@ -18,26 +18,45 @@ def de_normalize(x, minimum, maximum):
     x_de_norm = []
 
     for i in x:
-        x_de_norm.append(i * (maximum - minimum) + minimum)
+        x_de_norm.append(list(i * (maximum - minimum) + minimum))
 
     return x_de_norm
 
-# Refatoraresse método para ler de um json, criando o método que gera o json apenas 1x. Tem que ter poda e análise de correlação
-
 
 def remove_outliers(data, c=2.0):
-    new_data = []
+    new_data = {}
+    new_data['all'] = []
+    new_data['kda'] = []
+    new_data['kills'] = []
+    new_data['deaths'] = []
+    new_data['assists'] = []
+    new_data['denies'] = []
+    new_data['gpm'] = []
+    new_data['hd'] = []
+    new_data['hh'] = []
+    new_data['lh'] = []
+    new_data['xpm'] = []
+
     outliers = []
     outliers_attr = []
     attributes = ["kills", "deaths",
                   "assists", "denies", "gpm", "hd", "hh", "lh", "xpm"]
+    index_attr = {"kills": 0, "deaths": 1,
+                  "assists": 2, "denies": 3, "gpm": 4, "hd": 5, "hh": 6, "lh": 7, "xpm": 8}
+
     avg = np.average(data, axis=0)
     std = np.std(data, axis=0)
 
     for d in data:
         att_v = abs(d - avg) <= c * std
         if att_v.all():
-            new_data.append(d)
+            for key in new_data.keys():
+                if key == 'all':
+                    new_data[key].append(d)
+                elif key == 'kda':
+                    new_data[key].append(d[0:3])
+                else:
+                    new_data[key].append([d[index_attr[key]]])
         else:
             outliers.append(d)
             attr = []
@@ -47,7 +66,6 @@ def remove_outliers(data, c=2.0):
             outliers_attr.append(attr)
 
     print("\nNúmero de outliers = ", len(outliers_attr))
-    count = 0
     teste = [0 for i in range(10)]
     for i in outliers_attr:
         teste[len(i)] += 1

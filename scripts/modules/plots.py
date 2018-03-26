@@ -1,10 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib._color_data as mcd
 import seaborn as sns
 
 
-def plot_clusters(data, attribute_names, plots_path, show_plots):
+def plot_clusters(data, attribute_names, plots_path, show_plots, wo=False):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
@@ -12,7 +11,8 @@ def plot_clusters(data, attribute_names, plots_path, show_plots):
     fig, ax = plt.subplots()
 
     for experiment in data.keys():
-        experiment_type = experiment.split('_')[0]
+        experiment_type = (experiment.split('_')[0] if not(
+            wo) else experiment.split('_')[0] + '-wo')
         for i, attr in enumerate(attribute_names[experiment_type]):
             plt.title('Experiment: %s - attribute: %s' % (experiment, attr))
 
@@ -43,21 +43,20 @@ def plot_inertia(data, file_name, cluster_list, show_plots):
 
     plot_data = []
     labels = []
-    colors = []
-    pallete = mcd.CSS4_COLORS
-    pallete = list(pallete.keys())
 
     data_sorted = sorted(data.items(), key=lambda x: str(x[0]))
 
     for iteration, (experiment, value) in enumerate(data_sorted):
         labels.append(experiment)
         plot_data.append(value['inertia'])
-        colors.append(
-            pallete[len(pallete) - (iteration % len(cluster_list)) - 1])
+
     groups = np.arange(len(data.keys()))
     width = 0.35
 
-    plt.bar(groups, plot_data, width, tick_label=labels, color=colors)
+    pallete = (sns.color_palette("husl", len(cluster_list))) * \
+        int(len(plot_data) / len(cluster_list))
+    plt.bar(groups, plot_data, width,
+            tick_label=labels, color=pallete)
     plt.xticks(groups, labels, rotation=90)
     plt.title("Inertia for each experiment")
     plt.savefig(file_name)
@@ -117,7 +116,12 @@ def plot_distributions(data, attribute_names, plots_path, show_plots, norm):
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
 
+    pallete = mcd.CSS4_COLORS
+    pallete = list(pallete.keys())
+
     for attr in attribute_names:
+        if attr == 'all' or attr == 'kda':
+            continue
         if norm:
             ax = sns.distplot(data[attr])
         else:
@@ -196,3 +200,20 @@ def plot_all_distributions(data, attribute_names, plots_path, show_plots, norm):
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
     plt.clf()
+
+
+def plot_k_analysis(data, attribute_names, plots_path, show_plots):
+     # config output images
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
+
+    for experiment in data:
+        fig, ax = plt.subplots()
+        plt.title("Inertia x K - %s" % experiment)
+        plt.plot(data[experiment]['n_clusters'], data[experiment]['inertia'])
+        file_name = plots_path + experiment + '_k_analysis.png'
+        plt.savefig(file_name)
+        print('Graph %s saved.' % file_name)
+        if show_plots:
+            plt.show()
+        plt.clf()
