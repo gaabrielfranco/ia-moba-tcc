@@ -75,8 +75,6 @@ def clusterization_k_analysis(data, cluster_list, seed, json_file, verbose):
         pp = PrettyPrinter(depth=3)
         pp.pprint(output_data)
 
-    # data_out = pd.DataFrame(output_data)
-    # data_out.to_json(json_file)
     data_json = json.dumps(output_data, indent=4)
     f = open(json_file, 'w')
     f.writelines(data_json)
@@ -85,3 +83,22 @@ def clusterization_k_analysis(data, cluster_list, seed, json_file, verbose):
     print('\nOutput data successfully exported to file %s\n' % json_file)
 
     return output_data
+
+
+def eval_clusters(data):
+    # Fazer em n^2
+    distance_intra = 0.0
+    distance_inter = 0.0
+    for cluster in data:
+        for player in cluster:
+            for player2 in cluster:
+                for index in range(player):
+                    distance_intra += (player[index] - player2[index]) ** 2
+            for external_cluster in data:
+                if cluster != external_cluster:
+                    for player2 in cluster:
+                        for index in range(player):
+                            distance_inter += (player[index] -
+                                               player2[index]) ** 2
+
+    return (distance_intra / len(data)) / (distance_inter / len(data))
