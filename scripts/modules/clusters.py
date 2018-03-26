@@ -1,6 +1,7 @@
 from pprint import PrettyPrinter
 from modules.data import normalizes, de_normalize
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 import pandas as pd
 import json
 
@@ -29,6 +30,8 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
             for i, instance in enumerate(data[attr_set]):
                 output_data[experiment]['clusters'][labels[i]].append(instance)
 
+            output_data[experiment]['silhouette_score'] = silhouette_score(
+                data_norm, labels, metric="euclidean")
             output_data[experiment]['inertia'] = float(km.inertia_)
             output_data[experiment]['centroids'] = de_normalize(
                 km.cluster_centers_, min_norm, max_norm)

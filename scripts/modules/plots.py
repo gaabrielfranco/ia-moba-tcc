@@ -66,6 +66,38 @@ def plot_inertia(data, file_name, cluster_list, show_plots):
     plt.clf()
 
 
+def plot_silhouette_score(data, file_name, cluster_list, show_plots):
+    # config output images
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
+
+    fig, ax = plt.subplots()
+
+    plot_data = []
+    labels = []
+
+    data_sorted = sorted(data.items(), key=lambda x: str(x[0]))
+
+    for iteration, (experiment, value) in enumerate(data_sorted):
+        labels.append(experiment)
+        plot_data.append(value['silhouette_score'])
+
+    groups = np.arange(len(data.keys()))
+    width = 0.35
+
+    pallete = (sns.color_palette("husl", len(cluster_list))) * \
+        int(len(plot_data) / len(cluster_list))
+    plt.bar(groups, plot_data, width,
+            tick_label=labels, color=pallete)
+    plt.xticks(groups, labels, rotation=90)
+    plt.title("Silhouette Score for each experiment")
+    plt.savefig(file_name)
+    print('Graph %s saved.' % file_name)
+    if show_plots:
+        plt.show()
+    plt.clf()
+
+
 def plot_counts(data, cluster_list, plots_path, show_plots):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
@@ -115,9 +147,6 @@ def plot_distributions(data, attribute_names, plots_path, show_plots, norm):
     # config output images
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
-
-    pallete = mcd.CSS4_COLORS
-    pallete = list(pallete.keys())
 
     for attr in attribute_names:
         if attr == 'all' or attr == 'kda':

@@ -2,7 +2,7 @@
 import argparse
 from modules.clusters import clusterization
 from modules.data import read_data, normalizes, de_normalize
-from modules.plots import plot_inertia, plot_counts, plot_clusters
+from modules.plots import plot_inertia, plot_counts, plot_clusters, plot_silhouette_score
 
 
 def main():
@@ -76,6 +76,8 @@ def main():
             data, cluster_list, seed, json_file, verbose)
         plot_inertia(output_data, plots_path +
                      'inertia.png', cluster_list, show_plots)
+        plot_silhouette_score(output_data, plots_path_pruned +
+                              'silhouette_score.png', cluster_list, show_plots)
         plot_clusters(output_data, attribute_names, plots_path, show_plots)
         plot_counts(output_data, cluster_list, plots_path, show_plots)
 
@@ -86,7 +88,7 @@ def main():
         # Run same experiments with corr data
         data_corr = read_data('corr')
 
-        output_data = clusterization(
+        output_corr_data = clusterization(
             data_corr, cluster_list, seed, json_file_corr, verbose)
 
         keys = list(attribute_names.keys())
@@ -94,11 +96,14 @@ def main():
             attribute_names[i + '-corr'] = [i]
             del attribute_names[i]
 
-        plot_clusters(output_data, attribute_names,
+        plot_clusters(output_corr_data, attribute_names,
                       plots_path_corr, show_plots)
-        plot_inertia(output_data, plots_path_corr +
+        plot_inertia(output_corr_data, plots_path_corr +
                      'inertia-corr.png', cluster_list, show_plots)
-        plot_counts(output_data, cluster_list, plots_path_corr, show_plots)
+        plot_silhouette_score(output_corr_data, plots_path_pruned +
+                              'silhouette_score-corr.png', cluster_list, show_plots)
+        plot_counts(output_corr_data, cluster_list,
+                    plots_path_corr, show_plots)
 
     if pruned:
         # Run same experiments without outliers
@@ -123,9 +128,10 @@ def main():
         attribute_names['xpm-wo'] = ["xpm"]
         plot_clusters(output_pruned_data, attribute_names,
                       plots_path_pruned, show_plots, True)
-
         plot_inertia(output_pruned_data, plots_path_pruned +
                      'inertia-wo.png', cluster_list, show_plots)
+        plot_silhouette_score(output_pruned_data, plots_path_pruned +
+                              'silhouette_score-wo.png', cluster_list, show_plots)
         plot_counts(output_pruned_data, cluster_list,
                     plots_path_pruned, show_plots)
 
