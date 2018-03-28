@@ -23,7 +23,7 @@ def de_normalize(x, minimum, maximum):
     return x_de_norm
 
 
-def remove_outliers(data, c=2.0):
+def remove_outliers(data, c=2.698):
     new_data = {}
     new_data['all'] = []
     new_data['kda'] = []
@@ -127,6 +127,7 @@ def read_data(method='data'):
 def create_data(input_file, corr=True, verbose=False):
     print('\nReading input data from file %s...' % input_file, end=' ')
 
+    players = []
     data = {}
     data_corr = {}
     data['all'] = []
@@ -215,7 +216,7 @@ def create_data(input_file, corr=True, verbose=False):
         min_matches = 5
 
         # normalizes database and discard maximum and minimum information (underline redirects to "nothing")
-        dt, _, _ = normalizes(data['all'])
+        dt, _, _ = normalizes(data_pruned['all'])
 
         # Computes correlation matrix (absolute values)
         corr_matrix = pd.DataFrame(dt).corr().abs().as_matrix()
