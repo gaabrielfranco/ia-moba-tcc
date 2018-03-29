@@ -2,6 +2,7 @@ import numpy as np
 from pprint import PrettyPrinter
 import pandas as pd
 import json
+import os
 
 
 def normalizes(x):
@@ -65,15 +66,16 @@ def remove_outliers(data, c=2.698):
                     attr.append(attributes[index])
             outliers_attr.append(attr)
 
-    print("\nNúmero de outliers = ", len(outliers_attr))
+    print("\n================ Summary about outliers ================\n")
+    print("Outliers number = ", len(outliers_attr))
     teste = [0 for i in range(10)]
     for i in outliers_attr:
         teste[len(i)] += 1
 
-    print("Número de jogadores que são outliers em {1, ... , 9} atributos:")
+    print("Outliers per attributes number (1, ..., 9):")
     print(teste[1:])
     print()
-    print("Quantos outliers tem cada atributo:")
+    print("Outliers number per attribute:")
     count_out_att = {}
     count_out_att['kills'] = 0
     count_out_att['deaths'] = 0
@@ -104,6 +106,10 @@ def read_data(method='data'):
         with open('files/data/data_corr.json') as fh:
             data = json.load(fh)
         return data
+    elif method == 'corr_pruned':
+        with open('files/data/data_corr_pruned.json') as fh:
+            data = json.load(fh)
+        return data
     elif method == 'pruned':
         with open('files/data/data_pruned.json') as fh:
             data = json.load(fh)
@@ -122,10 +128,16 @@ def read_data(method='data'):
         with open('files/output_k-means_experiments/data_pruned/output_kmeans_pruned.json') as fh:
             kmeans_pruned = json.load(fh)
         return kmeans, kmeans_corr, kmeans_pruned
+    elif method == 'df_data':
+        df = pd.read_json('files/data/data_df.json')
+        return df
+    elif method == 'df_data_pruned':
+        df = pd.read_json('files/data/data_pruned_df.json')
+        return df
 
 
 def create_data(input_file, corr=True, verbose=False):
-    print('\nReading input data from file %s...' % input_file, end=' ')
+    print('\nCreating input data from file %s...' % input_file)
 
     players = []
     data = {}
@@ -176,35 +188,57 @@ def create_data(input_file, corr=True, verbose=False):
 
     fp.close()
 
-    data_json = json.dumps(data, indent=4)
+    data_json = json.dumps(data)
     f = open('files/data/data.json', 'w')
     f.writelines(data_json)
     f.close()
 
     data_pruned, outliers, outliers_attr = remove_outliers(data['all'])
 
-    data_json = json.dumps(data_pruned, indent=4)
+    print('Saving data in JSON files...', end='')
+    data_json = json.dumps(data_pruned)
     f = open('files/data/data_pruned.json', 'w')
     f.writelines(data_json)
     f.close()
 
-    data_json = json.dumps(outliers, indent=4)
+    data_json = json.dumps(outliers)
     f = open('files/data/outliers.json', 'w')
     f.writelines(data_json)
     f.close()
 
-    data_json = json.dumps(outliers_attr, indent=4)
+    data_json = json.dumps(outliers_attr)
     f = open('files/data/outliers_attr.json', 'w')
     f.writelines(data_json)
     f.close()
+    print('done.')
+    print('Creating dataframes and saving in JSON files...', end='')
+    # Create a dataframes with data and data pruned
+    new_data = {}
+    for key in data:
+        if key != 'all' and key != 'kda':
+            new_data[key] = []
+            for element in data[key]:
+                new_data[key].append(element[0])
 
-    print('done.\n')
+    df = pd.DataFrame(new_data)
+    df.to_json('files/data/data_df.json')
+
+    new_data.clear()
+    for key in data_pruned:
+        if key != 'all' and key != 'kda':
+            new_data[key] = []
+            for element in data_pruned[key]:
+                new_data[key].append(element[0])
+    df = pd.DataFrame(new_data)
+    df.to_json('files/data/data_pruned_df.json')
+    print('done.')
 
     # Dynamically maps n least correlated attributes to each attribute
     correlation_map = []
     correlation_map_names = {}
 
     if corr:
+        print('Creating corr data...', end='')
         # Mapping the database
         attr_positions = np.array([1, 2, 3, 5, 6, 7, 8, 9, 10])
         matches_position = 4
@@ -216,7 +250,7 @@ def create_data(input_file, corr=True, verbose=False):
         min_matches = 5
 
         # normalizes database and discard maximum and minimum information (underline redirects to "nothing")
-        dt, _, _ = normalizes(data_pruned['all'])
+        dt, _, _ = normalizes(data['all'])
 
         # Computes correlation matrix (absolute values)
         corr_matrix = pd.DataFrame(dt).corr().abs().as_matrix()
@@ -234,7 +268,6 @@ def create_data(input_file, corr=True, verbose=False):
             i += 1
 
         fp = open(input_file, 'r')
-
         for l in fp:
             parts = l.strip().split()
             for i, p in enumerate(parts):
@@ -242,27 +275,45 @@ def create_data(input_file, corr=True, verbose=False):
             if parts[matches_position] >= min_matches:
                 for i, position in enumerate(attr_positions):
                     line = [parts[position]]
-                    # print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
+                    #print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
                     for other in correlation_map[i]:
                         line.append(parts[other])
                         l = list(attr_positions)
-                        # print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
+                        #print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
                     # print()
                     data_corr[attr_names[i] + '-corr'].append(
                         list(np.array(line) / parts[matches_position]))
 
                 # print()
-
         fp.close()
 
-        data_json = json.dumps(data_corr, indent=4)
+        # Data corr pruned
+        data_corr_pruned = {}
+        for index, attribute in enumerate(correlation_map):
+            data_corr_pruned[attr_names[index] + '-corr'] = []
+            for data in data_pruned['all']:
+                attr_line = []
+                attr_line.append(data[index])
+                for i in attribute:
+                    attr_line.append(data[i - 1 if i < 4 else i - 2])
+                data_corr_pruned[attr_names[index] + '-corr'].append(attr_line)
+
+        data_json = json.dumps(data_corr)
         f = open('files/data/data_corr.json', 'w')
         f.writelines(data_json)
         f.close()
+
+        data_json = json.dumps(data_corr_pruned)
+        f = open('files/data/data_corr_pruned.json', 'w')
+        f.writelines(data_json)
+        f.close()
+
+        print('done.')
 
         if verbose:
             pp = PrettyPrinter()
             pp.pprint(correlation_map_names)
             print()
 
+    print('Finished.\n')
     return data, data_corr, correlation_map, correlation_map_names

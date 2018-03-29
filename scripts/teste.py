@@ -3,17 +3,10 @@ from modules.clusters import clusterization
 import numpy as np
 import pandas as pd
 #create_data('files/attributes.txt', True, False)
-a = read_data('pruned')
-a.pop('all', None)
-a.pop('kda', None)
-
-for i in a.keys():
-    for j, k in enumerate(a[i]):
-        a[i][j] = k[0]
-
-df = pd.DataFrame(a)
-# print(a['assists'])
-# print(b)
+a = read_data('corr_pruned')
+for i in a:
+    print(len(a[i]))
+#b = read_data('df_data_pruned')
 
 '''
     TODO:
