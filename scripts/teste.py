@@ -2,10 +2,8 @@ from modules.data import read_data, create_data, remove_outliers
 from modules.clusters import clusterization
 import numpy as np
 import pandas as pd
-#create_data('files/attributes.txt', True, False)
-a = read_data('corr_pruned')
-for i in a:
-    print(len(a[i]))
+create_data('files/attributes.txt', True, False)
+#a = read_data('corr_pruned')
 #b = read_data('df_data_pruned')
 
 '''

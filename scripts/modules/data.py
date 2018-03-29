@@ -3,6 +3,7 @@ from pprint import PrettyPrinter
 import pandas as pd
 import json
 import os
+import scipy.stats as sci
 
 
 def normalizes(x):
@@ -47,10 +48,17 @@ def remove_outliers(data, c=2.698):
 
     avg = np.average(data, axis=0)
     std = np.std(data, axis=0)
+    q1 = np.percentile(data, 25, axis=0)
+    q3 = np.percentile(data, 75, axis=0)
+    iqr = sci.iqr(data, axis=0)
 
     for d in data:
-        att_v = abs(d - avg) <= c * std
-        if att_v.all():
+        att_v = []
+        att_v.append(d >= q1 - 1.5 * iqr)
+        att_v.append(d <= q3 + 1.5 * iqr)
+        validation_outiers = np.all(att_v, axis=0)
+
+        if validation_outiers.all():
             for key in new_data.keys():
                 if key == 'all':
                     new_data[key].append(d)
@@ -61,21 +69,22 @@ def remove_outliers(data, c=2.698):
         else:
             outliers.append(d)
             attr = []
-            for index, value in enumerate(att_v):
+
+            for index, value in enumerate(validation_outiers):
                 if not(value):
                     attr.append(attributes[index])
             outliers_attr.append(attr)
 
     print("\n================ Summary about outliers ================\n")
-    print("Outliers number = ", len(outliers_attr))
+    print("Number of outliers = ", len(outliers_attr))
     teste = [0 for i in range(10)]
     for i in outliers_attr:
         teste[len(i)] += 1
 
-    print("Outliers per attributes number (1, ..., 9):")
+    print("Number of outliers in 1, ..., 9 attributes: ")
     print(teste[1:])
     print()
-    print("Outliers number per attribute:")
+    print("Number of outliers per attribute: ")
     count_out_att = {}
     count_out_att['kills'] = 0
     count_out_att['deaths'] = 0
@@ -275,11 +284,11 @@ def create_data(input_file, corr=True, verbose=False):
             if parts[matches_position] >= min_matches:
                 for i, position in enumerate(attr_positions):
                     line = [parts[position]]
-                    #print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
+                    # print('Data for %s:' % (attr_names[i] + '-corr'), end=' ')
                     for other in correlation_map[i]:
                         line.append(parts[other])
                         l = list(attr_positions)
-                        #print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
+                        # print('%s (%d)' % (attr_names[l.index(other)], other), end=' ')
                     # print()
                     data_corr[attr_names[i] + '-corr'].append(
                         list(np.array(line) / parts[matches_position]))
