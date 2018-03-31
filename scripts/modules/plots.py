@@ -246,3 +246,36 @@ def plot_k_analysis(data, attribute_names, plots_path, show_plots):
         if show_plots:
             plt.show()
         plt.clf()
+
+
+def plot_f(kmeans_data, type_experiment, plots_path, show_plots):
+    f = {}
+    for experiment in kmeans_data:
+        if experiment.split('_')[0] == 'all' or experiment.split('_')[0] == 'kda':
+            f[experiment] = {}
+            for k, cluster in enumerate(kmeans_data[experiment]['clusters']):
+                f[experiment][k] = 0
+                for player in cluster:
+                    f[experiment][k] += (player[0] + player[2]) / player[1]
+                f[experiment][k] /= len(cluster)
+
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 12.0
+    data = []
+    labels = []
+    for experiment in f:
+        for k, cluster in enumerate(f[experiment]):
+            data.append(f[experiment][k])
+            labels.append(experiment + ' - C' + str(k + 1))
+
+    pallete = sns.color_palette("husl", len(data))
+
+    groups = np.arange(len(data))
+
+    plt.bar(groups, data, 0.35, tick_label=labels, color=pallete)
+    plt.xticks(groups, labels, rotation=90)
+    plt.title("F for each cluster")
+    file_name = plots_path + 'f-analysis-' + type_experiment + '.png'
+    plt.savefig(file_name)
+    plt.clf()
+    print('Graph %s saved.' % file_name)

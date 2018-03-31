@@ -9,12 +9,13 @@ def main():
     df_norm = (df - df.mean()) / (df.max() - df.min())
 
     sns.set_style("whitegrid")
-    ax = sns.boxplot(data=df)
-    ax.set_yscale('log')
-    ax.set_xlabel('Attribute')
-    ax.set_ylabel('Value')
-    plt.title('Attributes distribution')
-    plt.show()
+    for i in df:
+        ax = sns.boxplot(data=df[i])
+        #ax.set_yscale('log')
+        ax.set_xlabel('Attribute')
+        ax.set_ylabel('Value')
+        plt.title('Attributes distribution')
+        plt.show()
 
 
 if __name__ == "__main__":

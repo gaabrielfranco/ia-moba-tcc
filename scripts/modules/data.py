@@ -46,8 +46,6 @@ def remove_outliers(data, c=2.698):
     index_attr = {"kills": 0, "deaths": 1,
                   "assists": 2, "denies": 3, "gpm": 4, "hd": 5, "hh": 6, "lh": 7, "xpm": 8}
 
-    avg = np.average(data, axis=0)
-    std = np.std(data, axis=0)
     q1 = np.percentile(data, 25, axis=0)
     q3 = np.percentile(data, 75, axis=0)
     iqr = sci.iqr(data, axis=0)
