@@ -12,11 +12,8 @@ def main():
 
     df = read_data('df_data_pruned')
 
-    #df = StandardScaler().fit_transform(df)
-    df -= df.mean(axis=1)
-    print(df.mean())
-    print(df.var())
-    return
+    df = StandardScaler().fit_transform(df)
+
     fig = plt.figure(1, figsize=(8, 6))
     ax = Axes3D(fig, elev=-150, azim=110)
     pca = PCA(n_components=9, svd_solver='full')
