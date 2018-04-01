@@ -1,0 +1,30 @@
+Poda da outliers
+
+    1) Estão sendo podados muitos outliers, então usar o IQR para fazer a poda
+    2) Refazer todos os experimentos já feitos com os novos dados
+
+    Feito. Mostrar código em modules.data. Numero de outiliers é cerca de 2.8k
+
+Sobre o score f = (K + A) / D
+
+    1) Qual a distribuição dessa variável dentro de cada cluster?
+
+    Feito. Mostrar output_plot_metric, inclusive f-analysis-pruned.png
+
+Sobre os centroids
+
+    1) Que tipo de jogador seria o centroid de cada cluster?
+    2) Que tipo de jogador (dentro de um cluster específico) seria o
+    jogador que está mais longe do centroid?
+    3) Selecionar alguns usuários aleatoriamente dentro de cada cluster
+    para ter uma ideia do que está acontecendo
+
+    Feito. Mostrar output_cluster_evaluation/cluster_descrition_pruned.txt. Mostrar também 
+    output_cluster_evaluation/distance_eval_pruned.txt, com detalhe pros experimentos com KDA
+    O terceiro ponto eu não entendi muito bem :/
+
+PCA
+
+    1) Utilizar o PCA para reduzir a dimensionalidade dos dados e plotar os dados para visualização
+
+    Feito. Mostrar output_pca e pca.py
