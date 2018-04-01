@@ -21,10 +21,12 @@ Sobre os centroids
 
     Feito. Mostrar output_cluster_evaluation/cluster_descrition_pruned.txt. Mostrar também 
     output_cluster_evaluation/distance_eval_pruned.txt, com detalhe pros experimentos com KDA
-    O terceiro ponto eu não entendi muito bem :/
+    Pro terceiro ponto, mostrar output_cluster_evaluation/plots
 
 PCA
 
     1) Utilizar o PCA para reduzir a dimensionalidade dos dados e plotar os dados para visualização
 
     Feito. Mostrar output_pca e pca.py
+
+Obs: Lembrar de falar dos horários

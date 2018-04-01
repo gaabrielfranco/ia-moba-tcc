@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 def main():
-    verbose = False
+    show_plots = False
 
     df = read_data('df_data_pruned')
 
@@ -30,7 +30,7 @@ def main():
     file_name = 'files/output_pca/PCA_3_dimension'
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
-    if verbose:
+    if show_plots:
         plt.show()
     plt.clf()
 
@@ -47,7 +47,7 @@ def main():
     file_name = 'files/output_pca/PCA_2_dimension'
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
-    if verbose:
+    if show_plots:
         plt.show()
     plt.clf()
 
@@ -64,7 +64,7 @@ def main():
     file_name = 'files/output_pca/PCA_1_dimension'
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
-    if verbose:
+    if show_plots:
         plt.show()
     plt.clf()
 
@@ -81,7 +81,7 @@ def main():
     file_name = 'files/output_pca/Variance'
     plt.savefig(file_name)
     print('Graph %s saved.' % file_name)
-    if verbose:
+    if show_plots:
         plt.show()
 
 
