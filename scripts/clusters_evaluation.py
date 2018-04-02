@@ -5,12 +5,18 @@ from numpy.random import randint
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from modules.data import normalizes
+import copy
+import os
+import numpy as np
 
 
 def main():
     kmeans, kmeans_corr, kmeans_pruned = read_data('k-means_experiments')
     show_plots = False
-    '''f = open('files/output_cluster_evaluation/cluster_eval.txt', 'w')
+
+    print('Running cluster_eval...', end="")
+    f = open('files/output_cluster_evaluation/cluster_eval.txt', 'w')
     for experiment in kmeans:
         if experiment.split('_')[0] == 'all' or experiment.split('_')[0] == 'kda':
             f.writelines("================ " +
@@ -19,7 +25,10 @@ def main():
                 f.writelines(str(centroid) + '\n')
             f.writelines('\n')
     f.close()
+    print('done.')
+    print("Saving cluster_eval.txt")
 
+    print('Running cluster_eval_corr...', end="")
     f = open('files/output_cluster_evaluation/cluster_eval_corr.txt', 'w')
     for experiment in kmeans_corr:
         f.writelines("================ " +
@@ -28,7 +37,10 @@ def main():
             f.writelines(str(centroid) + '\n')
         f.writelines('\n')
     f.close()
+    print('done.')
+    print("Saving cluster_eval_corr.txt")
 
+    print('Running cluster_eval_pruned...', end="")
     f = open('files/output_cluster_evaluation/cluster_eval_pruned.txt', 'w')
     for experiment in kmeans_pruned:
         if experiment.split('_')[0] == 'all' or experiment.split('_')[0] == 'kda':
@@ -38,7 +50,10 @@ def main():
                 f.writelines(str(centroid) + '\n')
             f.writelines('\n')
     f.close()
+    print('done.')
+    print("Saving cluster_eval_pruned.txt")
 
+    print('Calc distances...', end="")
     distance = {}
     for experiment in kmeans:
         distance[experiment] = []
@@ -46,8 +61,10 @@ def main():
             dist = 10000000
             player_dist = []
             for player in cluster:
-                euc_dist = euclidean(
-                    kmeans[experiment]['centroids'][k], player)
+                norm_centroid, _, _ = normalizes(
+                    kmeans[experiment]['centroids'][k])
+                norm_player, _, _ = normalizes(player)
+                euc_dist = euclidean(norm_centroid, norm_player)
                 if euc_dist < dist:
                     dist = euc_dist
                     player_dist = player
@@ -61,8 +78,13 @@ def main():
             dist = 10000000
             player_dist = []
             for player in cluster:
+                norm_centroid, _, _ = normalizes(
+                    kmeans_corr[experiment]['centroids'][k])
+                norm_player, _, _ = normalizes(player)
+                norm_player = [0.0 if np.isnan(
+                    x) else 0.0 for x in norm_player]
                 euc_dist = euclidean(
-                    kmeans_corr[experiment]['centroids'][k], player)
+                    norm_centroid, norm_player)
                 if euc_dist < dist:
                     dist = euc_dist
                     player_dist = player
@@ -76,14 +98,21 @@ def main():
             dist = 10000000
             player_dist = []
             for player in cluster:
+                norm_centroid, _, _ = normalizes(
+                    kmeans_pruned[experiment]['centroids'][k])
+                norm_player, _, _ = normalizes(player)
+                norm_player = [0.0 if np.isnan(
+                    x) else x for x in norm_player]
                 euc_dist = euclidean(
-                    kmeans_pruned[experiment]['centroids'][k], player)
+                    norm_centroid, norm_player)
                 if euc_dist < dist:
                     dist = euc_dist
                     player_dist = player
             distance_pruned[experiment].append(
                 {"distance": dist, "player": player_dist})
+    print("done.")
 
+    print('Running distance_eval...', end="")
     f = open('files/output_cluster_evaluation/distance_eval.txt', 'w')
     for experiment in distance:
         f.writelines("===================== " +
@@ -98,7 +127,10 @@ def main():
                          str(kmeans[experiment]['centroids'][i]) + '\n')
             f.writelines("\n")
     f.close()
+    print('done.')
+    print("Saving cluster_eval.txt")
 
+    print('Running distance_eval_corr...', end="")
     f = open('files/output_cluster_evaluation/distance_eval_corr.txt', 'w')
     for experiment in distance_corr:
         f.writelines("===================== " +
@@ -113,7 +145,10 @@ def main():
                          str(kmeans_corr[experiment]['centroids'][i]) + '\n')
             f.writelines("\n")
     f.close()
+    print('done.')
+    print("Saving cluster_eval_corr.txt")
 
+    print('Running distance_eval_pruned...', end="")
     f = open('files/output_cluster_evaluation/distance_eval_pruned.txt', 'w')
     for experiment in distance_pruned:
         f.writelines("===================== " +
@@ -127,14 +162,17 @@ def main():
             f.writelines("\t\tCentroid = " +
                          str(kmeans_pruned[experiment]['centroids'][i]) + '\n')
         f.writelines("\n")
-    f.close()'''
+    f.close()
+    print('done.')
+    print("Saving cluster_eval_pruned.txt")
 
+    print("\nPlots...")
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
 
-    columns_kda = ['kills', 'deaths', 'assists', 'dist to centroid']
+    columns_kda = ['kills', 'deaths', 'assists', 'dist_norm to centroid']
     columns_all = ['kills', 'deaths', 'assists', 'denies',
-                   'gpm', 'hero_damage', 'hero_healing', 'LH', 'xp_p_min', 'dist to centroid']
+                   'gpm', 'hero_damage', 'hero_healing', 'LH', 'xp_p_min', 'dist_norm to centroid']
     index_df = ['centroid', 'player 1', 'player 2', 'player 3', 'player 4',
                 'player 5', 'player 6', 'player 7', 'player 8', 'player 9', 'player 10']
 
@@ -142,14 +180,19 @@ def main():
         if experiment.split('_')[0] == 'all' or experiment.split('_')[0] == 'kda':
             for i, cluster in enumerate(kmeans_pruned[experiment]['clusters']):
                 random_players = randint(len(cluster), size=10)
-                centroid = kmeans_pruned[experiment]['centroids'][i]
+                centroid = copy.deepcopy(
+                    kmeans_pruned[experiment]['centroids'][i])
                 centroid.append(0.0)
                 player_matrix = []
                 player_matrix.append(centroid)
+                norm_centroid, _, _ = normalizes(
+                    kmeans_pruned[experiment]['centroids'][i])
                 for player in random_players:
-                    player_i = kmeans_pruned[experiment]['clusters'][i][player]
+                    player_i = copy.deepcopy(
+                        kmeans_pruned[experiment]['clusters'][i][player])
+                    norm_player_i, _, _ = normalizes(player_i)
                     player_i.append(
-                        euclidean(kmeans_pruned[experiment]['centroids'][i], player))
+                        euclidean(norm_centroid, norm_player_i))
                     player_matrix.append(player_i)
 
                 if experiment.split('_')[0] == 'all':

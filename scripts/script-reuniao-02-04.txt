@@ -20,7 +20,7 @@ Sobre os centroids
     para ter uma ideia do que está acontecendo
 
     Feito. Mostrar output_cluster_evaluation/cluster_descrition_pruned.txt. Mostrar também 
-    output_cluster_evaluation/distance_eval_pruned.txt, com detalhe pros experimentos com KDA
+    output_cluster_evaluation/distance_eval_pruned.txt
     Pro terceiro ponto, mostrar output_cluster_evaluation/plots
 
 PCA
