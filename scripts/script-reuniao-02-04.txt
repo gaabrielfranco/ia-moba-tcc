@@ -29,4 +29,4 @@ PCA
 
     Feito. Mostrar output_pca e pca.py
 
-Obs: Lembrar de falar dos horários
+Obs: Lembrar de falar dos horários e da documentação
