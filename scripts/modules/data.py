@@ -10,12 +10,13 @@ def normalizes(x):
     x_norm = []
     minimum = np.min(x, axis=0)
     maximum = np.max(x, axis=0)
-    if maximum - minimum == 0:
-        for i in x:
-            x_norm.append((i - minimum))
-    else:
-        for i in x:
-            x_norm.append((i - minimum) / (maximum - minimum))
+    # Arrumar esse maximum - minimum para fazer só quando esses valores são escalares
+    # if maximum - minimum == 0:
+    #    for i in x:
+    #        x_norm.append((i - minimum))
+    # else:
+    for i in x:
+        x_norm.append((i - minimum) / (maximum - minimum))
 
     return x_norm, minimum, maximum
 
