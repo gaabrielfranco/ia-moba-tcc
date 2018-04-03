@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 from sklearn import datasets
-from modules.data import read_data
+from modules.data import read_data, normalizes
 from sklearn.preprocessing import StandardScaler
 
 
@@ -12,7 +12,10 @@ def main():
 
     df = read_data('df_data_pruned')
 
-    df = StandardScaler().fit_transform(df)
+    for i in df:
+        df[i] = (normalizes(df[i]))[0]
+
+    df -= df.mean()
 
     fig = plt.figure(1, figsize=(8, 6))
     ax = Axes3D(fig, elev=-150, azim=110)
@@ -72,7 +75,7 @@ def main():
     num_dim = list(range(1, 10))
 
     for i, j in enumerate(variance):
-        variance[i] = sum(variance[i-1:i+1]) if i > 0 else variance[i]
+        variance[i] = sum(variance[i - 1:i + 1]) if i > 0 else variance[i]
 
     plt.plot(num_dim, variance, 'o')
     plt.title("Variance captured in each dimension")
