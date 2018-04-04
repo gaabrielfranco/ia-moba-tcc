@@ -5,7 +5,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
-create_data('files/attributes.txt', True, False)
+create_data('files/attributes.txt', True, True)
 #a = read_data('corr_pruned')
 
 '''

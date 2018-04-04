@@ -328,4 +328,4 @@ def create_data(input_file, corr=True, verbose=False):
             print()
 
     print('Finished.\n')
-    return data, data_corr, correlation_map, correlation_map_names
+    return correlation_map, correlation_map_names
