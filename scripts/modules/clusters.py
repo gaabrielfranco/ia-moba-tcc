@@ -1,5 +1,6 @@
 from pprint import PrettyPrinter
 from modules.data import normalizes, de_normalize
+from modules.plots import plot_silhouette_analysis
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 import pandas as pd
@@ -37,12 +38,18 @@ def clusterization(data, cluster_list, seed, json_file, verbose):
                 km.cluster_centers_, min_norm, max_norm)
             output_data[experiment]['seed'] = seed
 
+            # plot silhouette
+            file_name = json_file.split('/')[:len(json_file.split('/'))-1]
+            file_name = "/".join(file_name)
+            file_name += ("/silhouette_score_" + attr_set + "_" + str(k))
+            plot_silhouette_analysis(
+                data_norm, attr_set, k, labels, output_data[experiment]['silhouette_score'], file_name, False)
+
     if verbose:
         print('\n\nOutput data summary:')
         pp = PrettyPrinter(depth=3)
         pp.pprint(output_data)
 
-    # print(output_data['all_3']['centroids'])
     data_json = json.dumps(output_data, separators=(',', ':'))
     f = open(json_file, 'w')
     f.writelines(data_json)
