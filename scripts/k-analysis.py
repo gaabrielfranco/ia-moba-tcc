@@ -25,6 +25,7 @@ def main():
     # configuration parameters
     seed = 0
     json_file = 'files/output_k-analysis/output_k_analysis.json'
+    json_file_corr = 'files/output_k-analysis/output_k_analysis_corr.json'
     cluster_list = list(range(3, 101))
 
     plots_path = 'files/output_k-analysis/'
@@ -62,7 +63,7 @@ def main():
     plot_k_analysis(output_data, attribute_names, plots_path, show_plots)
 
     output_data = clusterization_k_analysis(
-        data_corr, cluster_list, seed, json_file, verbose)
+        data_corr, cluster_list, seed, json_file_corr, verbose)
     plot_k_analysis(output_data, attribute_names, plots_path, show_plots)
 
 
