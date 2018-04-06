@@ -5,6 +5,7 @@ from sklearn.decomposition import PCA
 from sklearn import datasets
 from modules.data import read_data, normalizes
 from sklearn.preprocessing import StandardScaler
+import pandas as pd
 
 
 def main():
@@ -86,6 +87,22 @@ def main():
     print('Graph %s saved.' % file_name)
     if show_plots:
         plt.show()
+    plt.clf()
+
+    # Creating dataframe with first, second and third components
+    data_comp = pd.DataFrame(X_reduced[:, 0:3], columns=['1st eigenvector', '2nd eigenvector', '3rd eigenvector'])
+
+    for i, x in enumerate(data_comp):
+        for j, y in enumerate(data_comp):
+            if i < j and x != y:
+                data_comp.plot.hexbin(x=x, y=y, gridsize=25)
+                plt.title('Hexbin plot: ' + x + ' and ' + y)
+                #if show_plots:
+                plt.show()
+                #file_name = plots_path + x + '_' + y
+                #plt.savefig(file_name)
+                #plt.clf()
+                #print('Graph %s saved.' % file_name)
 
 
 if __name__ == "__main__":
