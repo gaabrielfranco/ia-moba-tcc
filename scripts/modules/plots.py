@@ -283,6 +283,9 @@ def plot_f(kmeans_data, type_experiment, plots_path, show_plots):
 
 
 def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, file_name, show_plots):
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 12.0
+
     sample_silhouette_values = silhouette_samples(
         data, cluster_labels, metric="euclidean")
 
