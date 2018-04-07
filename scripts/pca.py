@@ -9,6 +9,10 @@ import pandas as pd
 
 
 def main():
+
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 12.0
+
     show_plots = False
 
     df = read_data('df_data_pruned')
@@ -18,6 +22,7 @@ def main():
 
     df -= df.mean()
 
+    # PCA n_dim = 3
     fig = plt.figure(1, figsize=(8, 6))
     ax = Axes3D(fig, elev=-150, azim=110)
     pca = PCA(n_components=9, svd_solver='full')
@@ -31,13 +36,11 @@ def main():
     ax.w_yaxis.set_ticklabels([])
     ax.set_zlabel("3rd eigenvector")
     ax.w_zaxis.set_ticklabels([])
-    file_name = 'files/output_pca/PCA_3_dimension'
-    plt.savefig(file_name)
-    print('Graph %s saved.' % file_name)
     if show_plots:
         plt.show()
     plt.clf()
 
+    # PCA n_dim = 2
     fig = plt.figure(1, figsize=(8, 6))
     ax = Axes3D(fig, elev=-150, azim=110)
     ax.scatter(X_reduced[:, 0], X_reduced[:, 1],
@@ -48,13 +51,11 @@ def main():
     ax.set_ylabel("2nd eigenvector")
     ax.w_yaxis.set_ticklabels([])
     ax.w_zaxis.set_ticklabels([])
-    file_name = 'files/output_pca/PCA_2_dimension'
-    plt.savefig(file_name)
-    print('Graph %s saved.' % file_name)
     if show_plots:
         plt.show()
     plt.clf()
 
+    # PCA n_dim = 1
     fig = plt.figure(1, figsize=(8, 6))
     ax = Axes3D(fig, elev=-150, azim=110)
     y_new = np.zeros((len(X_reduced)), dtype=int)
@@ -65,44 +66,53 @@ def main():
     ax.w_xaxis.set_ticklabels([])
     ax.w_yaxis.set_ticklabels([])
     ax.w_zaxis.set_ticklabels([])
-    file_name = 'files/output_pca/PCA_1_dimension'
-    plt.savefig(file_name)
-    print('Graph %s saved.' % file_name)
     if show_plots:
         plt.show()
     plt.clf()
 
-    variance = pca.explained_variance_ratio_
-    num_dim = list(range(1, 10))
+    # Variance plot
+    with plt.style.context('seaborn-whitegrid'):
+        plt.bar(range(1, 10), pca.explained_variance_ratio_, alpha=0.5, align='center',
+                label='individual explained variance')
 
-    for i, j in enumerate(variance):
-        variance[i] = sum(variance[i - 1:i + 1]) if i > 0 else variance[i]
+        variance = pca.explained_variance_ratio_
+        for i, j in enumerate(variance):
+            variance[i] = sum(variance[i - 1:i + 1]) if i > 0 else variance[i]
 
-    plt.plot(num_dim, variance, 'o')
-    plt.title("Variance captured in each dimension")
-    plt.xlabel("Number of dimensions")
-    plt.ylabel("Variance")
-    file_name = 'files/output_pca/Variance'
-    plt.savefig(file_name)
-    print('Graph %s saved.' % file_name)
-    if show_plots:
-        plt.show()
-    plt.clf()
+        plt.step(range(1, 10), variance, where='mid',
+                 label='cumulative explained variance')
+
+        plt.xticks(range(1, 10))
+        plt.ylabel('Explained variance ratio')
+        plt.xlabel('Principal components')
+        plt.legend(loc='best')
+        plt.title('Variance explained with PCA')
+        plt.tight_layout()
+        if show_plots:
+            plt.show()
+
+        file_name = 'files/output_pca/Variance'
+        plt.savefig(file_name)
+        print('Graph %s saved.' % file_name)
+        plt.clf()
 
     # Creating dataframe with first, second and third components
-    data_comp = pd.DataFrame(X_reduced[:, 0:3], columns=['1st eigenvector', '2nd eigenvector', '3rd eigenvector'])
+    data_comp = pd.DataFrame(X_reduced[:, 0:3], columns=[
+                             '1st eigenvector', '2nd eigenvector', '3rd eigenvector'])
+
+    plots_path = 'files/output_pca/'
 
     for i, x in enumerate(data_comp):
         for j, y in enumerate(data_comp):
             if i < j and x != y:
                 data_comp.plot.hexbin(x=x, y=y, gridsize=25)
                 plt.title('Hexbin plot: ' + x + ' and ' + y)
-                #if show_plots:
-                plt.show()
-                #file_name = plots_path + x + '_' + y
-                #plt.savefig(file_name)
-                #plt.clf()
-                #print('Graph %s saved.' % file_name)
+                if show_plots:
+                    plt.show()
+                file_name = plots_path + x + '_' + y
+                plt.savefig(file_name)
+                plt.clf()
+                print('Graph %s saved.' % file_name)
 
 
 if __name__ == "__main__":
