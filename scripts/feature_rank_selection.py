@@ -6,6 +6,9 @@ import numpy as np
 from modules.data import read_data
 import sklearn.feature_selection as fs
 
+import pandas as pd
+import matplotlib.pyplot as plt
+
 ### Get the order of magnitude of a number
 def getOrder(x):
     if x == 0.0:
@@ -59,6 +62,7 @@ def main():
     
     ### Sorting data by their variance
     values = []
+    names = []
     texts = []
     for i,c in enumerate(data.columns):
         if mask[i]:
@@ -71,6 +75,7 @@ def main():
             pos += 1
         texts.insert(pos, '%s(%8.6f): %s' % (c.ljust(10), sel.variances_[i], status))
         values.insert(pos, sel.variances_[i])
+        names.insert(pos, c)
 
     ### Printing a short report
     print('\n\nSelecting features above %.2f%% of relevance space.' % (args.perc * 100))
@@ -78,6 +83,14 @@ def main():
     print('====== Ranking =========')
     print('\n'.join(texts))
     print('\n')
+    
+    values = {'attribute': names, 'variance': values}
+    df = pd.DataFrame(values)
+    ### Mudar pra scatter
+    ax = df.plot(x='attribute')
+    ### Legenda para a linha do limiar
+    ax.axhline(threshold, color='k', linestyle='--', label='threshold')
+    plt.show()
     
 if __name__ == "__main__":
     main()
