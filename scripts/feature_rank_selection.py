@@ -6,30 +6,22 @@ import numpy as np
 from modules.data import read_data
 import sklearn.feature_selection as fs
 
-<<<<<<< HEAD
 import pandas as pd
 import matplotlib.pyplot as plt
 
 ### Get the order of magnitude of a number
-=======
-# Get the order of magnitude of a number
-
-
->>>>>>> d48c249dbdda872df9b0bf667ff759874a79fe78
 def getOrder(x):
     if x == 0.0:
         return 0.0
     return 10**np.floor(np.log10(np.abs(x)))
 
-# Main function
-
-
+### Main function
 def main():
     # Parsing command line arguments
     parser = argparse.ArgumentParser(
         description='Rank/Select features using variance threshold', prog="feature_selection.py")
     parser.add_argument(
-        '--perc', type=float, help='percentage of the relevance space covered by feature selection (0.0 <= perc <= 1.0)')
+        'perc', type=float, help='percentage of the relevance space covered by feature selection (0.0 <= perc <= 1.0)')
     parser.add_argument('--pruned', '-p', action='store_true',
                         help='load pruned data (defaut = False)')
     args = parser.parse_args()
@@ -97,7 +89,6 @@ def main():
     print('====== Ranking =========')
     print('\n'.join(texts))
     print('\n')
-<<<<<<< HEAD
     
     values = {'attribute': names, 'variance': values}
     df = pd.DataFrame(values)
@@ -107,9 +98,5 @@ def main():
     ax.axhline(threshold, color='k', linestyle='--', label='threshold')
     plt.show()
     
-=======
-
-
->>>>>>> d48c249dbdda872df9b0bf667ff759874a79fe78
 if __name__ == "__main__":
     main()
