@@ -8,6 +8,7 @@ import sklearn.feature_selection as fs
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 ### Get the order of magnitude of a number
 def getOrder(x):
@@ -92,11 +93,16 @@ def main():
     
     values = {'attribute': names, 'variance': values}
     df = pd.DataFrame(values)
-    ### Mudar pra scatter
-    ax = df.plot(x='attribute')
-    ### Legenda para a linha do limiar
-    ax.axhline(threshold, color='k', linestyle='--', label='threshold')
-    plt.show()
+    
+    with plt.style.context('seaborn-whitegrid'):
+        plt.bar(names, df['variance'])
+        plt.title('Selecting Features above %d%% of relevance space' % (args.perc * 100))
+        ### Legenda para a linha do limiar
+        plt.axhline(threshold, color='k', linestyle='--', label='threshold')
+        plt.legend()
+        plt.ylabel('Variance')
+        plt.xlabel('Attributes')
+        plt.show()
     
 if __name__ == "__main__":
     main()
