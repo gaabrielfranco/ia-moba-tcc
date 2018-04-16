@@ -44,7 +44,8 @@ class GeneticAlgorithm(object):
                  max_no_improv=20,
                  verbose=False,
                  min_crossover_probability=0.1,
-                 diversification_factor=0.1):
+                 diversification_factor=0.1,
+                 tournament_percent=0.2):
         """Instantiate the Genetic Algorithm.
         :param seed_data: input data to the Genetic Algorithm
         :type seed_data: list of objects
@@ -65,6 +66,7 @@ class GeneticAlgorithm(object):
         self.verbose = verbose
         self.min_crossover_probability = min_crossover_probability
         self.diversification_factor = diversification_factor
+        self.tournament_percent = tournament_percent
         
         self.perturb_solutions = False
 
@@ -99,12 +101,8 @@ class GeneticAlgorithm(object):
         def perturb(individual):
             """ Strongly perturb an individual, choosing randomly one of the
             two methods."""
-            coin = random.randint(0,1)
-            if coin:
-                for i in range(len(individual)):
-                    individual[i] = (0, 1)[individual[i] == 0]
-            else:
-                random.shuffle(individual)
+            for i in range(len(individual)):
+                individual[i] = (0, 1)[individual[i] == 0]
             
             return individual
 
@@ -125,7 +123,7 @@ class GeneticAlgorithm(object):
 
         self.fitness_function = None
         self.tournament_selection = tournament_selection
-        self.tournament_size = self.population_size // 10
+        self.tournament_size = int(self.tournament_percent * self.population_size)
         self.random_selection = random_selection
         self.create_individual = create_individual
         self.crossover_function = crossover
@@ -191,7 +189,7 @@ class GeneticAlgorithm(object):
         if self.perturb_solutions:
             n_perturb = int(self.diversification_factor * self.population_size)
             for _ in range(n_perturb):
-                index = random.randint(0, len(new_population))
+                index = random.randint(0, len(new_population)-1)
                 new_population[index].genes = self.perturb_function(new_population[index].genes)
             self.perturb_solutions = False
             
@@ -215,6 +213,20 @@ class GeneticAlgorithm(object):
         self.create_new_population()
         self.calculate_population_fitness()
         self.rank_population()
+        
+    def print_generation(self):
+        print('\tGeneration:')
+        i = 0
+        for individual in self.current_generation:
+            evaluation = individual[0]
+            solution = individual[1]
+            att_sel = []
+            for selected in solution:
+                att_sel.append('%d' % selected)
+            s = '%f;' % evaluation
+            s += ';'.join(att_sel) + '\n'
+            print('\t\t%d -> [%s]: evaluation: %f' % (i, s, evaluation))
+        print()
 
     def run(self):
         """Run (solve) the Genetic Algorithm."""
@@ -259,7 +271,7 @@ class GeneticAlgorithm(object):
                 self.crossover_probability = max(self.min_crossover_probability, self.crossover_probability-0.1)
                 count_decay = 0
                 
-            if count_no_improv == int(self.max_no_improv / 2):
+            if count_no_improv == int(self.generations // 10):
                 self.perturb_solutions = True
                 
             if count_no_improv >= self.max_no_improv:

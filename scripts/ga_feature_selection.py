@@ -42,23 +42,22 @@ class BaseProblem(object):
         self.min_size = min_size
         self.max_size = max_size
         self.hash = {}
+        self.init_pop_hash = {}
         
     def create_individual(self, data):
-        n_attr = np.random.randint(self.min_size, self.max_size+1)
         n = len(data.columns)
+        individual = list(np.zeros(n, dtype=int))
+        indexes = list(range(n))
+        n_attr = np.random.randint(self.min_size, self.max_size+1)
         
-        individual = []
-        for i in range(n_attr):
-            individual.append(1)
+        activated = random.sample(indexes, n_attr)
         
-        for i in range(n - n_attr):
-            individual.append(0)
+        for i in activated:
+            individual[i] = 1
             
-        np.random.shuffle(individual)
-        
         return individual
         
-    def mutate(self, individual):
+    def analyse_chromossome(self, individual):
         item_count = 0
         zeros = []
         ones = []
@@ -69,6 +68,11 @@ class BaseProblem(object):
             else:
                 zeros.append(i)
                 
+        return item_count, ones, zeros
+        
+    def mutate(self, individual):
+        item_count, ones, zeros = self.analyse_chromossome(individual)
+        
         if item_count == self.min_size:
             ### If minimum size, necessarily include one item to the solution
             mutate_index = random.choice(zeros)
@@ -82,14 +86,28 @@ class BaseProblem(object):
             mutate_index = random.randrange(len(individual))
             individual[mutate_index] = (0, 1)[individual[mutate_index] == 0]
             
-#==============================================================================
-#     IMPROVE CROSSOVER TO AVOID GENERATING SOLUTIONS OUT OF SIZE LIMITS
-#==============================================================================
     def crossover(self, parent_1, parent_2):
-        index = random.randrange(1, len(parent_1))
-        child_1 = parent_1[:index] + parent_2[index:]
-        child_2 = parent_2[:index] + parent_1[index:]
-        return child_1, child_2
+        
+        allowed_positions = []
+        for i in range(len(parent_1)):
+            count_1 = np.sum(parent_1[:i+1] + parent_2[i+1:])
+            count_2 = np.sum(parent_2[:i+1] + parent_1[i+1:])
+            
+            limits_1 = count_1 >= self.min_size and count_1 <= self.max_size
+            limits_2 = count_2 >= self.min_size and count_2 <= self.max_size
+            
+            if limits_1 and limits_2:
+                allowed_positions.append(i)
+                
+        if len(allowed_positions):
+            index = random.choice(allowed_positions)
+            child_1 = parent_1[:index+1] + parent_2[index+1:]
+            child_2 = parent_2[:index+1] + parent_1[index+1:]
+            return child_1, child_2
+        else:
+            self.mutate(parent_1)
+            self.mutate(parent_2)
+            return self.crossover(parent_1, parent_2)
         
     def get_individual_str(self, individual):
         return ''.join([str(i) for i in individual])
@@ -244,7 +262,7 @@ def str_representation(individual):
     return s
     
 def save_solution(last_generation, data, time, max_no_improv, max_gen_reached, args):
-    s = 'elapstime;k;seed;metric;ngen;pop;cxpb;mutpb;no_elite;min_size;max_size;outliers;max_no_improv;max_gen_reached\n'
+    s = 'elapstime;k;seed;metric;ngen;pop;cxpb;mutpb;elitism;min_size;max_size;outliers;max_no_improv;max_gen_reached\n'
     s += '%f;%d;%d;%s;%d;%d;%f;%f;%d;%d;%d;%d;%d;%d\n' % (time, args.k, args.seed, args.metric, args.ngen, args.pop, args.cxpb, args.mutpb, args.no_elite, args.mins, args.maxs, args.wo, max_no_improv, max_gen_reached)
     
     s += 'last_generation\n'    
@@ -281,10 +299,11 @@ def main():
     parser.add_argument('--cxpb', type=float, default=0.8, help='Initial crossover probability (default=0.8)')
     parser.add_argument('--mincxpb', type=float, default=0.1, help='Minimum crossover probability (default=0.1)')
     parser.add_argument('--mutpb', type=float, default=0.01, help='Mutation probability (default=0.01)')
-    parser.add_argument('--no_elite', action='store_false', help='Do not use elistism (default=False)')
+    parser.add_argument('--no_elite', default=True, action='store_false', help='Do not use elistism (default=False)')
     parser.add_argument('--mins', type=int, default=3, help='Minimum size of solution (default=3)')
     parser.add_argument('--maxs', type=int, default=6, help='Maximum size of solution (default=6)')
     parser.add_argument('--divfac', type=float, default=0.1, help='Percentage of population to be diversified after max_no_improv/2 iterations without improve the best solution (default=0.1)')
+    parser.add_argument('--toursize', type=float, default=0.2, help='Percentage of population to parcitipate of tournament selection (default=0.2)')
     parser.add_argument('--verbose', '-v', action='store_true', help='Verbose excution of GA (default=False)')
     parser.add_argument('--wo', action='store_true', help='Data with outliers (defaut=False)')
     parser.add_argument('--pltvar', action='store_true', help='Plot variances (default=False)')
