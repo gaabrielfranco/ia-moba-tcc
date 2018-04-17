@@ -12,6 +12,7 @@ import sklearn.feature_selection as fs
 import numpy as np
 import time
 import random
+from operator import attrgetter
 
 ### Function for formatting time in human readable format
 def get_formatted_time(s):
@@ -38,9 +39,10 @@ def get_formatted_time(s):
 
 ### Classes for modelling the problem
 class BaseProblem(object):
-    def __init__(self, min_size, max_size):
+    def __init__(self, min_size, max_size, maximise=True):
         self.min_size = min_size
         self.max_size = max_size
+        self.maximise = maximise
         self.hash = {}
         self.init_pop_hash = {}
         
@@ -109,6 +111,20 @@ class BaseProblem(object):
             self.mutate(parent_2)
             return self.crossover(parent_1, parent_2)
         
+    def binary_selection(self, population):
+        members = random.sample(population, 2)
+        members.sort(key=attrgetter('fitness'), reverse=self.maximise)
+        return members[0]
+    
+    def roulette_selection(self, population):
+        maximum = sum(individual.fitness for individual in population)
+        pick = random.uniform(0, maximum)
+        current = 0
+        for individual in population:
+            current += individual.fitness
+            if current > pick:
+                return individual
+        
     def get_individual_str(self, individual):
         return ''.join([str(i) for i in individual])
         
@@ -126,9 +142,9 @@ class BaseProblem(object):
         self.hash[individual_str] = evaluation
 
 class VarianceProblem(BaseProblem):
-    def __init__(self, min_size, max_size):
+    def __init__(self, min_size, max_size, maximise=True):
         ### Run superclass constructor
-        super(VarianceProblem, self).__init__(min_size, max_size)
+        super(VarianceProblem, self).__init__(min_size, max_size, maximise=maximise)
         print('\nRunning variance problem...\n')
 
     ### Get variances for attributes
@@ -184,9 +200,9 @@ class VarianceProblem(BaseProblem):
         return evaluation
         
 class ClusteringProblem(BaseProblem):
-    def __init__(self, k, data, metric, min_size, max_size, seed):
+    def __init__(self, k, data, metric, min_size, max_size, seed, maximise=True):
         ### Run superclass constructor
-        super(ClusteringProblem, self).__init__(min_size, max_size)
+        super(ClusteringProblem, self).__init__(min_size, max_size, maximise=maximise)
         self.metric = metric
         self.k = k
         self.data = data
@@ -262,8 +278,8 @@ def str_representation(individual):
     return s
     
 def save_solution(last_generation, data, time, max_no_improv, max_gen_reached, args):
-    s = 'elapstime;k;seed;metric;ngen;pop;cxpb;mutpb;elitism;min_size;max_size;outliers;max_no_improv;max_gen_reached\n'
-    s += '%f;%d;%d;%s;%d;%d;%f;%f;%d;%d;%d;%d;%d;%d\n' % (time, args.k, args.seed, args.metric, args.ngen, args.pop, args.cxpb, args.mutpb, args.no_elite, args.mins, args.maxs, args.wo, max_no_improv, max_gen_reached)
+    s = 'elapstime;k;seed;metric;ngen;pop;cxpb;mutpb;elite_size;min_size;max_size;outliers;max_no_improv;max_gen_reached\n'
+    s += '%f;%d;%d;%s;%d;%d;%f;%f;%d;%d;%d;%d;%d;%d\n' % (time, args.k, args.seed, args.metric, args.ngen, args.pop, args.cxpb, args.mutpb, args.elsize, args.mins, args.maxs, args.wo, max_no_improv, max_gen_reached)
     
     s += 'last_generation\n'    
     
@@ -293,16 +309,18 @@ def main():
     parser.add_argument('--k', type=int, default=10, help='Number of clusters (default=10)')
     parser.add_argument('--seed', type=int, default=-1, help='Random seed (default=-1). Use -1 for totally uncontrolled randomness')
     parser.add_argument('--metric', default='se', choices=['se', 'sc', 'i', 'v'], help='Metric to optimize: se | sc | i | v (silhouette with euclidean distance, silhouette with cosine distance, inertia, average variance) (default=s)')
+    parser.add_argument('--selec', default='bin', choices=['bin', 'rou', 'tour', 'rnd'], help='Selection Heuristic: bin | rou | tour | rnd (binary, roulette, tournament, random) (default=bin)')
     parser.add_argument('--ngen', type=int, default=300, help='Number of generations (default=100)')
-    parser.add_argument('--max_no_improv', '-mximp', type=float, default=0.1, help='Percentage of generations with no improvement to force GA to stop (default=0.1)')
+    parser.add_argument('--max_no_improv', '-mximp', type=float, default=0.2, help='Percentage of generations with no improvement to force GA to stop (default=0.2)')
     parser.add_argument('--pop', type=int, default=30, help='Population size (default=30)')
     parser.add_argument('--cxpb', type=float, default=0.8, help='Initial crossover probability (default=0.8)')
     parser.add_argument('--mincxpb', type=float, default=0.1, help='Minimum crossover probability (default=0.1)')
     parser.add_argument('--mutpb', type=float, default=0.01, help='Mutation probability (default=0.01)')
-    parser.add_argument('--no_elite', default=True, action='store_false', help='Do not use elistism (default=False)')
+    parser.add_argument('--elsize', default=0.05, type=float, help='Percentage of population to keep in the elite (default=0.05)')
     parser.add_argument('--mins', type=int, default=3, help='Minimum size of solution (default=3)')
     parser.add_argument('--maxs', type=int, default=6, help='Maximum size of solution (default=6)')
     parser.add_argument('--divfac', type=float, default=0.1, help='Percentage of population to be diversified after max_no_improv/2 iterations without improve the best solution (default=0.1)')
+    parser.add_argument('--divstep', type=float, default=0.1, help='Percentage of generations with no improvement to force diversification (should be less than max_no_improv (default=0.1)')
     parser.add_argument('--toursize', type=float, default=0.2, help='Percentage of population to parcitipate of tournament selection (default=0.2)')
     parser.add_argument('--verbose', '-v', action='store_true', help='Verbose excution of GA (default=False)')
     parser.add_argument('--wo', action='store_true', help='Data with outliers (defaut=False)')
@@ -311,6 +329,7 @@ def main():
     args = parser.parse_args()
     
     max_no_improv = int(np.round(args.max_no_improv * args.ngen))
+    divstep = int(np.round(args.divstep * args.ngen))
     
     ### Loading data
     if args.wo:
@@ -324,25 +343,61 @@ def main():
         
     ### Instantiate the problem
     if args.metric == 'v':
-        problem = VarianceProblem(args.mins, args.maxs)
         maximise = True
+        problem = VarianceProblem(args.mins, args.maxs, maximise=maximise)
     elif args.metric == 'se':
-        problem = ClusteringProblem(args.k, data, 'silhouette-euclidean', args.mins, args.maxs, args.seed)
         maximise = True
+        problem = ClusteringProblem(args.k,
+                                    data,
+                                    'silhouette-euclidean',
+                                    args.mins,
+                                    args.maxs,
+                                    args.seed,
+                                    maximise=maximise)
     elif args.metric == 'sc':
-        problem = ClusteringProblem(args.k, data, 'silhouette-cosine', args.mins, args.maxs, args.seed)
         maximise = True
+        problem = ClusteringProblem(args.k,
+                                    data,
+                                    'silhouette-cosine',
+                                    args.mins,
+                                    args.maxs,
+                                    args.seed,
+                                    maximise=maximise)
     else:
-        problem = ClusteringProblem(args.k, data, 'inertia', args.mins, args.maxs, args.seed)
         maximise = False
+        problem = ClusteringProblem(args.k,
+                                    data,
+                                    'inertia',
+                                    args.mins,
+                                    args.maxs,
+                                    args.seed,
+                                    maximise=maximise)
 
     ### Setting up genetic algorithm
-    genetic = GeneticAlgorithm(data, population_size=args.pop, generations=args.ngen, crossover_probability=args.cxpb, mutation_probability=args.mutpb, elitism=args.no_elite, maximise_fitness=maximise, max_no_improv=max_no_improv, verbose=args.verbose, min_crossover_probability=args.mincxpb, diversification_factor=args.divfac)
+    genetic = GeneticAlgorithm(data,
+                               population_size=args.pop,
+                               generations=args.ngen,
+                               crossover_probability=args.cxpb,
+                               mutation_probability=args.mutpb,
+                               elitism=args.elsize,
+                               maximise_fitness=maximise,
+                               max_no_improv=max_no_improv,
+                               verbose=args.verbose,
+                               min_crossover_probability=args.mincxpb,
+                               diversification_factor=args.divfac,
+                               diversification_step=divstep)
     
     genetic.fitness_function = problem.fitness
     genetic.create_individual = problem.create_individual
     genetic.mutate_function = problem.mutate
     genetic.crossover_function = problem.crossover
+    if args.selec == 'bin':
+        genetic.selection_function = problem.binary_selection
+    elif args.selec == 'rou':
+        genetic.selection_function = problem.roulette_selection
+    elif args.selec == 'rnd':
+        genetic.selection_function = genetic.random_selection
+    # If none of the above options, leaves the default selection: tournament
     
     ### Executing GA
     start_time = time.time()

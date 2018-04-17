@@ -39,13 +39,14 @@ class GeneticAlgorithm(object):
                  generations=100,
                  crossover_probability=0.8,
                  mutation_probability=0.2,
-                 elitism=True,
+                 elitism=0.05,
                  maximise_fitness=True,
                  max_no_improv=20,
                  verbose=False,
                  min_crossover_probability=0.1,
                  diversification_factor=0.1,
-                 tournament_percent=0.2):
+                 tournament_percent=0.2,
+                 diversification_step=10):
         """Instantiate the Genetic Algorithm.
         :param seed_data: input data to the Genetic Algorithm
         :type seed_data: list of objects
@@ -66,9 +67,12 @@ class GeneticAlgorithm(object):
         self.verbose = verbose
         self.min_crossover_probability = min_crossover_probability
         self.diversification_factor = diversification_factor
+        self.diversification_step = diversification_step
         self.tournament_percent = tournament_percent
         
-        self.perturb_solutions = False
+        self.diversify_solutions = False
+        self.elite = None
+        self.elite_size = int(self.elitism * self.population_size)
 
         self.current_generation = []
 
@@ -98,7 +102,7 @@ class GeneticAlgorithm(object):
             mutate_index = random.randrange(len(individual))
             individual[mutate_index] = (0, 1)[individual[mutate_index] == 0]
             
-        def perturb(individual):
+        def diversification(individual):
             """ Strongly perturb an individual, choosing randomly one of the
             two methods."""
             for i in range(len(individual)):
@@ -129,16 +133,30 @@ class GeneticAlgorithm(object):
         self.crossover_function = crossover
         self.mutate_function = mutate
         self.selection_function = self.tournament_selection
-        self.perturb_function = perturb
+        self.diversification_function = diversification
 
+    def check_elite(self, individual):
+        if individual.hash not in [obj.hash for obj in self.elite]:
+            if len(self.elite) < self.elite_size:
+                self.elite.append(copy.deepcopy(individual))
+                self.elite.sort(key=attrgetter('fitness'), reverse=True)
+            else:
+                lower_bound = min(self.elite, key=attrgetter('fitness')).fitness
+                if individual.fitness > lower_bound:
+                    self.elite.pop(len(self.elite)-1)
+                    self.elite.append(copy.deepcopy(individual))
+                    self.elite.sort(key=attrgetter('fitness'), reverse=True)
+                    
     def create_initial_population(self):
         """Create members of the first population randomly.
         """
+        self.elite = []
         initial_population = []
         for _ in range(self.population_size):
             genes = self.create_individual(self.seed_data)
             individual = Chromosome(genes)
             initial_population.append(individual)
+            self.check_elite(individual)
         self.current_generation = initial_population
 
     def calculate_population_fitness(self):
@@ -148,6 +166,7 @@ class GeneticAlgorithm(object):
         for individual in self.current_generation:
             individual.fitness = self.fitness_function(
                 individual.genes, self.seed_data)
+            self.check_elite(individual)
 
     def rank_population(self):
         """Sort the population by fitness according to the order defined by
@@ -161,7 +180,6 @@ class GeneticAlgorithm(object):
         crossover, and mutation) supplied.
         """
         new_population = []
-        elite = copy.deepcopy(self.current_generation[0])
         selection = self.selection_function
 
         while len(new_population) < self.population_size:
@@ -186,15 +204,16 @@ class GeneticAlgorithm(object):
             if len(new_population) < self.population_size:
                 new_population.append(child_2)
             
-        if self.perturb_solutions:
-            n_perturb = int(self.diversification_factor * self.population_size)
-            for _ in range(n_perturb):
-                index = random.randint(0, len(new_population)-1)
-                new_population[index].genes = self.perturb_function(new_population[index].genes)
-            self.perturb_solutions = False
+        if self.diversify_solutions:
+            n_diversification = int(self.diversification_factor * self.population_size)
+            diversification_pool = random.sample(range(len(new_population)), n_diversification)
+            for index in diversification_pool:
+                new_population[index].genes = self.diversification_function(new_population[index].genes)
+            self.diversify_solutions = False
             
         if self.elitism:
-            new_population[0] = elite
+            for i in range(self.elite_size):
+                new_population[i] = copy.deepcopy(self.elite[i])
 
         self.current_generation = new_population
 
@@ -247,7 +266,7 @@ class GeneticAlgorithm(object):
 
         for _ in range(1, self.generations):
             if self.verbose:
-                print('\tProcessing generation %d of %d...' %
+                print('\tProcessing generation %4d of %4d...' %
                     (gen_count, self.generations), end=' ')
                 gen_count += 1
                 
@@ -271,8 +290,8 @@ class GeneticAlgorithm(object):
                 self.crossover_probability = max(self.min_crossover_probability, self.crossover_probability-0.1)
                 count_decay = 0
                 
-            if count_no_improv == int(self.generations // 10):
-                self.perturb_solutions = True
+            if count_no_improv % int(self.generations // self.diversification_step) == 0:
+                self.diversify_solutions = True
                 
             if count_no_improv >= self.max_no_improv:
                 return False
@@ -300,6 +319,7 @@ class Chromosome(object):
         """Initialise the Chromosome."""
         self.genes = genes
         self.fitness = 0
+        self.hash = ''.join([str(gene) for gene in self.genes])
 
     def __repr__(self):
         """Return initialised Chromosome representation in human readable form.
