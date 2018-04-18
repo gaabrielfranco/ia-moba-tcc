@@ -139,13 +139,20 @@ class GeneticAlgorithm(object):
         if individual.hash not in [obj.hash for obj in self.elite]:
             if len(self.elite) < self.elite_size:
                 self.elite.append(copy.deepcopy(individual))
-                self.elite.sort(key=attrgetter('fitness'), reverse=True)
+                self.elite.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
             else:
-                lower_bound = min(self.elite, key=attrgetter('fitness')).fitness
-                if individual.fitness > lower_bound:
-                    self.elite.pop(len(self.elite)-1)
-                    self.elite.append(copy.deepcopy(individual))
-                    self.elite.sort(key=attrgetter('fitness'), reverse=True)
+                if self.maximise_fitness:
+                    lower_bound = min(self.elite, key=attrgetter('fitness')).fitness
+                    if individual.fitness > lower_bound:
+                        self.elite.pop(len(self.elite)-1)
+                        self.elite.append(copy.deepcopy(individual))
+                        self.elite.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
+                else:
+                    lower_bound = max(self.elite, key=attrgetter('fitness')).fitness
+                    if individual.fitness < lower_bound:
+                        self.elite.pop(len(self.elite)-1)
+                        self.elite.append(copy.deepcopy(individual))
+                        self.elite.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
                     
     def create_initial_population(self):
         """Create members of the first population randomly.
@@ -251,7 +258,7 @@ class GeneticAlgorithm(object):
         """Run (solve) the Genetic Algorithm."""
         if self.verbose:
             gen_count = 1
-            print('\tProcessing generation %d of %d...' %
+            print('\tProcessing generation %4d of %4d...' %
                 (gen_count, self.generations))
             gen_count += 1
             
