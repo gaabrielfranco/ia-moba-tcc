@@ -1,0 +1,5 @@
+k;seed;metric;min_size;max_size;outliers
+10;-1;euclidean;3;9;0
+best_solution
+evaluation;assists;deaths;denies;gpm;hd;hh;kills;lh;xpm
+{gpm,hh,xpm}: 0.322824
