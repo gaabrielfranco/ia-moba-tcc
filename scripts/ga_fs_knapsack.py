@@ -303,7 +303,7 @@ def save_solution(last_generation, data, time, max_no_improv, max_gen_reached, a
 ### Main function
 def main():
     ### Parsing command line arguments
-    parser = argparse.ArgumentParser(description='Feature selection tool, using Genetic Algorithm')
+    parser = argparse.ArgumentParser(description='Feature selection tool, using Genetic Algorithm (Problem Modeled as Classic Knapsack)')
     parser.add_argument('csv_file', help='csv file to save output data')
     parser.add_argument('--lang', default='en', help='Whether use . or , as floating point number decimal separator in output. If lang=en, uses dot if lang=pt, uses comma (default=en)')
     parser.add_argument('--k', type=int, default=10, help='Number of clusters (default=10)')
