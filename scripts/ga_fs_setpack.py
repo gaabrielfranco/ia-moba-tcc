@@ -39,15 +39,32 @@ def get_formatted_time(s):
 
 ### Classes for modelling the problem
 class BaseProblem(object):
-    def __init__(self, min_size, max_size, maximise=True):
+    def __init__(self, data, min_size, max_size, corr_threshold, maximise=True):
+        self.data = data
         self.min_size = min_size
         self.max_size = max_size
         self.maximise = maximise
         self.hash = {}
         self.init_pop_hash = {}
+        ### Restrictions creation
+        self.attributes = list(self.data.columns)
+        self.restrictions = np.zeros((len(self.attributes), len(self.attributes)))
+        self.restrictions_counts = np.zeros(len(self.attributes))
+        self.corr_threshold = corr_threshold
+        self.create_restrictions()
         
-    def create_individual(self, data):
-        n = len(data.columns)
+    def create_restrictions(self):
+        corr = self.data.corr()
+        for i in range(0, len(self.attributes)-1):
+            for j in range(i+1, len(self.attributes)):
+                if abs(corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
+                    self.restrictions[i][j] += 1
+                    self.restrictions[j][i] += 1
+                    self.restrictions_counts[i] += 1
+                    self.restrictions_counts[j] += 1
+        
+    def create_individual(self, _):
+        n = len(self.data.columns)
         individual = list(np.zeros(n, dtype=int))
         indexes = list(range(n))
         n_attr = np.random.randint(self.min_size, self.max_size+1)
@@ -142,9 +159,9 @@ class BaseProblem(object):
         self.hash[individual_str] = evaluation
 
 class VarianceProblem(BaseProblem):
-    def __init__(self, min_size, max_size, maximise=True):
+    def __init__(self, data, min_size, max_size, corr_threshold, maximise=True):
         ### Run superclass constructor
-        super(VarianceProblem, self).__init__(min_size, max_size, maximise=maximise)
+        super(VarianceProblem, self).__init__(data, min_size, max_size, corr_threshold, maximise=maximise)
         print('\nRunning variance problem...\n')
 
     ### Get variances for attributes
@@ -154,13 +171,13 @@ class VarianceProblem(BaseProblem):
         return np.array(sel.variances_)
         
     ### Plot variances
-    def plot_variances(self, data, show=False, save_file=None):
-        variances = self.get_variances(data)
+    def plot_variances(self, show=False, save_file=None):
+        variances = self.get_variances(self.data)
         
         ### Sorting data by their variance
         values = []
         names = []
-        for i, c in enumerate(data.columns):
+        for i, c in enumerate(self.data.columns):
             pos = 0
             while pos < len(values) and values[pos] >= variances[i]:
                 pos += 1
@@ -200,12 +217,11 @@ class VarianceProblem(BaseProblem):
         return evaluation
         
 class ClusteringProblem(BaseProblem):
-    def __init__(self, k, data, metric, min_size, max_size, seed, maximise=True):
+    def __init__(self, k, metric, seed, data, min_size, max_size, corr_threshold, maximise=True):
         ### Run superclass constructor
-        super(ClusteringProblem, self).__init__(min_size, max_size, maximise=maximise)
+        super(ClusteringProblem, self).__init__(data, min_size, max_size, corr_threshold, maximise=maximise)
         self.metric = metric
         self.k = k
-        self.data = data
         self.min_size = min_size
         self.max_size = max_size
         if seed < 0:
@@ -303,7 +319,7 @@ def save_solution(last_generation, data, time, max_no_improv, max_gen_reached, a
 ### Main function
 def main():
     ### Parsing command line arguments
-    parser = argparse.ArgumentParser(description='Feature selection tool, using Genetic Algorithm (Problem Modeled as Classic Knapsack)')
+    parser = argparse.ArgumentParser(description='Feature selection tool, using Genetic Algorithm (Problem Modeled as Set Packing)')
     parser.add_argument('csv_file', help='csv file to save output data')
     parser.add_argument('--lang', default='en', help='Whether use . or , as floating point number decimal separator in output. If lang=en, uses dot if lang=pt, uses comma (default=en)')
     parser.add_argument('--k', type=int, default=10, help='Number of clusters (default=10)')
@@ -319,6 +335,7 @@ def main():
     parser.add_argument('--elsize', default=0.05, type=float, help='Percentage of population to keep in the elite (default=0.05)')
     parser.add_argument('--mins', type=int, default=3, help='Minimum size of solution (default=3)')
     parser.add_argument('--maxs', type=int, default=6, help='Maximum size of solution (default=6)')
+    parser.add_argument('--corr_threshold', '-crth', type=float, default=0.75, help='Value for correlation threshold (absolute value). Used to create restrictions (default=0.75)')
     parser.add_argument('--divfac', type=float, default=0.1, help='Percentage of population to be diversified after max_no_improv/2 iterations without improve the best solution (default=0.1)')
     parser.add_argument('--divstep', type=float, default=0.1, help='Percentage of generations with no improvement to force diversification (should be less than max_no_improv (default=0.1)')
     parser.add_argument('--toursize', type=float, default=0.2, help='Percentage of population to parcitipate of tournament selection (default=0.2)')
@@ -344,33 +361,40 @@ def main():
     ### Instantiate the problem
     if args.metric == 'v':
         maximise = True
-        problem = VarianceProblem(args.mins, args.maxs, maximise=maximise)
+        problem = VarianceProblem(data,
+                                  args.mins,
+                                  args.maxs,
+                                  args.corr_threshold,
+                                  maximise=maximise)
     elif args.metric == 'se':
         maximise = True
         problem = ClusteringProblem(args.k,
-                                    data,
                                     'silhouette-euclidean',
+                                    args.seed,
+                                    data,
                                     args.mins,
                                     args.maxs,
-                                    args.seed,
+                                    args.corr_threshold,
                                     maximise=maximise)
     elif args.metric == 'sc':
         maximise = True
         problem = ClusteringProblem(args.k,
-                                    data,
                                     'silhouette-cosine',
+                                    args.seed,
+                                    data,
                                     args.mins,
                                     args.maxs,
-                                    args.seed,
+                                    args.corr_threshold,
                                     maximise=maximise)
     else:
         maximise = False
         problem = ClusteringProblem(args.k,
-                                    data,
                                     'inertia',
+                                    args.seed,
+                                    data,
                                     args.mins,
                                     args.maxs,
-                                    args.seed,
+                                    args.corr_threshold,
                                     maximise=maximise)
 
     ### Setting up genetic algorithm
@@ -420,9 +444,9 @@ def main():
     
     if args.metric == 'v':
         if args.pltfile:
-            problem.plot_variances(data, show=args.pltvar, save_file=args.pltfile)
+            problem.plot_variances(show=args.pltvar, save_file=args.pltfile)
         elif args.pltvar:
-            problem.plot_variances(data, show=args.pltvar)
+            problem.plot_variances(show=args.pltvar)
         
     save_solution(genetic.last_generation(), data, elapsed_time, max_no_improv, max_gen_reached, args)
 

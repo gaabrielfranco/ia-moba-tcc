@@ -9,6 +9,7 @@ import random
 import numpy as np
 import copy
 from operator import attrgetter
+import pandas as pd
 
 class Chromosome(object):
     """ Chromosome class that encapsulates an individual's fitness and solution
@@ -40,42 +41,62 @@ def create_chromosome(individual_size, min_size, max_size):
         
     return individual
 
-
-pop_size = 100
-min_size = 3
-max_size = 9
-individual_size = 9
-weights = [12, 11, 8, 7, 21, 19, 3, 8, 4]
-elite_size = 6
-
-elite = []
-
-population = []
-for _ in range(100):
-    chromosome = Chromosome(create_chromosome(individual_size, min_size, max_size))
-    chromosome.evaluate(weights)
-    population.append(chromosome)
+def simulate_elite():
+    pop_size = 100
+    min_size = 3
+    max_size = 9
+    individual_size = 9
+    weights = [12, 11, 8, 7, 21, 19, 3, 8, 4]
+    elite_size = 6
     
-    if chromosome.hash not in [obj.hash for obj in elite]:
-        if len(elite) < elite_size:
-            elite.append(copy.deepcopy(chromosome))
-            elite.sort(key=attrgetter('fitness'), reverse=True)
-            print(elite)
-            print(len(elite))
-            print()
-        else:
-            lower_bound = min(elite, key=attrgetter('fitness')).fitness
-            if chromosome.fitness > lower_bound:
-                elite.pop(len(elite)-1)
+    elite = []
+    
+    population = []
+    for _ in range(pop_size):
+        chromosome = Chromosome(create_chromosome(individual_size, min_size, max_size))
+        chromosome.evaluate(weights)
+        population.append(chromosome)
+        
+        if chromosome.hash not in [obj.hash for obj in elite]:
+            if len(elite) < elite_size:
                 elite.append(copy.deepcopy(chromosome))
                 elite.sort(key=attrgetter('fitness'), reverse=True)
                 print(elite)
                 print(len(elite))
                 print()
-            
+            else:
+                lower_bound = min(elite, key=attrgetter('fitness')).fitness
+                if chromosome.fitness > lower_bound:
+                    elite.pop(len(elite)-1)
+                    elite.append(copy.deepcopy(chromosome))
+                    elite.sort(key=attrgetter('fitness'), reverse=True)
+                    print(elite)
+                    print(len(elite))
+                    print()
+                
+    
+    """for individual in population:
+        print(individual)
+    print('==========ELITE========')
+    for individual in elite:
+        print(individual)"""
 
-"""for individual in population:
-    print(individual)
-print('==========ELITE========')
-for individual in elite:
-    print(individual)"""
+
+data = pd.read_json('../files/data/data_pruned_df.json')
+corr_threshold = 0.75
+
+corr = data.corr()
+attributes = list(corr.columns)
+counts = np.zeros(len(attributes))
+restrictions = np.zeros((len(attributes), len(attributes)))
+for i in range(0, len(attributes)-1):
+    for j in range(i+1, len(attributes)):
+        if abs(corr[attributes[i]][attributes[j]]) >= corr_threshold:
+            restrictions[i][j] += 1
+            restrictions[j][i] += 1
+            counts[i] += 1
+            counts[j] += 1
+            
+print(restrictions)
+print(counts)
+
