@@ -77,17 +77,32 @@ class BaseProblem(object):
             individual[index] = 1
             count += 1
             
+            removed = [index]
             if self.restrictions_counts[index]:
-                for i in self.restrictions[index]:
-                    if self.restrictions[index][i]:
+                for i, value in enumerate(self.restrictions[index]):
+                    if value and i in candidates:
                         candidates.remove(i)
+                        removed.append(i)
                         
-            if len(candidates) - count < self.min_size:
-                ### CHECK WHETHER IS POSSIBLE TO CREATE A FEASIBLE SOLUTION WHITHOUT VIOLATING
-                ### SIZE LIMITS CONSIDERING THE CURRENT PARTIAL SOLUTION
-                print('Opa')
+            if len(candidates) + count < self.min_size:
+                individual[index] = 0
+                count -= 1
+                candidates = candidates + removed
+                
+            if not len(candidates):
+                break
             
         return individual
+    
+    def count_violations(self, individual):
+        violations = 0
+        for i,item in enumerate(individual):
+            if item and self.restrictions_counts[i]:
+                for j, forbidden in enumerate(self.restrictions[i]):
+                    if forbidden and individual[j]:
+                        violations += 1
+                        
+        return violations
         
     def analyse_chromossome(self, individual):
         item_count = 0
