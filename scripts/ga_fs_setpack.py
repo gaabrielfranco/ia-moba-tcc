@@ -64,15 +64,28 @@ class BaseProblem(object):
                     self.restrictions_counts[j] += 1
         
     def create_individual(self, _):
-        n = len(self.data.columns)
+        n = len(self.attributes)
         individual = list(np.zeros(n, dtype=int))
-        indexes = list(range(n))
+        candidates = list(range(n))
         n_attr = np.random.randint(self.min_size, self.max_size+1)
         
-        activated = random.sample(indexes, n_attr)
-        
-        for i in activated:
-            individual[i] = 1
+        count = 0
+        while count < n_attr:
+            position = random.choice(range(len(candidates)))
+            index = candidates.pop(position)
+            
+            individual[index] = 1
+            count += 1
+            
+            if self.restrictions_counts[index]:
+                for i in self.restrictions[index]:
+                    if self.restrictions[index][i]:
+                        candidates.remove(i)
+                        
+            if len(candidates) - count < self.min_size:
+                ### CHECK WHETHER IS POSSIBLE TO CREATE A FEASIBLE SOLUTION WHITHOUT VIOLATING
+                ### SIZE LIMITS CONSIDERING THE CURRENT PARTIAL SOLUTION
+                print('Opa')
             
         return individual
         
