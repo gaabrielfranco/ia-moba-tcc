@@ -1,0 +1,5 @@
+k;seed;metric;min_size;max_size;outliers;threshold
+10;-1;inertia;3;9;0;0.750000
+best_solution
+evaluation;assists;deaths;denies;gpm;hd;hh;kills;lh;xpm
+{hd,kills,xpm}: 185.041327
