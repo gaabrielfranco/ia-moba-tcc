@@ -1,5 +1,13 @@
 k;seed;metric;min_size;max_size;outliers;threshold
 10;-1;inertia;3;9;1;0.750000
-best_solution
-evaluation;assists;deaths;denies;gpm;hd;hh;kills;lh;xpm
-{gpm,hd,kills}: 15.738450
+Top 10 solutions
+hd,hh,kills,36.154583
+denies,gpm,kills,22.623629
+assists,gpm,kills,30.339097
+assists,kills,xpm,41.020593
+deaths,kills,xpm,25.773678
+deaths,hh,kills,37.466228
+deaths,gpm,kills,18.384741
+hd,kills,xpm,21.265452
+denies,kills,xpm,30.949544
+gpm,hd,kills,15.740666

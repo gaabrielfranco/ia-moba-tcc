@@ -27,8 +27,6 @@ def create_restrictions(data, corr_threshold):
                 counts[i] += 1
                 counts[j] += 1
 
-    print(restrictions)
-
     return restrictions
 
 
@@ -65,8 +63,9 @@ def fitness(data, metric='euclidean', k=10, seed=None):
         return km.inertia_
 
 
-def solution_str(candidate):
-    return '{' + ','.join(candidate['solution']) + '}: %f' % candidate['evaluation']
+def solution_str(candidate, save=False):
+    return '{' + ','.join(candidate['solution']) + '}: %f' % candidate['evaluation'] if not save \
+        else ','.join(candidate['solution']) + ',%f\n' % candidate['evaluation']
 
 
 def save_solution(best, data, args):
@@ -74,15 +73,10 @@ def save_solution(best, data, args):
     s += '%d;%d;%s;%d;%d;%d;%f\n' % (args.k, args.seed,
                                      args.metric, args.mins, args.maxs, args.wo, args.threshold)
 
-    s += 'best_solution\n'
+    s += 'Top 10 solutions\n'
 
-    head = ['evaluation']
-    for i in range(len(data.columns)):
-        head.append(data.columns[i])
-    head = ';'.join(head)
-    s += head + '\n'
-
-    s += solution_str(best)
+    for solution in best:
+        s += solution_str(solution, True)
 
     if args.lang == 'pt':
         s.replace('.', ',')
@@ -137,30 +131,69 @@ def main():
         for c in combs:
             if not check_violation(c, restrictions):
                 combinations.append(list(c))
-    return
+
     # Find best solution
-    count = 0
+    count = 1
     if args.metric == 'inertia':
-        best = {'evaluation': float('inf'), 'solution': []}
+        best = [{'evaluation': float('inf'), 'solution': []}
+                for i in range(10)]
     else:
-        best = {'evaluation': 0.0, 'solution': []}
-    for c in combinations:
+        best = [{'evaluation': 0.0, 'solution': []} for i in range(10)]
+    for it, c in enumerate(combinations):
         candidate = {'evaluation': fitness(
             data[c], args.metric, args.k, args.seed), 'solution': c}
         print('\tTesting set =', solution_str(candidate), end=' ')
-        if args.metric == 'inertia':
-            improvement = candidate['evaluation'] < best['evaluation']
-        else:
-            improvement = candidate['evaluation'] > best['evaluation']
-        if improvement:
-            best = candidate
+        if it < 10:
+            best[it] = candidate
             print('new best!')
+        elif args.metric == 'inertia':
+            print_best = True
+            position_out = -1
+            diff = -1
+            for index in range(len(best)):
+                if candidate['evaluation'] < best[index]['evaluation']:
+                    if diff == -1:
+                        position_out = index
+                        diff = best[index]['evaluation'] - \
+                            candidate['evaluation']
+                        print_best = False
+                    elif best[index]['evaluation'] - candidate['evaluation'] > diff:
+                        position_out = index
+                        diff = best[index]['evaluation'] - \
+                            candidate['evaluation']
+                        print_best = False
+            if print_best:
+                print()
+            else:
+                best[position_out] = candidate
+                print('new best!')
         else:
-            print()
+            print_best = True
+            position_out = -1
+            diff = -1
+            for index in range(len(best)):
+                if candidate['evaluation'] > best[index]['evaluation']:
+                    if diff == -1:
+                        position_out = index
+                        diff = candidate['evaluation'] - \
+                            best[index]['evaluation']
+                        print_best = False
+                    elif candidate['evaluation'] - best[index]['evaluation'] > diff:
+                        position_out = index
+                        diff = candidate['evaluation'] - \
+                            best[index]['evaluation']
+                        print_best = False
+            if print_best:
+                print()
+            else:
+                best[position_out] = candidate
+                print('new best!')
         count += 1
 
-    print('\nBest solution found of %d tested:' % count)
-    print('\tBest =', solution_str(best))
+    print('\nTop 10 best solution found of %d tested:' % count)
+
+    for solution in best:
+        print(solution)
 
     save_solution(best, data, args)
 

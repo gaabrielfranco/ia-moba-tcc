@@ -1,5 +1,13 @@
 k;seed;metric;min_size;max_size;outliers;threshold
 10;-1;variance;3;9;1;0.750000
-best_solution
-evaluation;assists;deaths;denies;gpm;hd;hh;kills;lh;xpm
-{assists,denies,lh}: 0.017999
+Top 10 solutions
+denies,hh,lh,0.014170
+denies,kills,lh,0.013903
+assists,denies,hd,lh,0.016139
+assists,hd,lh,0.015896
+deaths,denies,lh,0.014691
+assists,denies,hh,lh,0.014044
+assists,denies,lh,0.017999
+assists,deaths,denies,lh,0.014434
+assists,denies,kills,lh,0.013844
+denies,hd,lh,0.016963
