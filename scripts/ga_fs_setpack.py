@@ -53,26 +53,40 @@ class BaseProblem(object):
         self.init_pop_hash = {}
         ### Restrictions creation
         self.attributes = list(self.data.columns)
-        self.restrictions = np.zeros((len(self.attributes), len(self.attributes)))
-        self.restrictions_counts = np.zeros(len(self.attributes))
+        self.restrictions = []
         self.corr_threshold = corr_threshold
+        
+        self.corr = None
         self.create_restrictions()
         
     def create_restrictions(self):
-        corr = self.data.corr()
+        self.corr = self.data.corr()
         for i in range(0, len(self.attributes)-1):
             for j in range(i+1, len(self.attributes)):
-                if abs(corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
-                    self.restrictions[i][j] += 1
-                    self.restrictions[j][i] += 1
-                    self.restrictions_counts[i] += 1
-                    self.restrictions_counts[j] += 1
+                if abs(self.corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
+                    restriction = np.zeros(len(self.attributes), dtype=int)
+                    restriction[i] = 1
+                    restriction[j] = 1
+                    self.restrictions.append(restriction)
+        self.restrictions = np.array(self.restrictions)
         
     def create_individual(self, _):
         n = len(self.attributes)
         individual = list(np.zeros(n, dtype=int))
         candidates = list(range(n))
         n_attr = np.random.randint(self.min_size, self.max_size+1)
+        
+        # For the initial population, is convenient to represent the restrictions by means of a matrix
+        # It is better suitable for construction procedure
+        local_restrictions = np.zeros((len(self.attributes), len(self.attributes)))
+        local_restrictions_counts = np.zeros(len(self.attributes))
+        for i in range(0, len(self.attributes)-1):
+            for j in range(i+1, len(self.attributes)):
+                if abs(self.corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
+                    local_restrictions[i][j] += 1
+                    local_restrictions[j][i] += 1
+                    local_restrictions_counts[i] += 1
+                    local_restrictions_counts[j] += 1
         
         count = 0
         while count < n_attr:
@@ -83,8 +97,8 @@ class BaseProblem(object):
             count += 1
             
             removed = [index]
-            if self.restrictions_counts[index]:
-                for i, value in enumerate(self.restrictions[index]):
+            if local_restrictions_counts[index]:
+                for i, value in enumerate(local_restrictions[index]):
                     if value and i in candidates:
                         candidates.remove(i)
                         removed.append(i)
@@ -108,14 +122,12 @@ class BaseProblem(object):
                 att_sel.append(attr)
         
         if n_selected < self.min_size or n_selected > self.max_size:
-            return np.sum(self.restrictions_counts)+1, att_sel
+            return len(self.restrictions)+1, att_sel
         else:
             violations = 0
-            for i,item in enumerate(individual):
-                if item and self.restrictions_counts[i]:
-                    for j, forbidden in enumerate(self.restrictions[i]):
-                        if forbidden and individual[j]:
-                            violations += 1
+            for i in range(len(self.restrictions)):
+                if np.sum(np.bitwise_and(individual, self.restrictions[i])) >= 2:
+                    violations += 1
                             
             return violations, att_sel
         

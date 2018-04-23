@@ -22,8 +22,7 @@ class Problem(object):
         self.max_size = max_size
         self.metric = metric
         self.attributes = list(self.data.columns)
-        self.restrictions = np.zeros((len(self.attributes), len(self.attributes)))
-        self.restrictions_counts = np.zeros(len(self.attributes))
+        self.restrictions = []
         self.elite_size = elite_size
         self.elite = []
         
@@ -34,19 +33,22 @@ class Problem(object):
         for i in range(0, len(self.attributes)-1):
             for j in range(i+1, len(self.attributes)):
                 if abs(corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
-                    self.restrictions[i][j] += 1
-                    self.restrictions[j][i] += 1
-                    self.restrictions_counts[i] += 1
-                    self.restrictions_counts[j] += 1
+                    restriction = np.zeros(len(self.attributes), dtype=int)
+                    restriction[i] = 1
+                    restriction[j] = 1
+                    self.restrictions.append(restriction)
+        self.restrictions = np.array(self.restrictions)
     
     def count_violations(self, solution):
-        violations = 0
-        for i,item in enumerate(solution):
-            if item and self.restrictions_counts[i]:
-                for j, forbidden in enumerate(self.restrictions[i]):
-                    if forbidden and solution[j]:
-                        violations += 1
-                        
+        n_selected = np.sum(solution)
+        if n_selected < self.min_size or n_selected > self.max_size:
+            return len(self.restrictions)+1
+        else:
+            violations = 0
+            for i in range(len(self.restrictions)):
+                if np.sum(np.bitwise_and(solution, self.restrictions[i])) >= 2:
+                    violations += 1
+                    
         return violations
     
     def manage_elite(self, individual):
@@ -73,7 +75,7 @@ class Problem(object):
                 self.elite.pop(len(self.elite)-1)
                 self.elite.append(individual)
                 self.elite.sort(key=attrgetter('evaluation'), reverse=True)
-                print('Best updated!')
+                print('Elite updated!')
             else:
                 print()
 
@@ -90,16 +92,12 @@ class Individual(object):
             self.random_seed = seed
         
         attribute_map = list(self.data.columns)
-        self.solution = np.zeros(len(attribute_map))
+        self.solution = np.zeros(len(attribute_map), dtype=int)
         for i, item in enumerate(attribute_map):
             if item in self.attributes:
                 self.solution[i] = 1
         
-        if len(self.attributes) < self.problem.min_size or len(self.attributes) > self.problem.max_size:
-            self.violations = np.sum(self.problem.restrictions_counts)+1
-        else:
-            self.violations = self.problem.count_violations(self.solution)
-        
+        self.violations = self.problem.count_violations(self.solution)
         self.feasible = self.violations == 0
                 
     def __repr__(self):
@@ -135,7 +133,6 @@ class Individual(object):
         else:
             inertia = km.inertia_
             order = self.getOrder(inertia)
-            print('Inertia: %13.6f, Order: %d' % (inertia, order), end='\t')
             return inertia + self.violations * order*10**2
         
     def evaluate(self):
@@ -228,7 +225,7 @@ def main():
     # Generate all possible combinations
     cols = list(data.columns)
     all_solutions = []
-    for r in range(1, args.maxs+1):
+    for r in range(2, args.maxs+1):
         combs = itertools.combinations(cols, r)
         for c in combs:
             individual = Individual(list(c), problem, args.k, args.seed)
