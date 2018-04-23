@@ -37,6 +37,11 @@ def get_formatted_time(s):
 
     return '%s%02dh%02dm%02d.%ds' % (d, hours, minutes, seconds, decimal_part)
 
+def magnitude_order(x):
+    if x == 0.0:
+        return 0.0
+    return 10**np.floor(np.log10(np.abs(x)))
+
 ### Classes for modelling the problem
 class BaseProblem(object):
     def __init__(self, data, min_size, max_size, corr_threshold, maximise=True):
@@ -94,15 +99,25 @@ class BaseProblem(object):
             
         return individual
     
-    def count_violations(self, individual):
-        violations = 0
-        for i,item in enumerate(individual):
-            if item and self.restrictions_counts[i]:
-                for j, forbidden in enumerate(self.restrictions[i]):
-                    if forbidden and individual[j]:
-                        violations += 1
-                        
-        return violations
+    def precompute_violations(self, individual):
+        att_sel = []
+        n_selected = 0
+        for selected, attr in zip(individual, list(self.data.columns)):
+            if selected:
+                n_selected += 1
+                att_sel.append(attr)
+        
+        if n_selected < self.min_size or n_selected > self.max_size:
+            return np.sum(self.restrictions_counts)+1, att_sel
+        else:
+            violations = 0
+            for i,item in enumerate(individual):
+                if item and self.restrictions_counts[i]:
+                    for j, forbidden in enumerate(self.restrictions[i]):
+                        if forbidden and individual[j]:
+                            violations += 1
+                            
+            return violations, att_sel
         
     def analyse_chromossome(self, individual):
         item_count = 0
@@ -183,7 +198,6 @@ class BaseProblem(object):
         
     def add_to_hash(self, individual, evaluation):
         individual_str = self.get_individual_str(individual)
-        
         self.hash[individual_str] = evaluation
 
 class VarianceProblem(BaseProblem):
@@ -228,17 +242,9 @@ class VarianceProblem(BaseProblem):
         evaluation = self.check_hash(individual)
         if evaluation is not None:
             return evaluation
-            
-        att_sel = []
-        n_selected = 0
-        for selected, attr in zip(individual, list(data.columns)):
-            if selected:
-                n_selected += 1
-                att_sel.append(attr)
-        if n_selected < self.min_size or n_selected > self.max_size:
-            evaluation = 0.0
-        else:
-            evaluation = np.average(self.get_variances(data[att_sel]))
+        
+        violations, att_sel = self.precompute_violations(individual)
+        evaluation = np.average(self.get_variances(data[att_sel])) - np.log(1 + violations)
             
         self.add_to_hash(individual, evaluation)
         
@@ -261,7 +267,7 @@ class ClusteringProblem(BaseProblem):
         print('\nRunning %s problem...\n' % self.metric)
         
     ### Clustering
-    def clusterization(self, data):
+    def clusterization(self, data, individual):
         labels = self.km.fit_predict(data)
         
         if self.metric == 'inertia':
@@ -276,21 +282,15 @@ class ClusteringProblem(BaseProblem):
         evaluation = self.check_hash(individual)
         if evaluation is not None:
             return evaluation
-            
-        att_sel = []
-        n_selected = 0
-        for selected, attr in zip(individual, list(data.columns)):
-            if selected:
-                n_selected += 1
-                att_sel.append(attr)
-        if n_selected < self.min_size or n_selected > self.max_size:
-            if self.metric == 'inertia':
-                evaluation = float('inf')
-            else:
-                evaluation = 0.0
-        else:
-            evaluation = self.clusterization(data[att_sel])
         
+        violations, att_sel = self.precompute_violations(individual)
+        if self.metric == 'inertia':
+            inertia = self.clusterization(data[att_sel], individual)
+            order = magnitude_order(inertia)
+            evaluation = inertia + violations * order * 10**2
+        else:
+            evaluation = self.clusterization(data[att_sel], individual) - np.log(1 + violations)
+            
         self.add_to_hash(individual, evaluation)
         
         return evaluation

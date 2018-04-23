@@ -12,79 +12,177 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 import numpy as np
 import sklearn.feature_selection as fs
+from operator import attrgetter
 
+class Problem(object):
+    def __init__(self, data, corr_threshold, min_size, max_size, metric='cosine', elite_size=10):
+        self.data = data
+        self.corr_threshold = corr_threshold
+        self.min_size = min_size
+        self.max_size = max_size
+        self.metric = metric
+        self.attributes = list(self.data.columns)
+        self.restrictions = np.zeros((len(self.attributes), len(self.attributes)))
+        self.restrictions_counts = np.zeros(len(self.attributes))
+        self.elite_size = elite_size
+        self.elite = []
+        
+        self.create_restrictions()
 
-def create_restrictions(data, corr_threshold):
-    corr = data.corr()
-    attributes = list(corr.columns)
-    counts = np.zeros(len(attributes))
-    restrictions = np.zeros((len(attributes), len(attributes)))
-    for i in range(0, len(attributes)-1):
-        for j in range(i+1, len(attributes)):
-            if abs(corr[attributes[i]][attributes[j]]) >= corr_threshold:
-                restrictions[i][j] += 1
-                restrictions[j][i] += 1
-                counts[i] += 1
-                counts[j] += 1
+    def create_restrictions(self):
+        corr = self.data.corr()
+        for i in range(0, len(self.attributes)-1):
+            for j in range(i+1, len(self.attributes)):
+                if abs(corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
+                    self.restrictions[i][j] += 1
+                    self.restrictions[j][i] += 1
+                    self.restrictions_counts[i] += 1
+                    self.restrictions_counts[j] += 1
+    
+    def count_violations(self, solution):
+        violations = 0
+        for i,item in enumerate(solution):
+            if item and self.restrictions_counts[i]:
+                for j, forbidden in enumerate(self.restrictions[i]):
+                    if forbidden and solution[j]:
+                        violations += 1
+                        
+        return violations
+    
+    def manage_elite(self, individual):
+        print('\tTesting set =', individual, end=' ')
+        if len(self.elite) < self.elite_size:
+            self.elite.append(individual)
+            if self.metric == 'inertia':
+                self.elite.sort(key=attrgetter('evaluation'), reverse=False)
+            else:
+                self.elite.sort(key=attrgetter('evaluation'), reverse=True)
+            print('Elite updated!')
+        elif self.metric == 'inertia':
+            lower_bound = max(self.elite, key=attrgetter('evaluation')).evaluation
+            if individual.evaluation < lower_bound:
+                self.elite.pop(len(self.elite)-1)
+                self.elite.append(individual)
+                self.elite.sort(key=attrgetter('evaluation'), reverse=False)
+                print('Elite updated!')
+            else:
+                print()
+        else:
+            lower_bound = min(self.elite, key=attrgetter('evaluation')).evaluation
+            if individual.evaluation > lower_bound:
+                self.elite.pop(len(self.elite)-1)
+                self.elite.append(individual)
+                self.elite.sort(key=attrgetter('evaluation'), reverse=True)
+                print('Best updated!')
+            else:
+                print()
 
-    return restrictions
+class Individual(object):
+    def __init__(self, attributes, problem, k=10, seed=None):
+        self.problem = problem
+        self.data = self.problem.data
+        self.attributes = attributes
+        self.k = k
+        self.metric = self.problem.metric
+        if seed < 0:
+            self.random_seed = None
+        else:
+            self.random_seed = seed
+        
+        attribute_map = list(self.data.columns)
+        self.solution = np.zeros(len(attribute_map))
+        for i, item in enumerate(attribute_map):
+            if item in self.attributes:
+                self.solution[i] = 1
+        
+        if len(self.attributes) < self.problem.min_size or len(self.attributes) > self.problem.max_size:
+            self.violations = np.sum(self.problem.restrictions_counts)+1
+        else:
+            self.violations = self.problem.count_violations(self.solution)
+        
+        self.feasible = self.violations == 0
+                
+    def __repr__(self):
+        if self.feasible:
+            feasibility = 'Feasible'
+        else:
+            feasibility = 'Unfeasible'
+        return '{' + ','.join(self.attributes) + '}: %f (%s)' % (self.evaluation, feasibility)
+    
+    def get_csv(self):
+        return ','.join(self.attributes) + ';%f;%d;%d;%d\n' % (self.evaluation, self.feasible,
+                       len(self.attributes), self.violations)
+        
+    def getOrder(self, x):
+        if x == 0.0:
+            return 0.0
+        return 10**np.floor(np.log10(np.abs(x)))
+    
+    def fitness(self):
+        data_projected = self.data[self.attributes]
+        
+        if self.metric == 'variance':
+            sel = fs.VarianceThreshold()
+            sel.fit(data_projected)
+            return np.average(np.array(sel.variances_)) - np.log(1 + self.violations)
+        
+        km = KMeans(n_clusters=self.k, random_state=self.random_seed, n_jobs=-1)
+        labels = km.fit_predict(data_projected)
+        if self.metric == 'euclidean':
+            return silhouette_score(data_projected, labels) - np.log(1 + self.violations)
+        elif self.metric == 'cosine':
+            return silhouette_score(data_projected, labels, metric=self.metric) - np.log(1 + self.violations)
+        else:
+            inertia = km.inertia_
+            order = self.getOrder(inertia)
+            print('Inertia: %13.6f, Order: %d' % (inertia, order), end='\t')
+            return inertia + self.violations * order*10**2
+        
+    def evaluate(self):
+        self.evaluation = self.fitness()
+        self.problem.manage_elite(self)
 
+class Logger(object):
+    def __init__(self, args, maximise=True):
+        self.head = 'k;seed;metric;min_size;max_size;outliers;threshold;elite_size\n'
+        self.head += '%d;%d;%s;%d;%d;%d;%f;%d\n' % (args.k, args.seed,
+                    args.metric, args.mins, args.maxs, args.wo, args.threshold,
+                    args.elite_size)
+        self.elite_size = args.elite_size
+        self.lang = args.lang
+        self.file = args.csv_file
+        self.maximise = maximise
 
-def check_violation(individual, restrictions):
-    attributes_map = {"kills": 0, "deaths": 1,
-                      "assists": 2, "denies": 3, "gpm": 4, "hd": 5, "hh": 6, "lh": 7, "xpm": 8}
+    def write_content(self, solution_set):
+        self.body += 'Solution;Evaluation;Feasible;Num. of Attr.;Restrictions Violated\n'
+    
+        for individual in solution_set:
+            self.body += individual.get_csv()
+    
+        if self.lang == 'pt':
+            self.body.replace('.', ',')
+            
+        self.write()
 
-    for i in individual:
-        for j in individual:
-            if restrictions[attributes_map[i]][attributes_map[j]]:
-                return True
+    def save_elite(self, elite):
+        self.body = 'Top %d solutions\n' % self.elite_size
+        self.write_content(elite)
+        
+    def save_log(self, solutions):
+        solutions.sort(key=attrgetter('evaluation'), reverse=self.maximise)
+        file_tmp = self.file
+        self.file = self.file[:self.file.rfind('.')] + '_log' + self.file[self.file.rfind('.'):]
 
-    return False
-
-
-def fitness(data, metric='euclidean', k=10, seed=None):
-    if metric == 'variance':
-        sel = fs.VarianceThreshold()
-        sel.fit(data)
-        return np.average(np.array(sel.variances_))
-
-    if seed < 0:
-        random_seed = None
-    else:
-        random_seed = seed
-
-    km = KMeans(n_clusters=k, random_state=random_seed, n_jobs=-1)
-    labels = km.fit_predict(data)
-    if metric == 'euclidean':
-        return silhouette_score(data, labels)
-    elif metric == 'cosine':
-        return silhouette_score(data, labels, metric='cosine')
-    else:
-        return km.inertia_
-
-
-def solution_str(candidate, save=False):
-    return '{' + ','.join(candidate['solution']) + '}: %f' % candidate['evaluation'] if not save \
-        else ','.join(candidate['solution']) + ',%f\n' % candidate['evaluation']
-
-
-def save_solution(best, data, args):
-    s = 'k;seed;metric;min_size;max_size;outliers;threshold\n'
-    s += '%d;%d;%s;%d;%d;%d;%f\n' % (args.k, args.seed,
-                                     args.metric, args.mins, args.maxs, args.wo, args.threshold)
-
-    s += 'Top 10 solutions\n'
-
-    for solution in best:
-        s += solution_str(solution, True)
-
-    if args.lang == 'pt':
-        s.replace('.', ',')
-
-    fp = open(args.csv_file, 'w')
-    fp.write(s)
-    fp.close()
-
+        self.body = 'All solutions found\n'
+        self.write_content(solutions)
+        
+        self.file = file_tmp
+    
+    def write(self):
+        content = self.head + self.body
+        fp = open(self.file, 'w')
+        fp.write(content)
+        fp.close()
 
 def main():
     # Parsing command line arguments
@@ -107,6 +205,10 @@ def main():
                         help='Distance metric: euclidean | cosine | variance | inertia (default=euclidean)')
     parser.add_argument('--threshold', type=float, default=0.75,
                         help='Threshold value (defaut=0.75)')
+    parser.add_argument('--elite_size', type=int, default=10,
+                        help='Top n best solutions to be saved (defaut=10)')
+    parser.add_argument('--save_log', '-l', action='store_true',
+                        help='Save log with all solutions. The file name is the same from csv_file argument, with _log before extension (default=False)')
     args = parser.parse_args()
 
     # Loading data
@@ -119,83 +221,33 @@ def main():
     for col in data.columns:
         data[col] = (data[col] - data[col].min()) / \
             (data[col].max() - data[col].min())
-
-    # Create restrictions
-    restrictions = create_restrictions(data, args.threshold)
+            
+    # Create problem
+    problem = Problem(data, args.threshold, args.mins, args.maxs, args.metric, args.elite_size)
 
     # Generate all possible combinations
     cols = list(data.columns)
-    combinations = []
-    for r in range(args.mins, args.maxs+1):
+    all_solutions = []
+    for r in range(1, args.maxs+1):
         combs = itertools.combinations(cols, r)
         for c in combs:
-            if not check_violation(c, restrictions):
-                combinations.append(list(c))
+            individual = Individual(list(c), problem, args.k, args.seed)
+            individual.evaluate()
+            all_solutions.append(individual)
 
-    # Find best solution
-    count = 1
-    if args.metric == 'inertia':
-        best = [{'evaluation': float('inf'), 'solution': []}
-                for i in range(10)]
-    else:
-        best = [{'evaluation': 0.0, 'solution': []} for i in range(10)]
-    for it, c in enumerate(combinations):
-        candidate = {'evaluation': fitness(
-            data[c], args.metric, args.k, args.seed), 'solution': c}
-        print('\tTesting set =', solution_str(candidate), end=' ')
-        if it < 10:
-            best[it] = candidate
-            print('new best!')
-        elif args.metric == 'inertia':
-            print_best = True
-            position_out = -1
-            diff = -1
-            for index in range(len(best)):
-                if candidate['evaluation'] < best[index]['evaluation']:
-                    if diff == -1:
-                        position_out = index
-                        diff = best[index]['evaluation'] - \
-                            candidate['evaluation']
-                        print_best = False
-                    elif best[index]['evaluation'] - candidate['evaluation'] > diff:
-                        position_out = index
-                        diff = best[index]['evaluation'] - \
-                            candidate['evaluation']
-                        print_best = False
-            if print_best:
-                print()
-            else:
-                best[position_out] = candidate
-                print('new best!')
-        else:
-            print_best = True
-            position_out = -1
-            diff = -1
-            for index in range(len(best)):
-                if candidate['evaluation'] > best[index]['evaluation']:
-                    if diff == -1:
-                        position_out = index
-                        diff = candidate['evaluation'] - \
-                            best[index]['evaluation']
-                        print_best = False
-                    elif candidate['evaluation'] - best[index]['evaluation'] > diff:
-                        position_out = index
-                        diff = candidate['evaluation'] - \
-                            best[index]['evaluation']
-                        print_best = False
-            if print_best:
-                print()
-            else:
-                best[position_out] = candidate
-                print('new best!')
-        count += 1
+    print('\nTop 10 best solution found of %d tested:' % len(all_solutions))
 
-    print('\nTop 10 best solution found of %d tested:' % count)
-
-    for solution in best:
+    for solution in problem.elite:
         print(solution)
 
-    save_solution(best, data, args)
+    if args.metric == 'inertia':
+        maximise = False
+    else:
+        maximise = True
+    logger = Logger(args, maximise)
+    logger.save_elite(problem.elite)
+    if args.save_log:
+        logger.save_log(all_solutions)
 
 
 if __name__ == '__main__':
