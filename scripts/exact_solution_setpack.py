@@ -13,6 +13,30 @@ from sklearn.metrics import silhouette_score
 import numpy as np
 import sklearn.feature_selection as fs
 from operator import attrgetter
+import time
+
+### Function for formatting time in human readable format
+def get_formatted_time(s):
+    decimal_part = s - int(s)
+    
+    s = int(s)
+    
+    seconds = s % 60
+
+    s = s // 60
+    minutes = s % 60
+
+    s = s // 60
+    hours = s % 24
+
+    days = s // 24
+
+    if days:
+        d = '%dd ' % days
+    else:
+        d = ''
+
+    return '%s%02dh%02dm%02d.%ds' % (d, hours, minutes, seconds, decimal_part)
 
 class Problem(object):
     def __init__(self, data, corr_threshold, min_size, max_size, metric='cosine', elite_size=10):
@@ -105,7 +129,7 @@ class Individual(object):
             feasibility = 'Feasible'
         else:
             feasibility = 'Unfeasible'
-        return '{' + ','.join(self.attributes) + '}: %f (%s)' % (self.evaluation, feasibility)
+        return '{' + ','.join(self.attributes) + '}: %f (%s: %d violations)' % (self.evaluation, feasibility, self.violations)
     
     def get_csv(self):
         return ','.join(self.attributes) + ';%f;%d;%d;%d\n' % (self.evaluation, self.feasible,
@@ -140,11 +164,11 @@ class Individual(object):
         self.problem.manage_elite(self)
 
 class Logger(object):
-    def __init__(self, args, maximise=True):
-        self.head = 'k;seed;metric;min_size;max_size;outliers;threshold;elite_size\n'
-        self.head += '%d;%d;%s;%d;%d;%d;%f;%d\n' % (args.k, args.seed,
+    def __init__(self, args, maximise, elapsed_time):
+        self.head = 'k;seed;metric;min_size;max_size;outliers;threshold;elite_size;elapsed_time\n'
+        self.head += '%d;%d;%s;%d;%d;%d;%f;%d;%f\n' % (args.k, args.seed,
                     args.metric, args.mins, args.maxs, args.wo, args.threshold,
-                    args.elite_size)
+                    args.elite_size, elapsed_time)
         self.elite_size = args.elite_size
         self.lang = args.lang
         self.file = args.csv_file
@@ -157,7 +181,7 @@ class Logger(object):
             self.body += individual.get_csv()
     
         if self.lang == 'pt':
-            self.body.replace('.', ',')
+            self.body = self.body.replace('.', ',')
             
         self.write()
 
@@ -225,23 +249,27 @@ def main():
     # Generate all possible combinations
     cols = list(data.columns)
     all_solutions = []
+    initial_time = time.time()
     for r in range(2, args.maxs+1):
         combs = itertools.combinations(cols, r)
         for c in combs:
             individual = Individual(list(c), problem, args.k, args.seed)
             individual.evaluate()
             all_solutions.append(individual)
+    elapsed_time = time.time() - initial_time
 
     print('\nTop 10 best solution found of %d tested:' % len(all_solutions))
 
     for solution in problem.elite:
         print(solution)
+        
+    print('\nTotal elapsed time: %s' % (get_formatted_time(elapsed_time)))
 
     if args.metric == 'inertia':
         maximise = False
     else:
         maximise = True
-    logger = Logger(args, maximise)
+    logger = Logger(args, maximise, elapsed_time)
     logger.save_elite(problem.elite)
     if args.save_log:
         logger.save_log(all_solutions)

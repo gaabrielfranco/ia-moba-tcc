@@ -75,6 +75,9 @@ class GeneticAlgorithm(object):
         self.elite_size = int(self.elitism * self.population_size)
 
         self.current_generation = []
+        self.id_generation = 0
+        
+        self.execution_log = []
 
         def create_individual(seed_data):
             """Create a candidate solution representation.
@@ -136,7 +139,8 @@ class GeneticAlgorithm(object):
         self.diversification_function = diversification
 
     def check_elite(self, individual):
-        if individual.hash not in [obj.hash for obj in self.elite]:
+        hashes = [obj.get_hash() for obj in self.elite]
+        if individual.get_hash() not in hashes:
             if len(self.elite) < self.elite_size:
                 self.elite.append(copy.deepcopy(individual))
                 self.elite.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
@@ -153,6 +157,11 @@ class GeneticAlgorithm(object):
                         self.elite.pop(len(self.elite)-1)
                         self.elite.append(copy.deepcopy(individual))
                         self.elite.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
+                        
+    def check_log(self, individual):
+        hashes = [obj.get_hash() for obj in self.execution_log]
+        if individual.get_hash() not in hashes:
+            self.execution_log.append(copy.deepcopy(individual))
                     
     def create_initial_population(self):
         """Create members of the first population randomly.
@@ -163,7 +172,6 @@ class GeneticAlgorithm(object):
             genes = self.create_individual(self.seed_data)
             individual = Chromosome(genes)
             initial_population.append(individual)
-            self.check_elite(individual)
         self.current_generation = initial_population
 
     def calculate_population_fitness(self):
@@ -174,6 +182,7 @@ class GeneticAlgorithm(object):
             individual.fitness = self.fitness_function(
                 individual.genes, self.seed_data)
             self.check_elite(individual)
+            self.check_log(individual)
 
     def rank_population(self):
         """Sort the population by fitness according to the order defined by
@@ -202,10 +211,14 @@ class GeneticAlgorithm(object):
             if can_crossover:
                 child_1.genes, child_2.genes = self.crossover_function(
                     parent_1.genes, parent_2.genes)
+                child_1.id_generation = child_2.id_generation = self.id_generation
+                child_1.origin = child_2.origin = 'x'
 
             if can_mutate:
                 self.mutate_function(child_1.genes)
                 self.mutate_function(child_2.genes)
+                child_1.id_generation = child_2.id_generation = self.id_generation
+                child_1.origin = child_2.origin = 'm'
 
             new_population.append(child_1)
             if len(new_population) < self.population_size:
@@ -216,10 +229,12 @@ class GeneticAlgorithm(object):
             diversification_pool = random.sample(range(len(new_population)), n_diversification)
             for index in diversification_pool:
                 new_population[index].genes = self.diversification_function(new_population[index].genes)
+                new_population[index].id_generation = self.id_generation
+                new_population[index].origin = 'd'
             self.diversify_solutions = False
             
         if self.elitism:
-            for i in range(self.elite_size):
+            for i in range(len(self.elite)):
                 new_population[i] = copy.deepcopy(self.elite[i])
 
         self.current_generation = new_population
@@ -271,7 +286,8 @@ class GeneticAlgorithm(object):
         count_decay = 0
         best = self.current_generation[0]
 
-        for _ in range(1, self.generations):
+        for generation_count in range(1, self.generations):
+            self.id_generation = generation_count
             if self.verbose:
                 print('\tProcessing generation %4d of %4d...' %
                     (gen_count, self.generations), end=' ')
@@ -314,21 +330,44 @@ class GeneticAlgorithm(object):
 
     def last_generation(self):
         """Return members of the last generation as a generator function."""
-        return ((member.fitness, member.genes) for member
+        return ((member.fitness, member.genes, member.origin, member.id_generation) for member
                 in self.current_generation)
+                
+    def get_elite(self):
+        return ((member.fitness, member.genes, member.origin, member.id_generation) for member
+                in self.elite)
 
+    def get_execution_log(self):
+        return ((member.fitness, member.genes, member.origin, member.id_generation) for member
+                in self.execution_log)
 
 class Chromosome(object):
     """ Chromosome class that encapsulates an individual's fitness and solution
     representation.
     """
-    def __init__(self, genes):
+    def __init__(self, genes, origin='c', id_generation=0):
         """Initialise the Chromosome."""
         self.genes = genes
         self.fitness = 0
+        """
+        Origin:
+        c => 'creation' (initial population)
+        x => crossover
+        m => mutation
+        d => diversification
+        """
+        self.origin = origin
+        self.id_generation = id_generation
+        self.compute_hash()
+    
+    def get_hash(self):
+        self.compute_hash()
+        return self.hash
+        
+    def compute_hash(self):
         self.hash = ''.join([str(gene) for gene in self.genes])
 
     def __repr__(self):
         """Return initialised Chromosome representation in human readable form.
         """
-        return repr((self.fitness, self.genes))
+        return repr((self.fitness, self.genes, self.origin, self.id_generation))

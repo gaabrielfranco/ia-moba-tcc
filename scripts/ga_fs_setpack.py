@@ -44,10 +44,12 @@ def magnitude_order(x):
 
 ### Classes for modelling the problem
 class BaseProblem(object):
-    def __init__(self, data, min_size, max_size, corr_threshold, maximise=True):
+    def __init__(self, data, min_size, max_size, corr_threshold, maximise=True, min_possible=2):
         self.data = data
         self.min_size = min_size
         self.max_size = max_size
+        self.min_possible = min_possible
+        self.max_possible = len(self.data.columns)
         self.maximise = maximise
         self.hash = {}
         self.init_pop_hash = {}
@@ -78,8 +80,8 @@ class BaseProblem(object):
         
         # For the initial population, is convenient to represent the restrictions by means of a matrix
         # It is better suitable for construction procedure
-        local_restrictions = np.zeros((len(self.attributes), len(self.attributes)))
-        local_restrictions_counts = np.zeros(len(self.attributes))
+        local_restrictions = np.zeros((len(self.attributes), len(self.attributes)), dtype=int)
+        local_restrictions_counts = np.zeros(len(self.attributes), dtype=int)
         for i in range(0, len(self.attributes)-1):
             for j in range(i+1, len(self.attributes)):
                 if abs(self.corr[self.attributes[i]][self.attributes[j]]) >= self.corr_threshold:
@@ -147,12 +149,12 @@ class BaseProblem(object):
     def mutate(self, individual):
         item_count, ones, zeros = self.analyse_chromossome(individual)
         
-        if item_count == self.min_size:
-            ### If minimum size, necessarily include one item to the solution
+        if item_count == self.min_possible or item_count < self.min_size:
+            ### If chromosome has less than minimum size, necessarily include one item to the solution
             mutate_index = random.choice(zeros)
             individual[mutate_index] = 1
-        elif item_count == self.max_size:
-            ### If maximum size, necessarily remove one item from the solution
+        elif item_count == self.max_possible or item_count > self.max_size:
+            ### If chromosome has more than maximum size, necessarily remove one item from the solution
             mutate_index = random.choice(ones)
             individual[mutate_index] = 0
         else:
@@ -181,7 +183,7 @@ class BaseProblem(object):
         else:
             self.mutate(parent_1)
             self.mutate(parent_2)
-            return self.crossover(parent_1, parent_2)
+            return parent_1, parent_2
         
     def binary_selection(self, population):
         members = random.sample(population, 2)
@@ -323,38 +325,112 @@ def print_solution(individual, data):
     
 ### Functions to persist solution into file
 def str_representation(individual):
+    origins = {'c': 'initial', 'x': 'crossover', 'm': 'mutation', 'd': 'diversification'}    
+    
     evaluation = individual[0]
     solution = individual[1]
+    origin = origins[individual[2]]
+    id_generation = individual[3]
     att_sel = []
     for selected in solution:
         att_sel.append('%d' % selected)
     s = '%f;' % evaluation
-    s += ';'.join(att_sel) + '\n'
+    s += ';'.join(att_sel)
+    s += ';%s;%d' % (origin, id_generation)  + '\n'
     
     return s
     
-def save_solution(last_generation, data, time, max_no_improv, max_gen_reached, args):
-    s = 'elapstime;k;seed;metric;ngen;pop;cxpb;mutpb;elite_size;min_size;max_size;outliers;max_no_improv;max_gen_reached\n'
-    s += '%f;%d;%d;%s;%d;%d;%f;%f;%d;%d;%d;%d;%d;%d\n' % (time, args.k, args.seed, args.metric, args.ngen, args.pop, args.cxpb, args.mutpb, args.elsize, args.mins, args.maxs, args.wo, max_no_improv, max_gen_reached)
+def save_solutions(elite, last_generation, data, time, max_gen_reached, args):
+    dic = vars(args)
     
-    s += 'last_generation\n'    
+    s = 'File %s\n' % dic['csv_file']
+    
+    s += 'elapsed_time;max_gen_reached\n'
+    s += '%f;%s\n' % (time, str(max_gen_reached))
+    
+    items = []
+    for param in sorted(dic.keys()):
+        if param != 'csv_file':
+            items.append(param)
+    items = ';'.join(items) + '\n'
+    s += items
+    
+    items = []
+    for param in sorted(dic.keys()):
+        if param != 'csv_file':
+            items.append(str(dic[param]))
+    items = ';'.join(items) + '\n'
+    s += items
+    
+    s += 'Elite\n'    
     
     head = ['evaluation']
     for i in range(len(data.columns)):
         head.append(data.columns[i])
+    head.append('origin')
+    head.append('generation')
     head = ';'.join(head)
     s += head + '\n'
     
+    for ind in elite:
+        s += str_representation(ind)
+        
+    s += 'Last Generation\n'
+    s += head + '\n'
     for ind in last_generation:
         s += str_representation(ind)
     
     if args.lang == 'pt':
-        s.replace('.', ',')
+        s = s.replace('.', ',')
     
     fp = open(args.csv_file, 'w')
     fp.write(s)
     fp.close()
+
+def save_log(log, data, time, max_gen_reached, args):
+    dic = vars(args)
     
+    file_name = dic['csv_file']
+    file_name = file_name[:file_name.rfind('.')] + '_log' + file_name[file_name.rfind('.'):]
+    
+    s = 'File %s\n' % file_name
+    
+    s += 'elapsed_time;max_gen_reached\n'
+    s += '%f;%s\n' % (time, str(max_gen_reached))
+    
+    items = []
+    for param in sorted(dic.keys()):
+        if param != 'csv_file':
+            items.append(param)
+    items = ';'.join(items) + '\n'
+    s += items
+    
+    items = []
+    for param in sorted(dic.keys()):
+        if param != 'csv_file':
+            items.append(str(dic[param]))
+    items = ';'.join(items) + '\n'
+    s += items
+    
+    s += 'Solutions\n'    
+    
+    head = ['evaluation']
+    for i in range(len(data.columns)):
+        head.append(data.columns[i])
+    head.append('origin')
+    head.append('generation')
+    head = ';'.join(head)
+    s += head + '\n'
+    
+    for ind in log:
+        s += str_representation(ind)
+        
+    if args.lang == 'pt':
+        s = s.replace('.', ',')
+    
+    fp = open(file_name, 'w')
+    fp.write(s)
+    fp.close()    
         
 ### Main function
 def main():
@@ -381,6 +457,7 @@ def main():
     parser.add_argument('--toursize', type=float, default=0.2, help='Percentage of population to parcitipate of tournament selection (default=0.2)')
     parser.add_argument('--verbose', '-v', action='store_true', help='Verbose excution of GA (default=False)')
     parser.add_argument('--wo', action='store_true', help='Data with outliers (defaut=False)')
+    parser.add_argument('--save_log', action='store_true', help='Save log with all solutions. The file name is the same from csv_file argument, with _log before extension (default=False)')
     parser.add_argument('--pltvar', action='store_true', help='Plot variances (default=False)')
     parser.add_argument('--pltfile', help='File to save variance plot')
     args = parser.parse_args()
@@ -468,13 +545,7 @@ def main():
     max_gen_reached = genetic.run()
     elapsed_time = time.time() - start_time
     
-    ### Show and save results
-    print('\nLast generation:')
-    for i,ind in enumerate(genetic.last_generation()):
-        print('%d -> ' % i, end='')
-        print_solution(ind, data)
-        
-    print('\nBest', end=' ')
+    print('\nBest solution found', end=' ')
     print_solution(genetic.best_individual(), data)
     
     print('\nTotal elapsed time: %s' % (get_formatted_time(elapsed_time)))
@@ -488,7 +559,9 @@ def main():
         elif args.pltvar:
             problem.plot_variances(show=args.pltvar)
         
-    save_solution(genetic.last_generation(), data, elapsed_time, max_no_improv, max_gen_reached, args)
+    save_solutions(genetic.get_elite(), genetic.last_generation(), data, elapsed_time, max_gen_reached, args)
+    if args.save_log:
+        save_log(genetic.get_execution_log(), data, elapsed_time, max_gen_reached, args)
 
 if __name__ == '__main__':
     main()

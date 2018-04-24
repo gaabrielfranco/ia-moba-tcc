@@ -51,7 +51,7 @@ def save_solution(best, data, args):
     s += solution_str(best)
     
     if args.lang == 'pt':
-        s.replace('.', ',')
+        s = s.replace('.', ',')
     
     fp = open(args.csv_file, 'w')
     fp.write(s)

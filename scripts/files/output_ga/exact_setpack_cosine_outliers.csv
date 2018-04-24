@@ -1,13 +1,14 @@
-k;seed;metric;min_size;max_size;outliers;threshold
-10;-1;cosine;3;9;1;0.750000
+k;seed;metric;min_size;max_size;outliers;threshold;elite_size;elapsed_time
+10;-1;cosine;3;6;1;0.750000;10;5475.181986
 Top 10 solutions
-deaths,denies,hd,xpm,0.049654
-deaths,denies,xpm,0.041262
-deaths,denies,hd,kills,xpm,0.047696
-assists,deaths,denies,xpm,0.033163
-deaths,denies,hd,hh,0.036982
-deaths,denies,hd,hh,kills,lh,0.030053
-deaths,denies,kills,xpm,0.050292
-deaths,denies,hd,hh,kills,0.039140
-deaths,hd,kills,xpm,0.032794
-deaths,denies,hh,lh,0.026881
+Solution;Evaluation;Feasible;Num, of Attr,;Restrictions Violated
+deaths,hh,xpm;0,104887;1;3;0
+deaths,gpm,hh,xpm;0,104122;1;4;0
+denies,hh,xpm;0,054160;1;3;0
+deaths,denies,hh,xpm;0,051159;1;4;0
+denies,gpm,hh,xpm;0,048909;1;4;0
+deaths,denies,gpm,hh,xpm;0,048698;1;5;0
+deaths,denies,xpm;0,041649;1;3;0
+deaths,denies,gpm,xpm;0,040638;1;4;0
+assists,deaths,denies,gpm,hh,xpm;0,035371;1;6;0
+deaths,denies,gpm,hd,hh;0,035117;1;5;0

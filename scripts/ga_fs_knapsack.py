@@ -293,7 +293,7 @@ def save_solution(last_generation, data, time, max_no_improv, max_gen_reached, a
         s += str_representation(ind)
     
     if args.lang == 'pt':
-        s.replace('.', ',')
+        s = s.replace('.', ',')
     
     fp = open(args.csv_file, 'w')
     fp.write(s)
