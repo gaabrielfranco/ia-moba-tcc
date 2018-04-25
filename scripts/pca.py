@@ -117,30 +117,34 @@ def main():
 
     # Feature Selection
     pca_inv_data = pca.inverse_transform(np.eye(9))
-
-    fig = plt.figure(figsize=(10, 6.5))
     sns.heatmap(pca.inverse_transform(
         np.eye(9)), cmap="hot", cbar=False)
-    plt.ylabel('principal component', fontsize=20)
-    plt.xlabel('original feature index', fontsize=20)
-    plt.tick_params(axis='both', which='major', labelsize=18)
-    plt.tick_params(axis='both', which='minor', labelsize=12)
-
-    plt.show()
+    plt.ylabel('principal component')
+    plt.xlabel('original feature index')
+    plt.title('PCA Heatmat')
+    plt.tick_params(axis='both', which='major')
+    plt.tick_params(axis='both', which='minor')
+    if show_plots:
+        plt.show()
+    file_name = plots_path + 'pca-heatmap'
+    plt.savefig(file_name)
+    print('Graph %s saved.' % file_name)
     plt.clf()
 
-    fig = plt.figure(figsize=(10, 6.5))
     plt.plot(pca_inv_data.mean(axis=0), '--o', label='mean')
     plt.plot(np.square(pca_inv_data.std(axis=0)), '--o', label='variance')
     plt.legend(loc='lower right')
-    plt.ylabel('feature contribution', fontsize=20)
-    plt.xlabel('feature index', fontsize=20)
-    plt.tick_params(axis='both', which='major', labelsize=18)
-    plt.tick_params(axis='both', which='minor', labelsize=12)
-    plt.xlim([0, 10])
-    plt.legend(loc='lower left', fontsize=18)
-
-    plt.show()
+    plt.ylabel('feature contribution')
+    plt.xlabel('feature index')
+    plt.tick_params(axis='both', which='major')
+    plt.tick_params(axis='both', which='minor')
+    plt.xlim([0, 8])
+    plt.legend(loc='lower left')
+    if show_plots:
+        plt.show()
+    file_name = plots_path + 'pca-contribution'
+    plt.savefig(file_name)
+    print('Graph %s saved.' % file_name)
     plt.clf()
 
 
