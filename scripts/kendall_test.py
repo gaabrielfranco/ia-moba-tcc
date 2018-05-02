@@ -1,8 +1,11 @@
-from modules.data import read_data, normalizes
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+from modules.data import read_data
 import argparse
 from scipy.stats import kendalltau
 import itertools
 import pandas as pd
+import numpy as np
 
 ########################################
 #          About attributes            #
@@ -41,36 +44,30 @@ TOP 10:
 '''
 
 
-def metric_func(comb, data):
-    metric_1, metric_2 = [0.0 for i in range(len(data))], [
-        0.0 for i in range(len(data))]
-
+def sum_by_death(comb, data):
+    metric_1 = np.zeros(len(data))
+    metric_2 = np.zeros(len(data))
+    
     deaths_presence = False
 
     for attr in comb[0].split(','):
         if attr != 'deaths':
-            metric_1 += data[attr]
+            metric_1 += data[attr].as_matrix()
         else:
             deaths_presence = True
     if deaths_presence:
-        metric_1 /= data['deaths']
+        metric_1 /= (1 + data['deaths'].as_matrix())
         deaths_presence = False
 
     for attr in comb[1].split(','):
         if attr != 'deaths':
-            metric_2 += data[attr]
+            metric_2 += data[attr].as_matrix()
         else:
             deaths_presence = True
     if deaths_presence:
-        metric_2 /= data['deaths']
-
+        metric_2 /= (1 + data['deaths'].as_matrix())
+        
     return metric_1, metric_2
-
-
-def kendall_corr(data, metric_1, metric_2, comb_1, comb_2):
-    tau, p_value = kendalltau(metric_1, metric_2)
-
-    return tau, p_value
 
 
 def main():
@@ -79,6 +76,9 @@ def main():
     parser.add_argument('--wo', '-wo', action='store_true',
                         help='load data without outliers (defaut = False)')
     args = parser.parse_args()
+    
+    # Dynamic metric funcion
+    metric_func = sum_by_death
 
     path = 'files/output_kendall_test/'
 
@@ -93,19 +93,19 @@ def main():
         'deaths,denies,hh,kills',
         'assists,deaths,hh,xpm',
         'assists,deaths,denies,hh',
-        'kills,deaths,assists'
+        'assists,deaths,kills'
     ]
-
+    attributes.sort()
+    
     if args.wo:
         data = read_data('df_data')
     else:
         data = read_data('df_data_pruned')
 
-    for attr in data:
-        data[attr] = (normalizes(data[attr]))[0]
+    for col in data.columns:
+        data[col] = (data[col] - data[col].min()) / (data[col].max() - data[col].min())
 
     combinations = []
-
     combs = itertools.combinations(attributes, 2)
     for c in combs:
         combinations.append(list(c))
@@ -114,9 +114,9 @@ def main():
     taus = []
     for comb in combinations:
         metric_1, metric_2 = metric_func(comb, data)
-
-        tau, p_value = kendall_corr(data, metric_1, metric_2, comb[0], comb[1])
-
+        
+        tau, p_value = kendalltau(metric_1, metric_2)
+        
         kendall.append(
             {'comb_1': comb[0], 'comb_2': comb[1], 'tau': tau, 'p_value': p_value})
         taus.append(tau)
@@ -130,7 +130,7 @@ def main():
 
     df = pd.DataFrame(ord_kendall)
     file_name = 'kendall.csv' if args.wo else 'kendall_pruned.csv'
-    df.to_csv(path + file_name)
+    df.to_csv(path + file_name, sep=';', decimal=',')
     print('%s saved.' % (path + file_name))
 
 
