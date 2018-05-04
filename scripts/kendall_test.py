@@ -44,7 +44,7 @@ TOP 10:
 '''
 
 
-def sum_by_death(comb, data):
+def sum_by_deaths(comb, data):
     metric_1 = np.zeros(len(data))
     metric_2 = np.zeros(len(data))
     
@@ -69,16 +69,39 @@ def sum_by_death(comb, data):
         
     return metric_1, metric_2
 
+def harmonic(comb, data):
+    metric_1 = np.zeros(len(data))
+    metric_2 = np.zeros(len(data))
+    
+    for attr in comb[0].split(','):
+        if attr != 'deaths':
+            metric_1 += 1 / (1 + data[attr].as_matrix())
+        else:
+            metric_1 += 1 + data[attr].as_matrix()
+            
+    for attr in comb[1].split(','):
+        if attr != 'deaths':
+            metric_2 += 1 / (1 + data[attr].as_matrix())
+        else:
+            metric_2 += 1 + data[attr].as_matrix()
+            
+    return len(metric_1)/metric_1, len(metric_2)/metric_2
+
 
 def main():
     parser = argparse.ArgumentParser(
         description='Kendall rank correlation coefficient script', prog="kendall_test.py")
     parser.add_argument('--wo', '-wo', action='store_true',
                         help='load data without outliers (defaut = False)')
+    parser.add_argument('--metric', '-m', default='sum_by_deaths', choices=['sum_by_deaths', 'harmonic'],
+                        help='Type of metric calculation: sum all and divide by deaths or harmonic mean (sum_by_deaths|harmonic) (default=sum_by_deaths)')
     args = parser.parse_args()
     
     # Dynamic metric funcion
-    metric_func = sum_by_death
+    if args.metric == 'sum_by_deaths':
+        metric_func = sum_by_deaths
+    else:
+        metric_func = harmonic
 
     path = 'files/output_kendall_test/'
 
