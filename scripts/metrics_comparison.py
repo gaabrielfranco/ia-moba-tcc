@@ -8,7 +8,6 @@ from sklearn.cluster import KMeans
 
 # =============================================================================
 # GABRIEL:
-# - Renomeei o arquivo. Não existe "comparation". O certo é comparison :-)
 # - Note que incluí resultados para a clusterização segundo também cada conjunto de atributos selecionados
 # - Veja os plots salvos na pasta nova que criei
 # - Sendo assim, botei métodos diferentes para se obter os labels dos clusters, variando o conjunto de 
@@ -22,10 +21,10 @@ from sklearn.cluster import KMeans
 #       a database continua contendo todos atributos, para fins de cálculos das médias das métricas
 #
 # - Para Fazer:
-#       - Plot de distribuição dentro dos clusters (intra cluster), como vc mesmo sugeriu
-#       - Não precisa fazer o inter cluster, o plot de linha que coloquei já substitui isso
-#       - Gerar a matriz de correlações entre as métricas para cada um dos 5 casos descritos acima
-#       - Quaisquer dúvidas, entre em contato
+#       1. Plot de distribuição dentro dos clusters (intra cluster), como vc mesmo sugeriu
+#               (Não precisa fazer o inter cluster, os plots de barra que coloquei já substituem isso)
+#       2. Gerar a matriz de correlações entre as métricas para cada um dos 5 casos descritos acima
+# - Quaisquer dúvidas, entre em contato
 # =============================================================================
 
 def compute_stats(data, metric, n_clusters=10, normed_mean=False):
@@ -40,7 +39,8 @@ def compute_stats(data, metric, n_clusters=10, normed_mean=False):
         
     if normed_mean:
         avg_metric = (avg_metric - avg_metric.min()) / (avg_metric.max() - avg_metric.min())
-        return avg_metric
+        std_metric = (std_metric - avg_metric.min()) / (avg_metric.max() - avg_metric.min())
+        return avg_metric+0.5, std_metric
     
     return avg_metric, std_metric, var_coef_metric
 
@@ -117,10 +117,11 @@ def main():
     
     if args.normed_mean:
         averages_normed = {}
-        averages_normed['KDA'] = compute_stats(data, 'kda', normed_mean=True)
-        averages_normed['ADG'] = compute_stats(data, 'adg', normed_mean=True)
-        averages_normed['G'] = compute_stats(data, 'g', normed_mean=True)
-        averages_normed['X'] = compute_stats(data, 'x', normed_mean=True)
+        stds_normed = {}
+        averages_normed['KDA'], stds_normed['KDA'] = compute_stats(data, 'kda', normed_mean=True)
+        averages_normed['ADG'], stds_normed['ADG'] = compute_stats(data, 'adg', normed_mean=True)
+        averages_normed['G'], stds_normed['G'] = compute_stats(data, 'g', normed_mean=True)
+        averages_normed['X'], stds_normed['X'] = compute_stats(data, 'x', normed_mean=True)
     
     clusters = np.array(range(args.n_clusters))
     
@@ -130,16 +131,17 @@ def main():
         if metric != 'KDA':
             metrics = ('KDA', metric)
             
-            plt.figure()
-            plt.errorbar(clusters, averages[metrics[0]], yerr=stds[metrics[0]],
-                         linestyle='None', marker='.', label=metrics[0])
-            plt.errorbar(clusters, averages[metrics[1]], yerr=stds[metrics[1]],
-                         linestyle='None', marker='.', label=metrics[1])
+            fig, ax = plt.subplots()
+            ax.bar(clusters, averages[metrics[0]], width=0.5, color='r', yerr=stds[metrics[0]], label=metrics[0])
+            ax.bar(clusters+0.5, averages[metrics[1]], width=0.5, color='b', yerr=stds[metrics[1]], label=metrics[1])
             plt.suptitle('Average %s versus Average %s' % metrics)
             plt.title(subset)
             plt.legend()
             plt.xlabel('Cluster ID')
             plt.ylabel('Metrics')
+            plt.xticks(clusters + 0.25)
+            xlabels = tuple(['C%d' % (i+1) for i in clusters])
+            ax.set_xticklabels(xlabels)
             file_name = '%savg_%s_%s_%s.png' % (output_path, metrics[0], metrics[1], args.projection)
             plt.savefig(file_name)
             print(file_name, 'saved')
@@ -147,35 +149,19 @@ def main():
                 plt.show()
             plt.clf()
             
-            plt.figure()
-            plt.plot(clusters, averages[metrics[0]], label=metrics[0])
-            plt.plot(clusters, averages[metrics[1]], label=metrics[1])
-            plt.plot(clusters, coeffs[metrics[0]], label='%s - coeff. variation' % metrics[0])
-            plt.plot(clusters, coeffs[metrics[1]], label='%s - coeff. variation' % metrics[1])
-            plt.suptitle('Average %s versus Average %s' % metrics)
-            plt.title(subset)
-            plt.legend()
-            plt.xlabel('Cluster ID')
-            plt.ylabel('Metrics')
-            file_name = '%savg_%s_%s_%s_line.png' % (output_path, metrics[0], metrics[1], args.projection)
-            plt.savefig(file_name)
-            print(file_name, 'saved')
-            if args.show_plots:
-                plt.show()
-            plt.clf()
-            
             if args.normed_mean:
-                plt.figure()
-                plt.plot(clusters, averages_normed[metrics[0]], label=metrics[0])
-                plt.plot(clusters, averages_normed[metrics[1]], label=metrics[1])
-                plt.plot(clusters, coeffs[metrics[0]], label='%s - coeff. variation' % metrics[0])
-                plt.plot(clusters, coeffs[metrics[1]], label='%s - coeff. variation' % metrics[1])
+                fig, ax = plt.subplots()
+                ax.bar(clusters, averages_normed[metrics[0]], width=0.5, color='r', yerr=stds_normed[metrics[0]], label=metrics[0])
+                ax.bar(clusters+0.5, averages_normed[metrics[1]], width=0.5, color='b', yerr=stds_normed[metrics[1]], label=metrics[1])
                 plt.suptitle('Average %s versus Average %s (normed)' % metrics)
                 plt.title(subset)
                 plt.legend()
                 plt.xlabel('Cluster ID')
                 plt.ylabel('Metrics')
-                file_name = '%savg_%s_%s_%s_line_normed.png' % (output_path, metrics[0], metrics[1], args.projection)
+                plt.xticks(clusters + 0.25)
+                xlabels = tuple(['C%d' % (i+1) for i in clusters])
+                ax.set_xticklabels(xlabels)
+                file_name = '%savg_%s_%s_%s_normed.png' % (output_path, metrics[0], metrics[1], args.projection)
                 plt.savefig(file_name)
                 print(file_name, 'saved')
                 if args.show_plots:
