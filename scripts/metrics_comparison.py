@@ -5,12 +5,13 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+import pandas as pd
 
 # =============================================================================
 # GABRIEL:
 # - Note que incluí resultados para a clusterização segundo também cada conjunto de atributos selecionados
 # - Veja os plots salvos na pasta nova que criei
-# - Sendo assim, botei métodos diferentes para se obter os labels dos clusters, variando o conjunto de 
+# - Sendo assim, botei métodos diferentes para se obter os labels dos clusters, variando o conjunto de
 #       atributos utilizados para agrupoar os dados, gerando 5 casos:
 #       - Todos atributos (all)
 #       - kda (considerando-se apenas kills, deaths e assists para clusterizar)
@@ -27,26 +28,31 @@ from sklearn.cluster import KMeans
 # - Quaisquer dúvidas, entre em contato
 # =============================================================================
 
+
 def compute_stats(data, metric, n_clusters=10, normed_mean=False):
     avg_metric = np.empty(n_clusters)
     std_metric = np.empty(n_clusters)
     var_coef_metric = np.empty(n_clusters)
-    
+
     for cluster_id in range(n_clusters):
         avg_metric[cluster_id] = data[metric][data.cluster == cluster_id].mean()
         std_metric[cluster_id] = data[metric][data.cluster == cluster_id].std()
-        var_coef_metric[cluster_id] = std_metric[cluster_id] / avg_metric[cluster_id]
-        
+        var_coef_metric[cluster_id] = std_metric[cluster_id] / \
+            avg_metric[cluster_id]
+
     if normed_mean:
-        avg_metric = (avg_metric - avg_metric.min()) / (avg_metric.max() - avg_metric.min())
-        std_metric = (std_metric - avg_metric.min()) / (avg_metric.max() - avg_metric.min())
+        avg_metric = (avg_metric - avg_metric.min()) / \
+            (avg_metric.max() - avg_metric.min())
+        std_metric = (std_metric - avg_metric.min()) / \
+            (avg_metric.max() - avg_metric.min())
         return avg_metric+0.5, std_metric
-    
+
     return avg_metric, std_metric, var_coef_metric
+
 
 def main():
     default_path = 'files/output_metrics_comparison/'
-    
+
     parser = argparse.ArgumentParser(
         description='Comparison between the four metrics', prog="metrics_comparation.py")
     parser.add_argument('--with_outliers', '-wo', action='store_true',
@@ -69,17 +75,18 @@ def main():
         data = read_data('df_data')
     else:
         data = read_data('df_data_pruned')
-        
+
     if not args.output_path.endswith('/'):
         output_path = args.output_path + '/'
     else:
         output_path = args.output_path
 
-    ### Normalizing data
+    # Normalizing data
     for col in data.columns:
-        data[col] = (data[col] - data[col].min()) / (data[col].max() - data[col].min())
-        
-    ### Clustering
+        data[col] = (data[col] - data[col].min()) / \
+            (data[col].max() - data[col].min())
+
+    # Clustering
     km = KMeans(n_clusters=args.n_clusters, random_state=None, n_jobs=-1)
     if args.projection == 'all':
         labels = km.fit_predict(data)
@@ -93,20 +100,21 @@ def main():
         elif args.projection == 'x':
             attr_list = ['deaths', 'xpm', 'hh']
         labels = km.fit_predict(data[attr_list])
-    
-    ### Compute metrics and add them to the database, as well as the clusters labels
+
+    # Compute metrics and add them to the database, as well as the clusters labels
     kda = (data['kills'] + data['assists']) / (1 + data['deaths'])
-    adg = (data['denies'] + data['assists'] + data['gpm'] + data['hh']) / (1 + data['deaths'])
+    adg = (data['denies'] + data['assists'] +
+           data['gpm'] + data['hh']) / (1 + data['deaths'])
     g = (data['gpm'] + data['hh']) / (1 + data['deaths'])
     x = (data['xpm'] + data['hh']) / (1 + data['deaths'])
-    
+
     data.insert(len(data.columns), 'kda', kda)
     data.insert(len(data.columns), 'adg', adg)
     data.insert(len(data.columns), 'g', g)
     data.insert(len(data.columns), 'x', x)
     data.insert(len(data.columns), 'cluster', labels)
-    
-    ### Compute intra-clusters stats
+
+    # Compute intra-clusters stats
     averages = {}
     stds = {}
     coeffs = {}
@@ -114,26 +122,41 @@ def main():
     averages['ADG'], stds['ADG'], coeffs['ADG'] = compute_stats(data, 'adg')
     averages['G'], stds['G'], coeffs['G'] = compute_stats(data, 'g')
     averages['X'], stds['X'], coeffs['X'] = compute_stats(data, 'x')
-    
+
+    # Compute correlation
+    file_name = output_path + 'correlation_' + args.projection + '.csv'
+    df_corr = pd.DataFrame(averages)
+    df_corr = df_corr.corr()
+    df_corr.to_csv(file_name)
+    print(file_name, 'saved')
+
     if args.normed_mean:
         averages_normed = {}
         stds_normed = {}
-        averages_normed['KDA'], stds_normed['KDA'] = compute_stats(data, 'kda', normed_mean=True)
-        averages_normed['ADG'], stds_normed['ADG'] = compute_stats(data, 'adg', normed_mean=True)
-        averages_normed['G'], stds_normed['G'] = compute_stats(data, 'g', normed_mean=True)
-        averages_normed['X'], stds_normed['X'] = compute_stats(data, 'x', normed_mean=True)
-    
+        averages_normed['KDA'], stds_normed['KDA'] = compute_stats(
+            data, 'kda', normed_mean=True)
+        averages_normed['ADG'], stds_normed['ADG'] = compute_stats(
+            data, 'adg', normed_mean=True)
+        averages_normed['G'], stds_normed['G'] = compute_stats(
+            data, 'g', normed_mean=True)
+        averages_normed['X'], stds_normed['X'] = compute_stats(
+            data, 'x', normed_mean=True)
+
     clusters = np.array(range(args.n_clusters))
-    
-    ### Plots
+
+    # Plots
     subset = 'Clustered with %s attributes' % args.projection
     for metric in averages.keys():
         if metric != 'KDA':
+            plt.rcParams["figure.figsize"] = (25, 16)
+            plt.rcParams['font.size'] = 16.0
             metrics = ('KDA', metric)
-            
+
             fig, ax = plt.subplots()
-            ax.bar(clusters, averages[metrics[0]], width=0.5, color='r', yerr=stds[metrics[0]], label=metrics[0])
-            ax.bar(clusters+0.5, averages[metrics[1]], width=0.5, color='b', yerr=stds[metrics[1]], label=metrics[1])
+            ax.bar(clusters, averages[metrics[0]], width=0.5,
+                   color='r', yerr=stds[metrics[0]], label=metrics[0])
+            ax.bar(clusters+0.5, averages[metrics[1]], width=0.5,
+                   color='b', yerr=stds[metrics[1]], label=metrics[1])
             plt.suptitle('Average %s versus Average %s' % metrics)
             plt.title(subset)
             plt.legend()
@@ -142,17 +165,20 @@ def main():
             plt.xticks(clusters + 0.25)
             xlabels = tuple(['C%d' % (i+1) for i in clusters])
             ax.set_xticklabels(xlabels)
-            file_name = '%savg_%s_%s_%s.png' % (output_path, metrics[0], metrics[1], args.projection)
+            file_name = '%savg_%s_%s_%s.png' % (
+                output_path, metrics[0], metrics[1], args.projection)
             plt.savefig(file_name)
             print(file_name, 'saved')
             if args.show_plots:
                 plt.show()
             plt.clf()
-            
+
             if args.normed_mean:
                 fig, ax = plt.subplots()
-                ax.bar(clusters, averages_normed[metrics[0]], width=0.5, color='r', yerr=stds_normed[metrics[0]], label=metrics[0])
-                ax.bar(clusters+0.5, averages_normed[metrics[1]], width=0.5, color='b', yerr=stds_normed[metrics[1]], label=metrics[1])
+                ax.bar(clusters, averages_normed[metrics[0]], width=0.5,
+                       color='r', yerr=stds_normed[metrics[0]], label=metrics[0])
+                ax.bar(clusters+0.5, averages_normed[metrics[1]], width=0.5,
+                       color='b', yerr=stds_normed[metrics[1]], label=metrics[1])
                 plt.suptitle('Average %s versus Average %s (normed)' % metrics)
                 plt.title(subset)
                 plt.legend()
@@ -161,12 +187,15 @@ def main():
                 plt.xticks(clusters + 0.25)
                 xlabels = tuple(['C%d' % (i+1) for i in clusters])
                 ax.set_xticklabels(xlabels)
-                file_name = '%savg_%s_%s_%s_normed.png' % (output_path, metrics[0], metrics[1], args.projection)
+                file_name = '%savg_%s_%s_%s_normed.png' % (
+                    output_path, metrics[0], metrics[1], args.projection)
                 plt.savefig(file_name)
                 print(file_name, 'saved')
                 if args.show_plots:
                     plt.show()
                 plt.clf()
+
+
 """
             f, axarr = plt.subplots(2, 2)
             f.suptitle(
