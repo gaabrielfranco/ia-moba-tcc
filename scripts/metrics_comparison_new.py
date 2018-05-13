@@ -6,27 +6,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import pandas as pd
+from scipy.stats import kendalltau
 
 # =============================================================================
-# GABRIEL:
-# - Note que incluí resultados para a clusterização segundo também cada conjunto de atributos selecionados
-# - Veja os plots salvos na pasta nova que criei
-# - Sendo assim, botei métodos diferentes para se obter os labels dos clusters, variando o conjunto de
-#       atributos utilizados para agrupoar os dados, gerando 5 casos:
-#       - Todos atributos (all)
-#       - kda (considerando-se apenas kills, deaths e assists para clusterizar)
-#       - adg (considerando-se apenas denies, deaths, assists, gpm e hh para clusterizar)
-#       - g (considerando-se apenas deaths, gpm e hh para clusterizar)
-#       - x (considerando-se apenas deaths, xpm e hh para clusterizar)
-# - Foram utilizadas projeções diferentes da base de dados apenas pra gerar os rótulos dos clusters, mas
-#       a database continua contendo todos atributos, para fins de cálculos das médias das métricas
-#
-# - Para Fazer:
-#       1. Plot de distribuição dentro dos clusters (intra cluster), como vc mesmo sugeriu
-#               (Não precisa fazer o inter cluster, os plots de barra que coloquei já substituem isso)
-#       2. Gerar a matriz de correlações entre as métricas para cada um dos 5 casos descritos acima
-# - Quaisquer dúvidas, entre em contato
-#
+#   Reunião de sexta (11/05)
+#       - Computar dois vetores, cada um com uma métrica por jogador de toda base (data já tem isso)
+#       - Pegar os k melhores jogadores e fazer a correlação entre as métricas, variando o k
+#       - Fazer esse procedimento por cluster também
+#       - Fazer startplot dos 10 melhores jogadores de cada métrica agrupando os atributos
+#         pelo jeito decidido na reunião
+#       - Pegar o resto das coisas pra fazer no log da reunião
 # =============================================================================
 
 
@@ -70,6 +59,7 @@ def main():
                         help='plot normed values for mean in line plot (default = False)')
 
     args = parser.parse_args()
+
     with_outliers = args.with_outliers
 
     if with_outliers:
@@ -115,6 +105,76 @@ def main():
     data.insert(len(data.columns), 'x', x)
     data.insert(len(data.columns), 'cluster', labels)
 
+    # Maximum values in each metric
+    for k in [10, 100, 500, 1000, 2000]:
+        max_kda = data['kda'].sort_values(ascending=False)[:k]
+        max_adg = data['adg'].sort_values(ascending=False)[:k]
+        max_g = data['g'].sort_values(ascending=False)[:k]
+        max_x = data['x'].sort_values(ascending=False)[:k]
+
+        print("K = ", k)
+        cont = 0
+        cont_eq = 0
+        for index, value in enumerate(max_kda.index):
+            if value in max_adg.index:
+                cont += 1
+            if value == max_adg.index[index]:
+                cont_eq += 1
+
+        print("KDA e ADG")
+        print(k, cont, cont_eq)
+        print()
+
+        cont = 0
+        cont_eq = 0
+        for index, value in enumerate(max_kda.index):
+            if value in max_g.index:
+                cont += 1
+            if value == max_g.index[index]:
+                cont_eq += 1
+
+        print("KDA e G")
+        print(k, cont, cont_eq)
+        print()
+
+        cont = 0
+        cont_eq = 0
+        for index, value in enumerate(max_kda.index):
+            if value in max_x.index:
+                cont += 1
+            if value == max_x.index[index]:
+                cont_eq += 1
+
+        print("KDA e X")
+        print(k, cont, cont_eq)
+        print()
+
+        cont = 0
+        cont_eq = 0
+        for index, value in enumerate(max_adg.index):
+            if value in max_g.index:
+                cont += 1
+            if value == max_g.index[index]:
+                cont_eq += 1
+
+        print("ADG e G")
+        print(k, cont, cont_eq)
+        print()
+
+        cont = 0
+        cont_eq = 0
+        for index, value in enumerate(max_x.index):
+            if value in max_g.index:
+                cont += 1
+            if value == max_g.index[index]:
+                cont_eq += 1
+
+        print("G e X")
+        print(k, cont, cont_eq)
+        print()
+
+    return
+
     # Compute intra-clusters stats
     averages = {}
     stds = {}
@@ -143,95 +203,6 @@ def main():
         averages_normed['X'], stds_normed['X'] = compute_stats(
             data, 'x', normed_mean=True)
 
-    clusters = np.array(range(args.n_clusters))
-
-    # Plots
-    subset = 'Clustered with %s attributes' % args.projection
-    for metric in averages.keys():
-        if metric != 'KDA':
-            plt.rcParams["figure.figsize"] = (25, 16)
-            plt.rcParams['font.size'] = 16.0
-            metrics = ('KDA', metric)
-
-            fig, ax = plt.subplots()
-            ax.bar(clusters, averages[metrics[0]], width=0.5,
-                   color='r', yerr=stds[metrics[0]], label=metrics[0])
-            ax.bar(clusters+0.5, averages[metrics[1]], width=0.5,
-                   color='b', yerr=stds[metrics[1]], label=metrics[1])
-            plt.suptitle('Average %s versus Average %s' % metrics)
-            plt.title(subset)
-            plt.legend()
-            plt.xlabel('Cluster ID')
-            plt.ylabel('Metrics')
-            plt.xticks(clusters + 0.25)
-            xlabels = tuple(['C%d' % (i+1) for i in clusters])
-            ax.set_xticklabels(xlabels)
-            file_name = '%savg_%s_%s_%s.png' % (
-                output_path, metrics[0], metrics[1], args.projection)
-            plt.savefig(file_name)
-            print(file_name, 'saved')
-            if args.show_plots:
-                plt.show()
-            plt.clf()
-
-            if args.normed_mean:
-                fig, ax = plt.subplots()
-                ax.bar(clusters, averages_normed[metrics[0]], width=0.5,
-                       color='r', yerr=stds_normed[metrics[0]], label=metrics[0])
-                ax.bar(clusters+0.5, averages_normed[metrics[1]], width=0.5,
-                       color='b', yerr=stds_normed[metrics[1]], label=metrics[1])
-                plt.suptitle('Average %s versus Average %s (normed)' % metrics)
-                plt.title(subset)
-                plt.legend()
-                plt.xlabel('Cluster ID')
-                plt.ylabel('Metrics')
-                plt.xticks(clusters + 0.25)
-                xlabels = tuple(['C%d' % (i+1) for i in clusters])
-                ax.set_xticklabels(xlabels)
-                file_name = '%savg_%s_%s_%s_normed.png' % (
-                    output_path, metrics[0], metrics[1], args.projection)
-                plt.savefig(file_name)
-                print(file_name, 'saved')
-                if args.show_plots:
-                    plt.show()
-                plt.clf()
-
-
-"""
-            f, axarr = plt.subplots(2, 2)
-            f.suptitle(
-                "Distribution of average metric value per cluster", fontsize=14)
-
-            axarr[0, 0].bar(x, metric_kda)
-            axarr[0, 0].set_title('metric_kda with experiment ' + experiment)
-            axarr[0, 0].set_xticks(x)
-            axarr[0, 0].set_xlabel('Clusters')
-            axarr[0, 0].set_ylabel('Average Metric Value')
-
-            axarr[0, 1].bar(x, metric_adg)
-            axarr[0, 1].set_title('metric_adg with experiment ' + experiment)
-            axarr[0, 1].set_xticks(x)
-            axarr[0, 1].set_xlabel('Clusters')
-            axarr[0, 1].set_ylabel('Average Metric Value')
-
-            axarr[1, 0].bar(x, metric_g)
-            axarr[1, 0].set_title('metric_g with experiment ' + experiment)
-            axarr[1, 0].set_xticks(x)
-            axarr[1, 0].set_xlabel('Clusters')
-            axarr[1, 0].set_ylabel('Average Metric Value')
-
-            axarr[1, 1].bar(x, metric_x)
-            axarr[1, 1].set_title('metric_x with experiment ' + experiment)
-            axarr[1, 1].set_xticks(x)
-            axarr[1, 1].set_xlabel('Clusters')
-            axarr[1, 1].set_ylabel('Average Metric Value')
-
-            # Fine-tune figure; hide x ticks for top plots and y ticks for right plots
-            plt.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
-            plt.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
-
-            plt.show()
-"""
 
 if __name__ == "__main__":
     main()
