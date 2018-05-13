@@ -197,41 +197,5 @@ def main():
                 plt.clf()
 
 
-"""
-            f, axarr = plt.subplots(2, 2)
-            f.suptitle(
-                "Distribution of average metric value per cluster", fontsize=14)
-
-            axarr[0, 0].bar(x, metric_kda)
-            axarr[0, 0].set_title('metric_kda with experiment ' + experiment)
-            axarr[0, 0].set_xticks(x)
-            axarr[0, 0].set_xlabel('Clusters')
-            axarr[0, 0].set_ylabel('Average Metric Value')
-
-            axarr[0, 1].bar(x, metric_adg)
-            axarr[0, 1].set_title('metric_adg with experiment ' + experiment)
-            axarr[0, 1].set_xticks(x)
-            axarr[0, 1].set_xlabel('Clusters')
-            axarr[0, 1].set_ylabel('Average Metric Value')
-
-            axarr[1, 0].bar(x, metric_g)
-            axarr[1, 0].set_title('metric_g with experiment ' + experiment)
-            axarr[1, 0].set_xticks(x)
-            axarr[1, 0].set_xlabel('Clusters')
-            axarr[1, 0].set_ylabel('Average Metric Value')
-
-            axarr[1, 1].bar(x, metric_x)
-            axarr[1, 1].set_title('metric_x with experiment ' + experiment)
-            axarr[1, 1].set_xticks(x)
-            axarr[1, 1].set_xlabel('Clusters')
-            axarr[1, 1].set_ylabel('Average Metric Value')
-
-            # Fine-tune figure; hide x ticks for top plots and y ticks for right plots
-            plt.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
-            plt.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
-
-            plt.show()
-"""
-
 if __name__ == "__main__":
     main()

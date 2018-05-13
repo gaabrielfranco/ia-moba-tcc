@@ -41,7 +41,7 @@ def compute_stats(data, metric, n_clusters=10, normed_mean=False):
 
 
 def main():
-    default_path = 'files/output_metrics_comparison/'
+    default_path = 'files/output_metrics_comparison_new/'
 
     parser = argparse.ArgumentParser(
         description='Comparison between the four metrics', prog="metrics_comparation.py")
@@ -106,13 +106,15 @@ def main():
     data.insert(len(data.columns), 'cluster', labels)
 
     # Maximum values in each metric
+    max_data = {}
     for k in [10, 100, 500, 1000, 2000]:
         max_kda = data['kda'].sort_values(ascending=False)[:k]
         max_adg = data['adg'].sort_values(ascending=False)[:k]
         max_g = data['g'].sort_values(ascending=False)[:k]
         max_x = data['x'].sort_values(ascending=False)[:k]
+        max_data[k] = {'kda e adg': {}, 'kda e g': {},
+                       'kda e x': {}, 'adg e g': {}, 'g e x': {}}
 
-        print("K = ", k)
         cont = 0
         cont_eq = 0
         for index, value in enumerate(max_kda.index):
@@ -121,9 +123,8 @@ def main():
             if value == max_adg.index[index]:
                 cont_eq += 1
 
-        print("KDA e ADG")
-        print(k, cont, cont_eq)
-        print()
+        max_data[k]['kda e adg'] = {'Número de repetições': cont,
+                                    'Valores na mesma posição': cont_eq}
 
         cont = 0
         cont_eq = 0
@@ -133,9 +134,8 @@ def main():
             if value == max_g.index[index]:
                 cont_eq += 1
 
-        print("KDA e G")
-        print(k, cont, cont_eq)
-        print()
+        max_data[k]['kda e g'] = {'Número de repetições': cont,
+                                  'Valores na mesma posição': cont_eq}
 
         cont = 0
         cont_eq = 0
@@ -145,9 +145,8 @@ def main():
             if value == max_x.index[index]:
                 cont_eq += 1
 
-        print("KDA e X")
-        print(k, cont, cont_eq)
-        print()
+        max_data[k]['kda e x'] = {'Número de repetições': cont,
+                                  'Valores na mesma posição': cont_eq}
 
         cont = 0
         cont_eq = 0
@@ -157,9 +156,8 @@ def main():
             if value == max_g.index[index]:
                 cont_eq += 1
 
-        print("ADG e G")
-        print(k, cont, cont_eq)
-        print()
+        max_data[k]['adg e g'] = {'Número de repetições': cont,
+                                  'Valores na mesma posição': cont_eq}
 
         cont = 0
         cont_eq = 0
@@ -169,10 +167,11 @@ def main():
             if value == max_g.index[index]:
                 cont_eq += 1
 
-        print("G e X")
-        print(k, cont, cont_eq)
-        print()
+        max_data[k]['g e x'] = {'Número de repetições': cont,
+                                'Valores na mesma posição': cont_eq}
 
+    max_data_df = pd.DataFrame(max_data)
+    max_data_df.to_csv(output_path + 'max_values_comparison.csv')
     return
 
     # Compute intra-clusters stats
