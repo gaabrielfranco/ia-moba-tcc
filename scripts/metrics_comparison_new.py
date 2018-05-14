@@ -16,6 +16,9 @@ from scipy.stats import kendalltau
 #       - Fazer startplot dos 10 melhores jogadores de cada métrica agrupando os atributos
 #         pelo jeito decidido na reunião
 #       - Pegar o resto das coisas pra fazer no log da reunião
+#
+#   IDEIA JEITO DE COMPARAR POR CLUSTER:
+#       - pra cada cluster, ordena pras métricas e vê o range de valores que ela abrange por cluster
 # =============================================================================
 
 
