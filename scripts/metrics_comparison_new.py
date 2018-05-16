@@ -252,35 +252,6 @@ def main():
         top_10 = data_cluster.sort_values(by=['x'], ascending=False)[:10]
         radarplot(top_10, output_path + 'radar_plot_top_10_x_C' + str(cluster_label) + '.png', exclude_list,
                   'Cluster ' + str(cluster_label) + ' - Top 10 by X')
-    '''
-    # Compute intra-clusters stats
-    averages = {}
-    stds = {}
-    coeffs = {}
-    averages['KDA'], stds['KDA'], coeffs['KDA'] = compute_stats(data, 'kda')
-    averages['ADG'], stds['ADG'], coeffs['ADG'] = compute_stats(data, 'adg')
-    averages['G'], stds['G'], coeffs['G'] = compute_stats(data, 'g')
-    averages['X'], stds['X'], coeffs['X'] = compute_stats(data, 'x')
-
-    # Compute correlation
-    file_name = output_path + 'correlation_' + args.projection + '.csv'
-    df_corr = pd.DataFrame(averages)
-    df_corr = df_corr.corr()
-    df_corr.to_csv(file_name)
-    print(file_name, 'saved')
-
-    if args.normed_mean:
-        averages_normed = {}
-        stds_normed = {}
-        averages_normed['KDA'], stds_normed['KDA'] = compute_stats(
-            data, 'kda', normed_mean=True)
-        averages_normed['ADG'], stds_normed['ADG'] = compute_stats(
-            data, 'adg', normed_mean=True)
-        averages_normed['G'], stds_normed['G'] = compute_stats(
-            data, 'g', normed_mean=True)
-        averages_normed['X'], stds_normed['X'] = compute_stats(
-            data, 'x', normed_mean=True)
-    '''
 
 
 if __name__ == "__main__":
