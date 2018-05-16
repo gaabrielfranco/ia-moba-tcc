@@ -17,12 +17,46 @@ from scipy.stats import kendalltau
 #         pelo jeito decidido na reunião
 #       - Pegar o resto das coisas pra fazer no log da reunião
 #
-#   IDEIA JEITO DE COMPARAR POR CLUSTER:
-#       - pra cada cluster, ordena pras métricas e vê o range de valores que ela abrange por cluster
-#
 #   IDEIA DO GIOVANNI (TEM FOTO NO CELULAR):
 #       -CDF P(X <= x) - implementação ECDF no Stats Model
 # =============================================================================
+
+
+def radarplot(data, file_name, exclude_list, title=None, show_plots=False):
+    plt.rcParams["figure.figsize"] = (25, 16)
+    plt.rcParams['font.size'] = 18.0
+
+    label = {}
+    for index, player in enumerate(data.index):
+        label[player] = 'Top ' + str(index + 1)
+    data = data.drop(exclude_list, axis=1)
+
+    colunms_order = ['kills', 'hd', 'assists', 'hh',
+                     'deaths', 'denies', 'lh', 'gpm', 'xpm']
+    data = data.reindex(columns=colunms_order)
+
+    dimensions = np.array(list(data.columns))
+    angles = np.linspace(0, 2*np.pi, len(dimensions), endpoint=False)
+    angles = np.concatenate((angles, [angles[0]]))
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, polar=True)
+    for i in data.index:
+        values = data[dimensions].loc[i].values
+        values = np.concatenate((values, [values[0]]))
+        ax.plot(angles, values, 'o-', linewidth=2,
+                label=label[i])
+        ax.fill(angles, values, alpha=0.25)
+    ax.set_thetagrids(angles * 180/np.pi, dimensions)
+    if title is not None:
+        ax.set_title(title)
+    ax.grid(True)
+    plt.legend(loc='center left', bbox_to_anchor=(1.1, 0.5))
+    if show_plots:
+        plt.show()
+    plt.savefig(file_name)
+    plt.clf()
+    print('Graph %s saved.' % file_name)
 
 
 def compute_stats(data, metric, n_clusters=10, normed_mean=False):
@@ -178,8 +212,47 @@ def main():
 
     max_data_df = pd.DataFrame(max_data)
     max_data_df.to_csv(output_path + 'max_values_comparison.csv')
-    return
 
+    # Top 10 Radar Plot
+    top_10_kda = data.sort_values(by=['kda'], ascending=False)[:10]
+    top_10_adg = data.sort_values(by=['adg'], ascending=False)[:10]
+    top_10_g = data.sort_values(by=['g'], ascending=False)[:10]
+    top_10_x = data.sort_values(by=['x'], ascending=False)[:10]
+
+    exclude_list = ['kda', 'adg', 'g', 'x', 'cluster']
+
+    radarplot(top_10_kda, output_path + 'radar_plot_top_10_kda.png', exclude_list,
+              'Top 10 by KDA')
+
+    radarplot(top_10_adg, output_path + 'radar_plot_top_10_adg.png', exclude_list,
+              'Top 10 by ADG')
+
+    radarplot(top_10_g, output_path + 'radar_plot_top_10_g.png', exclude_list,
+              'Top 10 by G')
+
+    radarplot(top_10_x, output_path + 'radar_plot_top_10_x.png', exclude_list,
+              'Top 10 by X')
+
+    # Top 10 per cluster Radar Plot
+    for cluster_label in range(0, 10):
+        data_cluster = data[data.cluster == cluster_label]
+
+        top_10 = data_cluster.sort_values(by=['kda'], ascending=False)[:10]
+        radarplot(top_10, output_path + 'radar_plot_top_10_kda_C' + str(cluster_label) + '.png', exclude_list,
+                  'Cluster ' + str(cluster_label) + ' - Top 10 by KDA')
+
+        top_10 = data_cluster.sort_values(by=['adg'], ascending=False)[:10]
+        radarplot(top_10, output_path + 'radar_plot_top_10_adg_C' + str(cluster_label) + '.png', exclude_list,
+                  'Cluster ' + str(cluster_label) + ' - Top 10 by ADG')
+
+        top_10 = data_cluster.sort_values(by=['g'], ascending=False)[:10]
+        radarplot(top_10, output_path + 'radar_plot_top_10_g_C' + str(cluster_label) + '.png', exclude_list,
+                  'Cluster ' + str(cluster_label) + ' - Top 10 by G')
+
+        top_10 = data_cluster.sort_values(by=['x'], ascending=False)[:10]
+        radarplot(top_10, output_path + 'radar_plot_top_10_x_C' + str(cluster_label) + '.png', exclude_list,
+                  'Cluster ' + str(cluster_label) + ' - Top 10 by X')
+    '''
     # Compute intra-clusters stats
     averages = {}
     stds = {}
@@ -207,6 +280,7 @@ def main():
             data, 'g', normed_mean=True)
         averages_normed['X'], stds_normed['X'] = compute_stats(
             data, 'x', normed_mean=True)
+    '''
 
 
 if __name__ == "__main__":
