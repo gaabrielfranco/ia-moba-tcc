@@ -19,6 +19,9 @@ from scipy.stats import kendalltau
 #
 #   IDEIA JEITO DE COMPARAR POR CLUSTER:
 #       - pra cada cluster, ordena pras métricas e vê o range de valores que ela abrange por cluster
+#
+#   IDEIA DO GIOVANNI (TEM FOTO NO CELULAR):
+#       -CDF P(X <= x) - implementação ECDF no Stats Model
 # =============================================================================
 
 
