@@ -74,7 +74,6 @@ def radarplot_same_img(data, plots_path, show_plots=False):
         plt.savefig(file_name)
         plt.clf()
         print('Graph %s saved.' % file_name)
-        # Fine-tune figure; make subplots farther from each other.
 
 
 def radarplot(data, file_name, exclude_list, title=None, show_plots=False):
