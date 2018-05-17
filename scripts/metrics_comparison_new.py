@@ -22,6 +22,61 @@ from scipy.stats import kendalltau
 # =============================================================================
 
 
+def radarplot_same_img(data, plots_path, show_plots=False):
+    plt.rcParams["figure.figsize"] = (30, 20)
+    plt.rcParams['font.size'] = 12.0
+
+    for metric in ['kda', 'adg', 'g', 'x']:
+        cx, cy = 0, 0
+        f, axarr = plt.subplots(4, 3, subplot_kw=dict(projection='polar'))
+        for cluster_label in range(0, 10):
+            data_cluster = data[data.cluster == cluster_label]
+
+            data_cluster = data_cluster.sort_values(
+                by=[metric], ascending=False)[:10]
+
+            label = {}
+            for index, player in enumerate(data_cluster.index):
+                label[player] = 'Top ' + str(index + 1)
+            exclude_list = ['kda', 'adg', 'g', 'x', 'cluster']
+            data_cluster = data_cluster.drop(exclude_list, axis=1)
+
+            colunms_order = ['kills', 'hd', 'assists', 'hh',
+                             'deaths', 'denies', 'lh', 'gpm', 'xpm']
+            data_cluster = data_cluster.reindex(columns=colunms_order)
+            dimensions = np.array(list(data_cluster.columns))
+            angles = np.linspace(0, 2*np.pi, len(dimensions), endpoint=False)
+            angles = np.concatenate((angles, [angles[0]]))
+
+            for i in data_cluster.index:
+                values = data_cluster[dimensions].loc[i].values
+                values = np.concatenate((values, [values[0]]))
+                axarr[cx, cy].plot(angles, values, 'o-', linewidth=2,
+                                   label=label[i])
+                axarr[cx, cy].fill(angles, values, alpha=0.25)
+            axarr[cx, cy].set_thetagrids(angles * 180/np.pi, dimensions)
+            axarr[cx, cy].set_title('Cluster ' + str(cluster_label))
+            axarr[cx, cy].grid(True)
+
+            cy += 1
+            if cy > 2:
+                cy = 0
+                cx += 1
+
+        axarr[3, 0].legend(loc='best', bbox_to_anchor=(1.1, 0.5))
+        f.suptitle('Top 10 ' + metric + ' per cluster', fontsize=20)
+        f.delaxes(axarr.flatten()[10])
+        f.delaxes(axarr.flatten()[11])
+        f.subplots_adjust(wspace=0.4, hspace=0.4)
+        if show_plots:
+            plt.show()
+        file_name = plots_path + metric + '_per_cluster'
+        plt.savefig(file_name)
+        plt.clf()
+        print('Graph %s saved.' % file_name)
+        # Fine-tune figure; make subplots farther from each other.
+
+
 def radarplot(data, file_name, exclude_list, title=None, show_plots=False):
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
@@ -59,27 +114,6 @@ def radarplot(data, file_name, exclude_list, title=None, show_plots=False):
     print('Graph %s saved.' % file_name)
 
 
-def compute_stats(data, metric, n_clusters=10, normed_mean=False):
-    avg_metric = np.empty(n_clusters)
-    std_metric = np.empty(n_clusters)
-    var_coef_metric = np.empty(n_clusters)
-
-    for cluster_id in range(n_clusters):
-        avg_metric[cluster_id] = data[metric][data.cluster == cluster_id].mean()
-        std_metric[cluster_id] = data[metric][data.cluster == cluster_id].std()
-        var_coef_metric[cluster_id] = std_metric[cluster_id] / \
-            avg_metric[cluster_id]
-
-    if normed_mean:
-        avg_metric = (avg_metric - avg_metric.min()) / \
-            (avg_metric.max() - avg_metric.min())
-        std_metric = (std_metric - avg_metric.min()) / \
-            (avg_metric.max() - avg_metric.min())
-        return avg_metric+0.5, std_metric
-
-    return avg_metric, std_metric, var_coef_metric
-
-
 def main():
     default_path = 'files/output_metrics_comparison_new/'
 
@@ -95,8 +129,6 @@ def main():
                         help='show plots during execution (default = False)')
     parser.add_argument('--projection', '-prj', choices=['all', 'kda', 'adg', 'g', 'x'],
                         default='all', help='projection of the database used for clustering data (all | kda | adg | g | x) (default=all)')
-    parser.add_argument('--normed_mean', '-nm', action='store_true',
-                        help='plot normed values for mean in line plot (default = False)')
 
     args = parser.parse_args()
 
@@ -108,9 +140,9 @@ def main():
         data = read_data('df_data_pruned')
 
     if not args.output_path.endswith('/'):
-        output_path = args.output_path + '/'
+        output_path = args.output_path + '/' + args.projection + '/'
     else:
-        output_path = args.output_path
+        output_path = args.output_path + args.projection + '/'
 
     # Normalizing data
     for col in data.columns:
@@ -252,6 +284,9 @@ def main():
         top_10 = data_cluster.sort_values(by=['x'], ascending=False)[:10]
         radarplot(top_10, output_path + 'radar_plot_top_10_x_C' + str(cluster_label) + '.png', exclude_list,
                   'Cluster ' + str(cluster_label) + ' - Top 10 by X')
+
+    # Top 10 per cluster Radar Plot in same img
+    radarplot_same_img(data, output_path)
 
 
 if __name__ == "__main__":
