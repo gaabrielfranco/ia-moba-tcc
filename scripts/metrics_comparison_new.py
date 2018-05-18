@@ -76,13 +76,15 @@ def radarplot_same_img(data, plots_path, show_plots=False):
         print('Graph %s saved.' % file_name)
 
 
-def radarplot(data, file_name, exclude_list, title=None, show_plots=False):
+def radarplot(data, file_name, exclude_list, title=None, show_plots=False, method=None):
     plt.rcParams["figure.figsize"] = (25, 16)
     plt.rcParams['font.size'] = 18.0
 
     label = {}
     for index, player in enumerate(data.index):
-        label[player] = 'Top ' + str(index + 1)
+        label[player] = 'Top ' + \
+            str(index + 1) if method != 'avg' else 'Top ' + \
+            str(player) + ' - avg'
     data = data.drop(exclude_list, axis=1)
 
     colunms_order = ['kills', 'hd', 'assists', 'hh',
@@ -175,6 +177,10 @@ def main():
     data.insert(len(data.columns), 'g', g)
     data.insert(len(data.columns), 'x', x)
     data.insert(len(data.columns), 'cluster', labels)
+
+    # Saving data
+    data.to_csv('files/data/df_w_metrics_' +
+                args.projection + '.csv', index=False)
 
     # Maximum values in each metric
     max_data = {}
@@ -286,6 +292,18 @@ def main():
 
     # Top 10 per cluster Radar Plot in same img
     radarplot_same_img(data, output_path)
+
+    # Startplot with top k average
+    k_values = [10, 50, 100, 1000, 2000, 5000, 10000, 12000, 15000, len(data)]
+    for metric in ['kda', 'adg', 'g', 'x']:
+        players = pd.DataFrame()
+        for k in k_values:
+            top_players = data.sort_values(by=[metric], ascending=False)[:k]
+            players = players.append(top_players.sum() / k, ignore_index=True)
+        #players.set_index([k_values], inplace=True)
+        players.index = k_values
+        radarplot(players, output_path + 'average_top_10_' + metric + '.png', exclude_list,
+                  'Top 10 by ' + metric + ' - average', method='avg')
 
 
 if __name__ == "__main__":

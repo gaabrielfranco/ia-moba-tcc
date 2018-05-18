@@ -146,6 +146,21 @@ def read_data(method='data'):
     elif method == 'df_data_pruned':
         df = pd.read_json('files/data/data_pruned_df.json')
         return df
+    elif method == 'df_w_metrics_all':
+        df = pd.read_csv('files/data/df_w_metrics_all.csv')
+        return df
+    elif method == 'df_w_metrics_kda':
+        df = pd.read_csv('files/data/df_w_metrics_kda.csv')
+        return df
+    elif method == 'df_w_metrics_adg':
+        df = pd.read_csv('files/data/df_w_metrics_adg.csv')
+        return df
+    elif method == 'df_w_metrics_g':
+        df = pd.read_csv('files/data/df_w_metrics_g.csv')
+        return df
+    elif method == 'df_w_metrics_x':
+        df = pd.read_csv('files/data/df_w_metrics_x.csv')
+        return df
 
 
 def create_data(input_file, corr=True, verbose=False):
