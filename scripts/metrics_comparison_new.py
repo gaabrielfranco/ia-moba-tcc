@@ -54,6 +54,7 @@ def radarplot_same_img(data, plots_path, show_plots=False):
                 axarr[cx, cy].plot(angles, values, 'o-', linewidth=2,
                                    label=label[i])
                 axarr[cx, cy].fill(angles, values, alpha=0.25)
+                axarr[cx, cy].set_ylim(top=1.0)
             axarr[cx, cy].set_thetagrids(angles * 180/np.pi, dimensions)
             axarr[cx, cy].set_title('Cluster ' + str(cluster_label))
             axarr[cx, cy].grid(True)
@@ -103,6 +104,7 @@ def radarplot(data, file_name, exclude_list, title=None, show_plots=False, metho
         ax.plot(angles, values, 'o-', linewidth=2,
                 label=label[i])
         ax.fill(angles, values, alpha=0.25)
+    ax.set_ylim(top=1.0)
     ax.set_thetagrids(angles * 180/np.pi, dimensions)
     if title is not None:
         ax.set_title(title)
@@ -303,6 +305,18 @@ def main():
         #players.set_index([k_values], inplace=True)
         players.index = k_values
         radarplot(players, output_path + 'average_top_10_' + metric + '.png', exclude_list,
+                  'Top 10 by ' + metric + ' - average', method='avg')
+        
+    # Startplot with top k average
+    k_values = [10, 50, 100, 1000, 2000]
+    for metric in ['kda', 'adg', 'g', 'x']:
+        players = pd.DataFrame()
+        for k in k_values:
+            top_players = data.sort_values(by=[metric], ascending=False)[:k]
+            players = players.append(top_players.sum() / k, ignore_index=True)
+        #players.set_index([k_values], inplace=True)
+        players.index = k_values
+        radarplot(players, output_path + 'average_top_10_smaller_' + metric + '.png', exclude_list,
                   'Top 10 by ' + metric + ' - average', method='avg')
 
 
