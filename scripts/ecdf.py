@@ -12,7 +12,7 @@ def main():
     data_pruned = read_data("df_data_pruned")
 
     for attr in data_pruned:
-        #NORMALIZAR OS DADOS
+        # NORMALIZAR OS DADOS
         data_pruned[attr] = (data_pruned[attr] - data_pruned[attr].min()) / \
             (data_pruned[attr].max() - data_pruned[attr].min())
         ecdf = ECDF(data_pruned[attr])
@@ -23,7 +23,6 @@ def main():
     plt.savefig(file_name)
     plt.clf()
     print('Graph %s saved.' % file_name)
-    return
 
     for metric in ["kda", "adg", "g", "x"]:
         for cluster in range(0, 10):

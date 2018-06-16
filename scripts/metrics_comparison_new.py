@@ -306,7 +306,7 @@ def main():
         players.index = k_values
         radarplot(players, output_path + 'average_top_10_' + metric + '.png', exclude_list,
                   'Top 10 by ' + metric + ' - average', method='avg')
-        
+
     # Startplot with top k average
     k_values = [10, 50, 100, 1000, 2000]
     for metric in ['kda', 'adg', 'g', 'x']:
