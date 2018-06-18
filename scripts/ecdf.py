@@ -10,12 +10,12 @@ def main():
     plots_path = "files/output_ecdf/"
     data = read_data("df_w_metrics_all")
     data_pruned = read_data("df_data_pruned")
+    data_all = read_data("df_data")
 
-    for attr in data_pruned:
-        # NORMALIZAR OS DADOS
-        data_pruned[attr] = (data_pruned[attr] - data_pruned[attr].min()) / \
-            (data_pruned[attr].max() - data_pruned[attr].min())
-        ecdf = ECDF(data_pruned[attr])
+    for attr in data_all:
+        data_all[attr] = (data_all[attr] - data_all[attr].min()) / \
+            (data_all[attr].max() - data_all[attr].min())
+        ecdf = ECDF(data_all[attr])
         plt.plot(ecdf.x, ecdf.y, label=attr)
     plt.legend()
     plt.title("Attributes ECDF")
@@ -23,6 +23,20 @@ def main():
     plt.savefig(file_name)
     plt.clf()
     print('Graph %s saved.' % file_name)
+
+    for attr in data_pruned:
+        data_pruned[attr] = (data_pruned[attr] - data_pruned[attr].min()) / \
+            (data_pruned[attr].max() - data_pruned[attr].min())
+        ecdf = ECDF(data_pruned[attr])
+        plt.plot(ecdf.x, ecdf.y, label=attr)
+    plt.legend()
+    plt.title("Attributes ECDF pruned")
+    file_name = plots_path + "attributes_ecdf_pruned.png"
+    #plt.show()
+    plt.savefig(file_name)
+    plt.clf()
+    print('Graph %s saved.' % file_name)
+
 
     for metric in ["kda", "adg", "g", "x"]:
         for cluster in range(0, 10):
