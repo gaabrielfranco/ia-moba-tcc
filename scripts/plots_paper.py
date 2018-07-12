@@ -1,8 +1,8 @@
 from modules.data import read_data
+import matplotlib
 import matplotlib.pyplot as plt
 import argparse
-
-# C:\Users\gabgo\Documents\github\ia-moba-tcc\scripts\files\output_k-analysis
+import json
 
 
 def main():
@@ -17,13 +17,36 @@ def main():
     parser.add_argument('--show', '-s', action='store_true',
                         help='show plots (defaut = False)')
     args = parser.parse_args()
-    # if args.fig1 or args.all:
+
+    plots_path = "files/plots_paper/"
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+    # matplotlib.use('Agg')
+    matplotlib.style.use('ggplot')
+
+    if args.fig1 or args.all:
+        file_name = plots_path + "inertia_x_k.pdf"
+
+        with open("files/output_k-analysis/output_k_analysis.json") as file:
+            data = json.load(file)
+
+        fig = plt.figure(figsize=(3.5, 2.5))
+        plt.rc('font', size=7)
+        plt.ylabel("Inertia")
+        plt.xlabel("Number of clusters")
+        plt.xticks(list(range(0, 101, 10)))
+
+        plt.plot(data["all"]["n_clusters"], data["all"]["inertia"])
+        plt.xlim((0, 100))
+        plt.tight_layout()
+        plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+        if args.show:
+            plt.show()
+        plt.clf()
 
     # ARRUMAR O PLOT
     if args.fig2 or args.all:
-        plots_path = "files/plots_paper/"
-
-        file_name = plots_path + "players_distribution_per_cluster"
+        file_name = plots_path + "players_distribution_per_cluster.pdf"
         data = read_data("df_w_metrics_all")
 
         clusters = data["cluster"].values
