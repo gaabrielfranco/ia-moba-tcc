@@ -30,7 +30,7 @@ def main():
         with open("files/output_k-analysis/output_k_analysis.json") as file:
             data = json.load(file)
 
-        fig = plt.figure(figsize=(3.5, 2.5))
+        fig = plt.figure(figsize=(3.55, 2))
         plt.rc('font', size=7)
         plt.ylabel("Inertia")
         plt.xlabel("Number of clusters")
