@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from sklearn.metrics import silhouette_samples
+import numbers
+import matplotlib
 
 
 def plot_clusters(data, attribute_names, plots_path, show_plots, wo=False):
@@ -331,3 +333,43 @@ def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, 
     plt.savefig(file_name)
     plt.clf()
     print('Graph %s saved.\n' % file_name)
+
+
+def radarplot(data, file_name, title=None, exclude=None, label=None, show_plots=False):
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+    matplotlib.style.use('ggplot')
+
+    candidates = list(data.columns)
+    dimensions = []
+    for i, c in enumerate(candidates):
+        if isinstance(data.loc[0, c], numbers.Number):
+            if exclude is not None:
+                if c not in exclude:
+                    dimensions.append(candidates[i])
+            else:
+                dimensions.append(candidates[i])
+
+    dimensions = np.array(dimensions)
+    angles = np.linspace(0, 2*np.pi, len(dimensions), endpoint=False)
+    angles = np.concatenate((angles, [angles[0]]))
+
+    fig = plt.figure(figsize=(5, 3.4))
+    plt.rc('font', size=7)
+    ax = fig.add_subplot(111, polar=True)
+    for i in data.index:
+        values = data[dimensions].loc[i].values
+        values = np.concatenate((values, [values[0]]))
+        ax.plot(angles, values, 'o-', linewidth=2, label=label[i])
+        ax.fill(angles, values, alpha=0.25)
+    ax.set_thetagrids(angles * 180/np.pi, dimensions)
+    if title is not None:
+        ax.set_title(title)
+    ax.grid(True)
+    plt.tight_layout()
+    plt.legend(loc='best', bbox_to_anchor=(1.1, 0.5))
+    if show_plots:
+        plt.show()
+    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+    plt.clf()
+    print('Graph %s saved.' % file_name)

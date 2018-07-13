@@ -1,8 +1,12 @@
-from modules.data import read_data
+from modules.data import read_data, normalizes
 import matplotlib
 import matplotlib.pyplot as plt
 import argparse
 import json
+import pandas as pd
+from modules.plots import radarplot
+from statsmodels.distributions.empirical_distribution import ECDF
+import seaborn as sns
 
 
 def main():
@@ -14,6 +18,12 @@ def main():
                         help='plot fig1 - inértia x k (defaut = False)')
     parser.add_argument('--fig2', '-f2', action='store_true',
                         help='plot fig2 - players distribution per cluster (defaut = False)')
+    parser.add_argument('--fig3', '-f3', action='store_true',
+                        help='plot fig3 - starplot of attributes distribution (defaut = False)')
+    parser.add_argument('--fig4', '-f4', action='store_true',
+                        help='plot fig4 - silhouette score per cluster (defaut = False)')
+    parser.add_argument('--fig5', '-f5', action='store_true',
+                        help='plot fig5 - all metrics CDFs (defaut = False)')
     parser.add_argument('--show', '-s', action='store_true',
                         help='show plots (defaut = False)')
     args = parser.parse_args()
@@ -44,7 +54,6 @@ def main():
             plt.show()
         plt.clf()
 
-    # ARRUMAR O PLOT
     if args.fig2 or args.all:
         file_name = plots_path + "players_distribution_per_cluster.pdf"
         data = read_data("df_w_metrics_all")
@@ -73,6 +82,53 @@ def main():
         if args.show:
             plt.show()
         plt.clf()
+
+    if args.fig3 or args.all:
+        file_name = plots_path + "radar_plot_all_10.pdf"
+
+        _, _, data = read_data('k-means_experiments')
+
+        for i in data:
+            if i == "all_10":
+                data_norm = normalizes(data[i]['centroids'])[0]
+                columns = ['kills', 'deaths', 'assists',
+                           'denies', 'gpm', 'hd', 'hh', 'lh', 'xpm']
+                df = pd.DataFrame(data_norm, columns=columns)
+                label = ['Centroid ' + str(x + 1)
+                         for x in range(len(data_norm))]
+                radarplot(df, file_name, label=label,
+                          show_plots=args.show)
+
+    if args.fig4 or args.all:
+        file_name = plots_path + "silhouette_score_all_10.pdf"
+
+        # Vai precisar fazer o código de novo :'(
+
+    if args.fig5 or args.all:
+        data = read_data("df_w_metrics_all")
+
+        for metric in ["kda", "adg", "g", "x"]:
+            fig = plt.figure(figsize=(4, 3))
+            plt.rc('font', size=7)
+            colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
+                          "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
+
+            pallete = sns.color_palette(colors_vec)
+            for cluster in range(0, 10):
+                data_cluster = data[data.cluster == cluster]
+                ecdf = ECDF(data_cluster[metric])
+                plt.plot(ecdf.x, ecdf.y, label="Cluster " +
+                         str(cluster + 1), color=pallete[cluster])
+            plt.legend()
+            plt.ylabel("CDF")
+            plt.xlabel("KDA values")
+            plt.tight_layout()
+            file_name = plots_path + metric + "_ecdf.pdf"
+            plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+            if args.show:
+                plt.show()
+            plt.clf()
+            print('Graph %s saved.' % file_name)
 
 
 if __name__ == "__main__":
