@@ -26,7 +26,6 @@ def main():
 
     if args.fig1 or args.all:
         file_name = plots_path + "inertia_x_k.pdf"
-
         with open("files/output_k-analysis/output_k_analysis.json") as file:
             data = json.load(file)
 
@@ -40,6 +39,7 @@ def main():
         plt.xlim((0, 100))
         plt.tight_layout()
         plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+        print('Graph %s saved.' % file_name)
         if args.show:
             plt.show()
         plt.clf()
@@ -60,12 +60,15 @@ def main():
         for i in num_occur:
             labels.append((i / len(clusters)) * 100)
 
-        plt.bar(range(1, max(clusters) + 2), labels)
-        plt.ylabel("Porcentagem")
-        plt.xlabel("Número do grupo")
+        fig = plt.figure(figsize=(3.55, 2))
+        plt.rc('font', size=7)
+        plt.ylabel("Percentage")
+        plt.xlabel("Clusters")
         plt.xticks(range(1, max(clusters) + 2))
-        plt.title("Distribuição dos jogadores por grupo")
-        plt.savefig(file_name)
+
+        plt.bar(range(1, max(clusters) + 2), labels)
+        plt.tight_layout()
+        plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
         print('Graph %s saved.' % file_name)
         if args.show:
             plt.show()
