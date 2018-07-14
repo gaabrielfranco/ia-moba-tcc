@@ -285,14 +285,16 @@ def plot_f(kmeans_data, type_experiment, plots_path, show_plots):
 
 
 def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, file_name, show_plots):
-    plt.rcParams["figure.figsize"] = (25, 16)
-    plt.rcParams['font.size'] = 12.0
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+    matplotlib.style.use('ggplot')
 
     sample_silhouette_values = silhouette_samples(
         data, cluster_labels, metric="euclidean")
 
-    fig, ax1 = plt.subplots(1, 1)
-    fig.set_size_inches(18, 7)
+    fig = plt.figure(figsize=(3.8, 2.3))
+    plt.tight_layout()
+    plt.rc('font', size=7)
 
     y_lower = 10
     for i in range(k):
@@ -307,30 +309,32 @@ def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, 
 
         color = (sns.color_palette("husl", k))
 
-        ax1.fill_betweenx(np.arange(y_lower, y_upper),
+        plt.fill_betweenx(np.arange(y_lower, y_upper),
                           0, ith_cluster_silhouette_values,
                           facecolor=color[i], edgecolor=color[i], alpha=0.7)
 
         # Label the silhouette plots with their cluster numbers at the middle
-        ax1.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i + 1))
+        plt.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i + 1))
 
         # Compute the new y_lower for next plot
         y_lower = y_upper + 10  # 10 for the 0 samples
 
-    ax1.set_title("The silhouette plot for the experiment " +
+    if attr_set is not None:
+        plt.title("The silhouette plot for the experiment " +
                   attr_set + "_" + str(k))
-    ax1.set_xlabel("The silhouette coefficient values")
-    ax1.set_ylabel("Cluster label")
+
+    plt.xlabel("The silhouette coefficient values")
+    plt.ylabel("Cluster label")
 
     # The vertical line for average silhouette score of all the values
-    ax1.axvline(x=silhouette_avg, color="red", linestyle="--")
+    plt.axvline(x=silhouette_avg, color="red", linestyle="--")
 
-    ax1.set_yticks([])  # Clear the yaxis labels / ticks
-    ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+    plt.yticks([])  # Clear the yaxis labels / ticks
+    plt.xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
     if show_plots:
         plt.show()
-    plt.savefig(file_name)
+    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     plt.clf()
     print('Graph %s saved.\n' % file_name)
 
@@ -357,16 +361,65 @@ def radarplot(data, file_name, title=None, exclude=None, label=None, show_plots=
     fig = plt.figure(figsize=(5, 3.4))
     plt.rc('font', size=7)
     ax = fig.add_subplot(111, polar=True)
-    for i in data.index:
+    colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
+                  "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
+    pallete = sns.color_palette(colors_vec)
+    for index, i in enumerate(data.index):
         values = data[dimensions].loc[i].values
         values = np.concatenate((values, [values[0]]))
-        ax.plot(angles, values, 'o-', linewidth=2, label=label[i])
+        ax.plot(angles, values, 'o-', linewidth=2,
+                label=label[i], color=pallete[index])
         ax.fill(angles, values, alpha=0.25)
     ax.set_thetagrids(angles * 180/np.pi, dimensions)
     if title is not None:
         ax.set_title(title)
     ax.grid(True)
     plt.tight_layout()
+    plt.legend(loc='best', bbox_to_anchor=(1.1, 0.5))
+    if show_plots:
+        plt.show()
+    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+    plt.clf()
+    print('Graph %s saved.' % file_name)
+
+
+def radarplot_top_k(data, file_name, exclude_list, title=None, show_plots=False, method=None):
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+    matplotlib.style.use('ggplot')
+
+    label = {}
+    for index, player in enumerate(data.index):
+        label[player] = 'Top ' + \
+            str(index + 1) if method != 'avg' else 'Top ' + \
+            str(player) + ' - avg'
+    data = data.drop(exclude_list, axis=1)
+
+    colunms_order = ['kills', 'hd', 'assists', 'hh',
+                     'deaths', 'denies', 'lh', 'gpm', 'xpm']
+    data = data.reindex(columns=colunms_order)
+
+    dimensions = np.array(list(data.columns))
+    angles = np.linspace(0, 2*np.pi, len(dimensions), endpoint=False)
+    angles = np.concatenate((angles, [angles[0]]))
+
+    fig = plt.figure(figsize=(5, 3.4))
+    plt.rc('font', size=7)
+    ax = fig.add_subplot(111, polar=True)
+    colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
+                  "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
+    pallete = sns.color_palette(colors_vec)
+    for index, i in enumerate(data.index):
+        values = data[dimensions].loc[i].values
+        values = np.concatenate((values, [values[0]]))
+        ax.plot(angles, values, 'o-', linewidth=2,
+                label=label[i], color=pallete[index])
+        ax.fill(angles, values, alpha=0.25)
+    ax.set_ylim(top=1.0)
+    ax.set_thetagrids(angles * 180/np.pi, dimensions)
+    if title is not None:
+        ax.set_title(title)
+    ax.grid(True)
     plt.legend(loc='best', bbox_to_anchor=(1.1, 0.5))
     if show_plots:
         plt.show()

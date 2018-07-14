@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 import argparse
 import json
 import pandas as pd
-from modules.plots import radarplot
+from modules.plots import radarplot, radarplot_top_k, plot_silhouette_analysis
 from statsmodels.distributions.empirical_distribution import ECDF
 import seaborn as sns
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 
 
 def main():
@@ -24,6 +26,8 @@ def main():
                         help='plot fig4 - silhouette score per cluster (defaut = False)')
     parser.add_argument('--fig5', '-f5', action='store_true',
                         help='plot fig5 - all metrics CDFs (defaut = False)')
+    parser.add_argument('--fig6', '-f6', action='store_true',
+                        help='plot fig6 - all top 10 starplots (defaut = False)')
     parser.add_argument('--show', '-s', action='store_true',
                         help='show plots (defaut = False)')
     args = parser.parse_args()
@@ -102,13 +106,25 @@ def main():
     if args.fig4 or args.all:
         file_name = plots_path + "silhouette_score_all_10.pdf"
 
-        # Vai precisar fazer o código de novo :'(
+        data = read_data("df_data_pruned")
+
+        for column in data:
+            data[column] = (data[column] - data[column].min()) / \
+                (data[column].max() - data[column].min())
+
+        km = KMeans(n_clusters=10, n_jobs=-1)
+        labels = km.fit_predict(data)
+
+        sil_score = silhouette_score(
+            data, labels, metric="euclidean")
+        plot_silhouette_analysis(
+            data, None, 10, labels, sil_score, file_name, args.show)
 
     if args.fig5 or args.all:
         data = read_data("df_w_metrics_all")
 
         for metric in ["kda", "adg", "g", "x"]:
-            fig = plt.figure(figsize=(4, 3))
+            fig = plt.figure(figsize=(3.55, 2.7))
             plt.rc('font', size=7)
             colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
                           "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
@@ -121,7 +137,7 @@ def main():
                          str(cluster + 1), color=pallete[cluster])
             plt.legend()
             plt.ylabel("CDF")
-            plt.xlabel("KDA values")
+            plt.xlabel(metric.upper() + " values")
             plt.tight_layout()
             file_name = plots_path + metric + "_ecdf.pdf"
             plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
@@ -129,6 +145,28 @@ def main():
                 plt.show()
             plt.clf()
             print('Graph %s saved.' % file_name)
+
+    if args.fig6 or args.all:
+        data = read_data("df_w_metrics_all")
+
+        top_10_kda = data.sort_values(by=['kda'], ascending=False)[:10]
+        top_10_adg = data.sort_values(by=['adg'], ascending=False)[:10]
+        top_10_g = data.sort_values(by=['g'], ascending=False)[:10]
+        top_10_x = data.sort_values(by=['x'], ascending=False)[:10]
+
+        exclude_list = ['kda', 'adg', 'g', 'x', 'cluster']
+
+        radarplot_top_k(top_10_kda, plots_path +
+                        'radar_plot_top_10_kda.pdf', exclude_list)
+
+        radarplot_top_k(top_10_adg, plots_path +
+                        'radar_plot_top_10_adg.pdf', exclude_list)
+
+        radarplot_top_k(top_10_g, plots_path +
+                        'radar_plot_top_10_g.pdf', exclude_list)
+
+        radarplot_top_k(top_10_x, plots_path +
+                        'radar_plot_top_10_x.pdf', exclude_list)
 
 
 if __name__ == "__main__":
