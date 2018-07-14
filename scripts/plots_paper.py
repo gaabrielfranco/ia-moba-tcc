@@ -28,6 +28,8 @@ def main():
                         help='plot fig5 - all metrics CDFs (defaut = False)')
     parser.add_argument('--fig6', '-f6', action='store_true',
                         help='plot fig6 - all top 10 starplots (defaut = False)')
+    parser.add_argument('--fig7', '-f7', action='store_true',
+                        help='plot fig7 - starplots players comparison (defaut = False)')
     parser.add_argument('--show', '-s', action='store_true',
                         help='show plots (defaut = False)')
     args = parser.parse_args()
@@ -157,16 +159,35 @@ def main():
         exclude_list = ['kda', 'adg', 'g', 'x', 'cluster']
 
         radarplot_top_k(top_10_kda, plots_path +
-                        'radar_plot_top_10_kda.pdf', exclude_list)
+                        'radar_plot_top_10_kda.pdf', exclude_list, show_plots=args.show)
 
         radarplot_top_k(top_10_adg, plots_path +
-                        'radar_plot_top_10_adg.pdf', exclude_list)
+                        'radar_plot_top_10_adg.pdf', exclude_list, show_plots=args.show)
 
         radarplot_top_k(top_10_g, plots_path +
-                        'radar_plot_top_10_g.pdf', exclude_list)
+                        'radar_plot_top_10_g.pdf', exclude_list, show_plots=args.show)
 
         radarplot_top_k(top_10_x, plots_path +
-                        'radar_plot_top_10_x.pdf', exclude_list)
+                        'radar_plot_top_10_x.pdf', exclude_list, show_plots=args.show)
+
+    if args.fig7 or args.all:
+        data = read_data("df_w_metrics_all")
+        file_name = plots_path + "starplot_players_comparison.pdf"
+
+        top_kda = data.sort_values(by=['kda'], ascending=False)[:1]
+        top_adg = data.sort_values(by=['adg'], ascending=False)[:4]
+
+        top_adg = top_adg.loc[7795:, :]
+
+        top_kda = top_kda.append(top_adg)
+
+        print(top_kda)
+
+        label = ["Player 1", "Player 2"]
+        exclude_list = ['kda', 'adg', 'g', 'x', 'cluster']
+
+        radarplot_top_k(top_kda, file_name, exclude_list,
+                        show_plots=args.show, label=label)
 
 
 if __name__ == "__main__":

@@ -383,16 +383,18 @@ def radarplot(data, file_name, title=None, exclude=None, label=None, show_plots=
     print('Graph %s saved.' % file_name)
 
 
-def radarplot_top_k(data, file_name, exclude_list, title=None, show_plots=False, method=None):
+def radarplot_top_k(data, file_name, exclude_list, title=None, show_plots=False, method=None, label=None):
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
 
-    label = {}
-    for index, player in enumerate(data.index):
-        label[player] = 'Top ' + \
-            str(index + 1) if method != 'avg' else 'Top ' + \
-            str(player) + ' - avg'
+    if label is None:
+        label = {}
+        for index, player in enumerate(data.index):
+            label[player] = 'Top ' + \
+                str(index + 1) if method != 'avg' else 'Top ' + \
+                str(player) + ' - avg'
+
     data = data.drop(exclude_list, axis=1)
 
     colunms_order = ['kills', 'hd', 'assists', 'hh',
@@ -412,8 +414,12 @@ def radarplot_top_k(data, file_name, exclude_list, title=None, show_plots=False,
     for index, i in enumerate(data.index):
         values = data[dimensions].loc[i].values
         values = np.concatenate((values, [values[0]]))
-        ax.plot(angles, values, 'o-', linewidth=2,
-                label=label[i], color=pallete[index])
+        if label is None:
+            ax.plot(angles, values, 'o-', linewidth=2,
+                    label=label[i], color=pallete[index])
+        else:
+            ax.plot(angles, values, 'o-', linewidth=2,
+                    label=label[index], color=pallete[index])
         ax.fill(angles, values, alpha=0.25)
     ax.set_ylim(top=1.0)
     ax.set_thetagrids(angles * 180/np.pi, dimensions)
