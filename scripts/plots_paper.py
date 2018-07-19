@@ -24,6 +24,8 @@ def main():
                         help='plot fig3 - starplot of attributes distribution (defaut = False)')
     parser.add_argument('--fig4', '-f4', action='store_true',
                         help='plot fig4 - silhouette score per cluster (defaut = False)')
+    parser.add_argument('--horizontal', '-hz', action='store_true',
+                        help='plot fig4 in the horizontal (defaut = False)')
     parser.add_argument('--fig5', '-f5', action='store_true',
                         help='plot fig5 - all metrics CDFs (defaut = False)')
     parser.add_argument('--fig6', '-f6', action='store_true',
@@ -100,13 +102,13 @@ def main():
                 columns = ['kills', 'deaths', 'assists',
                            'denies', 'gpm', 'hd', 'hh', 'lh', 'xpm']
                 df = pd.DataFrame(data_norm, columns=columns)
-                label = ['Centroid ' + str(x + 1)
+                label = [str(x + 1)
                          for x in range(len(data_norm))]
                 radarplot(df, file_name, label=label,
                           show_plots=args.show)
 
     if args.fig4 or args.all:
-        file_name = plots_path + "silhouette_score_all_10.pdf"
+        file_name = plots_path + "silhouette_score_all_10"
 
         data = read_data("df_data_pruned")
 
@@ -119,8 +121,9 @@ def main():
 
         sil_score = silhouette_score(
             data, labels, metric="euclidean")
+        print(args.horizontal)
         plot_silhouette_analysis(
-            data, None, 10, labels, sil_score, file_name, args.show)
+            data, None, 10, labels, sil_score, file_name, args.show, args.horizontal)
 
     if args.fig5 or args.all:
         data = read_data("df_w_metrics_all")

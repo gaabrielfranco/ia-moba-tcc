@@ -284,7 +284,7 @@ def plot_f(kmeans_data, type_experiment, plots_path, show_plots):
     print('Graph %s saved.' % file_name)
 
 
-def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, file_name, show_plots):
+def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, file_name, show_plots, horizontal):
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
@@ -309,12 +309,16 @@ def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, 
 
         color = (sns.color_palette("husl", k))
 
-        plt.fill_betweenx(np.arange(y_lower, y_upper),
-                          0, ith_cluster_silhouette_values,
-                          facecolor=color[i], edgecolor=color[i], alpha=0.7)
-
-        # Label the silhouette plots with their cluster numbers at the middle
-        plt.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i + 1))
+        if horizontal:
+            plt.fill_betweenx(np.arange(y_lower, y_upper),
+                              0, ith_cluster_silhouette_values,
+                              facecolor=color[i], edgecolor=color[i], alpha=0.7)
+            plt.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i + 1))
+        else:
+            plt.fill_between(np.arange(y_lower, y_upper),
+                             0, ith_cluster_silhouette_values,
+                             facecolor=color[i], edgecolor=color[i], alpha=0.7)
+            plt.text(y_lower + 0.5 * size_cluster_i, -0.05, str(i + 1))
 
         # Compute the new y_lower for next plot
         y_lower = y_upper + 10  # 10 for the 0 samples
@@ -323,14 +327,20 @@ def plot_silhouette_analysis(data, attr_set, k, cluster_labels, silhouette_avg, 
         plt.title("The silhouette plot for the experiment " +
                   attr_set + "_" + str(k))
 
-    plt.xlabel("The silhouette coefficient values")
-    plt.ylabel("Cluster label")
-
-    # The vertical line for average silhouette score of all the values
-    plt.axvline(x=silhouette_avg, color="red", linestyle="--")
-
-    plt.yticks([])  # Clear the yaxis labels / ticks
-    plt.xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+    if horizontal:
+        plt.xlabel("The silhouette coefficient values")
+        plt.ylabel("Cluster label")
+        plt.axvline(x=silhouette_avg, color="red", linestyle="--")
+        plt.yticks([])
+        plt.xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+        file_name += "_horizontal.pdf"
+    else:
+        plt.ylabel("The silhouette coefficient values")
+        plt.xlabel("Cluster label")
+        plt.axhline(y=silhouette_avg, color="red", linestyle="--")
+        plt.yticks([-0.1, 0, 0.2, 0.4, 0.6])
+        plt.xticks([])
+        file_name += "_vertical.pdf"
 
     if show_plots:
         plt.show()
@@ -375,7 +385,8 @@ def radarplot(data, file_name, title=None, exclude=None, label=None, show_plots=
         ax.set_title(title)
     ax.grid(True)
     plt.tight_layout()
-    plt.legend(loc='best', bbox_to_anchor=(1.1, 0.5))
+    plt.legend(loc="center right", bbox_to_anchor=(1.32, 0.5),
+               title="Centroid")  # bbox_to_anchor=(1.1, 0.5)
     if show_plots:
         plt.show()
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
