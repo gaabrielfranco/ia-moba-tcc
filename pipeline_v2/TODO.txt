@@ -1,0 +1,1 @@
+- Escrever TODO pipeline que precisa ser feito
