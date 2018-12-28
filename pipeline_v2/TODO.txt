@@ -1,6 +1,7 @@
 - Escrever TODO pipeline que precisa ser feito
 
 Pipeline:
+    0) Criar a base de dados
     1) Extrair as features importantes da base de dados
     2) Criar dois dataframes: um com todas as features importantes e outro só com a originais do trabalho (com os atributos normalizados)
     3) Descobrir o valor ótimo de k
