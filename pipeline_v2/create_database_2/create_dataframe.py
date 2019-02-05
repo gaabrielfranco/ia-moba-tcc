@@ -13,6 +13,7 @@ def main():
     attributes = {"kills": 0, "deaths": 0, "assists": 0, "denies": 0,
                   "gold_per_min": 0, "xp_per_min": 0, "hero_damage": 0,
                   "hero_healing": 0, "last_hits": 0, "n_matches": 0}
+
     data_dict = {}
     for match in matches:
         with open(match, "r") as f:
