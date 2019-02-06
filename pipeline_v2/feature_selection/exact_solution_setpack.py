@@ -238,12 +238,20 @@ def main():
                         help='Threshold value (defaut=0.75)')
     parser.add_argument('--elite_size', type=int, default=10,
                         help='Top n best solutions to be saved (defaut=10)')
+    parser.add_argument('--db', default='std', choices=[
+                        'all', 'std'], help='Database for the experiments (all or std) (default = std)')
     parser.add_argument('--save_log', '-l', action='store_true',
                         help='Save log with all solutions. The file name is the same from csv_file argument, with _log before extension (default=False)')
     args = parser.parse_args()
 
     # Loading data
-    data = pd.read_csv("../create_database/df_database.csv", index_col=0)
+    if args.db == "all":
+        print("Using ALL database")
+        data = pd.read_csv(
+            "../create_database/df_database_all.csv", index_col=0)
+    else:
+        print("Using STD database")
+        data = pd.read_csv("../create_database/df_database.csv", index_col=0)
 
     # Normalizing data
     for col in data.columns:

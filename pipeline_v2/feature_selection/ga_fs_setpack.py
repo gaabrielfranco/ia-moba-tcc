@@ -457,16 +457,25 @@ def main():
     parser.add_argument('--toursize', type=float, default=0.2, help='Percentage of population to parcitipate of tournament selection (default=0.2)')
     parser.add_argument('--verbose', '-v', action='store_true', help='Verbose excution of GA (default=False)')
     parser.add_argument('--wo', action='store_true', help='Data with outliers (defaut=False)')
+    parser.add_argument('--db', default='std', choices=['all', 'std'], help='Database for the experiments (all or std) (default = std)')
     parser.add_argument('--save_log', action='store_true', help='Save log with all solutions. The file name is the same from csv_file argument, with _log before extension (default=False)')
     parser.add_argument('--pltvar', action='store_true', help='Plot variances (default=False)')
     parser.add_argument('--pltfile', help='File to save variance plot')
+    
     args = parser.parse_args()
     
     max_no_improv = int(np.round(args.max_no_improv * args.ngen))
     divstep = int(np.round(args.divstep * args.ngen))
     
     ### Loading data
-    data = pd.read_csv("../create_database/df_database.csv", index_col=0)
+    
+    if args.db == "all":
+        print("Using ALL database")
+        data = pd.read_csv("../create_database/df_database_all.csv", index_col=0)
+    else:
+        print("Using STD database")
+        data = pd.read_csv("../create_database/df_database.csv", index_col=0)
+    
 
         
     ### Normalizing data

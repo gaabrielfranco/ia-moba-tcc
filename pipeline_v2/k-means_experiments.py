@@ -11,7 +11,13 @@ from statsmodels.distributions.empirical_distribution import ECDF
 
 
 def main():
+    # All attributes database
+    #df = pd.read_csv("create_database/df_database_all.csv", index_col=0)
+    #folder = "all"
+
+    # Standard attributes database
     df = pd.read_csv("create_database/df_database.csv", index_col=0)
+    folder = "std"
 
     # Plot params
     matplotlib.rcParams['pdf.fonttype'] = 42
@@ -37,7 +43,7 @@ def main():
     plt.xticks(range(1, 11))
     plt.bar(list(range(1, 11)), count)
     plt.tight_layout()
-    file_name = "img/cluster_dist.png"
+    file_name = "img/" + folder + "/cluster_dist.png"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     print('Graph %s saved.' % file_name)
 
@@ -78,7 +84,7 @@ def main():
     plt.tight_layout()
     plt.legend(loc="center right", bbox_to_anchor=(1.32, 0.5),
                title="Centroid")
-    file_name = "img/cluster_starplot.png"
+    file_name = "img/" + folder + "/cluster_starplot"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     plt.clf()
     print('Graph %s saved.' % file_name)
@@ -128,14 +134,14 @@ def main():
     ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
     plt.tight_layout()
-    file_name = "img/silhouette_score.png"
+    file_name = "img/" + folder + "/silhouette_score"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     print('Graph %s saved.' % file_name)
     plt.clf()
 
     # Create data with cluster result
     df.insert(loc=len(df.columns), column="cluster", value=cluster_labels)
-    df.to_csv("create_database/df_database_clusters.csv")
+    df.to_csv("create_database/df_database_clusters_" + folder + ".csv")
 
     # ECDF KDA
     fig = plt.figure(figsize=(5.55, 4.7))
@@ -153,7 +159,7 @@ def main():
                  str(cluster + 1), color=pallete[cluster])
     plt.legend()
     plt.tight_layout()
-    file_name = "img/kda_ecdf.png"
+    file_name = "img/" + folder + "/kda_ecdf"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     plt.clf()
     print('Graph %s saved.' % file_name)
