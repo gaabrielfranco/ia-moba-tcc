@@ -254,9 +254,7 @@ def main():
         data = pd.read_csv("../create_database/df_database.csv", index_col=0)
 
     # Normalizing data
-    for col in data.columns:
-        data[col] = (data[col] - data[col].min()) / \
-            (data[col].max() - data[col].min())
+    data = (data - data.min()) / (data.max() - data.min())
 
     # Create problem
     problem = Problem(data, args.threshold, args.mins,

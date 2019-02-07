@@ -1,0 +1,14 @@
+k;seed;metric;min_size;max_size;outliers;threshold;elite_size;elapsed_time
+10;-1;cosine;3;6;0;0.750000;10;600.135073
+Top 10 solutions
+Solution;Evaluation;Feasible;Num, of Attr,;Restrictions Violated
+deaths,gold_per_min,hero_healing;0,209051;1;3;0
+deaths,xp_per_min,hero_healing;0,196981;1;3;0
+deaths,assists,gold_per_min,hero_healing;0,168042;1;4;0
+deaths,gold_per_min,hero_damage,hero_healing;0,165333;1;4;0
+deaths,hero_healing,last_hits;0,165165;1;3;0
+deaths,assists,hero_healing,last_hits;0,137557;1;4;0
+deaths,assists,xp_per_min,hero_healing;0,129246;1;4;0
+kills,deaths,denies,hero_healing;0,127104;1;4;0
+deaths,assists,gold_per_min,hero_damage,hero_healing;0,122401;1;5;0
+kills,deaths,hero_healing,last_hits;0,119368;1;4;0

@@ -479,8 +479,7 @@ def main():
 
         
     ### Normalizing data
-    for col in data.columns:
-        data[col] = (data[col] - data[col].min()) / (data[col].max() - data[col].min())
+    data = (data - data.min()) / (data.max() - data.min())
         
     ### Instantiate the problem
     if args.metric == 'v':
