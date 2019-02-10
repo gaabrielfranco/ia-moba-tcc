@@ -1,0 +1,11 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, obs_placed, courier_kills, ",0.299032
+1,"deaths, gold_per_min, hero_healing, obs_placed, towers_killed, ",0.27176500000000003
+2,"deaths, xp_per_min, hero_healing, sen_placed, towers_killed, ",0.271048
+3,"deaths, gold_per_min, hero_healing, sen_placed, towers_killed, ",0.2706
+4,"deaths, gold_per_min, hero_healing, sen_placed, sentry_kills, ",0.269916
+5,"deaths, gold_per_min, hero_healing, sen_placed, ",0.269336
+6,"deaths, gold_per_min, hero_healing, sen_placed, courier_kills, ",0.26653899999999997
+7,"deaths, gold_per_min, hero_healing, sen_placed, teamfight_participation, towers_killed, ",0.264025
+8,"deaths, xp_per_min, hero_healing, obs_placed, teamfight_participation, ",0.259231
+9,"deaths, gold_per_min, hero_healing, obs_placed, tower_damage, courier_kills, ",0.256496
