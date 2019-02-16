@@ -470,10 +470,10 @@ def main():
     ### Loading data
     
     if args.db == "all":
-        print("Using ALL database")
+        print("Using ALL database w/", args.corr_threshold, "correlation threshold")
         data = pd.read_csv("../create_database/df_database_all.csv", index_col=0)
     else:
-        print("Using STD database")
+        print("Using STD database w/", args.corr_threshold, "correlation threshold")
         data = pd.read_csv("../create_database/df_database.csv", index_col=0)
     
 

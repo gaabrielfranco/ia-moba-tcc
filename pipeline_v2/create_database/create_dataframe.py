@@ -10,8 +10,9 @@ import scipy.stats as sci
 
 def main():
     matches = glob.glob("pro_database/*.json")
+
+    db_name = "df_database_all.csv"  # 13641 valid matches, 1342 outliers
     '''
-    db_name = "df_database_all.csv"  # 14867 valid matches, 1282 outliers
     attributes = {"kills": 0, "deaths": 0, "assists": 0, "denies": 0,
                   "gold_per_min": 0, "xp_per_min": 0, "hero_damage": 0,
                   "hero_healing": 0, "last_hits": 0, "n_matches": 0,
@@ -20,39 +21,44 @@ def main():
                   "towers_killed": 0, "neutral_kills": 0, "courier_kills": 0,
                   "observer_kills": 0, "sentry_kills": 0, "ancient_kills": 0}
     '''
-
+    attributes = {"kills": 0, "deaths": 0, "assists": 0, "denies": 0,
+                  "gold_per_min": 0, "xp_per_min": 0, "hero_damage": 0,
+                  "hero_healing": 0, "last_hits": 0, "n_matches": 0,
+                  "firstblood_claimed": 0, "obs_placed": 0, "rune_pickups": 0,
+                  "sen_placed": 0, "teamfight_participation": 0, "tower_damage": 0,
+                  "towers_killed": 0, "neutral_kills": 0, "tower_kills": 0,
+                  "lane_kills": 0, "roshan_kills": 0, "necronomicon_kills": 0,
+                  "courier_kills": 0, "observer_kills": 0, "sentry_kills": 0,
+                  "ancient_kills": 0, "camps_stacked": 0, "gold_spent": 0,
+                  "pings": 0, "roshans_killed": 0, "stuns": 0,
+                  "buyback_count": 0, "observer_uses": 0, "sentry_uses": 0,
+                  "lane_efficiency": 0, "purchase_tpscroll": 0, "actions_per_min": 0}
+    # "purchase_ward_observer": 0, "purchase_ward_sentry": 0 Olhar dps
+    '''
     db_name = "df_database.csv"  # 38976 valid matches, 893 outliers
     attributes = {"kills": 0, "deaths": 0, "assists": 0, "denies": 0,
                   "gold_per_min": 0, "xp_per_min": 0, "hero_damage": 0,
                   "hero_healing": 0, "last_hits": 0, "n_matches": 0}
-
+    '''
     data_dict = {}
     valid_matches = 0
     invalid_matches = 0
 
+    #matches = ["pro_database/4384350099.json", "pro_database/17962237.json"]
+    #matches = ["pro_database/4384350099.json"]
     for match in matches:
+        print("Partida", match)
         with open(match, "r") as f:
             data = json.load(f)
             valid = True
             for player in data["players"]:
                 if not valid:
                     break
-                try:
-                    for attr in attributes.keys():
-                        if attr != "n_matches":
-                            if player[attr] is not None:
-                                data_dict[player["account_id"]
-                                          ][attr] += player[attr]
-                            else:
-                                invalid_matches += 1
-                                valid = False
-                                break
-                        else:
-                            data_dict[player["account_id"]][attr] += 1
-                except:
+                if not(player["account_id"] in data_dict):
                     data_dict[player["account_id"]] = copy.deepcopy(attributes)
-                    for attr in attributes.keys():
-                        if attr != "n_matches":
+                for attr in attributes.keys():
+                    if attr != "n_matches":
+                        try:
                             if player[attr] is not None:
                                 data_dict[player["account_id"]
                                           ][attr] += player[attr]
@@ -60,8 +66,12 @@ def main():
                                 invalid_matches += 1
                                 valid = False
                                 break
-                        else:
-                            data_dict[player["account_id"]][attr] += 1
+                        except:
+                            invalid_matches += 1
+                            valid = False
+                            break
+                    else:
+                        data_dict[player["account_id"]][attr] += 1
             if valid:
                 valid_matches += 1
 

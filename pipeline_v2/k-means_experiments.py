@@ -12,12 +12,12 @@ from statsmodels.distributions.empirical_distribution import ECDF
 
 def main():
     # All attributes database
-    #df = pd.read_csv("create_database/df_database_all.csv", index_col=0)
-    #folder = "all"
+    df = pd.read_csv("create_database/df_database_all.csv", index_col=0)
+    folder = "all"
 
     # Standard attributes database
-    df = pd.read_csv("create_database/df_database.csv", index_col=0)
-    folder = "std"
+    #df = pd.read_csv("create_database/df_database.csv", index_col=0)
+    #folder = "std"
 
     # Plot params
     matplotlib.rcParams['pdf.fonttype'] = 42
