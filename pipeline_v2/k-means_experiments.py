@@ -8,6 +8,7 @@ import seaborn as sns
 import numpy as np
 import numbers
 from statsmodels.distributions.empirical_distribution import ECDF
+from modules.plots import radarplot
 
 
 def main():
@@ -30,7 +31,7 @@ def main():
     # K-means
     clusterer = KMeans(n_clusters=10, n_jobs=-1)
     cluster_labels = clusterer.fit_predict(df)
-
+    '''
     # Cluster distribution
     count = [0] * 10
 
@@ -46,9 +47,23 @@ def main():
     file_name = "img/" + folder + "/cluster_dist.png"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     print('Graph %s saved.' % file_name)
-
+    '''
     # Centroids starplot
+    df_centroids = pd.DataFrame(clusterer.cluster_centers_, columns=df.columns)
+    label = ["Centroid " + str(i) for i in range(1, 11)]
+    file_name = "img/" + folder + "/cluster_starplot"
+    radarplot(df_centroids, file_name, label=label, figsize=(12, 9))
 
+    for i in range(len(df_centroids)):
+        for j in range(i + 1, len(df_centroids)):
+            file_name = "img/" + folder + \
+                "/clusters_centers_pairwise/cluster_starplot_" + \
+                str(i) + "_" + str(j)
+            radarplot(df_centroids.iloc[[i, j]],
+                      file_name, label=label, figsize=(12, 9))
+
+    return
+    '''
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
@@ -163,6 +178,7 @@ def main():
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     plt.clf()
     print('Graph %s saved.' % file_name)
+    '''
 
 
 if __name__ == "__main__":
