@@ -1,0 +1,43 @@
+import pandas as pd
+from scipy.stats import kendalltau
+
+
+def main():
+    df_metrics = pd.read_csv(
+        "feature_selection/output_ga/all/top10_metrics_08.csv", index_col=0)
+    df = pd.read_csv("create_database/df_database_all.csv", index_col=0)
+
+    # Normalize data
+    df = (df - df.min()) / (df.max() - df.min())
+
+    kendall = pd.DataFrame(columns=["metric_1", "metric_2", "tau", "p_value"])
+
+    for i in range(len(df_metrics)):
+        for j in range(i + 1, len(df_metrics)):
+            attr_i = list(df_metrics.at[i, "Solution"].split(","))
+            attr_i.remove("")
+            attr_i.remove("deaths")
+            df_attr_i = df.loc[:, attr_i]
+
+            attr_j = list(df_metrics.at[j, "Solution"].split(","))
+            attr_j.remove("")
+            attr_j.remove("deaths")
+            df_attr_j = df.loc[:, attr_j]
+
+            metric_i = df_attr_i.sum(axis=1) / df["deaths"]
+            metric_j = df_attr_j.sum(axis=1) / df["deaths"]
+
+            tau, p_value = kendalltau(metric_i, metric_j)
+
+            kendall.loc[len(kendall.index)] = [attr_i, attr_j, tau, p_value]
+
+            #print("Attr i", attr_i)
+            #print("Attr j", attr_j)
+            #print("Tau = ", tau, " and p_value = ", p_value)
+            # print("----------------------------------------------------\n")
+    kendall.sort_values(by=["tau"], ascending=False).to_csv(
+        "kendall_all_08.csv")
+
+
+if __name__ == "__main__":
+    main()

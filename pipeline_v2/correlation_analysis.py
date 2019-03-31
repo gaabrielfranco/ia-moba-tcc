@@ -21,12 +21,12 @@ def main():
     for attr in df_corr:
         ecdf = ECDF(df_corr[attr].drop(labels=[attr]))
         plt.plot(ecdf.x, ecdf.y, label=attr)  # , color=pallete[cluster])
-    plt.legend()
-    plt.tight_layout()
-    file_name = "img/" + folder + "/correlation/ecdf"
-    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
-    plt.clf()
-    print('Graph %s saved.' % file_name)
+        plt.legend()
+        plt.tight_layout()
+        file_name = "img/" + folder + "/correlation/ecdf_corr_" + attr
+        plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+        plt.clf()
+        print('Graph %s saved.' % file_name)
 
 
 if __name__ == "__main__":
