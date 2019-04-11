@@ -1,56 +1,56 @@
 ,metric_1,metric_2,tau,p_value
-35,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.9620177371775379,0.0
-46,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.9173205513635182,0.0
-37,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.9152954158581277,0.0
-28,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.9125241777981198,0.0
-19,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']",0.9105962237179106,0.0
-42,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.8805608935675302,0.0
-29,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.8803163725622354,0.0
-27,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.8755262687662035,0.0
-21,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.8652741508903595,0.0
-12,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.8639052512453329,0.0
-15,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.861005482913311,0.0
-22,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.8552466997501498,0.0
-31,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.8538725752973176,0.0
-40,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.8496885492067175,0.0
-16,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.849495231317916,0.0
-14,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.8468953669539265,0.0
-20,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.8443540204373582,0.0
-34,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.840054003613477,0.0
-1,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']",0.829308663880799,0.0
-2,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']",0.8216793995232886,0.0
-24,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.8207504286954804,0.0
-36,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.8081523721149918,0.0
-4,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.8061742598798504,0.0
-45,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.7969775531807063,0.0
-10,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']",0.7927318743580017,0.0
-49,"['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.7912720630571604,0.0
-11,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']",0.7898258362566133,0.0
-5,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.7782089985819871,0.0
-13,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.7766488709712814,0.0
-3,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.7752872860571824,0.0
-50,"['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7732600606286697,0.0
-32,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7722913812615403,0.0
-25,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7688900313801957,0.0
-7,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.7669798416465251,0.0
-0,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.7631793164488444,0.0
-43,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7566127779989612,0.0
-47,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7466877330917382,0.0
-38,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7442717819625005,0.0
-23,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.7438005042984495,0.0
-30,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.7383280406030265,0.0
-52,"['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.735598601005462,0.0
-8,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7306705622833665,0.0
-17,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.7245314131119688,0.0
-41,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.7237926252882788,0.0
-6,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.7127891800500119,0.0
-53,"['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']","['kills', 'deaths', 'assists']",0.5582121111664043,8.4678579548894e-300
-48,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.5383494662464436,5.393438356124016e-279
-39,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.5330180681834366,1.5411990077524639e-273
-51,"['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.5293042718847443,9.045037174665069e-270
-18,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.526600954207559,4.819935827904836e-267
-44,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['kills', 'deaths', 'assists']",0.5024320193194187,2.7608394934822225e-243
-33,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['kills', 'deaths', 'assists']",0.478684204270438,5.011596543197351e-221
-26,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['kills', 'deaths', 'assists']",0.4671760335789646,1.2582426026687793e-210
-54,"['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']","['kills', 'deaths', 'assists']",0.4573983205888514,5.461593903112263e-202
-9,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['kills', 'deaths', 'assists']",0.4479058823284914,8.881082982906084e-194
+35,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.9452137103136661,0.0
+19,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']",0.8797395537805143,0.0
+46,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.8767133450996005,0.0
+28,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.8760477045851868,0.0
+37,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.8720350521906053,0.0
+42,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.837445779556999,0.0
+29,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.8355387247080116,0.0
+27,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.8268206104038462,0.0
+21,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.8103823200863557,0.0
+15,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.8084031628896531,0.0
+22,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.8046392113466106,0.0
+12,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.802142798177169,0.0
+31,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.7951133417557235,0.0
+20,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.7892500624364533,0.0
+40,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.7890933182022899,0.0
+14,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.7778401271509228,0.0
+1,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']",0.7759978599187229,0.0
+34,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.7738107553713637,0.0
+16,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.7698670704398138,0.0
+2,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']",0.7647394440595503,0.0
+24,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.7506042490226997,0.0
+4,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.7362402074039707,0.0
+36,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.726637010657563,0.0
+10,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']",0.7112018834387177,0.0
+45,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.7100545156446421,0.0
+5,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.7085111074189137,0.0
+3,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']",0.7040020982828147,0.0
+11,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']",0.6988546176328904,0.0
+32,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6986905586677995,0.0
+49,"['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.6947103000816115,0.0
+25,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6936454842508618,0.0
+50,"['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6872848032285133,0.0
+7,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']",0.6872147908039202,0.0
+0,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']",0.6813974897933379,0.0
+13,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']",0.6742300984458287,0.0
+43,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6726051832183353,0.0
+47,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6599778677141361,0.0
+38,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6554876678861368,0.0
+8,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6461561611456124,0.0
+23,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.6433870130087265,0.0
+52,"['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6402531732870207,0.0
+30,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.629817142176425,0.0
+17,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']",0.6222537103972631,0.0
+6,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.6110788914629776,0.0
+41,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']",0.6053744463009928,0.0
+53,"['deaths', 'hero_healing', 'sentry_uses', 'towers_killed', 'xp_per_min']","['kills', 'deaths', 'assists']",0.33248665256500143,1.112944789301416e-107
+48,"['deaths', 'gold_spent', 'hero_healing', 'sentry_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.3026947751098205,1.4068402425903288e-89
+51,"['deaths', 'hero_healing', 'observer_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.2919912254509844,1.7341143005155353e-83
+39,"['deaths', 'hero_healing', 'lane_efficiency', 'sentry_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.28921789529433584,6.048594536736938e-82
+18,"['deaths', 'hero_healing', 'sentry_uses', 'xp_per_min']","['kills', 'deaths', 'assists']",0.2882962384751331,1.9545873285360455e-81
+44,"['deaths', 'hero_healing', 'last_hits', 'sentry_uses', 'towers_killed']","['kills', 'deaths', 'assists']",0.2657595348246285,1.7536897706775084e-69
+33,"['deaths', 'hero_healing', 'lane_efficiency', 'last_hits', 'sentry_uses']","['kills', 'deaths', 'assists']",0.2238345991747052,8.110879412115498e-50
+26,"['deaths', 'hero_healing', 'last_hits', 'rune_pickups', 'sentry_uses']","['kills', 'deaths', 'assists']",0.2162042838755915,1.3448326082965614e-46
+54,"['deaths', 'hero_healing', 'last_hits', 'necronomicon_kills', 'observer_uses']","['kills', 'deaths', 'assists']",0.21310074560684766,2.550085419618022e-45
+9,"['courier_kills', 'deaths', 'hero_healing', 'last_hits', 'sentry_uses']","['kills', 'deaths', 'assists']",0.20562299481522103,2.5726608377893358e-42

@@ -25,18 +25,19 @@ def main():
         a_i = deepcopy(attr_i)
         attr_i.remove("deaths")
         df_attr_i = df.loc[:, attr_i]
-        metric_i = df_attr_i.sum(axis=1) / (df["deaths"] + 10e-5)
+        metric_i = df_attr_i.sum(axis=1) / (df["deaths"] + 1)
 
         name = "Metric_" + str(i + 1) if i < len(df_metrics) - 1 else "KDA"
-        df_w_metrics.insert(len(df_w_metrics.columns), column=name, value=metric_i)
+        df_w_metrics.insert(len(df_w_metrics.columns),
+                            column=name, value=metric_i)
         for j in range(i + 1, len(df_metrics)):
             attr_j = list(df_metrics.at[j, "Solution"].split(","))
             attr_j.remove("")
             a_j = deepcopy(attr_j)
             attr_j.remove("deaths")
             df_attr_j = df.loc[:, attr_j]
-                
-            metric_j = df_attr_j.sum(axis=1) / (df["deaths"] + 10e-5)
+
+            metric_j = df_attr_j.sum(axis=1) / (df["deaths"] + 1)
 
             tau, p_value = kendalltau(metric_i, metric_j)
 

@@ -16,13 +16,15 @@ def main():
         corr_values += list(df_corr[attr].iloc[idx+1:].values)
 
     ecdf = ECDF(corr_values)
-    plt.plot(ecdf.x, ecdf.y, label="Valores de correlação abaixo da diagonal principal")
+    plt.plot(ecdf.x, ecdf.y,
+             label="Valores de correlação abaixo da diagonal principal")
     plt.legend()
     plt.tight_layout()
     file_name = "img/" + folder + "/ecdf_corr"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     plt.clf()
     print('Graph %s saved.' % file_name)
+
 
 if __name__ == "__main__":
     main()
