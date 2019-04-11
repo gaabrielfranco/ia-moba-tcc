@@ -40,15 +40,19 @@ def main():
     df_out = pd.DataFrame(output_data)
     df_out.to_csv("k_analysis_" + folder + ".csv")
 
+    # Plot params
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+    matplotlib.style.use('ggplot')
     # Plot result
-    df_out = (df_out - df_out.min()) / (df_out.max() - df_out.min())
+    fig = plt.figure(figsize=(3.8, 2.3))
     plt.rc('font', size=7)
+    plt.plot(list(df_out.index), df_out[folder])
     plt.ylabel("Inertia")
     plt.xlabel("k Value")
-    df_out.plot()
     plt.tight_layout()
-    file_name = "img/" + folder + "/k_analysis.png"
-    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+    file_name = "img/" + folder + "/k_analysis.pdf"
+    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)
     print('Graph %s saved.' % file_name)
 
 

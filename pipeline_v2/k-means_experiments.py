@@ -9,7 +9,7 @@ import numpy as np
 import numbers
 from statsmodels.distributions.empirical_distribution import ECDF
 from modules.plots import radarplot
-from joblib import dump
+from joblib import dump, load
 
 
 def main():
@@ -117,7 +117,8 @@ def main():
     n_clusters = 10
 
     fig, ax1 = plt.subplots(1, 1)
-    fig.set_size_inches(6, 4)
+    fig.set_size_inches(3.8, 2.3)
+    plt.tight_layout()
     plt.rc('font', size=7)
 
     ax1.set_xlim([-0.1, 1])
@@ -147,7 +148,6 @@ def main():
 
         y_lower = y_upper + 10
 
-    ax1.set_title("The silhouette plot for the various clusters.")
     ax1.set_xlabel("The silhouette coefficient values")
     ax1.set_ylabel("Cluster label")
 
@@ -157,35 +157,14 @@ def main():
     ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
     plt.tight_layout()
-    file_name = "img/" + folder + "/silhouette_score"
-    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
+    file_name = "img/" + folder + "/silhouette_score.pdf"
+    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)
     print('Graph %s saved.' % file_name)
     plt.clf()
 
     # Create data with cluster result
     df.insert(loc=len(df.columns), column="cluster", value=cluster_labels)
     df.to_csv("create_database/df_database_clusters_" + folder + ".csv")
-
-    # ECDF KDA
-    fig = plt.figure(figsize=(5.55, 4.7))
-    plt.rc('font', size=7)
-    colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
-                  "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
-
-    pallete = sns.color_palette(colors_vec)
-
-    for cluster in range(0, 10):
-        data_cluster = df[df.cluster == cluster]
-        ecdf = ECDF(data_cluster["kills"] +
-                    data_cluster["assists"] / (1 + data_cluster["deaths"]))
-        plt.plot(ecdf.x, ecdf.y, label="Cluster " +
-                 str(cluster + 1), color=pallete[cluster])
-    plt.legend()
-    plt.tight_layout()
-    file_name = "img/" + folder + "/kda_ecdf"
-    plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
-    plt.clf()
-    print('Graph %s saved.' % file_name)
 
 
 if __name__ == "__main__":
