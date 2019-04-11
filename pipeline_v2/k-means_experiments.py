@@ -116,13 +116,12 @@ def main():
 
     n_clusters = 10
 
-    fig, ax1 = plt.subplots(1, 1)
-    fig.set_size_inches(3.8, 2.3)
+    fig = plt.figure(figsize=(3.8, 2.3))
     plt.tight_layout()
     plt.rc('font', size=7)
 
-    ax1.set_xlim([-0.1, 1])
-    ax1.set_ylim([0, len(df) + (n_clusters + 1) * 10])
+    #ax1.set_xlim([-0.1, 1])
+    #ax1.set_ylim([0, len(df) + (n_clusters + 1) * 10])
 
     silhouette_avg = silhouette_score(df, cluster_labels)
     print("For n_clusters =", n_clusters,
@@ -140,21 +139,21 @@ def main():
         y_upper = y_lower + size_cluster_i
 
         color = (sns.color_palette("husl", 10))
-        ax1.fill_betweenx(np.arange(y_lower, y_upper),
+        plt.fill_betweenx(np.arange(y_lower, y_upper),
                           0, ith_cluster_silhouette_values,
                           facecolor=color[i], edgecolor=color[i], alpha=0.7)
 
-        ax1.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
+        plt.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
 
         y_lower = y_upper + 10
 
-    ax1.set_xlabel("The silhouette coefficient values")
-    ax1.set_ylabel("Cluster label")
+    plt.xlabel("The silhouette coefficient values")
+    plt.ylabel("Cluster label")
 
-    ax1.axvline(x=silhouette_avg, color="red", linestyle="--")
+    plt.axvline(x=silhouette_avg, color="red", linestyle="--")
 
-    ax1.set_yticks([])
-    ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+    plt.yticks([])
+    plt.xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
     plt.tight_layout()
     file_name = "img/" + folder + "/silhouette_score.pdf"
