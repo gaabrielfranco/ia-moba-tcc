@@ -30,8 +30,8 @@ def main():
     df = (df - df.min()) / (df.max() - df.min())
 
     # K-means
-    clusterer = KMeans(n_clusters=10, n_jobs=-1)
-    cluster_labels = clusterer.fit_predict(df)
+    clusterer = KMeans(n_clusters=10, n_jobs=-1).fit(df)
+    cluster_labels = clusterer.labels_
 
     # Persisting the k-means model
     dump(clusterer, "kmeans.joblib")
