@@ -22,6 +22,8 @@ def main():
         "create_database/df_database_clusters_all.csv", index_col=0)
     data = pd.read_csv(
         "create_database/df_database_all.csv", index_col=0)
+    data_out = pd.read_csv(
+        "create_database/df_database_all_w_outliers.csv", index_col=0)
     # metrics = ["Metric_" + str(i) for i in range(1, 11)]
     # metrics.append("KDA")
     metrics = ["Metric_1", "KDA"]
@@ -31,6 +33,40 @@ def main():
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
     '''
+    #ESCALE ENTRE 1 E 2
+    df_ord = df.sort_values(by=["KDA"], ascending=False)
+
+    df_norm = (df - df.min()) / (df.max() - df.min())
+    df_norm = df_norm * (2 - 1) + 1
+
+    print(df_norm.min())
+    df_ord_norm = df_norm.sort_values(by=["KDA"], ascending=False)
+
+    print(df_ord.index)
+    print(df_ord_norm.index)
+    print(df_ord.index == df_ord_norm.index)
+    '''
+    '''
+    #data_out = (data_out - data_out.min()) / (data_out.max() - data_out.min())
+    player_solo = data_out.loc[[134556694]]
+    player_ramzes = data_out.loc[[132851371]]
+    # print(player_ramzes)
+    # print()
+    print("KDA solo = ", (player_solo["kills"] +
+                          player_solo["assists"]) / player_solo["deaths"])
+    print("KDA ramzes = ", (player_ramzes["kills"] +
+                            player_ramzes["assists"]) / player_ramzes["deaths"])
+    print("Metric solo = ", (player_solo["courier_kills"] +
+                             player_solo["hero_healing"] + player_solo["last_hits"] + player_solo["sentry_uses"]) / player_solo["deaths"])
+    print("Metric ramzes = ", (player_ramzes["courier_kills"] +
+                               player_ramzes["hero_healing"] + player_ramzes["last_hits"] + player_ramzes["sentry_uses"]) / player_ramzes["deaths"])
+
+    return
+    file_name = "VP_solo.pdf"
+    print(player_solo)
+    player_solo.index = [0]
+    radarplot(player_solo, file_name, label=None, figsize=(3.8, 2.8))
+
     # Multi radarplot for top 10
     file_name = "img/all/starplot_top10.pdf"
     df_ord = df_norm.sort_values(by=["Metric_1"], ascending=False)
@@ -43,7 +79,6 @@ def main():
 
     radarplot_comp(df_top10_m1, df_top10_kda, file_name)
     '''
-
     '''
     # Multi radarplot for centroids
     file_name = "img/all/starplot_centroids.pdf"
@@ -95,7 +130,7 @@ def main():
         plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)
         plt.clf()
         print('Graph %s saved.' % file_name)
-    '''
+    
     
     # Comparison between metrics using cosine distance
     folder = "all/cosine_comparison"
@@ -129,7 +164,7 @@ def main():
             arr.clear()
         data_matrix = np.array(data_matrix)
         mask = np.zeros_like(data_matrix)
-        #mask[np.triu_indices_from(mask)] = True
+        # mask[np.triu_indices_from(mask)] = True
         for i in range(len(data_matrix)):
             mask[i][i] = True
 
@@ -148,12 +183,13 @@ def main():
                 # label.set_fontname('Arial')
                 label.set_fontsize(4)
             plt.tight_layout()
-            #file_name = "img/" + folder + "/" + metrics[i] + ".pdf"
+            # file_name = "img/" + folder + "/" + metrics[i] + ".pdf"
             file_name = "img/" + folder + "/m1_kda_cmp.pdf"
             plt.savefig(file_name, bbox_inches='tight',
                         pad_inches=0.01, dpi=600)
             print('Graph %s saved.' % file_name)
             plt.clf()
+    '''
 
 
 if __name__ == "__main__":

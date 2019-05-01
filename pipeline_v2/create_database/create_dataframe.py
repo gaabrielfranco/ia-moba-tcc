@@ -11,7 +11,7 @@ import scipy.stats as sci
 def main():
     matches = glob.glob("pro_database/*.json")
 
-    db_name = "df_database_all.csv"  # 13641 valid matches, 1342 outliers
+    db_name = "df_database_all"  # 13641 valid matches, 1342 outliers
     '''
     attributes = {"kills": 0, "deaths": 0, "assists": 0, "denies": 0,
                   "gold_per_min": 0, "xp_per_min": 0, "hero_damage": 0,
@@ -35,7 +35,7 @@ def main():
                   "lane_efficiency": 0, "purchase_tpscroll": 0, "actions_per_min": 0}
     # "purchase_ward_observer": 0, "purchase_ward_sentry": 0 Olhar dps
     '''
-    db_name = "df_database.csv"  # 38976 valid matches, 893 outliers
+    db_name = "df_database"  # 38976 valid matches, 893 outliers
     attributes = {"kills": 0, "deaths": 0, "assists": 0, "denies": 0,
                   "gold_per_min": 0, "xp_per_min": 0, "hero_damage": 0,
                   "hero_healing": 0, "last_hits": 0, "n_matches": 0}
@@ -44,8 +44,6 @@ def main():
     valid_matches = 0
     invalid_matches = 0
 
-    #matches = ["pro_database/4384350099.json", "pro_database/17962237.json"]
-    #matches = ["pro_database/4384350099.json"]
     for match in matches:
         print("Partida", match)
         with open(match, "r") as f:
@@ -88,6 +86,8 @@ def main():
         df[attr] /= df["n_matches"]
     df = df.drop(columns=["n_matches"])
 
+    df.to_csv(db_name + "_w_outliers.csv")
+
     # Removing outliers
     q1 = np.percentile(df, 25, axis=0)
     q3 = np.percentile(df, 75, axis=0)
@@ -98,7 +98,7 @@ def main():
             outliers.append(index)
     df = df.drop(outliers, axis=0)
     print("Outliers: ", len(outliers))
-    df.to_csv(db_name)
+    df.to_csv(db_name + ".csv")
 
 
 if __name__ == "__main__":
