@@ -32,20 +32,38 @@ def main():
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
-    '''
-    #ESCALE ENTRE 1 E 2
+
     df_ord = df.sort_values(by=["KDA"], ascending=False)
 
-    df_norm = (df - df.min()) / (df.max() - df.min())
+    # SCALER [1, 2]
+    print("Scaler [1, 2]")
+    df_norm = (data - data.min()) / (data.max() - data.min())
     df_norm = df_norm * (2 - 1) + 1
 
-    print(df_norm.min())
+    kda_col = ((df_norm["kills"] + df_norm["assists"]) / df_norm["deaths"])
+
+    df_norm.insert(loc=len(df_norm.columns), column="KDA", value=kda_col)
+
     df_ord_norm = df_norm.sort_values(by=["KDA"], ascending=False)
 
     print(df_ord.index)
     print(df_ord_norm.index)
     print(df_ord.index == df_ord_norm.index)
-    '''
+    # SCALE MAX
+    print("\n-----------------------------------------------------\n")
+    print("Scaler Max")
+    df_norm = data / data.max()
+
+    kda_col = ((df_norm["kills"] + df_norm["assists"]) / df_norm["deaths"])
+
+    df_norm.insert(loc=len(df_norm.columns), column="KDA", value=kda_col)
+
+    df_ord_norm = df_norm.sort_values(by=["KDA"], ascending=False)
+
+    print(df_ord.index)
+    print(df_ord_norm.index)
+    print(df_ord.index == df_ord_norm.index)
+
     '''
     #data_out = (data_out - data_out.min()) / (data_out.max() - data_out.min())
     player_solo = data_out.loc[[134556694]]
