@@ -33,39 +33,8 @@ def main():
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
 
-    df_ord = df.sort_values(by=["KDA"], ascending=False)
-
-    # SCALER [1, 2]
-    print("Scaler [1, 2]")
-    df_norm = (data - data.min()) / (data.max() - data.min())
-    df_norm = df_norm * (2 - 1) + 1
-
-    kda_col = ((df_norm["kills"] + df_norm["assists"]) / df_norm["deaths"])
-
-    df_norm.insert(loc=len(df_norm.columns), column="KDA", value=kda_col)
-
-    df_ord_norm = df_norm.sort_values(by=["KDA"], ascending=False)
-
-    print(df_ord.index)
-    print(df_ord_norm.index)
-    print(df_ord.index == df_ord_norm.index)
-    # SCALE MAX
-    print("\n-----------------------------------------------------\n")
-    print("Scaler Max")
-    df_norm = data / data.max()
-
-    kda_col = ((df_norm["kills"] + df_norm["assists"]) / df_norm["deaths"])
-
-    df_norm.insert(loc=len(df_norm.columns), column="KDA", value=kda_col)
-
-    df_ord_norm = df_norm.sort_values(by=["KDA"], ascending=False)
-
-    print(df_ord.index)
-    print(df_ord_norm.index)
-    print(df_ord.index == df_ord_norm.index)
-
     '''
-    #data_out = (data_out - data_out.min()) / (data_out.max() - data_out.min())
+    # data_out = (data_out - data_out.min()) / (data_out.max() - data_out.min())
     player_solo = data_out.loc[[134556694]]
     player_ramzes = data_out.loc[[132851371]]
     # print(player_ramzes)
@@ -109,7 +78,7 @@ def main():
     '''
     # Radarplots are a bad choice 'cause we've many attributes
     # Radarplots of top10 for each metric
-    
+
     folder = "all/starplots_top10"
 
     for metric in metrics:
@@ -148,8 +117,8 @@ def main():
         plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)
         plt.clf()
         print('Graph %s saved.' % file_name)
-    
-    
+    '''
+
     # Comparison between metrics using cosine distance
     folder = "all/cosine_comparison"
 
@@ -168,23 +137,37 @@ def main():
         cont = 0
         data_matrix = []
         arr = []
+        ticks = []
+        fig = plt.figure(figsize=(3.8, 2.8))
+        plt.tight_layout()
+        plt.rc('font', size=3)
         for idx in range(len(index)):
             for j in range(len(index)):
-                dist = 0
                 if idx < j:
-                    dist = cosine(df_top10.loc[index[idx]],
-                                df_top10.loc[index[j]])
-                else:
-                    dist = cosine(df_top10_kda.loc[index_kda[idx]],
-                                df_top10_kda.loc[index_kda[j]])
-                arr.append(dist)
-            data_matrix.append(deepcopy(arr))
-            arr.clear()
+                    dist_metric = cosine(df_top10.loc[index[idx]],
+                                         df_top10.loc[index[j]])
+                    dist_kda = cosine(df_top10_kda.loc[index_kda[idx]],
+                                      df_top10_kda.loc[index_kda[j]])
+                    c = "blue" if dist_kda - dist_metric >= 0 else "red"
+                    plt.bar(cont, dist_kda - dist_metric, color=c)
+                    ticks.append("Top " + str(idx + 1) +
+                                 " / Top " + str(j + 1))
+                    cont += 1
+                    #arr.append(dist_kda - dist_metric)
+        plt.xticks(range(cont), ticks, rotation=90)
+        file_name = "img/" + folder + "/kda_metric_1_bar.pdf"
+        plt.savefig(file_name, bbox_inches='tight',
+                    pad_inches=0.01, dpi=600)
+        print('Graph %s saved.' % file_name)
+        plt.clf()
+        # plt.show()
+
+        # data_matrix.append(deepcopy(arr))
+        # arr.clear()
+        '''
         data_matrix = np.array(data_matrix)
         mask = np.zeros_like(data_matrix)
-        # mask[np.triu_indices_from(mask)] = True
-        for i in range(len(data_matrix)):
-            mask[i][i] = True
+        mask[np.triu_indices_from(mask)] = True
 
         with sns.axes_style("white"):
             sns.set(font_scale=0.4)
@@ -193,7 +176,7 @@ def main():
             fig = plt.figure(figsize=(3.8, 2.8))
             plt.tight_layout()
             plt.rc('font', size=4)
-            ax = sns.heatmap(data_matrix, vmin=0, vmax=1,
+            ax = sns.heatmap(data_matrix, vmin=-0.3, vmax=0.3,
                              annot=True, fmt=".4f", square=True, mask=mask)
             ax.set_xticklabels(["Top " + str(x + 1) for x in range(10)])
             ax.set_yticklabels(["Top " + str(x + 1) for x in range(10)])
@@ -202,12 +185,12 @@ def main():
                 label.set_fontsize(4)
             plt.tight_layout()
             # file_name = "img/" + folder + "/" + metrics[i] + ".pdf"
-            file_name = "img/" + folder + "/m1_kda_cmp.pdf"
+            file_name = "img/" + folder + "/kda_metric_1_diference.pdf"
             plt.savefig(file_name, bbox_inches='tight',
                         pad_inches=0.01, dpi=600)
             print('Graph %s saved.' % file_name)
             plt.clf()
-    '''
+        '''
 
 
 if __name__ == "__main__":
