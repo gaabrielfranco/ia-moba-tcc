@@ -18,8 +18,8 @@ def main():
     folder = "all"
 
     # Standard attributes database
-    #df = pd.read_csv("create_database/df_database.csv", index_col=0)
-    #folder = "std"
+    # df = pd.read_csv("create_database/df_database.csv", index_col=0)
+    # folder = "std"
 
     # Plot params
     matplotlib.rcParams['pdf.fonttype'] = 42
@@ -29,13 +29,15 @@ def main():
     # Normalize data
     df = (df - df.min()) / (df.max() - df.min())
 
+    '''
     # K-means
     clusterer = KMeans(n_clusters=10, n_jobs=-1).fit(df)
     cluster_labels = clusterer.labels_
 
     # Persisting the k-means model
     dump(clusterer, "kmeans.joblib")
-
+    '''
+    '''
     # Cluster distribution
     count = [0] * 10
 
@@ -111,17 +113,24 @@ def main():
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01)
     plt.clf()
     print('Graph %s saved.' % file_name)
-
+    '''
     # Silhouette score analysis
+
+    #clusterer = load("kmeans.joblib")
+    #cluster_labels = clusterer.labels_
+
+    df_cluster = pd.read_csv("create_database/df_database_clusters_all.csv")
+
+    cluster_labels = df_cluster["cluster"]
 
     n_clusters = 10
 
-    fig = plt.figure(figsize=(3.8, 2.3))
+    fig = plt.figure(figsize=(3.6, 2.3))
     plt.tight_layout()
     plt.rc('font', size=7)
 
-    #ax1.set_xlim([-0.1, 1])
-    #ax1.set_ylim([0, len(df) + (n_clusters + 1) * 10])
+    # ax1.set_xlim([-0.1, 1])
+    # ax1.set_ylim([0, len(df) + (n_clusters + 1) * 10])
 
     silhouette_avg = silhouette_score(df, cluster_labels)
     print("For n_clusters =", n_clusters,
@@ -139,31 +148,28 @@ def main():
         y_upper = y_lower + size_cluster_i
 
         color = (sns.color_palette("husl", 10))
-        plt.fill_betweenx(np.arange(y_lower, y_upper),
-                          0, ith_cluster_silhouette_values,
-                          facecolor=color[i], edgecolor=color[i], alpha=0.7)
-
-        plt.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
+        plt.fill_between(np.arange(y_lower, y_upper),
+                         0, ith_cluster_silhouette_values,
+                         facecolor=color[i], edgecolor=color[i], alpha=0.7)
+        plt.text(y_lower + 0.5 * size_cluster_i, -0.05, str(i + 1))
 
         y_lower = y_upper + 10
 
-    plt.xlabel("The silhouette coefficient values")
-    plt.ylabel("Cluster label")
-
-    plt.axvline(x=silhouette_avg, color="red", linestyle="--")
-
-    plt.yticks([])
-    plt.xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
-
+    plt.ylabel("The silhouette coefficient values")
+    plt.xlabel("Cluster label")
+    plt.axhline(y=silhouette_avg, color="red", linestyle="--")
+    plt.yticks([-0.2, 0, 0.2, 0.4, 0.6])
+    plt.xticks([])
     plt.tight_layout()
     file_name = "img/" + folder + "/silhouette_score.pdf"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)
     print('Graph %s saved.' % file_name)
     plt.clf()
-
+    '''
     # Create data with cluster result
     df.insert(loc=len(df.columns), column="cluster", value=cluster_labels)
     df.to_csv("create_database/df_database_clusters_" + folder + ".csv")
+    '''
 
 
 if __name__ == "__main__":

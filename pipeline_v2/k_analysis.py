@@ -7,18 +7,14 @@ import json
 
 
 def main():
+
     # All attributes database
     df = pd.read_csv("create_database/df_database_all.csv", index_col=0)
     folder = "all"
-
+    '''
     # Standard attributes database
     #df = pd.read_csv("create_database/df_database.csv", index_col=0)
     #folder = "std"
-
-    # Plot params
-    matplotlib.rcParams['pdf.fonttype'] = 42
-    matplotlib.rcParams['ps.fonttype'] = 42
-    matplotlib.style.use('ggplot')
 
     # Normalize data
     df = (df - df.min()) / (df.max() - df.min())
@@ -39,17 +35,18 @@ def main():
     # Save result
     df_out = pd.DataFrame(output_data)
     df_out.to_csv("k_analysis_" + folder + ".csv")
-
+    '''
+    df_out = pd.read_csv("k_analysis_all.csv")
     # Plot params
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.style.use('ggplot')
     # Plot result
-    fig = plt.figure(figsize=(3.8, 2.3))
+    fig = plt.figure(figsize=(3.5, 2.0))
     plt.rc('font', size=7)
-    plt.plot(list(df_out.index), df_out[folder])
+    plt.plot(np.array(df_out.index) + 1, df_out[folder])
     plt.ylabel("Inertia")
-    plt.xlabel("k Value")
+    plt.xlabel(r"$k$")
     plt.tight_layout()
     file_name = "img/" + folder + "/k_analysis.pdf"
     plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)

@@ -30,7 +30,7 @@ def radarplot(data, file_name, title=None, exclude=None, label=None, show_plots=
 
     fig = plt.figure(figsize=figsize)
     #plt.rc('font', size=7)
-    plt.rc('font', size=4)
+    plt.rc('font', size=3)
     ax = fig.add_subplot(111, polar=True)
     colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
                   "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
@@ -83,7 +83,7 @@ def radarplot_multi(data, file_name, size_plot=(2, 5), title=None, exclude=None,
     matplotlib.rc('ytick', labelsize=4)
     n_lines, n_columns = size_plot
     fig, axarr = plt.subplots(n_lines, n_columns, subplot_kw=dict(polar=True))
-    plt.rc('font', size=1)
+    plt.rc('font', size=3)
     # colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
     #             "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
     #pallete = sns.color_palette(colors_vec)
@@ -99,8 +99,10 @@ def radarplot_multi(data, file_name, size_plot=(2, 5), title=None, exclude=None,
             axarr[i, j].fill(angles, values, alpha=0.25)
             axarr[i, j].set_thetagrids(
                 angles * 180/np.pi, ["" for i in range(len(dimensions))])
-            axarr[i, j].set_rticks([0.2, 0.4, 0.6, 0.8])
+            axarr[i, j].set_rticks([0.2, 0.4, 0.6, 0.8, 1.0])
+            axarr[i, j].set_yticklabels(["", "", "", "", ""], fontsize=1)
             axarr[i, j].grid(True)
+            axarr[i, j].set_title("Centroid " + str(idx + 1))
             plt.tight_layout()
             idx += 1
 
@@ -144,7 +146,7 @@ def radarplot_comp(data, data_2, file_name, size_plot=(2, 5), title=None, exclud
     matplotlib.rc('ytick', labelsize=2)
     n_lines, n_columns = size_plot
     fig, axarr = plt.subplots(n_lines, n_columns, subplot_kw=dict(polar=True))
-    plt.rc('font', size=1)
+    plt.rc('font', size=5)
     # colors_vec = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8",
     #             "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#fabebe", "#008080"]
     #pallete = sns.color_palette(colors_vec)
@@ -166,7 +168,9 @@ def radarplot_comp(data, data_2, file_name, size_plot=(2, 5), title=None, exclud
             axarr[i, j].set_thetagrids(
                 angles * 180/np.pi, ["" for i in range(len(dimensions))])
             axarr[i, j].set_rticks([0.2, 0.4, 0.6, 0.8, 1.0])
+            axarr[i, j].set_yticklabels(["", "", "", "", ""], fontsize=1)
             axarr[i, j].grid(True)
+            axarr[i, j].set_title("Top " + str(idx + 1))
             plt.tight_layout()
             idx += 1
 
