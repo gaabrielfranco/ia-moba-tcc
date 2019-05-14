@@ -313,7 +313,7 @@ class GeneticAlgorithm(object):
                 self.crossover_probability = max(self.min_crossover_probability, self.crossover_probability-0.1)
                 count_decay = 0
                 
-            if count_no_improv % int(self.generations // self.diversification_step) == 0:
+            if count_no_improv > 0 and count_no_improv % int(self.generations // self.diversification_step) == 0:
                 self.diversify_solutions = True
                 
             if count_no_improv >= self.max_no_improv:

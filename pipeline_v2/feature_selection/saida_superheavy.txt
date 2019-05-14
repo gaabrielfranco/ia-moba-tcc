@@ -1,0 +1,2988 @@
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.203709 to 0.213617.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  Improvement from 0.213617 to 0.224873.
+	Processing generation   18 of  300...  Improvement from 0.224873 to 0.228781.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  Improvement from 0.228781 to 0.240790.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  Improvement from 0.240790 to 0.263563.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  Improvement from 0.263563 to 0.279789.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  Improvement from 0.279789 to 0.284626.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  Improvement from 0.284626 to 0.299345.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  No improvement.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  No improvement.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+	Processing generation  154 of  300...  No improvement.
+	Processing generation  155 of  300...  No improvement.
+	Processing generation  156 of  300...  No improvement.
+	Processing generation  157 of  300...  No improvement.
+	Processing generation  158 of  300...  No improvement.
+	Processing generation  159 of  300...  No improvement.
+	Processing generation  160 of  300...  No improvement.
+	Processing generation  161 of  300...  No improvement.
+	Processing generation  162 of  300...  No improvement.
+	Processing generation  163 of  300...  No improvement.
+	Processing generation  164 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, obs_placed], evaluation: 0.299345
+
+Total elapsed time: 00h03m03.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 01 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.171232 to 0.197559.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  Improvement from 0.197559 to 0.200388.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  Improvement from 0.200388 to 0.205385.
+	Processing generation   25 of  300...  Improvement from 0.205385 to 0.213011.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  Improvement from 0.213011 to 0.218268.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  Improvement from 0.218268 to 0.231450.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  Improvement from 0.231450 to 0.234389.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  Improvement from 0.234389 to 0.252559.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  Improvement from 0.252559 to 0.278050.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  Improvement from 0.278050 to 0.279426.
+	Processing generation   93 of  300...  Improvement from 0.279426 to 0.286526.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  No improvement.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  No improvement.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, courier_kills, sentry_uses], evaluation: 0.286526
+
+Total elapsed time: 00h02m31.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 02 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.172821 to 0.191817.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  Improvement from 0.191817 to 0.216475.
+	Processing generation    8 of  300...  Improvement from 0.216475 to 0.235598.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  Improvement from 0.235598 to 0.247844.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  Improvement from 0.247844 to 0.249224.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  Improvement from 0.249224 to 0.250533.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  Improvement from 0.250533 to 0.252902.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  Improvement from 0.252902 to 0.259857.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  Improvement from 0.259857 to 0.294172.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, necronomicon_kills], evaluation: 0.294172
+
+Total elapsed time: 00h03m25.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 03 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  Improvement from 0.171115 to 0.173661.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  Improvement from 0.173661 to 0.176328.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  Improvement from 0.176328 to 0.191907.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  Improvement from 0.191907 to 0.200623.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  Improvement from 0.200623 to 0.214124.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  Improvement from 0.214124 to 0.237569.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  Improvement from 0.237569 to 0.250745.
+	Processing generation   35 of  300...  Improvement from 0.250745 to 0.256715.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  Improvement from 0.256715 to 0.259810.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  Improvement from 0.259810 to 0.267046.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  Improvement from 0.267046 to 0.304016.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, obs_placed, necronomicon_kills], evaluation: 0.304016
+
+Total elapsed time: 00h02m52.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 04 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.173228 to 0.186362.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  Improvement from 0.186362 to 0.191884.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  Improvement from 0.191884 to 0.193265.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  Improvement from 0.193265 to 0.203423.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  Improvement from 0.203423 to 0.217651.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  Improvement from 0.217651 to 0.228824.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  Improvement from 0.228824 to 0.232110.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  Improvement from 0.232110 to 0.258327.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  Improvement from 0.258327 to 0.276817.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  No improvement.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+	Processing generation  154 of  300...  No improvement.
+	Processing generation  155 of  300...  No improvement.
+	Processing generation  156 of  300...  No improvement.
+	Processing generation  157 of  300...  No improvement.
+	Processing generation  158 of  300...  No improvement.
+	Processing generation  159 of  300...  No improvement.
+	Processing generation  160 of  300...  Improvement from 0.276817 to 0.297500.
+	Processing generation  161 of  300...  No improvement.
+	Processing generation  162 of  300...  No improvement.
+	Processing generation  163 of  300...  No improvement.
+	Processing generation  164 of  300...  No improvement.
+	Processing generation  165 of  300...  No improvement.
+	Processing generation  166 of  300...  No improvement.
+	Processing generation  167 of  300...  No improvement.
+	Processing generation  168 of  300...  No improvement.
+	Processing generation  169 of  300...  No improvement.
+	Processing generation  170 of  300...  No improvement.
+	Processing generation  171 of  300...  No improvement.
+	Processing generation  172 of  300...  No improvement.
+	Processing generation  173 of  300...  No improvement.
+	Processing generation  174 of  300...  No improvement.
+	Processing generation  175 of  300...  No improvement.
+	Processing generation  176 of  300...  No improvement.
+	Processing generation  177 of  300...  No improvement.
+	Processing generation  178 of  300...  No improvement.
+	Processing generation  179 of  300...  No improvement.
+	Processing generation  180 of  300...  No improvement.
+	Processing generation  181 of  300...  No improvement.
+	Processing generation  182 of  300...  No improvement.
+	Processing generation  183 of  300...  No improvement.
+	Processing generation  184 of  300...  No improvement.
+	Processing generation  185 of  300...  No improvement.
+	Processing generation  186 of  300...  No improvement.
+	Processing generation  187 of  300...  No improvement.
+	Processing generation  188 of  300...  No improvement.
+	Processing generation  189 of  300...  No improvement.
+	Processing generation  190 of  300...  No improvement.
+	Processing generation  191 of  300...  No improvement.
+	Processing generation  192 of  300...  No improvement.
+	Processing generation  193 of  300...  No improvement.
+	Processing generation  194 of  300...  No improvement.
+	Processing generation  195 of  300...  No improvement.
+	Processing generation  196 of  300...  No improvement.
+	Processing generation  197 of  300...  No improvement.
+	Processing generation  198 of  300...  No improvement.
+	Processing generation  199 of  300...  No improvement.
+	Processing generation  200 of  300...  No improvement.
+	Processing generation  201 of  300...  No improvement.
+	Processing generation  202 of  300...  No improvement.
+	Processing generation  203 of  300...  No improvement.
+	Processing generation  204 of  300...  No improvement.
+	Processing generation  205 of  300...  No improvement.
+	Processing generation  206 of  300...  No improvement.
+	Processing generation  207 of  300...  No improvement.
+	Processing generation  208 of  300...  No improvement.
+	Processing generation  209 of  300...  No improvement.
+	Processing generation  210 of  300...  No improvement.
+	Processing generation  211 of  300...  No improvement.
+	Processing generation  212 of  300...  No improvement.
+	Processing generation  213 of  300...  No improvement.
+	Processing generation  214 of  300...  No improvement.
+	Processing generation  215 of  300...  No improvement.
+	Processing generation  216 of  300...  No improvement.
+	Processing generation  217 of  300...  No improvement.
+	Processing generation  218 of  300...  No improvement.
+	Processing generation  219 of  300...  No improvement.
+	Processing generation  220 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, obs_placed, courier_kills], evaluation: 0.297500
+
+Total elapsed time: 00h04m00.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 05 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  Improvement from 0.206550 to 0.233214.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  Improvement from 0.233214 to 0.249029.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  Improvement from 0.249029 to 0.261254.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  Improvement from 0.261254 to 0.271327.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  Improvement from 0.271327 to 0.290638.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, camps_stacked, sentry_uses], evaluation: 0.290638
+
+Total elapsed time: 00h02m15.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 06 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.215504 to 0.224062.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  Improvement from 0.224062 to 0.233333.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  Improvement from 0.233333 to 0.249185.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  Improvement from 0.249185 to 0.250451.
+	Processing generation   58 of  300...  Improvement from 0.250451 to 0.253051.
+	Processing generation   59 of  300...  Improvement from 0.253051 to 0.263158.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  Improvement from 0.263158 to 0.269202.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  Improvement from 0.269202 to 0.289800.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, courier_kills, sentry_uses], evaluation: 0.289800
+
+Total elapsed time: 00h03m15.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 07 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.177182 to 0.180740.
+	Processing generation    6 of  300...  Improvement from 0.180740 to 0.201948.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  Improvement from 0.201948 to 0.221328.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  Improvement from 0.221328 to 0.221868.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  Improvement from 0.221868 to 0.247183.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  Improvement from 0.247183 to 0.250300.
+	Processing generation   80 of  300...  Improvement from 0.250300 to 0.255823.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  Improvement from 0.255823 to 0.290863.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses], evaluation: 0.290863
+
+Total elapsed time: 00h02m26.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 08 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.185785 to 0.208982.
+	Processing generation    3 of  300...  Improvement from 0.208982 to 0.210899.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.210899 to 0.225829.
+	Processing generation    6 of  300...  Improvement from 0.225829 to 0.227055.
+	Processing generation    7 of  300...  Improvement from 0.227055 to 0.234408.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  Improvement from 0.234408 to 0.246132.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  Improvement from 0.246132 to 0.275158.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  Improvement from 0.275158 to 0.281869.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  Improvement from 0.281869 to 0.284163.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  Improvement from 0.284163 to 0.284905.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  Improvement from 0.284905 to 0.290283.
+	Processing generation   64 of  300...  Improvement from 0.290283 to 0.297410.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses], evaluation: 0.297410
+
+Total elapsed time: 00h02m11.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 09 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.176129 to 0.230198.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  Improvement from 0.230198 to 0.239274.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  Improvement from 0.239274 to 0.241190.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  Improvement from 0.241190 to 0.245277.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  Improvement from 0.245277 to 0.253205.
+	Processing generation   56 of  300...  Improvement from 0.253205 to 0.278633.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  Improvement from 0.278633 to 0.279966.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  Improvement from 0.279966 to 0.284547.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  Improvement from 0.284547 to 0.289748.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  No improvement.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  No improvement.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+	Processing generation  154 of  300...  No improvement.
+	Processing generation  155 of  300...  No improvement.
+	Processing generation  156 of  300...  No improvement.
+	Processing generation  157 of  300...  No improvement.
+	Processing generation  158 of  300...  No improvement.
+	Processing generation  159 of  300...  No improvement.
+	Processing generation  160 of  300...  No improvement.
+	Processing generation  161 of  300...  No improvement.
+	Processing generation  162 of  300...  No improvement.
+	Processing generation  163 of  300...  No improvement.
+	Processing generation  164 of  300...  No improvement.
+	Processing generation  165 of  300...  No improvement.
+	Processing generation  166 of  300...  No improvement.
+	Processing generation  167 of  300...  No improvement.
+	Processing generation  168 of  300...  No improvement.
+	Processing generation  169 of  300...  No improvement.
+	Processing generation  170 of  300...  No improvement.
+	Processing generation  171 of  300...  No improvement.
+	Processing generation  172 of  300...  No improvement.
+	Processing generation  173 of  300...  No improvement.
+	Processing generation  174 of  300...  No improvement.
+	Processing generation  175 of  300...  No improvement.
+	Processing generation  176 of  300...  No improvement.
+	Processing generation  177 of  300...  No improvement.
+	Processing generation  178 of  300...  No improvement.
+	Processing generation  179 of  300...  No improvement.
+	Processing generation  180 of  300...  No improvement.
+	Processing generation  181 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, obs_placed, courier_kills, pings], evaluation: 0.289748
+
+Total elapsed time: 00h04m23.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 10 - basic mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  Improvement from 0.173119 to 0.181162.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.181162 to 0.194733.
+	Processing generation    6 of  300...  Improvement from 0.194733 to 0.226168.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  Improvement from 0.226168 to 0.229483.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  Improvement from 0.229483 to 0.234252.
+	Processing generation   17 of  300...  Improvement from 0.234252 to 0.238953.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  Improvement from 0.238953 to 0.247572.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, firstblood_claimed, roshan_kills, necronomicon_kills, courier_kills, observer_kills, camps_stacked, pings, sentry_uses], evaluation: 0.247572
+
+Total elapsed time: 00h01m51.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 01 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.169050 to 0.170638.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  Improvement from 0.170638 to 0.174974.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  Improvement from 0.174974 to 0.180960.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  Improvement from 0.180960 to 0.192305.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  Improvement from 0.192305 to 0.192883.
+	Processing generation   20 of  300...  Improvement from 0.192883 to 0.202199.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  Improvement from 0.202199 to 0.209430.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  Improvement from 0.209430 to 0.212226.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  Improvement from 0.212226 to 0.231876.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  Improvement from 0.231876 to 0.248385.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  Improvement from 0.248385 to 0.271860.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  Improvement from 0.271860 to 0.281843.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  Improvement from 0.281843 to 0.285563.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  No improvement.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  No improvement.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+	Processing generation  154 of  300...  No improvement.
+	Processing generation  155 of  300...  No improvement.
+	Processing generation  156 of  300...  No improvement.
+	Processing generation  157 of  300...  No improvement.
+	Processing generation  158 of  300...  No improvement.
+	Processing generation  159 of  300...  No improvement.
+	Processing generation  160 of  300...  No improvement.
+	Processing generation  161 of  300...  No improvement.
+	Processing generation  162 of  300...  No improvement.
+	Processing generation  163 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, firstblood_claimed, sen_placed], evaluation: 0.285563
+
+Total elapsed time: 00h03m04.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 02 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  Improvement from 0.178807 to 0.179600.
+	Processing generation    5 of  300...  Improvement from 0.179600 to 0.190669.
+	Processing generation    6 of  300...  Improvement from 0.190669 to 0.228077.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  Improvement from 0.228077 to 0.235629.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  Improvement from 0.235629 to 0.247428.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  Improvement from 0.247428 to 0.250458.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  Improvement from 0.250458 to 0.272461.
+	Processing generation   24 of  300...  Improvement from 0.272461 to 0.273612.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  Improvement from 0.273612 to 0.288285.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, sen_placed, necronomicon_kills], evaluation: 0.288285
+
+Total elapsed time: 00h01m43.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 03 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  Improvement from 0.170078 to 0.191687.
+	Processing generation    4 of  300...  Improvement from 0.191687 to 0.226244.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  Improvement from 0.226244 to 0.233298.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  Improvement from 0.233298 to 0.240681.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  Improvement from 0.240681 to 0.267264.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  Improvement from 0.267264 to 0.294254.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  Improvement from 0.294254 to 0.297970.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, obs_placed, necronomicon_kills, camps_stacked, actions_per_min], evaluation: 0.297970
+
+Total elapsed time: 00h02m48.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 04 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.177730 to 0.186044.
+	Processing generation    3 of  300...  Improvement from 0.186044 to 0.209832.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  Improvement from 0.209832 to 0.216762.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  Improvement from 0.216762 to 0.247380.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  Improvement from 0.247380 to 0.254768.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  Improvement from 0.254768 to 0.272480.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  Improvement from 0.272480 to 0.286161.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  Improvement from 0.286161 to 0.286715.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  Improvement from 0.286715 to 0.298140.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, obs_placed, actions_per_min], evaluation: 0.298140
+
+Total elapsed time: 00h01m51.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 05 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  Improvement from 0.173593 to 0.183442.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  Improvement from 0.183442 to 0.184753.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  Improvement from 0.184753 to 0.187766.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  Improvement from 0.187766 to 0.187959.
+	Processing generation   13 of  300...  Improvement from 0.187959 to 0.228155.
+	Processing generation   14 of  300...  Improvement from 0.228155 to 0.245533.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  Improvement from 0.245533 to 0.257363.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, firstblood_claimed, sen_placed, lane_kills, roshan_kills, necronomicon_kills, observer_kills, camps_stacked, pings], evaluation: 0.257363
+
+Total elapsed time: 00h02m27.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 06 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  Improvement from 0.172674 to 0.185985.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  Improvement from 0.185985 to 0.200614.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  Improvement from 0.200614 to 0.206576.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  Improvement from 0.206576 to 0.207657.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  Improvement from 0.207657 to 0.218295.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  Improvement from 0.218295 to 0.220693.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  Improvement from 0.220693 to 0.223363.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  Improvement from 0.223363 to 0.249138.
+	Processing generation   46 of  300...  Improvement from 0.249138 to 0.253629.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  Improvement from 0.253629 to 0.256152.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  Improvement from 0.256152 to 0.264231.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  Improvement from 0.264231 to 0.272770.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  Improvement from 0.272770 to 0.284504.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  No improvement.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  Improvement from 0.284504 to 0.294172.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+	Processing generation  154 of  300...  No improvement.
+	Processing generation  155 of  300...  No improvement.
+	Processing generation  156 of  300...  No improvement.
+	Processing generation  157 of  300...  No improvement.
+	Processing generation  158 of  300...  No improvement.
+	Processing generation  159 of  300...  No improvement.
+	Processing generation  160 of  300...  No improvement.
+	Processing generation  161 of  300...  No improvement.
+	Processing generation  162 of  300...  No improvement.
+	Processing generation  163 of  300...  No improvement.
+	Processing generation  164 of  300...  No improvement.
+	Processing generation  165 of  300...  No improvement.
+	Processing generation  166 of  300...  No improvement.
+	Processing generation  167 of  300...  No improvement.
+	Processing generation  168 of  300...  No improvement.
+	Processing generation  169 of  300...  No improvement.
+	Processing generation  170 of  300...  No improvement.
+	Processing generation  171 of  300...  No improvement.
+	Processing generation  172 of  300...  No improvement.
+	Processing generation  173 of  300...  No improvement.
+	Processing generation  174 of  300...  No improvement.
+	Processing generation  175 of  300...  No improvement.
+	Processing generation  176 of  300...  No improvement.
+	Processing generation  177 of  300...  No improvement.
+	Processing generation  178 of  300...  No improvement.
+	Processing generation  179 of  300...  No improvement.
+	Processing generation  180 of  300...  No improvement.
+	Processing generation  181 of  300...  No improvement.
+	Processing generation  182 of  300...  No improvement.
+	Processing generation  183 of  300...  No improvement.
+	Processing generation  184 of  300...  No improvement.
+	Processing generation  185 of  300...  No improvement.
+	Processing generation  186 of  300...  No improvement.
+	Processing generation  187 of  300...  No improvement.
+	Processing generation  188 of  300...  No improvement.
+	Processing generation  189 of  300...  No improvement.
+	Processing generation  190 of  300...  No improvement.
+	Processing generation  191 of  300...  No improvement.
+	Processing generation  192 of  300...  No improvement.
+	Processing generation  193 of  300...  No improvement.
+	Processing generation  194 of  300...  No improvement.
+	Processing generation  195 of  300...  No improvement.
+	Processing generation  196 of  300...  No improvement.
+	Processing generation  197 of  300...  No improvement.
+	Processing generation  198 of  300...  No improvement.
+	Processing generation  199 of  300...  No improvement.
+	Processing generation  200 of  300...  No improvement.
+	Processing generation  201 of  300...  No improvement.
+	Processing generation  202 of  300...  No improvement.
+	Processing generation  203 of  300...  No improvement.
+	Processing generation  204 of  300...  No improvement.
+	Processing generation  205 of  300...  No improvement.
+	Processing generation  206 of  300...  No improvement.
+	Processing generation  207 of  300...  No improvement.
+	Processing generation  208 of  300...  No improvement.
+	Processing generation  209 of  300...  No improvement.
+	Processing generation  210 of  300...  No improvement.
+	Processing generation  211 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, necronomicon_kills], evaluation: 0.294172
+
+Total elapsed time: 00h03m57.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 07 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  No improvement.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  No improvement.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  Improvement from 0.213312 to 0.229544.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  Improvement from 0.229544 to 0.258949.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  Improvement from 0.258949 to 0.274527.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  Improvement from 0.274527 to 0.284050.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, sen_placed, necronomicon_kills], evaluation: 0.284050
+
+Total elapsed time: 00h01m50.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 08 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  No improvement.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  Improvement from 0.205288 to 0.208075.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  Improvement from 0.208075 to 0.254699.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  No improvement.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  Improvement from 0.254699 to 0.259824.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  No improvement.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  Improvement from 0.259824 to 0.260824.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  No improvement.
+	Processing generation   27 of  300...  Improvement from 0.260824 to 0.271561.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  No improvement.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  Improvement from 0.271561 to 0.271656.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  Improvement from 0.271656 to 0.272243.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  No improvement.
+	Processing generation   61 of  300...  Improvement from 0.272243 to 0.286644.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  Improvement from 0.286644 to 0.297387.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  No improvement.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses], evaluation: 0.297387
+
+Total elapsed time: 00h02m42.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 09 - extended mutation
+Using ALL database w/ 0.7 correlation threshold
+
+Running silhouette-cosine problem...
+
+	Processing generation    1 of  300...
+	Processing generation    2 of  300...  No improvement.
+	Processing generation    3 of  300...  No improvement.
+	Processing generation    4 of  300...  No improvement.
+	Processing generation    5 of  300...  No improvement.
+	Processing generation    6 of  300...  Improvement from 0.187420 to 0.192625.
+	Processing generation    7 of  300...  No improvement.
+	Processing generation    8 of  300...  No improvement.
+	Processing generation    9 of  300...  Improvement from 0.192625 to 0.211245.
+	Processing generation   10 of  300...  No improvement.
+	Processing generation   11 of  300...  Improvement from 0.211245 to 0.239626.
+	Processing generation   12 of  300...  No improvement.
+	Processing generation   13 of  300...  No improvement.
+	Processing generation   14 of  300...  No improvement.
+	Processing generation   15 of  300...  Improvement from 0.239626 to 0.240026.
+	Processing generation   16 of  300...  No improvement.
+	Processing generation   17 of  300...  No improvement.
+	Processing generation   18 of  300...  No improvement.
+	Processing generation   19 of  300...  No improvement.
+	Processing generation   20 of  300...  No improvement.
+	Processing generation   21 of  300...  No improvement.
+	Processing generation   22 of  300...  Improvement from 0.240026 to 0.246896.
+	Processing generation   23 of  300...  No improvement.
+	Processing generation   24 of  300...  No improvement.
+	Processing generation   25 of  300...  No improvement.
+	Processing generation   26 of  300...  Improvement from 0.246896 to 0.270835.
+	Processing generation   27 of  300...  No improvement.
+	Processing generation   28 of  300...  No improvement.
+	Processing generation   29 of  300...  No improvement.
+	Processing generation   30 of  300...  No improvement.
+	Processing generation   31 of  300...  No improvement.
+	Processing generation   32 of  300...  No improvement.
+	Processing generation   33 of  300...  No improvement.
+	Processing generation   34 of  300...  No improvement.
+	Processing generation   35 of  300...  No improvement.
+	Processing generation   36 of  300...  No improvement.
+	Processing generation   37 of  300...  No improvement.
+	Processing generation   38 of  300...  No improvement.
+	Processing generation   39 of  300...  No improvement.
+	Processing generation   40 of  300...  Improvement from 0.270835 to 0.273015.
+	Processing generation   41 of  300...  No improvement.
+	Processing generation   42 of  300...  No improvement.
+	Processing generation   43 of  300...  No improvement.
+	Processing generation   44 of  300...  No improvement.
+	Processing generation   45 of  300...  No improvement.
+	Processing generation   46 of  300...  No improvement.
+	Processing generation   47 of  300...  No improvement.
+	Processing generation   48 of  300...  No improvement.
+	Processing generation   49 of  300...  No improvement.
+	Processing generation   50 of  300...  No improvement.
+	Processing generation   51 of  300...  No improvement.
+	Processing generation   52 of  300...  No improvement.
+	Processing generation   53 of  300...  No improvement.
+	Processing generation   54 of  300...  No improvement.
+	Processing generation   55 of  300...  No improvement.
+	Processing generation   56 of  300...  No improvement.
+	Processing generation   57 of  300...  No improvement.
+	Processing generation   58 of  300...  No improvement.
+	Processing generation   59 of  300...  No improvement.
+	Processing generation   60 of  300...  Improvement from 0.273015 to 0.277361.
+	Processing generation   61 of  300...  No improvement.
+	Processing generation   62 of  300...  No improvement.
+	Processing generation   63 of  300...  No improvement.
+	Processing generation   64 of  300...  No improvement.
+	Processing generation   65 of  300...  No improvement.
+	Processing generation   66 of  300...  No improvement.
+	Processing generation   67 of  300...  No improvement.
+	Processing generation   68 of  300...  No improvement.
+	Processing generation   69 of  300...  No improvement.
+	Processing generation   70 of  300...  No improvement.
+	Processing generation   71 of  300...  No improvement.
+	Processing generation   72 of  300...  No improvement.
+	Processing generation   73 of  300...  No improvement.
+	Processing generation   74 of  300...  No improvement.
+	Processing generation   75 of  300...  No improvement.
+	Processing generation   76 of  300...  No improvement.
+	Processing generation   77 of  300...  No improvement.
+	Processing generation   78 of  300...  No improvement.
+	Processing generation   79 of  300...  No improvement.
+	Processing generation   80 of  300...  No improvement.
+	Processing generation   81 of  300...  No improvement.
+	Processing generation   82 of  300...  No improvement.
+	Processing generation   83 of  300...  No improvement.
+	Processing generation   84 of  300...  No improvement.
+	Processing generation   85 of  300...  No improvement.
+	Processing generation   86 of  300...  No improvement.
+	Processing generation   87 of  300...  No improvement.
+	Processing generation   88 of  300...  No improvement.
+	Processing generation   89 of  300...  No improvement.
+	Processing generation   90 of  300...  No improvement.
+	Processing generation   91 of  300...  No improvement.
+	Processing generation   92 of  300...  No improvement.
+	Processing generation   93 of  300...  No improvement.
+	Processing generation   94 of  300...  No improvement.
+	Processing generation   95 of  300...  No improvement.
+	Processing generation   96 of  300...  No improvement.
+	Processing generation   97 of  300...  No improvement.
+	Processing generation   98 of  300...  No improvement.
+	Processing generation   99 of  300...  No improvement.
+	Processing generation  100 of  300...  No improvement.
+	Processing generation  101 of  300...  No improvement.
+	Processing generation  102 of  300...  Improvement from 0.277361 to 0.302227.
+	Processing generation  103 of  300...  No improvement.
+	Processing generation  104 of  300...  No improvement.
+	Processing generation  105 of  300...  No improvement.
+	Processing generation  106 of  300...  No improvement.
+	Processing generation  107 of  300...  No improvement.
+	Processing generation  108 of  300...  No improvement.
+	Processing generation  109 of  300...  No improvement.
+	Processing generation  110 of  300...  No improvement.
+	Processing generation  111 of  300...  No improvement.
+	Processing generation  112 of  300...  No improvement.
+	Processing generation  113 of  300...  No improvement.
+	Processing generation  114 of  300...  No improvement.
+	Processing generation  115 of  300...  No improvement.
+	Processing generation  116 of  300...  No improvement.
+	Processing generation  117 of  300...  No improvement.
+	Processing generation  118 of  300...  No improvement.
+	Processing generation  119 of  300...  No improvement.
+	Processing generation  120 of  300...  No improvement.
+	Processing generation  121 of  300...  No improvement.
+	Processing generation  122 of  300...  No improvement.
+	Processing generation  123 of  300...  No improvement.
+	Processing generation  124 of  300...  No improvement.
+	Processing generation  125 of  300...  No improvement.
+	Processing generation  126 of  300...  No improvement.
+	Processing generation  127 of  300...  No improvement.
+	Processing generation  128 of  300...  No improvement.
+	Processing generation  129 of  300...  No improvement.
+	Processing generation  130 of  300...  No improvement.
+	Processing generation  131 of  300...  No improvement.
+	Processing generation  132 of  300...  No improvement.
+	Processing generation  133 of  300...  No improvement.
+	Processing generation  134 of  300...  No improvement.
+	Processing generation  135 of  300...  No improvement.
+	Processing generation  136 of  300...  No improvement.
+	Processing generation  137 of  300...  No improvement.
+	Processing generation  138 of  300...  No improvement.
+	Processing generation  139 of  300...  No improvement.
+	Processing generation  140 of  300...  No improvement.
+	Processing generation  141 of  300...  No improvement.
+	Processing generation  142 of  300...  No improvement.
+	Processing generation  143 of  300...  No improvement.
+	Processing generation  144 of  300...  No improvement.
+	Processing generation  145 of  300...  No improvement.
+	Processing generation  146 of  300...  No improvement.
+	Processing generation  147 of  300...  No improvement.
+	Processing generation  148 of  300...  No improvement.
+	Processing generation  149 of  300...  No improvement.
+	Processing generation  150 of  300...  No improvement.
+	Processing generation  151 of  300...  No improvement.
+	Processing generation  152 of  300...  No improvement.
+	Processing generation  153 of  300...  No improvement.
+	Processing generation  154 of  300...  No improvement.
+	Processing generation  155 of  300...  No improvement.
+	Processing generation  156 of  300...  No improvement.
+	Processing generation  157 of  300...  No improvement.
+	Processing generation  158 of  300...  No improvement.
+	Processing generation  159 of  300...  No improvement.
+	Processing generation  160 of  300...  No improvement.
+	Processing generation  161 of  300...  No improvement.
+	Processing generation  162 of  300...  No improvement.
+
+Best solution found solution: [deaths, gold_per_min, hero_healing, sentry_uses], evaluation: 0.302227
+
+Total elapsed time: 00h02m59.0s
+
+Stopped after 60 generations without improvement.
+
+Finished execution 10 - extended mutation
