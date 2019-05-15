@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.303908
+1,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses",0.285839
+2,"deaths, gold_per_min, gold_spent, hero_healing, sentry_uses",0.27983
+3,"deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.276592
+4,"deaths, hero_healing, sentry_uses, xp_per_min",0.271873
+5,"actions_per_min, deaths, gold_per_min, hero_healing, sentry_uses",0.271545
+6,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, tower_kills",0.26966999999999997
+7,"actions_per_min, deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.268362
+8,"deaths, gold_per_min, gold_spent, hero_healing, necronomicon_kills, sentry_uses",0.26819899999999997
+9,"deaths, gold_per_min, hero_healing, rune_pickups, sentry_uses",0.26756399999999997
+10,"deaths, hero_healing, sentry_uses, tower_kills, xp_per_min",0.267242
+11,"deaths, gold_spent, hero_healing, sentry_uses, xp_per_min",0.265169
+12,"actions_per_min, deaths, hero_healing, sentry_uses, xp_per_min",0.26513000000000003
+13,"actions_per_min, deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.26369899999999996
+14,"deaths, gold_per_min, hero_healing, rune_pickups, sentry_uses, tower_kills",0.262916
+15,"deaths, gold_per_min, hero_healing, necronomicon_kills, rune_pickups",0.2626
+16,"deaths, gold_per_min, hero_healing, necronomicon_kills, tower_kills",0.26219000000000003
+17,"deaths, gold_per_min, hero_healing, necronomicon_kills, rune_pickups, sentry_uses",0.26216100000000003
+18,"deaths, hero_healing, rune_pickups, sentry_uses, xp_per_min",0.260929
+19,"deaths, gold_per_min, hero_healing, observer_uses, rune_pickups",0.25907399999999997
+20,"deaths, gold_per_min, gold_spent, hero_healing, observer_uses",0.25764000000000004
+21,"deaths, hero_healing, necronomicon_kills, tower_kills, xp_per_min",0.25380199999999997
+22,"deaths, gold_spent, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.253691
+23,"deaths, gold_per_min, hero_healing, necronomicon_kills, rune_pickups, tower_kills",0.253606
+24,"deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.25356799999999996

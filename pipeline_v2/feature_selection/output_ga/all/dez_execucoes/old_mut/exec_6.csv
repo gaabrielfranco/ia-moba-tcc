@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, hero_healing, obs_placed, xp_per_min",0.285421
+1,"deaths, gold_per_min, hero_healing, lane_efficiency, obs_placed",0.28424499999999997
+2,"deaths, gold_per_min, hero_healing, lane_efficiency, sen_placed",0.281169
+3,"camps_stacked, deaths, hero_healing, sen_placed, xp_per_min",0.275775
+4,"camps_stacked, deaths, gold_per_min, hero_healing, sen_placed",0.274574
+5,"camps_stacked, deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed",0.27255799999999997
+6,"deaths, hero_healing, obs_placed, roshan_kills, xp_per_min",0.270943
+7,"camps_stacked, deaths, hero_healing, obs_placed, xp_per_min",0.270826
+8,"deaths, hero_healing, lane_efficiency, obs_placed, xp_per_min",0.270276
+9,"courier_kills, deaths, gold_per_min, hero_healing, lane_efficiency",0.2699
+10,"camps_stacked, deaths, gold_per_min, hero_healing, obs_placed",0.26971
+11,"deaths, hero_healing, lane_efficiency, sen_placed, xp_per_min",0.269374
+12,"courier_kills, deaths, gold_per_min, hero_healing, obs_placed",0.268953
+13,"deaths, gold_per_min, hero_healing, obs_placed, roshan_kills",0.268833
+14,"courier_kills, deaths, gold_per_min, hero_healing, lane_efficiency, sen_placed",0.267814
+15,"deaths, gold_per_min, hero_healing, neutral_kills, sen_placed",0.267751
+16,"courier_kills, deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed",0.267235
+17,"camps_stacked, deaths, gold_per_min, hero_healing, lane_efficiency, obs_placed",0.266497
+18,"courier_kills, deaths, gold_per_min, hero_healing, sen_placed",0.265811
+19,"deaths, gold_per_min, hero_healing, neutral_kills, obs_placed",0.264877
+20,"actions_per_min, camps_stacked, deaths, gold_per_min, hero_healing, obs_placed",0.261944
+21,"courier_kills, deaths, gold_per_min, hero_healing, lane_efficiency, obs_placed",0.26111100000000004
+22,"deaths, gold_per_min, hero_healing, lane_efficiency, observer_kills, sen_placed",0.260824
+23,"courier_kills, deaths, gold_per_min, hero_healing, lane_kills",0.260094
+24,"courier_kills, deaths, firstblood_claimed, gold_per_min, hero_healing, sen_placed",0.26004299999999997

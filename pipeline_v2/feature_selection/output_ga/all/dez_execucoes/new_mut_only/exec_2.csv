@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.28127800000000003
+1,"deaths, hero_healing, lane_efficiency, last_hits, sentry_uses",0.276492
+2,"deaths, hero_healing, sentry_uses, xp_per_min",0.276419
+3,"deaths, hero_healing, lane_kills, sentry_uses, xp_per_min",0.27374499999999996
+4,"deaths, hero_healing, lane_efficiency, sentry_uses, xp_per_min",0.267241
+5,"actions_per_min, deaths, hero_healing, sentry_uses, xp_per_min",0.265972
+6,"deaths, gold_spent, hero_healing, sentry_uses, xp_per_min",0.26446
+7,"deaths, hero_healing, observer_uses, sentry_kills, xp_per_min",0.263826
+8,"deaths, hero_healing, last_hits, necronomicon_kills, observer_uses",0.262997
+9,"deaths, hero_healing, sentry_kills, sentry_uses, xp_per_min",0.26155500000000004
+10,"deaths, hero_healing, purchase_tpscroll, sentry_uses, xp_per_min",0.259669
+11,"deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.258251
+12,"deaths, hero_healing, lane_efficiency, necronomicon_kills, sentry_uses, xp_per_min",0.257356
+13,"deaths, hero_healing, observer_uses, xp_per_min",0.255651
+14,"deaths, hero_healing, lane_kills, necronomicon_kills, sentry_uses, xp_per_min",0.254217
+15,"actions_per_min, deaths, hero_healing, last_hits, sentry_uses",0.253675
+16,"deaths, hero_healing, lane_kills, observer_uses, xp_per_min",0.253632
+17,"actions_per_min, deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.250835
+18,"actions_per_min, deaths, hero_healing, sentry_kills, sentry_uses, xp_per_min",0.250672
+19,"deaths, hero_healing, lane_kills, sentry_kills, sentry_uses, xp_per_min",0.2493
+20,"deaths, gold_spent, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.249246
+21,"deaths, hero_healing, necronomicon_kills, observer_uses, sentry_kills, xp_per_min",0.24631999999999998
+22,"deaths, gold_spent, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.245585
+23,"deaths, hero_healing, last_hits, observer_uses, sentry_kills",0.24424899999999997
+24,"deaths, hero_healing, lane_efficiency, last_hits, necronomicon_kills, sentry_uses",0.244013

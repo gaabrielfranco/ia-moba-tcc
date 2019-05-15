@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"courier_kills, deaths, gold_per_min, necronomicon_kills, sen_placed",0.254821
+1,"courier_kills, deaths, gold_per_min, necronomicon_kills, neutral_kills, sen_placed",0.245535
+2,"deaths, gold_per_min, necronomicon_kills, roshan_kills, sen_placed",0.238894
+3,"ancient_kills, courier_kills, deaths, gold_per_min, necronomicon_kills, sentry_uses",0.237279
+4,"courier_kills, deaths, gold_per_min, neutral_kills, sen_placed",0.23524699999999998
+5,"buyback_count, deaths, gold_per_min, observer_uses, tower_damage",0.23511100000000001
+6,"courier_kills, deaths, gold_per_min, necronomicon_kills, roshan_kills, sen_placed",0.23452399999999998
+7,"actions_per_min, courier_kills, deaths, gold_per_min, sen_placed",0.23428800000000002
+8,"actions_per_min, courier_kills, deaths, gold_per_min, roshan_kills, sen_placed",0.233375
+9,"actions_per_min, deaths, gold_per_min, necronomicon_kills, sen_placed, sentry_kills",0.22523
+10,"courier_kills, deaths, gold_per_min, necronomicon_kills, sen_placed, tower_kills",0.224534
+11,"deaths, gold_per_min, neutral_kills, purchase_tpscroll, roshan_kills, sen_placed",0.22260300000000002
+12,"deaths, gold_per_min, necronomicon_kills, roshan_kills, sen_placed, sentry_kills",0.222121
+13,"deaths, gold_per_min, necronomicon_kills, purchase_tpscroll, sen_placed",0.222009
+14,"actions_per_min, deaths, gold_per_min, necronomicon_kills, neutral_kills, sen_placed",0.221691
+15,"courier_kills, deaths, gold_per_min, roshan_kills, sen_placed, sentry_kills",0.22150100000000003
+16,"courier_kills, deaths, gold_per_min, neutral_kills, sen_placed, sentry_kills",0.218613
+17,"actions_per_min, courier_kills, deaths, gold_per_min, necronomicon_kills, sen_placed",0.21778699999999998
+18,"deaths, gold_per_min, necronomicon_kills, sen_placed, sentry_kills",0.21653699999999998
+19,"courier_kills, deaths, gold_per_min, sen_placed",0.212682
+20,"actions_per_min, courier_kills, deaths, gold_per_min, sen_placed, sentry_kills",0.211484
+21,"courier_kills, deaths, gold_per_min, purchase_tpscroll, roshan_kills, sen_placed",0.209642
+22,"courier_kills, deaths, gold_per_min, purchase_tpscroll, sen_placed, sentry_kills",0.207612
+23,"deaths, gold_per_min, neutral_kills, purchase_tpscroll, sen_placed",0.206979
+24,"deaths, gold_per_min, necronomicon_kills, sen_placed, sentry_kills, tower_kills",0.206754

@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.294925
+1,"deaths, gold_per_min, hero_healing, lane_kills, sentry_uses",0.281413
+2,"courier_kills, deaths, gold_per_min, lane_kills, obs_placed",0.278472
+3,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses",0.27434899999999995
+4,"deaths, gold_per_min, hero_healing, necronomicon_kills, teamfight_participation",0.273948
+5,"deaths, gold_per_min, hero_healing, lane_kills, observer_uses",0.270965
+6,"deaths, gold_per_min, hero_healing, lane_efficiency, necronomicon_kills, sentry_uses",0.26766
+7,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, teamfight_participation",0.266757
+8,"courier_kills, deaths, gold_per_min, hero_healing, teamfight_participation",0.26663400000000004
+9,"deaths, hero_healing, last_hits, necronomicon_kills, observer_uses",0.266375
+10,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, teamfight_participation",0.264691
+11,"courier_kills, deaths, gold_per_min, hero_healing, lane_kills, sentry_uses",0.263706
+12,"deaths, gold_per_min, hero_healing, lane_kills, necronomicon_kills",0.26189
+13,"deaths, gold_per_min, hero_healing, necronomicon_kills, pings",0.26109499999999997
+14,"courier_kills, deaths, gold_per_min, hero_healing, lane_kills",0.260252
+15,"deaths, gold_per_min, hero_healing, sentry_uses, teamfight_participation",0.26005300000000003
+16,"deaths, gold_per_min, hero_healing, lane_kills, necronomicon_kills, sentry_uses",0.259183
+17,"deaths, gold_per_min, hero_healing, observer_uses, teamfight_participation",0.258573
+18,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, roshans_killed",0.25709299999999996
+19,"camps_stacked, deaths, gold_per_min, hero_healing, sentry_uses",0.256696
+20,"courier_kills, deaths, gold_per_min, hero_healing, lane_kills, observer_uses",0.25613800000000003
+21,"camps_stacked, deaths, gold_per_min, hero_healing, pings",0.256133
+22,"camps_stacked, deaths, gold_per_min, hero_healing, observer_uses",0.25493499999999997
+23,"deaths, gold_per_min, hero_healing, observer_uses",0.254604
+24,"deaths, gold_per_min, hero_healing, lane_kills, necronomicon_kills, observer_uses",0.253819

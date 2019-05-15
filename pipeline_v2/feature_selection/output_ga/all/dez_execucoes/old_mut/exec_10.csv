@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"camps_stacked, deaths, hero_healing, last_hits, sentry_uses",0.286024
+1,"deaths, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.282039
+2,"camps_stacked, deaths, hero_healing, last_hits, sen_placed",0.272351
+3,"actions_per_min, deaths, hero_healing, last_hits, sentry_uses",0.271408
+4,"actions_per_min, deaths, hero_healing, sentry_uses, xp_per_min",0.26827399999999996
+5,"deaths, hero_healing, sentry_uses, xp_per_min",0.26623
+6,"camps_stacked, deaths, hero_healing, sentry_uses, xp_per_min",0.26510500000000004
+7,"camps_stacked, deaths, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.25669899999999995
+8,"actions_per_min, deaths, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.254575
+9,"deaths, hero_healing, last_hits, sentry_uses, stuns",0.251786
+10,"deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.251566
+11,"deaths, firstblood_claimed, hero_healing, last_hits, sentry_uses",0.250485
+12,"camps_stacked, deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.24988000000000002
+13,"actions_per_min, camps_stacked, deaths, hero_healing, last_hits, sen_placed",0.24931999999999999
+14,"deaths, hero_healing, sentry_uses, stuns, xp_per_min",0.248323
+15,"assists, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.24817399999999998
+16,"actions_per_min, deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.24795100000000003
+17,"deaths, firstblood_claimed, hero_healing, last_hits, pings, sentry_uses",0.24355
+18,"deaths, hero_healing, necronomicon_kills, pings, sentry_uses, xp_per_min",0.24215
+19,"deaths, hero_healing, last_hits, necronomicon_kills, sentry_uses, stuns",0.23770300000000003
+20,"camps_stacked, deaths, hero_healing, last_hits, purchase_tpscroll, sen_placed",0.23529099999999997
+21,"ancient_kills, deaths, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.231936
+22,"deaths, hero_healing, last_hits, necronomicon_kills, sentry_kills, sentry_uses",0.23058
+23,"deaths, firstblood_claimed, hero_healing, last_hits, necronomicon_kills, sentry_uses",0.225606
+24,"deaths, firstblood_claimed, hero_healing, last_hits",0.223227

@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses",0.297095
+1,"courier_kills, deaths, gold_per_min, hero_healing, observer_uses",0.278431
+2,"deaths, hero_healing, sentry_uses, xp_per_min",0.27573600000000004
+3,"courier_kills, deaths, observer_uses, xp_per_min",0.27523200000000003
+4,"deaths, gold_per_min, hero_healing, roshan_kills, sentry_uses",0.273326
+5,"courier_kills, deaths, hero_healing, sentry_uses, xp_per_min",0.26513000000000003
+6,"deaths, gold_spent, hero_healing, sentry_uses, xp_per_min",0.26450799999999997
+7,"deaths, gold_per_min, gold_spent, hero_healing, sentry_uses",0.262919
+8,"courier_kills, deaths, gold_per_min, hero_healing, purchase_tpscroll",0.259932
+9,"deaths, hero_healing, sentry_uses, stuns, xp_per_min",0.259525
+10,"deaths, hero_healing, lane_efficiency, observer_uses, xp_per_min",0.25802800000000004
+11,"courier_kills, deaths, gold_per_min, hero_healing, observer_uses, roshan_kills",0.256895
+12,"courier_kills, deaths, gold_per_min, gold_spent, hero_healing, sentry_uses",0.255314
+13,"deaths, gold_per_min, hero_healing, lane_efficiency, observer_uses",0.252443
+14,"courier_kills, deaths, gold_per_min, hero_healing, roshan_kills, sentry_uses",0.251515
+15,"courier_kills, deaths, hero_healing, observer_uses, xp_per_min",0.251303
+16,"deaths, gold_per_min, hero_healing, sentry_uses, stuns",0.250025
+17,"courier_kills, deaths, gold_per_min, hero_healing, observer_uses, pings",0.24907600000000002
+18,"deaths, gold_per_min, gold_spent, hero_healing, roshan_kills, sentry_uses",0.248986
+19,"courier_kills, deaths, gold_per_min, hero_healing, pings",0.248838
+20,"deaths, gold_per_min, hero_healing, roshan_kills, sentry_uses, stuns",0.248007
+21,"actions_per_min, courier_kills, deaths, gold_per_min, hero_healing, observer_uses",0.24718400000000001
+22,"deaths, gold_per_min, gold_spent, hero_healing, roshan_kills",0.24273899999999998
+23,"deaths, gold_per_min, hero_healing, observer_uses, roshan_kills",0.24223499999999998
+24,"courier_kills, deaths, gold_per_min, hero_healing, lane_efficiency",0.242232

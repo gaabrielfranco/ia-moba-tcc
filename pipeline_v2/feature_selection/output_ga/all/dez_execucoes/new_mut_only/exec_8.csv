@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.28536
+1,"camps_stacked, courier_kills, deaths, gold_per_min, hero_healing, sentry_uses",0.281906
+2,"deaths, hero_healing, sentry_uses, xp_per_min",0.277121
+3,"courier_kills, deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.275463
+4,"deaths, gold_per_min, hero_healing, roshans_killed, sentry_uses",0.273851
+5,"deaths, gold_per_min, hero_healing, lane_kills, necronomicon_kills, sentry_uses",0.27355799999999997
+6,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses",0.27341
+7,"deaths, gold_spent, hero_healing, sentry_uses, xp_per_min",0.27205100000000004
+8,"deaths, gold_per_min, hero_healing, lane_kills, necronomicon_kills, obs_placed",0.270331
+9,"deaths, gold_per_min, hero_healing, lane_kills, necronomicon_kills",0.269388
+10,"deaths, gold_per_min, gold_spent, hero_healing, necronomicon_kills, sentry_uses",0.26869299999999996
+11,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses, tower_damage",0.267597
+12,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, tower_damage",0.266548
+13,"camps_stacked, deaths, hero_healing, sentry_uses, xp_per_min",0.265185
+14,"deaths, gold_per_min, gold_spent, hero_healing, necronomicon_kills",0.263531
+15,"deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.259761
+16,"camps_stacked, deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.259221
+17,"deaths, gold_per_min, gold_spent, hero_healing, observer_kills",0.25799
+18,"deaths, gold_per_min, hero_healing, necronomicon_kills",0.25771700000000003
+19,"deaths, hero_healing, lane_kills, necronomicon_kills, obs_placed, xp_per_min",0.25664699999999996
+20,"courier_kills, deaths, gold_per_min, gold_spent, hero_healing, sentry_uses",0.255911
+21,"deaths, gold_per_min, hero_healing, necronomicon_kills, roshans_killed, sentry_uses",0.25506999999999996
+22,"courier_kills, deaths, gold_per_min, hero_healing, roshans_killed, sentry_uses",0.254548
+23,"camps_stacked, deaths, gold_per_min, hero_healing, sentry_uses",0.254002
+24,"deaths, hero_healing, roshans_killed, sentry_uses, xp_per_min",0.253868

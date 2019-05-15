@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"camps_stacked, deaths, gold_per_min, hero_healing, obs_placed",0.296151
+1,"deaths, gold_per_min, hero_healing, lane_efficiency, obs_placed",0.28705
+2,"courier_kills, deaths, gold_per_min, hero_healing, sen_placed",0.286796
+3,"courier_kills, deaths, gold_per_min, hero_healing, obs_placed",0.28563099999999997
+4,"camps_stacked, deaths, gold_per_min, hero_healing, sen_placed",0.28069299999999997
+5,"deaths, gold_per_min, hero_healing, lane_efficiency, sen_placed",0.28022800000000003
+6,"deaths, gold_per_min, hero_healing, lane_efficiency, necronomicon_kills, obs_placed",0.277503
+7,"deaths, hero_healing, obs_placed, xp_per_min",0.276783
+8,"deaths, hero_healing, lane_efficiency, obs_placed, xp_per_min",0.27478800000000003
+9,"courier_kills, deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed",0.273208
+10,"deaths, gold_per_min, hero_healing, obs_placed, purchase_tpscroll",0.272417
+11,"camps_stacked, deaths, hero_healing, obs_placed, xp_per_min",0.272212
+12,"camps_stacked, deaths, gold_per_min, hero_healing, necronomicon_kills",0.270778
+13,"deaths, gold_per_min, hero_healing, necronomicon_kills, sen_placed",0.27065100000000003
+14,"deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed, purchase_tpscroll",0.270383
+15,"deaths, gold_per_min, hero_healing, lane_efficiency, necronomicon_kills",0.269436
+16,"camps_stacked, deaths, hero_healing, sen_placed, xp_per_min",0.26871300000000004
+17,"deaths, gold_per_min, hero_healing, necronomicon_kills, purchase_tpscroll",0.268494
+18,"deaths, hero_healing, necronomicon_kills, obs_placed, xp_per_min",0.267727
+19,"deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed",0.266683
+20,"deaths, gold_per_min, hero_healing, purchase_tpscroll, sen_placed",0.265282
+21,"camps_stacked, deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed",0.264
+22,"deaths, gold_per_min, hero_healing, necronomicon_kills, purchase_tpscroll, sen_placed",0.263752
+23,"courier_kills, deaths, hero_healing, sen_placed, xp_per_min",0.26348499999999997
+24,"camps_stacked, deaths, gold_per_min, hero_healing, lane_efficiency, obs_placed",0.263475

@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, hero_healing, obs_placed, xp_per_min",0.277912
+1,"actions_per_min, deaths, hero_healing, sentry_uses, xp_per_min",0.273873
+2,"deaths, hero_healing, sentry_kills, sentry_uses, xp_per_min",0.26765300000000003
+3,"deaths, hero_healing, lane_kills, sentry_uses, xp_per_min",0.266096
+4,"courier_kills, deaths, observer_uses, xp_per_min",0.261952
+5,"deaths, hero_healing, sentry_uses, stuns, xp_per_min",0.26095799999999997
+6,"camps_stacked, deaths, hero_healing, sentry_uses, xp_per_min",0.25967399999999996
+7,"deaths, hero_healing, lane_kills, obs_placed, xp_per_min",0.259092
+8,"courier_kills, deaths, hero_healing, sentry_uses, xp_per_min",0.25902800000000004
+9,"deaths, hero_healing, observer_uses, sentry_kills, xp_per_min",0.25863200000000003
+10,"courier_kills, deaths, hero_healing, observer_uses, xp_per_min",0.25264200000000003
+11,"actions_per_min, deaths, hero_healing, observer_kills, sentry_uses, xp_per_min",0.252377
+12,"deaths, hero_healing, observer_uses, xp_per_min",0.251881
+13,"deaths, hero_healing, obs_placed, roshans_killed, xp_per_min",0.251465
+14,"camps_stacked, deaths, hero_healing, lane_kills, obs_placed, xp_per_min",0.251402
+15,"deaths, hero_healing, pings, sentry_uses, xp_per_min",0.251192
+16,"camps_stacked, deaths, hero_healing, obs_placed, xp_per_min",0.25046199999999996
+17,"camps_stacked, deaths, hero_healing, observer_uses, xp_per_min",0.247979
+18,"deaths, gold_spent, hero_healing, obs_placed, xp_per_min",0.24752600000000002
+19,"ancient_kills, deaths, hero_healing, observer_kills, observer_uses, xp_per_min",0.245592
+20,"camps_stacked, deaths, hero_healing, sentry_kills, sentry_uses, xp_per_min",0.24487899999999999
+21,"camps_stacked, deaths, hero_healing, obs_placed, observer_kills, xp_per_min",0.24395
+22,"ancient_kills, deaths, hero_healing, obs_placed, xp_per_min",0.243821
+23,"ancient_kills, deaths, hero_healing, observer_uses, xp_per_min",0.24333000000000002
+24,"deaths, hero_healing, sentry_uses, xp_per_min",0.239377

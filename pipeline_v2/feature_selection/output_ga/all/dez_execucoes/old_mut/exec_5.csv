@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.296491
+1,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses",0.289597
+2,"deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.287777
+3,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses",0.284507
+4,"deaths, gold_per_min, hero_healing, lane_efficiency, sentry_uses",0.281244
+5,"camps_stacked, deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.279553
+6,"deaths, gold_per_min, hero_healing, sentry_uses, tower_damage",0.278925
+7,"courier_kills, deaths, gold_per_min, hero_healing, observer_uses",0.278049
+8,"camps_stacked, deaths, gold_per_min, hero_healing, sentry_uses",0.272462
+9,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses, tower_damage",0.271384
+10,"deaths, gold_per_min, hero_healing, purchase_tpscroll, sentry_uses",0.268389
+11,"courier_kills, deaths, gold_per_min, hero_healing, necronomicon_kills",0.267061
+12,"courier_kills, deaths, gold_per_min, necronomicon_kills, observer_uses",0.26615300000000003
+13,"deaths, gold_per_min, hero_healing, necronomicon_kills, purchase_tpscroll, sentry_uses",0.265631
+14,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, tower_kills",0.265492
+15,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, tower_kills",0.26405100000000004
+16,"deaths, gold_per_min, hero_healing, lane_efficiency, necronomicon_kills, sentry_uses",0.263366
+17,"deaths, gold_per_min, hero_healing, sentry_uses, stuns, tower_kills",0.262361
+18,"courier_kills, deaths, gold_per_min, hero_healing, sen_placed, towers_killed",0.262359
+19,"courier_kills, deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.262151
+20,"deaths, gold_per_min, hero_healing, sentry_uses, towers_killed",0.25951
+21,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, stuns",0.259311
+22,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.25790100000000005
+23,"courier_kills, deaths, gold_per_min, hero_healing, sen_placed",0.257813
+24,"courier_kills, deaths, gold_per_min, necronomicon_kills, neutral_kills, sentry_uses",0.25658200000000003

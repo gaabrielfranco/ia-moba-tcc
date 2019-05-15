@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, hero_healing, sen_placed, xp_per_min",0.283903
+1,"camps_stacked, deaths, hero_healing, sen_placed, xp_per_min",0.27574699999999996
+2,"actions_per_min, deaths, hero_healing, sen_placed, xp_per_min",0.271953
+3,"deaths, gold_spent, hero_healing, sentry_uses, xp_per_min",0.26864099999999996
+4,"actions_per_min, deaths, hero_healing, necronomicon_kills, sen_placed, xp_per_min",0.25863200000000003
+5,"deaths, hero_healing, sen_placed, towers_killed, xp_per_min",0.2584
+6,"deaths, hero_healing, pings, sen_placed, xp_per_min",0.25692800000000005
+7,"actions_per_min, deaths, hero_healing, sen_placed, towers_killed, xp_per_min",0.253116
+8,"deaths, hero_healing, necronomicon_kills, sen_placed, xp_per_min",0.252854
+9,"deaths, hero_healing, necronomicon_kills, sen_placed, towers_killed, xp_per_min",0.24863400000000002
+10,"deaths, hero_healing, necronomicon_kills, towers_killed, xp_per_min",0.246469
+11,"actions_per_min, camps_stacked, deaths, hero_healing, sen_placed, xp_per_min",0.24437399999999998
+12,"deaths, hero_healing, pings, sen_placed, towers_killed, xp_per_min",0.24126599999999998
+13,"camps_stacked, deaths, hero_healing, necronomicon_kills, sen_placed, xp_per_min",0.240671
+14,"courier_kills, deaths, sen_placed, towers_killed, xp_per_min",0.240666
+15,"camps_stacked, deaths, hero_healing, rune_pickups, sen_placed, xp_per_min",0.240432
+16,"courier_kills, deaths, hero_healing, roshan_kills, sen_placed, xp_per_min",0.239275
+17,"deaths, hero_healing, necronomicon_kills, pings, sen_placed, xp_per_min",0.23902600000000002
+18,"courier_kills, deaths, hero_healing, sen_placed, towers_killed, xp_per_min",0.23747
+19,"actions_per_min, deaths, hero_healing, roshan_kills, sen_placed, xp_per_min",0.235198
+20,"actions_per_min, deaths, hero_healing, pings, sen_placed, xp_per_min",0.23515999999999998
+21,"courier_kills, deaths, hero_healing, sen_placed, xp_per_min",0.234492
+22,"deaths, hero_healing, necronomicon_kills, xp_per_min",0.23407199999999997
+23,"courier_kills, deaths, hero_healing, necronomicon_kills, sen_placed, xp_per_min",0.233578
+24,"actions_per_min, deaths, hero_healing, observer_kills, xp_per_min",0.232194

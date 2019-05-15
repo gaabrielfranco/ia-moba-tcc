@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, hero_healing, sentry_uses, xp_per_min",0.27704
+1,"deaths, hero_healing, lane_efficiency, sentry_uses, xp_per_min",0.27549
+2,"camps_stacked, deaths, hero_healing, sentry_uses, xp_per_min",0.267391
+3,"hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.265851
+4,"deaths, gold_spent, hero_healing, sentry_uses, xp_per_min",0.263832
+5,"courier_kills, deaths, hero_healing, sentry_uses, xp_per_min",0.26310100000000003
+6,"deaths, hero_healing, sentry_uses, stuns, xp_per_min",0.261847
+7,"deaths, hero_healing, purchase_tpscroll, sentry_uses, xp_per_min",0.256992
+8,"deaths, hero_healing, lane_efficiency, necronomicon_kills, sentry_uses, xp_per_min",0.254767
+9,"courier_kills, deaths, hero_healing, observer_uses, xp_per_min",0.251253
+10,"courier_kills, deaths, hero_healing, lane_efficiency, sentry_uses, xp_per_min",0.24841999999999997
+11,"deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.24764899999999998
+12,"deaths, hero_healing, observer_uses, xp_per_min",0.24707199999999999
+13,"deaths, hero_healing, necronomicon_kills, observer_uses, xp_per_min",0.246794
+14,"deaths, hero_healing, necronomicon_kills, sentry_uses, stuns, xp_per_min",0.246626
+15,"deaths, hero_healing, pings, sentry_uses, xp_per_min",0.246325
+16,"camps_stacked, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.24520100000000003
+17,"camps_stacked, deaths, hero_healing, observer_uses, xp_per_min",0.24504499999999999
+18,"deaths, hero_healing, necronomicon_kills, purchase_tpscroll, sentry_uses, xp_per_min",0.24401
+19,"deaths, hero_healing, necronomicon_kills, sentry_uses, teamfight_participation, xp_per_min",0.24245999999999998
+20,"deaths, hero_healing, necronomicon_kills, neutral_kills, sentry_uses, xp_per_min",0.241826
+21,"camps_stacked, deaths, hero_healing, lane_efficiency, sentry_uses, xp_per_min",0.24114000000000002
+22,"camps_stacked, deaths, hero_healing, sentry_uses, tower_damage, xp_per_min",0.237339
+23,"camps_stacked, deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.23705199999999998
+24,"camps_stacked, hero_healing, necronomicon_kills, sentry_uses, stuns, xp_per_min",0.23695300000000002

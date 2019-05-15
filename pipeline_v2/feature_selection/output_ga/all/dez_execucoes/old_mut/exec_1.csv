@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"courier_kills, deaths, gold_per_min, hero_healing, obs_placed",0.290698
+1,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses",0.288674
+2,"camps_stacked, deaths, gold_per_min, hero_healing, sentry_uses",0.281474
+3,"deaths, hero_healing, sentry_uses, xp_per_min",0.274548
+4,"deaths, gold_per_min, hero_healing, neutral_kills, sentry_uses",0.272877
+5,"camps_stacked, deaths, hero_healing, sentry_uses, xp_per_min",0.270052
+6,"deaths, gold_per_min, hero_healing, sentry_uses, stuns",0.26877199999999996
+7,"deaths, hero_healing, sentry_uses, stuns, xp_per_min",0.266864
+8,"deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.266098
+9,"deaths, gold_per_min, hero_healing, lane_kills, sentry_uses",0.26492899999999997
+10,"buyback_count, courier_kills, deaths, gold_per_min, hero_healing, sentry_uses",0.262613
+11,"courier_kills, deaths, gold_per_min, hero_healing, lane_kills, sentry_uses",0.260727
+12,"courier_kills, deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.260443
+13,"courier_kills, deaths, gold_per_min, hero_healing, neutral_kills, sentry_uses",0.259265
+14,"courier_kills, deaths, hero_healing, sentry_uses, xp_per_min",0.258859
+15,"deaths, gold_per_min, hero_healing, purchase_tpscroll, sentry_uses",0.256544
+16,"deaths, hero_healing, lane_kills, sentry_uses, xp_per_min",0.256087
+17,"courier_kills, deaths, gold_per_min, hero_healing, purchase_tpscroll, sentry_uses",0.25488299999999997
+18,"deaths, hero_healing, purchase_tpscroll, sentry_uses, xp_per_min",0.254803
+19,"deaths, hero_healing, neutral_kills, sentry_uses, xp_per_min",0.25464499999999995
+20,"camps_stacked, deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.254317
+21,"camps_stacked, deaths, gold_per_min, hero_healing, lane_kills, sentry_uses",0.253246
+22,"deaths, gold_per_min, hero_healing, lane_kills, sentry_uses, stuns",0.25304499999999996
+23,"buyback_count, camps_stacked, deaths, gold_per_min, hero_healing, sentry_uses",0.252594
+24,"courier_kills, deaths, gold_per_min, hero_healing, obs_placed, purchase_tpscroll",0.252168

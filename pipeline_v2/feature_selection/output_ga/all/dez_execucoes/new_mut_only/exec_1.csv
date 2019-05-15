@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.279477
+1,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, tower_damage",0.277032
+2,"deaths, hero_healing, sentry_uses, xp_per_min",0.274742
+3,"deaths, hero_healing, lane_efficiency, sentry_uses, xp_per_min",0.273123
+4,"deaths, gold_per_min, hero_healing, lane_efficiency, sentry_uses",0.271805
+5,"deaths, gold_per_min, hero_healing, lane_efficiency, necronomicon_kills, observer_uses",0.270594
+6,"deaths, gold_per_min, hero_healing, lane_efficiency, necronomicon_kills, sentry_uses",0.269376
+7,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, tower_damage",0.269303
+8,"deaths, gold_per_min, hero_healing, sentry_uses, stuns",0.268818
+9,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, rune_pickups",0.267926
+10,"deaths, gold_per_min, hero_healing, roshans_killed, sentry_uses",0.267741
+11,"deaths, gold_per_min, hero_healing, necronomicon_kills, rune_pickups, sentry_uses",0.265198
+12,"deaths, gold_per_min, hero_healing, rune_pickups, sentry_uses",0.26204099999999997
+13,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses",0.261897
+14,"deaths, gold_per_min, hero_healing, neutral_kills, rune_pickups, sentry_uses",0.261179
+15,"deaths, gold_per_min, hero_healing, observer_uses, rune_pickups",0.25997800000000004
+16,"deaths, hero_healing, lane_efficiency, observer_uses, xp_per_min",0.259921
+17,"deaths, hero_healing, necronomicon_kills, rune_pickups, sentry_uses, xp_per_min",0.25951
+18,"deaths, hero_healing, rune_pickups, sentry_uses, xp_per_min",0.258052
+19,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, stuns",0.257201
+20,"deaths, hero_healing, roshans_killed, sentry_uses, xp_per_min",0.257191
+21,"deaths, gold_per_min, hero_healing, observer_uses, tower_damage",0.257162
+22,"deaths, gold_per_min, hero_healing, pings, sentry_uses",0.25692
+23,"deaths, hero_healing, sentry_uses, stuns, xp_per_min",0.25675
+24,"deaths, hero_healing, necronomicon_kills, sentry_uses, tower_damage, xp_per_min",0.256031

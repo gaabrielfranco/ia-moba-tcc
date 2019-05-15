@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"actions_per_min, deaths, hero_healing, sen_placed, xp_per_min",0.278262
+1,"deaths, hero_healing, lane_efficiency, sen_placed, xp_per_min",0.27121300000000004
+2,"deaths, gold_spent, hero_healing, sen_placed, xp_per_min",0.264406
+3,"deaths, hero_healing, sen_placed, towers_killed, xp_per_min",0.26260700000000003
+4,"deaths, hero_healing, sen_placed, xp_per_min",0.262463
+5,"deaths, hero_healing, lane_efficiency, necronomicon_kills, sen_placed, xp_per_min",0.258387
+6,"deaths, hero_healing, rune_pickups, sen_placed, xp_per_min",0.258333
+7,"deaths, hero_healing, purchase_tpscroll, sen_placed, xp_per_min",0.257454
+8,"deaths, hero_healing, necronomicon_kills, observer_uses, xp_per_min",0.255513
+9,"deaths, hero_healing, lane_efficiency, necronomicon_kills, xp_per_min",0.255397
+10,"actions_per_min, deaths, hero_healing, sen_placed, towers_killed, xp_per_min",0.251223
+11,"camps_stacked, deaths, hero_healing, sen_placed, xp_per_min",0.251173
+12,"ancient_kills, deaths, hero_healing, necronomicon_kills, rune_pickups, xp_per_min",0.249135
+13,"deaths, hero_healing, sen_placed, tower_kills, xp_per_min",0.247284
+14,"deaths, hero_healing, necronomicon_kills, sen_placed, xp_per_min",0.24705100000000002
+15,"camps_stacked, deaths, hero_healing, lane_efficiency, sen_placed, xp_per_min",0.24402
+16,"deaths, gold_spent, hero_healing, necronomicon_kills, sen_placed, xp_per_min",0.24379699999999999
+17,"deaths, hero_healing, necronomicon_kills, purchase_tpscroll, sen_placed, xp_per_min",0.24226599999999998
+18,"actions_per_min, deaths, hero_healing, necronomicon_kills, sentry_uses, xp_per_min",0.24225300000000002
+19,"courier_kills, deaths, hero_healing, sen_placed, xp_per_min",0.242023
+20,"actions_per_min, deaths, hero_healing, necronomicon_kills, xp_per_min",0.24165999999999999
+21,"camps_stacked, deaths, hero_healing, purchase_tpscroll, sen_placed, xp_per_min",0.24161100000000002
+22,"deaths, hero_healing, lane_efficiency, necronomicon_kills, observer_uses, xp_per_min",0.240943
+23,"deaths, hero_healing, sen_placed, tower_damage, xp_per_min",0.239906
+24,"ancient_kills, deaths, denies, hero_healing, necronomicon_kills, sen_placed",0.238894

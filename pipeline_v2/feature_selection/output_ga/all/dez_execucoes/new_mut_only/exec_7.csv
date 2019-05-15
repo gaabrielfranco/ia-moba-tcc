@@ -1,0 +1,26 @@
+,Solution,Evaluation
+0,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses",0.302708
+1,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses",0.301505
+2,"deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed",0.28457
+3,"deaths, gold_per_min, hero_healing, rune_pickups, sentry_uses",0.277542
+4,"deaths, gold_per_min, hero_healing, sentry_uses, tower_kills",0.275804
+5,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, tower_damage",0.272631
+6,"deaths, gold_per_min, hero_healing, necronomicon_kills, rune_pickups",0.272534
+7,"deaths, gold_per_min, hero_healing, necronomicon_kills, tower_kills",0.272372
+8,"deaths, gold_per_min, hero_healing, necronomicon_kills, rune_pickups, sentry_uses",0.269753
+9,"deaths, gold_per_min, hero_healing, necronomicon_kills, obs_placed, tower_kills",0.267602
+10,"deaths, gold_per_min, hero_healing, observer_uses, tower_kills",0.267056
+11,"deaths, hero_healing, sentry_uses, tower_kills, xp_per_min",0.266908
+12,"deaths, gold_per_min, hero_healing, sentry_uses, tower_damage",0.266739
+13,"deaths, gold_per_min, hero_healing, necronomicon_kills, tower_damage",0.262848
+14,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, tower_kills",0.260833
+15,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, tower_damage",0.259788
+16,"deaths, gold_per_min, hero_healing, necronomicon_kills, sentry_uses, stuns",0.259456
+17,"deaths, gold_per_min, hero_healing, necronomicon_kills, pings",0.259196
+18,"deaths, gold_per_min, hero_healing, necronomicon_kills, observer_uses, tower_kills",0.258849
+19,"deaths, hero_healing, sentry_uses, tower_damage, xp_per_min",0.257317
+20,"deaths, gold_per_min, hero_healing, pings, rune_pickups, sentry_uses",0.256027
+21,"deaths, gold_per_min, hero_healing, sentry_uses, stuns, tower_damage",0.255857
+22,"deaths, gold_per_min, hero_healing, observer_uses",0.255818
+23,"deaths, hero_healing, necronomicon_kills, tower_kills, xp_per_min",0.254641
+24,"deaths, gold_per_min, hero_healing, sentry_uses, stuns, tower_kills",0.253677
