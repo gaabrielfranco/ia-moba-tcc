@@ -14,8 +14,6 @@ from joblib import load
 
 
 def main():
-    df = pd.read_csv(
-        "create_database/df_database_w_metrics_all.csv", index_col=0)
     df_norm = pd.read_csv(
         "create_database/df_database_norm_w_metrics_all.csv", index_col=0)
     df_cluster = pd.read_csv(
@@ -24,9 +22,9 @@ def main():
         "create_database/df_database_all.csv", index_col=0)
     data_out = pd.read_csv(
         "create_database/df_database_all_w_outliers.csv", index_col=0)
-    # metrics = ["Metric_" + str(i) for i in range(1, 11)]
-    # metrics.append("KDA")
-    metrics = ["Metric_1", "KDA"]
+
+    #metrics = ["GDM", "KDA"]
+    metrics = ["GDM"]
 
     # Plot params
     matplotlib.rcParams['pdf.fonttype'] = 42
@@ -47,10 +45,10 @@ def main():
     player_solo.index = [0]
     radarplot(player_solo, file_name, label=None, figsize=(3.8, 2.8))
     '''
-    '''
+
     # Multi radarplot for top 10
     file_name = "img/all/starplot_top10.pdf"
-    df_ord = df_norm.sort_values(by=["Metric_1"], ascending=False)
+    df_ord = df_norm.sort_values(by=["GDM"], ascending=False)
     df_top10_m1 = df_ord.loc[:, data.columns].iloc[:10]
     df_top10_m1.index = [x for x in range(0, 10)]
 
@@ -59,7 +57,7 @@ def main():
     df_top10_kda.index = [x for x in range(0, 10)]
 
     radarplot_comp(df_top10_m1, df_top10_kda, file_name)
-    '''
+
     '''
     # Multi radarplot for centroids
     file_name = "img/all/starplot_centroids.pdf"
@@ -83,7 +81,7 @@ def main():
 
         radarplot(df_top10, file_name, label=label, figsize=(12, 9))
     '''
-
+    '''
     # CDF for each metric per cluster
     folder = "all/ecdf_per_cluster"
 
@@ -112,6 +110,7 @@ def main():
         plt.savefig(file_name, bbox_inches='tight', pad_inches=0.01, dpi=600)
         plt.clf()
         print('Graph %s saved.' % file_name)
+    '''
 
 
 if __name__ == "__main__":
