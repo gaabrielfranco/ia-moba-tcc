@@ -1,6 +1,4 @@
-# ia-moba-tcc
-
-Repositório usado para meu trabalho de conclusão de curso
+# new-moba-metric
 
 ### Tecnologias
 
@@ -19,5 +17,5 @@ Base de dados disponível em: [Base de dados]
 
 
 [Python3]: <https://www.python.org>
-[Base de dados]: <https://drive.google.com/open?id=0BxgsJbhyZmXibmFDS3REMHU2VDg>
+[Base de dados]: <https://drive.google.com/open?id=17tNtcBQueBSc5mE4z57hybwoaNM8ch_A>
 
