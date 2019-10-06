@@ -1,21 +1,15 @@
 # new-moba-metric
 
-### Tecnologias
+Codes of "Towards an Interpretable Metric for DOTA 2 Players: An Unsupervised Learning Approach" paper, published in BRACIS 2019
 
-Tecnologias que eu estou utilizando no projeto:
-
-* [Python3]
-
-### Instalação
+### Install
 
 ```sh
 pip install -r requirements.txt
 ```
 
-### Base de dados
-Base de dados disponível em: [Base de dados]
+### Dataset
+Dataset available in: [Dataset]
 
-
-[Python3]: <https://www.python.org>
-[Base de dados]: <https://drive.google.com/open?id=17tNtcBQueBSc5mE4z57hybwoaNM8ch_A>
+[Dataset]: <https://drive.google.com/open?id=17tNtcBQueBSc5mE4z57hybwoaNM8ch_A>
 
