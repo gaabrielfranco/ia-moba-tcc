@@ -1,5 +1,0 @@
-k;seed;metric;min_size;max_size;outliers
-10;-1;cosine;3;9;1
-best_solution
-evaluation;assists;deaths;denies;gpm;hd;hh;kills;lh;xpm
-{deaths,gpm,hh,kills,xpm}: 0.134093
